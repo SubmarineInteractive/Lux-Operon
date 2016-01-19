@@ -3,8 +3,8 @@ import raf from 'raf'
 import Container from 'Container'
 import { Events } from 'helpers'
 
-const DEFAULT_WIDTH = window.innerWidth;
-const DEFAULT_HEIGHT = window.innerHeight;
+const DEFAULT_WIDTH = window.innerWidth
+const DEFAULT_HEIGHT = window.innerHeight
 const RATIO =  DEFAULT_HEIGHT / DEFAULT_WIDTH
 
 const ZERO = new THREE.Vector3()
