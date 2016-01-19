@@ -6,7 +6,7 @@ School project at Gobelins Paris.
 #### TEAM
 | Nom |  Role |
 | ------------- | ------------- |
-| Jantanna Hennard | Interactive Designer |
+| Jantana Hennard | Interactive Designer |
 | Alexandre Delalleau | Interactive Designer |
 | Fabien Motte | Creative developer |
 | Patrick Heng | Creative developer |
