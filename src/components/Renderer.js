@@ -12,7 +12,9 @@ class Renderer extends THREE.WebGLRenderer {
    */
   constructor( options = { antialias: true, alpha: true } ) {
     super( options )
-    this.setClearColor( 0xFFFFFF, 0 )
+
+    this.setSize( window.innerWidth, window.innerHeight )
+    this.setClearColor( 0x000000 )
     this.setPixelRatio( window.devicePixelRatio )
     this.clear()
 
@@ -27,7 +29,8 @@ class Renderer extends THREE.WebGLRenderer {
    * @return {void}
    */
   resize( width, height ) {
-    this.setSize( width, height, false)
+
+    this.setSize( width, height )
   }
 }
 

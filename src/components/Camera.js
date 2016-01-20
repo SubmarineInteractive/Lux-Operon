@@ -20,8 +20,7 @@ class Camera extends THREE.PerspectiveCamera {
     this.lookAt(target)
 
     if( orbitControls ) {
-      this.controls = new OrbitControls( this, document.querySelector( '#container canvas' ) )
-      this.controls.enableZoom = false
+      this.controls = new OrbitControls( this, document.getElementById( 'container' ) )
     }
 
     this.bindEvents()

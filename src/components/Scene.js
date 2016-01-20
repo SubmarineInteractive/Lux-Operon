@@ -3,12 +3,6 @@ import raf from 'raf'
 import Container from 'Container'
 import { Events } from 'helpers'
 
-const DEFAULT_WIDTH = window.innerWidth
-const DEFAULT_HEIGHT = window.innerHeight
-const RATIO =  DEFAULT_HEIGHT / DEFAULT_WIDTH
-
-const ZERO = new THREE.Vector3()
-
 /**
  * Scene class
  */
@@ -23,8 +17,6 @@ class Scene extends THREE.Scene {
 
     this.camera
     this.renderer
-    this.innerWidth  = window.innerWidth
-    this.innerHeight = window.innerHeight
     this.container   = document.getElementById( 'container' )
   }
 
@@ -62,13 +54,9 @@ class Scene extends THREE.Scene {
       .init()
       .then( ::this.createScene )
 
-    Events.on( 'resize', ::this.resize )
-    this.renderer.resize( DEFAULT_WIDTH, DEFAULT_HEIGHT )
-    this.camera.resize( DEFAULT_WIDTH, DEFAULT_HEIGHT )
-
     // Debug helpers
     if( __DEV__ ) {
-      // this.debug()
+      this.debug()
     }
   }
 
@@ -110,21 +98,6 @@ class Scene extends THREE.Scene {
 
     this.stats.update()
     this.render()
-  }
-
-
-  /**
-   * Resize function
-   * @param  {integer} windowWidth  Window width
-   * @param  {integer} windowHeight Window height
-   * @return {void}
-   */
-  resize( windowWidth, windowHeight ) {
-
-    const width = windowWidth
-    const height = width * RATIO
-    this.renderer.resize( width, height )
-    this.camera.resize( width, height )
   }
 
   /**

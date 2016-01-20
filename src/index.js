@@ -1,5 +1,4 @@
 import Container from 'Container'
-import './css/app.css'
 
 // HMR
 if (module.hot) {
