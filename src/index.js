@@ -1,4 +1,5 @@
 import Container from 'Container'
+import 'stylesheets/main.scss'
 
 // HMR
 if (module.hot) {

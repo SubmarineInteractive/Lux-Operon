@@ -2,6 +2,8 @@ import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+
 
 export default {
   entry: [
@@ -44,8 +46,12 @@ export default {
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
-      }
+        loaders: ['style', 'css', "autoprefixer?browsers=last 2 version"],
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', "autoprefixer?browsers=last 2 version", 'sass'],
+      },
     ],
     postLoaders: [
       {
@@ -80,6 +86,7 @@ export default {
         drop_console: true,
         pure_funcs: ['console.log']
       }
-    })
+    }),
+    new ExtractTextPlugin('style.css', {allChunks: true}),
   ]
 }
