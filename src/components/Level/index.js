@@ -5,11 +5,12 @@ class Level extends THREE.Object3D {
 
   /**
    * Constructor function
-   * @param  {object} options Options
+   * @param {object} options Options
    * @return {void}
    */
-  constructor() {
+  constructor(Options) {
     super()
+
   }
 
 }
