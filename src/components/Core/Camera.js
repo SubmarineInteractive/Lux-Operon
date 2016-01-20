@@ -1,4 +1,4 @@
-import OrbitControls from './Utils/OrbitControls'
+import OrbitControls from '../Utils/OrbitControls'
 import { Events } from 'helpers'
 
 /**
