@@ -1,4 +1,3 @@
-import Splines from '../data/splines'
 import Configuration from '../helpers/Configuration'
 import Scene from '../components/Scene'
 import Camera from '../components/Camera'
@@ -6,17 +5,10 @@ import Renderer from '../components/Renderer'
 import PostProcessing from '../components/PostProcessing/PostProcessing'
 import EffectComposer from '../components/PostProcessing/EffectComposer'
 import Clock from '../components/Utils/Clock'
-import Topography from '../components/Topography'
 import GUI from '../components/Utils/GUI'
 import TextureLoader from '../helpers/TextureLoader'
 
 export default [
-  // --- Constants
-  {
-    type: 'constant',
-    name: 'Splines',
-    value: Splines
-  },
   // --- Services
   {
     type: 'service',
@@ -55,12 +47,6 @@ export default [
     type: 'service',
     name: 'Clock',
     constructor: Clock
-  },
-  {
-    type: 'service',
-    name: 'Topography',
-    constructor: Topography,
-    dependencies: [ 'Splines', 'GUI', 'Configuration' ]
   },
   {
     type: 'service',
