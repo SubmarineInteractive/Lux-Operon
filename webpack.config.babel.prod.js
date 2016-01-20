@@ -1,12 +1,11 @@
-var path = require('path')
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
+import path from 'path'
+import webpack from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
-module.exports = {
+export default {
   entry: [
-    //'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-    './src/index.js',
+    './src/index.js'
   ],
   output: {
     path: path.join(__dirname,'dist'),
@@ -66,7 +65,8 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      '__DEV__': JSON.stringify(true)
+      '__DEV__': JSON.stringify(false),
+      '__PROD__': JSON.stringify(true)
     }),
     new webpack.ProvidePlugin({
       'THREE': 'three'
@@ -74,8 +74,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'static' }
     ],
-    { ignore: ['.DS_Store'] }),
-
+    { ignore: ['.DS_Store', '.keep'] }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         drop_console: true,

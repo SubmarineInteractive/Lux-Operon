@@ -68,7 +68,8 @@ export default {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      '__DEV__': JSON.stringify(true)
+      '__DEV__': JSON.stringify(true),
+      '__PROD__': JSON.stringify(false)
     }),
     new webpack.ProvidePlugin({
       'THREE': 'three'
