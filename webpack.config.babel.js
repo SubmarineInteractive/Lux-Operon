@@ -47,11 +47,11 @@ export default {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css', "autoprefixer?browsers=last 2 version"],
+        loaders: ['style', 'css']
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', "autoprefixer?browsers=last 2 version", 'sass'],
+        loaders: ['style', 'css', 'sass']
       },
     ],
     postLoaders: [

@@ -3,15 +3,14 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+import StatsWebpackPlugin from 'stats-webpack-plugin'
 
 export default {
-  entry: [
-    './src/index.js'
-  ],
+  entry: './src/index.js',
   output: {
-    path: path.join(__dirname,'dist'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'dist'),
+    filename: '[name]-[hash].min.js'
   },
   resolve: {
     root: path.resolve( __dirname, 'src' ),
@@ -46,11 +45,11 @@ export default {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css', "autoprefixer?browsers=last 2 version"],
+        loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version')
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', "autoprefixer?browsers=last 2 version", 'sass'],
+        loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass')
       },
     ],
     postLoaders: [
@@ -67,7 +66,6 @@ export default {
       filename: 'index.html'
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -83,10 +81,13 @@ export default {
     { ignore: ['.DS_Store', '.keep'] }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
+        warnings: false,
         drop_console: true,
         pure_funcs: ['console.log']
       }
     }),
-    new ExtractTextPlugin('style.css', {allChunks: true}),
+    new ExtractTextPlugin('[name]-[hash].min.css', { allChunks: true }),
+    new CleanWebpackPlugin(['dist']),
+    new StatsWebpackPlugin('webpack.stats.json'),
   ]
 }
