@@ -8,13 +8,18 @@ import Clock from '../components/WebGL/Utils/Clock';
 import GUI from '../components/WebGL/Utils/GUI';
 import TextureLoader from '../helpers/TextureLoader';
 
+import TerrainGeometry from '../components/WebGL/Terrain/TerrainGeometry';
+import TerrainMaterial from '../components/WebGL/Terrain/TerrainMaterial';
+
 export default [
-  // --- Services
+  // --- Core
   {
     type: 'service',
     name: 'Configuration',
     constructor: Configuration
   },
+
+  // --- WebGL Core
   {
     type: 'service',
     name: 'Scene',
@@ -58,5 +63,19 @@ export default [
     name: 'TextureLoader',
     constructor: TextureLoader,
     dependencies: [ 'Configuration' ]
-  }
+  },
+  // --- WebGL scene objects
+  //  |---- WebGl Terrain
+  {
+    type: 'service',
+    name: 'TerrainGeometry',
+    constructor: TerrainGeometry,
+    dependencies: ['Configuration']
+  },
+  {
+    type: 'service',
+    name: 'TerrainMaterial',
+    constructor: TerrainMaterial,
+    dependencies: ['Configuration']
+  },
 ];

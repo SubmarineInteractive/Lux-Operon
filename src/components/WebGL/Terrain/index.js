@@ -1,9 +1,11 @@
 import Container from 'Container';
+import TerrainGeometry from './TerrainGeometry';
+import TerrainMaterial from './TerrainMaterial';
 
 /**
  * Terrain class
  */
-class Terrain extends THREE.Object3D {
+class Terrain extends THREE.Mesh {
 
   /**
    * Constructor function
@@ -12,8 +14,10 @@ class Terrain extends THREE.Object3D {
    */
   constructor() {
     super();
-    this.mesh = null;
-    this.texture = null;
+
+    this.material = new TerrainMaterial();
+    this.geometry = new TerrainGeometry();
+
     this.clock = Container.get('Clock');
   }
 

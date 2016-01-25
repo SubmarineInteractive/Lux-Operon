@@ -3,6 +3,7 @@ import { Component } from 'react';
 class App extends Component {
 
   componentDidMount() {
+    // @TODO ADD GLOBAL WINDOW SIZE VALUE - GOGO REDUX
 
   }
 
