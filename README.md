@@ -1,40 +1,39 @@
 # Abyss Project
 
-School project at Gobelins Paris.
-
+School project at Gobelins, Paris.
 
 #### TEAM
-| Nom |  Role |
-| ------------- | ------------- |
-| Jantana Hennard | Interactive Designer |
-| Alexandre Delalleau | Interactive Designer |
-| Fabien Motte | Creative developer |
-| Patrick Heng | Creative developer |
+| Nom                 |  Role                |
+| ------------------- | -------------------- |
+| Jantana Hennard     | [Interactive designer](http://twitter.com/yesverynice)     |
+| Alexandre Delalleau | [Interactive designer](http://twitter.com/alexlesubmarine) |
+| Fabien Motte        | [Creative developer](http://twitter.com/fabmotte)          |
+| Patrick Heng        | [Creative developer](http://twitter.com/pat_hg)            |
 
 #### TECHNOLOGIES
 
-
-* ReactJs 
-* ThreeJs / GLSL (⌐■_■)
+* ReactJS
+* Three.js / GLSL (⌐■_■)
 * GSAP - TweenMax
 * Babel | ES2015
 * Webpack
-* EsLint
+* ESLint
+* ESDoc
 * SASS
 
-#####Install dependancies :
+##### Install dependancies :
 ```shell
   npm i
 ```
 
-#####Launch the project :  
+##### Launch the project :
 ```shell
   npm start
 ```
 
 The project will be launched at http://localhost:3000/
 
-####Build for production :  
+#### Build for production :
 ```shell
   npm run build
 ```
@@ -42,4 +41,4 @@ The project will be launched at http://localhost:3000/
 Hope you like it ¯\_(ツ)_/¯
 
 
-![Gif](https://media.giphy.com/media/7e0EvlBD7nxZu/giphy.gif) 
+![Gif](https://media.giphy.com/media/7e0EvlBD7nxZu/giphy.gif)
