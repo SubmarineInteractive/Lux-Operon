@@ -1,13 +1,14 @@
-import path from 'path'
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
-  devtool: 'eval-source-map',
+  context: path.resolve(__dirname, '..'),
+  devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
-    './src/index.js',
+    './src/main.js'
   ],
   output: {
     path: __dirname,
@@ -15,14 +16,10 @@ export default {
     filename: 'bundle.js'
   },
   resolve: {
-    root: path.resolve( __dirname, 'src' ),
+    root: path.resolve( __dirname, '..', 'src' ),
     alias: {
       'Container': 'helpers/Container'
     },
-    modulesDirectories: [
-      'src',
-      'node_modules'
-    ],
     extensions: [
       '',
       '.js',
@@ -31,10 +28,17 @@ export default {
     ]
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'eslint'
+      }
+    ],
     loaders: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel'
       },
       {
@@ -52,7 +56,7 @@ export default {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
-      },
+      }
     ],
     postLoaders: [
       {
@@ -69,18 +73,18 @@ export default {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       '__DEV__': JSON.stringify(true),
       '__PROD__': JSON.stringify(false)
     }),
     new webpack.ProvidePlugin({
-      'THREE': 'three'
+      'THREE': 'three',
+      'React': 'react'
     }),
     new CopyWebpackPlugin([
       { from: 'static' }
     ],
     { ignore: ['.DS_Store', '.keep'] })
   ]
-}
+};

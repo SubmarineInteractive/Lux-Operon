@@ -1,26 +1,23 @@
-import path from 'path'
-import webpack from 'webpack'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import CleanWebpackPlugin from 'clean-webpack-plugin'
-import StatsWebpackPlugin from 'stats-webpack-plugin'
+import path from 'path';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import StatsWebpackPlugin from 'stats-webpack-plugin';
 
 export default {
-  entry: './src/index.js',
+  context: path.resolve(__dirname, '..'),
+  entry: './src/main.js',
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '..', 'dist'),
     filename: '[name]-[hash].min.js'
   },
   resolve: {
-    root: path.resolve( __dirname, 'src' ),
+    root: path.resolve( __dirname, '..', 'src' ),
     alias: {
       'Container': 'helpers/Container'
     },
-    modulesDirectories: [
-      'src',
-      'node_modules'
-    ],
     extensions: [
       '',
       '.js',
@@ -32,7 +29,7 @@ export default {
     loaders: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel'
       },
       {
@@ -50,7 +47,7 @@ export default {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass')
-      },
+      }
     ],
     postLoaders: [
       {
@@ -73,7 +70,8 @@ export default {
       '__PROD__': JSON.stringify(true)
     }),
     new webpack.ProvidePlugin({
-      'THREE': 'three'
+      'THREE': 'three',
+      'React': 'react'
     }),
     new CopyWebpackPlugin([
       { from: 'static' }
@@ -87,7 +85,7 @@ export default {
       }
     }),
     new ExtractTextPlugin('[name]-[hash].min.css', { allChunks: true }),
-    new CleanWebpackPlugin(['dist']),
-    new StatsWebpackPlugin('webpack.stats.json'),
+    new CleanWebpackPlugin(['dist'], { root: path.join(__dirname, '..') }),
+    new StatsWebpackPlugin('webpack.stats.json')
   ]
-}
+};
