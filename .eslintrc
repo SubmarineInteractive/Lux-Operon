@@ -1,0 +1,31 @@
+{
+  "extends": "eslint:recommended",
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "ecmaFeatures": {
+    "classes": true,
+    "forOf": true,
+    "jsx": true,
+    "es6": true,
+    "blockBindings": true
+  },
+  "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "semi": 1,
+    "no-multiple-empty-lines": [2, {"max": 2, "maxEOF": 0}],
+    "no-var": 1
+  },
+  "globals": {
+    "__DEV__": true,
+    "__PROD__": true,
+    "THREE": true,
+    "React": true
+  }
+}
