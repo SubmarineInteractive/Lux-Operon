@@ -1,0 +1,16 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+Jantana Hennard     -- Interactive designer -- @yesverynice
+Alexandre Delalleau -- Interactive designer -- @alexlesubmarine
+Fabien Motte        -- Creative developer   -- @fabmotte
+Patrick Heng        -- Creative developer   -- @pat_hg
+
+# THANKS
+#
+
+# TECHNOLOGIES
+
+ReactJS, Three.js, GSAP (TweenMax), Babel (ES2015), Webpack, EsLint, SASS
