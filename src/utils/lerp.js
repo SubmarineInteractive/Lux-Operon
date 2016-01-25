@@ -1,9 +1,11 @@
 /**
- * Linear interpolation between two values (lerping).
+ * Linear interpolation between two values (lerping)
  *
- * @param  {integer} x First point
- * @param  {integer} y Second point
- * @param  {integer} r Value to interpolate
- * @return {integer}   Lerped value
+ * @param  {number} x First point
+ * @param  {number} y Second point
+ * @param  {number} r Value to interpolate
+ * @return {number}   Lerped value
  */
-export default (x, y, r) => x + ((y - x) * r)
+export default function lerp(x, y, r) {
+  return x + ((y - x) * r);
+}

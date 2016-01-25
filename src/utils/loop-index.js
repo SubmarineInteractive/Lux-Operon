@@ -1,11 +1,11 @@
 /**
- * Loop on an index value.
+ * Loop on an index value
  *
- * @param  {integer} index  Index
- * @param  {integer} length Length
- * @return {integer}        Looped index
+ * @param  {number} index  Index
+ * @param  {number} length Length
+ * @return {number}        Looped index
  */
-export default (index, length) => {
+export default function loopIndex(index, length) {
   if (index < 0) {
     index = length + index % length;
   }

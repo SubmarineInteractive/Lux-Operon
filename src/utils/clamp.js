@@ -1,12 +1,12 @@
 /**
- * Clamp a value between two bounds.
+ * Clamp a value between two bounds
  *
- * @param  {float} min Minimum boundary
- * @param  {float} max Maximum boundary
- * @param  {float} v   Value to clamp
- * @return {float}     Clamped value
+ * @param  {number} min Minimum boundary
+ * @param  {number} max Maximum boundary
+ * @param  {number} v   Value to clamp
+ * @return {number}     Clamped value
  */
-export default (min, max, v) => {
+export default function clamp(min, max, v) {
   if (v < min) return min;
   if (v > max) return max;
   return v;
