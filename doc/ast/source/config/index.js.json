@@ -1,0 +1,406 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 166,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 5,
+      "column": 52
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 46,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 46
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 7,
+          "end": 21,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 7,
+            "end": 21,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 21
+              }
+            },
+            "name": "postProcessing"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 27,
+        "end": 45,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 27
+          },
+          "end": {
+            "line": 1,
+            "column": 45
+          }
+        },
+        "value": "./postProcessing",
+        "rawValue": "./postProcessing",
+        "raw": "'./postProcessing'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 47,
+      "end": 81,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 34
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 54,
+          "end": 62,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 54,
+            "end": 62,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 15
+              }
+            },
+            "name": "textures"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 68,
+        "end": 80,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 21
+          },
+          "end": {
+            "line": 2,
+            "column": 33
+          }
+        },
+        "value": "./textures",
+        "rawValue": "./textures",
+        "raw": "'./textures'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 82,
+      "end": 112,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 30
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 89,
+          "end": 95,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 13
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 89,
+            "end": 95,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 13
+              }
+            },
+            "name": "camera"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 101,
+        "end": 111,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 19
+          },
+          "end": {
+            "line": 3,
+            "column": 29
+          }
+        },
+        "value": "./camera",
+        "rawValue": "./camera",
+        "raw": "'./camera'"
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 114,
+      "end": 166,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 52
+        }
+      },
+      "declaration": {
+        "type": "ObjectExpression",
+        "start": 129,
+        "end": 165,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 15
+          },
+          "end": {
+            "line": 5,
+            "column": 51
+          }
+        },
+        "properties": [
+          {
+            "type": "Property",
+            "start": 131,
+            "end": 145,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 17
+              },
+              "end": {
+                "line": 5,
+                "column": 31
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 131,
+              "end": 145,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 17
+                },
+                "end": {
+                  "line": 5,
+                  "column": 31
+                }
+              },
+              "name": "postProcessing"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 131,
+              "end": 145,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 17
+                },
+                "end": {
+                  "line": 5,
+                  "column": 31
+                }
+              },
+              "name": "postProcessing"
+            }
+          },
+          {
+            "type": "Property",
+            "start": 147,
+            "end": 155,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 33
+              },
+              "end": {
+                "line": 5,
+                "column": 41
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 147,
+              "end": 155,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 33
+                },
+                "end": {
+                  "line": 5,
+                  "column": 41
+                }
+              },
+              "name": "textures"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 147,
+              "end": 155,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 33
+                },
+                "end": {
+                  "line": 5,
+                  "column": 41
+                }
+              },
+              "name": "textures"
+            }
+          },
+          {
+            "type": "Property",
+            "start": 157,
+            "end": 163,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 43
+              },
+              "end": {
+                "line": 5,
+                "column": 49
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 157,
+              "end": 163,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 43
+                },
+                "end": {
+                  "line": 5,
+                  "column": 49
+                }
+              },
+              "name": "camera"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 157,
+              "end": 163,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 43
+                },
+                "end": {
+                  "line": 5,
+                  "column": 49
+                }
+              },
+              "name": "camera"
+            }
+          }
+        ],
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}

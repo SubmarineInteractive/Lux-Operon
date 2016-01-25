@@ -1,0 +1,1307 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 656,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 20,
+      "column": 21
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 70,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 70
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 9,
+          "end": 20,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 9
+            },
+            "end": {
+              "line": 1,
+              "column": 20
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 20,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "name": "createStore"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 20,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "name": "createStore"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 22,
+          "end": 37,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 22
+            },
+            "end": {
+              "line": 1,
+              "column": 37
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 22,
+            "end": 37,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 22
+              },
+              "end": {
+                "line": 1,
+                "column": 37
+              }
+            },
+            "name": "combineReducers"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 22,
+            "end": 37,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 22
+              },
+              "end": {
+                "line": 1,
+                "column": 37
+              }
+            },
+            "name": "combineReducers"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 39,
+          "end": 54,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 39
+            },
+            "end": {
+              "line": 1,
+              "column": 54
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 39,
+            "end": 54,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 39
+              },
+              "end": {
+                "line": 1,
+                "column": 54
+              }
+            },
+            "name": "applyMiddleware"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 39,
+            "end": 54,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 39
+              },
+              "end": {
+                "line": 1,
+                "column": 54
+              }
+            },
+            "name": "applyMiddleware"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 62,
+        "end": 69,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 62
+          },
+          "end": {
+            "line": 1,
+            "column": 69
+          }
+        },
+        "value": "redux",
+        "rawValue": "redux",
+        "raw": "'redux'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 71,
+      "end": 135,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 64
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 80,
+          "end": 91,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 9
+            },
+            "end": {
+              "line": 2,
+              "column": 20
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 80,
+            "end": 91,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 20
+              }
+            },
+            "name": "syncHistory"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 80,
+            "end": 91,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 20
+              }
+            },
+            "name": "syncHistory"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 93,
+          "end": 105,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 22
+            },
+            "end": {
+              "line": 2,
+              "column": 34
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 93,
+            "end": 105,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 22
+              },
+              "end": {
+                "line": 2,
+                "column": 34
+              }
+            },
+            "name": "routeReducer"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 93,
+            "end": 105,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 22
+              },
+              "end": {
+                "line": 2,
+                "column": 34
+              }
+            },
+            "name": "routeReducer"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 113,
+        "end": 134,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 42
+          },
+          "end": {
+            "line": 2,
+            "column": 63
+          }
+        },
+        "value": "redux-simple-router",
+        "rawValue": "redux-simple-router",
+        "raw": "'redux-simple-router'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 136,
+      "end": 173,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 37
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportNamespaceSpecifier",
+          "start": 143,
+          "end": 156,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 20
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 148,
+            "end": 156,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 12
+              },
+              "end": {
+                "line": 3,
+                "column": 20
+              }
+            },
+            "name": "reducers"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 162,
+        "end": 172,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 26
+          },
+          "end": {
+            "line": 3,
+            "column": 36
+          }
+        },
+        "value": "reducers",
+        "rawValue": "reducers",
+        "raw": "'reducers'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 174,
+      "end": 212,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 38
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 181,
+          "end": 188,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 14
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 181,
+            "end": 188,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 14
+              }
+            },
+            "name": "history"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 194,
+        "end": 211,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 20
+          },
+          "end": {
+            "line": 4,
+            "column": 37
+          }
+        },
+        "value": "helpers/history",
+        "rawValue": "helpers/history",
+        "raw": "'helpers/history'"
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "start": 214,
+      "end": 290,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 3
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 220,
+          "end": 289,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 6
+            },
+            "end": {
+              "line": 9,
+              "column": 2
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 220,
+            "end": 227,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 6
+              },
+              "end": {
+                "line": 6,
+                "column": 13
+              }
+            },
+            "name": "reducer"
+          },
+          "init": {
+            "type": "CallExpression",
+            "start": 230,
+            "end": 289,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 16
+              },
+              "end": {
+                "line": 9,
+                "column": 2
+              }
+            },
+            "callee": {
+              "type": "Identifier",
+              "start": 230,
+              "end": 245,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 16
+                },
+                "end": {
+                  "line": 6,
+                  "column": 31
+                }
+              },
+              "name": "combineReducers"
+            },
+            "arguments": [
+              {
+                "type": "ObjectExpression",
+                "start": 246,
+                "end": 288,
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 32
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 1
+                  }
+                },
+                "properties": [
+                  {
+                    "type": "SpreadProperty",
+                    "start": 250,
+                    "end": 261,
+                    "loc": {
+                      "start": {
+                        "line": 7,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 13
+                      }
+                    },
+                    "argument": {
+                      "type": "Identifier",
+                      "start": 253,
+                      "end": 261,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 5
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 13
+                        }
+                      },
+                      "name": "reducers"
+                    }
+                  },
+                  {
+                    "type": "Property",
+                    "start": 265,
+                    "end": 286,
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 23
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 265,
+                      "end": 272,
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 9
+                        }
+                      },
+                      "name": "routing"
+                    },
+                    "value": {
+                      "type": "Identifier",
+                      "start": 274,
+                      "end": 286,
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 23
+                        }
+                      },
+                      "name": "routeReducer"
+                    },
+                    "kind": "init"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "kind": "const",
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Sync dispatched route actions to the history",
+          "start": 292,
+          "end": 339,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 0
+            },
+            "end": {
+              "line": 11,
+              "column": 47
+            }
+          },
+          "range": [
+            292,
+            339
+          ]
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "start": 340,
+      "end": 391,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 51
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 346,
+          "end": 390,
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 6
+            },
+            "end": {
+              "line": 12,
+              "column": 50
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 346,
+            "end": 367,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 6
+              },
+              "end": {
+                "line": 12,
+                "column": 27
+              }
+            },
+            "name": "reduxRouterMiddleware",
+            "leadingComments": null
+          },
+          "init": {
+            "type": "CallExpression",
+            "start": 370,
+            "end": 390,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 30
+              },
+              "end": {
+                "line": 12,
+                "column": 50
+              }
+            },
+            "callee": {
+              "type": "Identifier",
+              "start": 370,
+              "end": 381,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 30
+                },
+                "end": {
+                  "line": 12,
+                  "column": 41
+                }
+              },
+              "name": "syncHistory"
+            },
+            "arguments": [
+              {
+                "type": "Identifier",
+                "start": 382,
+                "end": 389,
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 42
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 49
+                  }
+                },
+                "name": "history"
+              }
+            ]
+          },
+          "leadingComments": null
+        }
+      ],
+      "kind": "const",
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Sync dispatched route actions to the history",
+          "start": 292,
+          "end": 339,
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 0
+            },
+            "end": {
+              "line": 11,
+              "column": 47
+            }
+          },
+          "range": [
+            292,
+            339
+          ]
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "start": 392,
+      "end": 478,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 86
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 398,
+          "end": 477,
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 6
+            },
+            "end": {
+              "line": 13,
+              "column": 85
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 398,
+            "end": 423,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 6
+              },
+              "end": {
+                "line": 13,
+                "column": 31
+              }
+            },
+            "name": "createStoreWithMiddleware"
+          },
+          "init": {
+            "type": "CallExpression",
+            "start": 426,
+            "end": 477,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 34
+              },
+              "end": {
+                "line": 13,
+                "column": 85
+              }
+            },
+            "callee": {
+              "type": "CallExpression",
+              "start": 426,
+              "end": 464,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 34
+                },
+                "end": {
+                  "line": 13,
+                  "column": 72
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 426,
+                "end": 441,
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 34
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 49
+                  }
+                },
+                "name": "applyMiddleware"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 442,
+                  "end": 463,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 50
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 71
+                    }
+                  },
+                  "name": "reduxRouterMiddleware"
+                }
+              ]
+            },
+            "arguments": [
+              {
+                "type": "Identifier",
+                "start": 465,
+                "end": 476,
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 73
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 84
+                  }
+                },
+                "name": "createStore"
+              }
+            ]
+          }
+        }
+      ],
+      "kind": "const"
+    },
+    {
+      "type": "Identifier",
+      "start": 480,
+      "end": 529,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 49
+        }
+      },
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "start": 486,
+          "end": 528,
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 6
+            },
+            "end": {
+              "line": 15,
+              "column": 48
+            }
+          },
+          "id": {
+            "type": "Identifier",
+            "start": 486,
+            "end": 491,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 6
+              },
+              "end": {
+                "line": 15,
+                "column": 11
+              }
+            },
+            "name": "store"
+          },
+          "init": {
+            "type": "CallExpression",
+            "start": 494,
+            "end": 528,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 14
+              },
+              "end": {
+                "line": 15,
+                "column": 48
+              }
+            },
+            "callee": {
+              "type": "Identifier",
+              "start": 494,
+              "end": 519,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 14
+                },
+                "end": {
+                  "line": 15,
+                  "column": 39
+                }
+              },
+              "name": "createStoreWithMiddleware"
+            },
+            "arguments": [
+              {
+                "type": "Identifier",
+                "start": 520,
+                "end": 527,
+                "loc": {
+                  "start": {
+                    "line": 15,
+                    "column": 40
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 47
+                  }
+                },
+                "name": "reducer"
+              }
+            ]
+          }
+        }
+      ],
+      "kind": "const",
+      "trailingComments": [],
+      "name": "_",
+      "leadingComments": []
+    },
+    {
+      "type": "ExpressionStatement",
+      "start": 587,
+      "end": 633,
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 46
+        }
+      },
+      "expression": {
+        "type": "CallExpression",
+        "start": 587,
+        "end": 632,
+        "loc": {
+          "start": {
+            "line": 18,
+            "column": 0
+          },
+          "end": {
+            "line": 18,
+            "column": 45
+          }
+        },
+        "callee": {
+          "type": "MemberExpression",
+          "start": 587,
+          "end": 625,
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 0
+            },
+            "end": {
+              "line": 18,
+              "column": 38
+            }
+          },
+          "object": {
+            "type": "Identifier",
+            "start": 587,
+            "end": 608,
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 0
+              },
+              "end": {
+                "line": 18,
+                "column": 21
+              }
+            },
+            "name": "reduxRouterMiddleware",
+            "leadingComments": null
+          },
+          "property": {
+            "type": "Identifier",
+            "start": 609,
+            "end": 625,
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 22
+              },
+              "end": {
+                "line": 18,
+                "column": 38
+              }
+            },
+            "name": "listenForReplays"
+          },
+          "computed": false,
+          "leadingComments": null
+        },
+        "arguments": [
+          {
+            "type": "Identifier",
+            "start": 626,
+            "end": 631,
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 39
+              },
+              "end": {
+                "line": 18,
+                "column": 44
+              }
+            },
+            "name": "store"
+          }
+        ],
+        "leadingComments": null
+      },
+      "leadingComments": [
+        {
+          "type": "CommentLine",
+          "value": " Required for replaying actions from devtools to work",
+          "start": 531,
+          "end": 586,
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 0
+            },
+            "end": {
+              "line": 17,
+              "column": 55
+            }
+          },
+          "range": [
+            531,
+            586
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Identifier",
+      "start": 635,
+      "end": 656,
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 21
+        }
+      },
+      "declaration": {
+        "type": "Identifier",
+        "start": 650,
+        "end": 655,
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 15
+          },
+          "end": {
+            "line": 20,
+            "column": 20
+          }
+        },
+        "name": "store"
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 635,
+      "end": 656,
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 21
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 480,
+        "end": 529,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 0
+          },
+          "end": {
+            "line": 15,
+            "column": 49
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 486,
+            "end": 528,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 6
+              },
+              "end": {
+                "line": 15,
+                "column": 48
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 486,
+              "end": 491,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 6
+                },
+                "end": {
+                  "line": 15,
+                  "column": 11
+                }
+              },
+              "name": "store"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 494,
+              "end": 528,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 14
+                },
+                "end": {
+                  "line": 15,
+                  "column": 48
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 494,
+                "end": 519,
+                "loc": {
+                  "start": {
+                    "line": 15,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 39
+                  }
+                },
+                "name": "createStoreWithMiddleware"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 520,
+                  "end": 527,
+                  "loc": {
+                    "start": {
+                      "line": 15,
+                      "column": 40
+                    },
+                    "end": {
+                      "line": 15,
+                      "column": 47
+                    }
+                  },
+                  "name": "reducer"
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "trailingComments": [
+          {
+            "type": "CommentLine",
+            "value": " Required for replaying actions from devtools to work",
+            "start": 531,
+            "end": 586,
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 0
+              },
+              "end": {
+                "line": 17,
+                "column": 55
+              }
+            },
+            "range": [
+              531,
+              586
+            ]
+          }
+        ],
+        "leadingComments": []
+      }
+    }
+  ]
+}

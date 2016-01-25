@@ -1,0 +1,570 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 416,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 11,
+      "column": 1
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 218,
+      "end": 416,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 233,
+        "end": 416,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 15
+          },
+          "end": {
+            "line": 11,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 242,
+          "end": 253,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 24
+            },
+            "end": {
+              "line": 9,
+              "column": 35
+            }
+          },
+          "name": "randomFloat",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 255,
+            "end": 263,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 37
+              },
+              "end": {
+                "line": 9,
+                "column": 45
+              }
+            },
+            "name": "minValue"
+          },
+          {
+            "type": "Identifier",
+            "start": 265,
+            "end": 273,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 47
+              },
+              "end": {
+                "line": 9,
+                "column": 55
+              }
+            },
+            "name": "maxValue"
+          },
+          {
+            "type": "AssignmentPattern",
+            "start": 275,
+            "end": 288,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 57
+              },
+              "end": {
+                "line": 9,
+                "column": 70
+              }
+            },
+            "operator": "=",
+            "left": {
+              "type": "Identifier",
+              "start": 275,
+              "end": 284,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 57
+                },
+                "end": {
+                  "line": 9,
+                  "column": 66
+                }
+              },
+              "name": "precision"
+            },
+            "right": {
+              "type": "Literal",
+              "start": 287,
+              "end": 288,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 69
+                },
+                "end": {
+                  "line": 9,
+                  "column": 70
+                }
+              },
+              "value": 2,
+              "rawValue": 2,
+              "raw": "2"
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 291,
+          "end": 416,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 73
+            },
+            "end": {
+              "line": 11,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "start": 295,
+              "end": 414,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 121
+                }
+              },
+              "argument": {
+                "type": "CallExpression",
+                "start": 302,
+                "end": 413,
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 10,
+                    "column": 120
+                  }
+                },
+                "callee": {
+                  "type": "Identifier",
+                  "start": 302,
+                  "end": 312,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 19
+                    }
+                  },
+                  "name": "parseFloat"
+                },
+                "arguments": [
+                  {
+                    "type": "CallExpression",
+                    "start": 314,
+                    "end": 411,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 21
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 118
+                      }
+                    },
+                    "callee": {
+                      "type": "MemberExpression",
+                      "start": 314,
+                      "end": 398,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 21
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 105
+                        }
+                      },
+                      "object": {
+                        "type": "CallExpression",
+                        "start": 314,
+                        "end": 390,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 97
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 314,
+                          "end": 322,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 21
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 29
+                            }
+                          },
+                          "object": {
+                            "type": "Identifier",
+                            "start": 314,
+                            "end": 318,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 21
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 25
+                              }
+                            },
+                            "name": "Math"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 319,
+                            "end": 322,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 26
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 29
+                              }
+                            },
+                            "name": "min"
+                          },
+                          "computed": false
+                        },
+                        "arguments": [
+                          {
+                            "type": "BinaryExpression",
+                            "start": 324,
+                            "end": 378,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 31
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 85
+                              }
+                            },
+                            "left": {
+                              "type": "Identifier",
+                              "start": 324,
+                              "end": 332,
+                              "loc": {
+                                "start": {
+                                  "line": 10,
+                                  "column": 31
+                                },
+                                "end": {
+                                  "line": 10,
+                                  "column": 39
+                                }
+                              },
+                              "name": "minValue"
+                            },
+                            "operator": "+",
+                            "right": {
+                              "type": "BinaryExpression",
+                              "start": 337,
+                              "end": 376,
+                              "loc": {
+                                "start": {
+                                  "line": 10,
+                                  "column": 44
+                                },
+                                "end": {
+                                  "line": 10,
+                                  "column": 83
+                                }
+                              },
+                              "left": {
+                                "type": "CallExpression",
+                                "start": 337,
+                                "end": 350,
+                                "loc": {
+                                  "start": {
+                                    "line": 10,
+                                    "column": 44
+                                  },
+                                  "end": {
+                                    "line": 10,
+                                    "column": 57
+                                  }
+                                },
+                                "callee": {
+                                  "type": "MemberExpression",
+                                  "start": 337,
+                                  "end": 348,
+                                  "loc": {
+                                    "start": {
+                                      "line": 10,
+                                      "column": 44
+                                    },
+                                    "end": {
+                                      "line": 10,
+                                      "column": 55
+                                    }
+                                  },
+                                  "object": {
+                                    "type": "Identifier",
+                                    "start": 337,
+                                    "end": 341,
+                                    "loc": {
+                                      "start": {
+                                        "line": 10,
+                                        "column": 44
+                                      },
+                                      "end": {
+                                        "line": 10,
+                                        "column": 48
+                                      }
+                                    },
+                                    "name": "Math"
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "start": 342,
+                                    "end": 348,
+                                    "loc": {
+                                      "start": {
+                                        "line": 10,
+                                        "column": 49
+                                      },
+                                      "end": {
+                                        "line": 10,
+                                        "column": 55
+                                      }
+                                    },
+                                    "name": "random"
+                                  },
+                                  "computed": false
+                                },
+                                "arguments": []
+                              },
+                              "operator": "*",
+                              "right": {
+                                "type": "BinaryExpression",
+                                "start": 355,
+                                "end": 374,
+                                "loc": {
+                                  "start": {
+                                    "line": 10,
+                                    "column": 62
+                                  },
+                                  "end": {
+                                    "line": 10,
+                                    "column": 81
+                                  }
+                                },
+                                "left": {
+                                  "type": "Identifier",
+                                  "start": 355,
+                                  "end": 363,
+                                  "loc": {
+                                    "start": {
+                                      "line": 10,
+                                      "column": 62
+                                    },
+                                    "end": {
+                                      "line": 10,
+                                      "column": 70
+                                    }
+                                  },
+                                  "name": "maxValue"
+                                },
+                                "operator": "-",
+                                "right": {
+                                  "type": "Identifier",
+                                  "start": 366,
+                                  "end": 374,
+                                  "loc": {
+                                    "start": {
+                                      "line": 10,
+                                      "column": 73
+                                    },
+                                    "end": {
+                                      "line": 10,
+                                      "column": 81
+                                    }
+                                  },
+                                  "name": "minValue"
+                                },
+                                "parenthesizedExpression": true
+                              },
+                              "parenthesizedExpression": true
+                            }
+                          },
+                          {
+                            "type": "Identifier",
+                            "start": 380,
+                            "end": 388,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 87
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 95
+                              }
+                            },
+                            "name": "maxValue"
+                          }
+                        ]
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "start": 391,
+                        "end": 398,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 98
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 105
+                          }
+                        },
+                        "name": "toFixed"
+                      },
+                      "computed": false
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "start": 400,
+                        "end": 409,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 107
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 116
+                          }
+                        },
+                        "name": "precision"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Generate a random float\n *\n * @param  {number} minValue  Minimum boundary\n * @param  {number} maxValue  Maximum boundary\n * @param  {number} precision Precision\n * @return {number}           Generated float\n ",
+            "start": 0,
+            "end": 217,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 3
+              }
+            },
+            "range": [
+              0,
+              217
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Generate a random float\n *\n * @param  {number} minValue  Minimum boundary\n * @param  {number} maxValue  Maximum boundary\n * @param  {number} precision Precision\n * @return {number}           Generated float\n ",
+          "start": 0,
+          "end": 217,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            217
+          ]
+        }
+      ]
+    }
+  ]
+}

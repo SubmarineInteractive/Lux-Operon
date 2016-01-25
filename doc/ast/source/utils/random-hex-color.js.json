@@ -1,0 +1,410 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 202,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 8,
+      "column": 1
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 88,
+      "end": 202,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 103,
+        "end": 202,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 15
+          },
+          "end": {
+            "line": 8,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 112,
+          "end": 126,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 24
+            },
+            "end": {
+              "line": 6,
+              "column": 38
+            }
+          },
+          "name": "randomHexColor",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [],
+        "body": {
+          "type": "BlockStatement",
+          "start": 129,
+          "end": 202,
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 41
+            },
+            "end": {
+              "line": 8,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "start": 133,
+              "end": 200,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 2
+                },
+                "end": {
+                  "line": 7,
+                  "column": 69
+                }
+              },
+              "argument": {
+                "type": "BinaryExpression",
+                "start": 140,
+                "end": 199,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 68
+                  }
+                },
+                "left": {
+                  "type": "Literal",
+                  "start": 140,
+                  "end": 143,
+                  "loc": {
+                    "start": {
+                      "line": 7,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 7,
+                      "column": 12
+                    }
+                  },
+                  "value": "#",
+                  "rawValue": "#",
+                  "raw": "'#'"
+                },
+                "operator": "+",
+                "right": {
+                  "type": "CallExpression",
+                  "start": 146,
+                  "end": 199,
+                  "loc": {
+                    "start": {
+                      "line": 7,
+                      "column": 15
+                    },
+                    "end": {
+                      "line": 7,
+                      "column": 68
+                    }
+                  },
+                  "callee": {
+                    "type": "MemberExpression",
+                    "start": 146,
+                    "end": 193,
+                    "loc": {
+                      "start": {
+                        "line": 7,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 7,
+                        "column": 62
+                      }
+                    },
+                    "object": {
+                      "type": "CallExpression",
+                      "start": 146,
+                      "end": 184,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 53
+                        }
+                      },
+                      "callee": {
+                        "type": "MemberExpression",
+                        "start": 146,
+                        "end": 156,
+                        "loc": {
+                          "start": {
+                            "line": 7,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 7,
+                            "column": 25
+                          }
+                        },
+                        "object": {
+                          "type": "Identifier",
+                          "start": 146,
+                          "end": 150,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 15
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 19
+                            }
+                          },
+                          "name": "Math"
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "start": 151,
+                          "end": 156,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 20
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 25
+                            }
+                          },
+                          "name": "floor"
+                        },
+                        "computed": false
+                      },
+                      "arguments": [
+                        {
+                          "type": "BinaryExpression",
+                          "start": 158,
+                          "end": 182,
+                          "loc": {
+                            "start": {
+                              "line": 7,
+                              "column": 27
+                            },
+                            "end": {
+                              "line": 7,
+                              "column": 51
+                            }
+                          },
+                          "left": {
+                            "type": "CallExpression",
+                            "start": 158,
+                            "end": 171,
+                            "loc": {
+                              "start": {
+                                "line": 7,
+                                "column": 27
+                              },
+                              "end": {
+                                "line": 7,
+                                "column": 40
+                              }
+                            },
+                            "callee": {
+                              "type": "MemberExpression",
+                              "start": 158,
+                              "end": 169,
+                              "loc": {
+                                "start": {
+                                  "line": 7,
+                                  "column": 27
+                                },
+                                "end": {
+                                  "line": 7,
+                                  "column": 38
+                                }
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "start": 158,
+                                "end": 162,
+                                "loc": {
+                                  "start": {
+                                    "line": 7,
+                                    "column": 27
+                                  },
+                                  "end": {
+                                    "line": 7,
+                                    "column": 31
+                                  }
+                                },
+                                "name": "Math"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "start": 163,
+                                "end": 169,
+                                "loc": {
+                                  "start": {
+                                    "line": 7,
+                                    "column": 32
+                                  },
+                                  "end": {
+                                    "line": 7,
+                                    "column": 38
+                                  }
+                                },
+                                "name": "random"
+                              },
+                              "computed": false
+                            },
+                            "arguments": []
+                          },
+                          "operator": "*",
+                          "right": {
+                            "type": "Literal",
+                            "start": 174,
+                            "end": 182,
+                            "loc": {
+                              "start": {
+                                "line": 7,
+                                "column": 43
+                              },
+                              "end": {
+                                "line": 7,
+                                "column": 51
+                              }
+                            },
+                            "value": 16777215,
+                            "rawValue": 16777215,
+                            "raw": "16777215"
+                          }
+                        }
+                      ]
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "start": 185,
+                      "end": 193,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 54
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 62
+                        }
+                      },
+                      "name": "toString"
+                    },
+                    "computed": false
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "start": 195,
+                      "end": 197,
+                      "loc": {
+                        "start": {
+                          "line": 7,
+                          "column": 64
+                        },
+                        "end": {
+                          "line": 7,
+                          "column": 66
+                        }
+                      },
+                      "value": 16,
+                      "rawValue": 16,
+                      "raw": "16"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Generate a random hexadecimal color\n *\n * @return {string} Hexadecimal color\n ",
+            "start": 0,
+            "end": 87,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 3
+              }
+            },
+            "range": [
+              0,
+              87
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Generate a random hexadecimal color\n *\n * @return {string} Hexadecimal color\n ",
+          "start": 0,
+          "end": 87,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            87
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,597 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 421,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 14,
+      "column": 2
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 285,
+      "end": 420,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 300,
+        "end": 420,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 15
+          },
+          "end": {
+            "line": 14,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 309,
+          "end": 317,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 24
+            },
+            "end": {
+              "line": 10,
+              "column": 32
+            }
+          },
+          "name": "distance",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 318,
+            "end": 320,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 33
+              },
+              "end": {
+                "line": 10,
+                "column": 35
+              }
+            },
+            "name": "x1"
+          },
+          {
+            "type": "Identifier",
+            "start": 322,
+            "end": 324,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 37
+              },
+              "end": {
+                "line": 10,
+                "column": 39
+              }
+            },
+            "name": "y1"
+          },
+          {
+            "type": "Identifier",
+            "start": 326,
+            "end": 328,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 41
+              },
+              "end": {
+                "line": 10,
+                "column": 43
+              }
+            },
+            "name": "x2"
+          },
+          {
+            "type": "Identifier",
+            "start": 330,
+            "end": 332,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 45
+              },
+              "end": {
+                "line": 10,
+                "column": 47
+              }
+            },
+            "name": "y2"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 334,
+          "end": 420,
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 49
+            },
+            "end": {
+              "line": 14,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "start": 338,
+              "end": 357,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 11,
+                  "column": 21
+                }
+              },
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "start": 344,
+                  "end": 356,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 20
+                    }
+                  },
+                  "id": {
+                    "type": "Identifier",
+                    "start": 344,
+                    "end": 346,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 10
+                      }
+                    },
+                    "name": "dx"
+                  },
+                  "init": {
+                    "type": "BinaryExpression",
+                    "start": 349,
+                    "end": 356,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 20
+                      }
+                    },
+                    "left": {
+                      "type": "Identifier",
+                      "start": 349,
+                      "end": 351,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 15
+                        }
+                      },
+                      "name": "x1"
+                    },
+                    "operator": "-",
+                    "right": {
+                      "type": "Identifier",
+                      "start": 354,
+                      "end": 356,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 18
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 20
+                        }
+                      },
+                      "name": "x2"
+                    }
+                  }
+                }
+              ],
+              "kind": "const"
+            },
+            {
+              "type": "VariableDeclaration",
+              "start": 360,
+              "end": 379,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 2
+                },
+                "end": {
+                  "line": 12,
+                  "column": 21
+                }
+              },
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "start": 366,
+                  "end": 378,
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 20
+                    }
+                  },
+                  "id": {
+                    "type": "Identifier",
+                    "start": 366,
+                    "end": 368,
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 10
+                      }
+                    },
+                    "name": "dy"
+                  },
+                  "init": {
+                    "type": "BinaryExpression",
+                    "start": 371,
+                    "end": 378,
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 20
+                      }
+                    },
+                    "left": {
+                      "type": "Identifier",
+                      "start": 371,
+                      "end": 373,
+                      "loc": {
+                        "start": {
+                          "line": 12,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 12,
+                          "column": 15
+                        }
+                      },
+                      "name": "y1"
+                    },
+                    "operator": "-",
+                    "right": {
+                      "type": "Identifier",
+                      "start": 376,
+                      "end": 378,
+                      "loc": {
+                        "start": {
+                          "line": 12,
+                          "column": 18
+                        },
+                        "end": {
+                          "line": 12,
+                          "column": 20
+                        }
+                      },
+                      "name": "y2"
+                    }
+                  }
+                }
+              ],
+              "kind": "const"
+            },
+            {
+              "type": "ReturnStatement",
+              "start": 382,
+              "end": 418,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 2
+                },
+                "end": {
+                  "line": 13,
+                  "column": 38
+                }
+              },
+              "argument": {
+                "type": "CallExpression",
+                "start": 389,
+                "end": 417,
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 37
+                  }
+                },
+                "callee": {
+                  "type": "MemberExpression",
+                  "start": 389,
+                  "end": 398,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 18
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 389,
+                    "end": 393,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 13
+                      }
+                    },
+                    "name": "Math"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 394,
+                    "end": 398,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 14
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 18
+                      }
+                    },
+                    "name": "sqrt"
+                  },
+                  "computed": false
+                },
+                "arguments": [
+                  {
+                    "type": "BinaryExpression",
+                    "start": 399,
+                    "end": 416,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 19
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 36
+                      }
+                    },
+                    "left": {
+                      "type": "BinaryExpression",
+                      "start": 399,
+                      "end": 406,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 26
+                        }
+                      },
+                      "left": {
+                        "type": "Identifier",
+                        "start": 399,
+                        "end": 401,
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 19
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 21
+                          }
+                        },
+                        "name": "dx"
+                      },
+                      "operator": "*",
+                      "right": {
+                        "type": "Identifier",
+                        "start": 404,
+                        "end": 406,
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 24
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 26
+                          }
+                        },
+                        "name": "dx"
+                      }
+                    },
+                    "operator": "+",
+                    "right": {
+                      "type": "BinaryExpression",
+                      "start": 409,
+                      "end": 416,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 29
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 36
+                        }
+                      },
+                      "left": {
+                        "type": "Identifier",
+                        "start": 409,
+                        "end": 411,
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 29
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 31
+                          }
+                        },
+                        "name": "dy"
+                      },
+                      "operator": "*",
+                      "right": {
+                        "type": "Identifier",
+                        "start": 414,
+                        "end": 416,
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 34
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 36
+                          }
+                        },
+                        "name": "dy"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Distance between two points\n *\n * @param  {number} x1 X coord of the first point\n * @param  {number} y1 Y coord of the first point\n * @param  {number} x2 X coord of the second point\n * @param  {number} y2 Y coord of the second point\n * @return {number}    Computed distance\n ",
+            "start": 0,
+            "end": 284,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 3
+              }
+            },
+            "range": [
+              0,
+              284
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Distance between two points\n *\n * @param  {number} x1 X coord of the first point\n * @param  {number} y1 Y coord of the first point\n * @param  {number} x2 X coord of the second point\n * @param  {number} y2 Y coord of the second point\n * @return {number}    Computed distance\n ",
+          "start": 0,
+          "end": 284,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            284
+          ]
+        }
+      ]
+    },
+    {
+      "type": "EmptyStatement",
+      "start": 420,
+      "end": 421,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 1
+        },
+        "end": {
+          "line": 14,
+          "column": 2
+        }
+      }
+    }
+  ]
+}

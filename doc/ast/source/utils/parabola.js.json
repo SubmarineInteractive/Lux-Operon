@@ -1,0 +1,377 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 389,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 11,
+      "column": 1
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 304,
+      "end": 389,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 319,
+        "end": 389,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 15
+          },
+          "end": {
+            "line": 11,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 328,
+          "end": 336,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 24
+            },
+            "end": {
+              "line": 9,
+              "column": 32
+            }
+          },
+          "name": "parabola",
+          "leadingComments": null
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 337,
+            "end": 338,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 33
+              },
+              "end": {
+                "line": 9,
+                "column": 34
+              }
+            },
+            "name": "k"
+          },
+          {
+            "type": "Identifier",
+            "start": 340,
+            "end": 341,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 36
+              },
+              "end": {
+                "line": 9,
+                "column": 37
+              }
+            },
+            "name": "x"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 343,
+          "end": 389,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 39
+            },
+            "end": {
+              "line": 11,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "start": 347,
+              "end": 387,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 42
+                }
+              },
+              "argument": {
+                "type": "CallExpression",
+                "start": 354,
+                "end": 386,
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 10,
+                    "column": 41
+                  }
+                },
+                "callee": {
+                  "type": "MemberExpression",
+                  "start": 354,
+                  "end": 362,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 17
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 354,
+                    "end": 358,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 13
+                      }
+                    },
+                    "name": "Math"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 359,
+                    "end": 362,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 14
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 17
+                      }
+                    },
+                    "name": "pow"
+                  },
+                  "computed": false
+                },
+                "arguments": [
+                  {
+                    "type": "BinaryExpression",
+                    "start": 364,
+                    "end": 381,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 19
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 36
+                      }
+                    },
+                    "left": {
+                      "type": "BinaryExpression",
+                      "start": 364,
+                      "end": 369,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 24
+                        }
+                      },
+                      "left": {
+                        "type": "Literal",
+                        "start": 364,
+                        "end": 365,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 19
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 20
+                          }
+                        },
+                        "value": 4,
+                        "rawValue": 4,
+                        "raw": "4"
+                      },
+                      "operator": "*",
+                      "right": {
+                        "type": "Identifier",
+                        "start": 368,
+                        "end": 369,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 23
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 24
+                          }
+                        },
+                        "name": "x"
+                      }
+                    },
+                    "operator": "*",
+                    "right": {
+                      "type": "BinaryExpression",
+                      "start": 374,
+                      "end": 379,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 29
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 34
+                        }
+                      },
+                      "left": {
+                        "type": "Literal",
+                        "start": 374,
+                        "end": 375,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 29
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 30
+                          }
+                        },
+                        "value": 1,
+                        "rawValue": 1,
+                        "raw": "1"
+                      },
+                      "operator": "-",
+                      "right": {
+                        "type": "Identifier",
+                        "start": 378,
+                        "end": 379,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 33
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 34
+                          }
+                        },
+                        "name": "x"
+                      },
+                      "parenthesizedExpression": true
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "start": 383,
+                    "end": 384,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 38
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 39
+                      }
+                    },
+                    "name": "k"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * Remap the 0..1 interval into 0..1 parabola, such that the corners are remaped to 0 and the center to 1.\n * In other words, parabola(0) = parabola(1) = 0, and parabola(1/2) = 1.\n *\n * @param  {number} k Value to map\n * @param  {number} x Coordinate on X axis\n * @return {number}   Mapped value\n ",
+            "start": 0,
+            "end": 303,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 3
+              }
+            },
+            "range": [
+              0,
+              303
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * Remap the 0..1 interval into 0..1 parabola, such that the corners are remaped to 0 and the center to 1.\n * In other words, parabola(0) = parabola(1) = 0, and parabola(1/2) = 1.\n *\n * @param  {number} k Value to map\n * @param  {number} x Coordinate on X axis\n * @return {number}   Mapped value\n ",
+          "start": 0,
+          "end": 303,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          },
+          "range": [
+            0,
+            303
+          ]
+        }
+      ]
+    }
+  ]
+}
