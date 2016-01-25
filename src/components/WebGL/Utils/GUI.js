@@ -1,4 +1,4 @@
-import dat from 'dat-gui'
+import dat from 'dat-gui';
 
 /**
  * GUI class
@@ -10,8 +10,8 @@ class GUI extends dat.GUI {
    * @return {void}
    */
   constructor() {
-    super()
+    super();
   }
 }
 
-export default GUI
+export default GUI;

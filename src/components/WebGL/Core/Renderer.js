@@ -1,4 +1,4 @@
-import { Events } from 'helpers'
+import { Events } from 'helpers';
 
 /**
  * Renderer class
@@ -11,15 +11,19 @@ class Renderer extends THREE.WebGLRenderer {
    * @return {void}
    */
   constructor( options = { antialias: true, alpha: true } ) {
-    super( options )
+    super( options );
 
-    this.setSize( window.innerWidth, window.innerHeight )
-    this.setClearColor( 0x000000 )
-    this.setPixelRatio( window.devicePixelRatio )
-    this.clear()
+    this.setSize( window.innerWidth, window.innerHeight );
+    this.setClearColor( 0x000000 );
+    this.setPixelRatio( window.devicePixelRatio );
+    this.clear();
+
+    // Gamma 2.2 / Linear workflow
+    this.gammaInput = true;
+    this.gammaOutput = true;
 
     // Resize listener
-    Events.on( 'resize', ::this.resize )
+    Events.on( 'resize', ::this.resize );
   }
 
   /**
@@ -30,8 +34,8 @@ class Renderer extends THREE.WebGLRenderer {
    */
   resize( width, height ) {
 
-    this.setSize( width, height )
+    this.setSize( width, height );
   }
 }
 
-export default Renderer
+export default Renderer;

@@ -1,5 +1,5 @@
-import { Composer, BlendMode } from '@superguigui/wagner'
-import { Events } from 'helpers'
+import { Composer } from '@superguigui/wagner';
+import { Events } from 'helpers';
 
 /**
  * EffectComposer class
@@ -13,12 +13,12 @@ class EffectComposer extends Composer {
    * @return {void}
    */
   constructor( renderer, configuration ) {
-    const effectComposer = configuration.get( 'effectComposer' )
+    const effectComposer = configuration.get( 'effectComposer' );
 
-    super( renderer, effectComposer )
+    super( renderer, effectComposer );
 
     // Resize listener
-    Events.on( 'resize', ::this.resize )
+    Events.on( 'resize', ::this.resize );
   }
 
   /**
@@ -28,8 +28,8 @@ class EffectComposer extends Composer {
    * @return {void}
    */
   resize( width, height ) {
-    this.setSize( width, height )
+    this.setSize( width, height );
   }
 }
 
-export default EffectComposer
+export default EffectComposer;

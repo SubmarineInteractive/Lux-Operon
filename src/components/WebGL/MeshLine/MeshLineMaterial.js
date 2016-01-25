@@ -1,12 +1,12 @@
-const glslify = require('glslify')
-import HMR from '../../helpers/HMR'
+const glslify = require('glslify');
+import HMR from '../../helpers/HMR';
 
 // Cache instance
-const cacheInst = __DEV__ ? HMR.cache(__filename) : null
+const cacheInst = __DEV__ ? HMR.cache(__filename) : null;
 
 // Shaders
-const vertexShader = glslify('./shaders/vert.glsl')
-const fragmentShader = glslify('./shaders/frag.glsl')
+const vertexShader = glslify('./shaders/vert.glsl');
+const fragmentShader = glslify('./shaders/frag.glsl');
 
 /**
  * MeshLineMaterial class
@@ -19,10 +19,10 @@ class MeshLineMaterial extends THREE.Material {
    * @return {object}            Material
    */
   constructor( parameters = {} ) {
-    super()
+    super();
 
     for ( let parameter in parameters ) {
-      this[ parameter ] = parameters[ parameter ]
+      this[ parameter ] = parameters[ parameter ];
     }
 
     const material = new THREE.RawShaderMaterial({
@@ -42,29 +42,29 @@ class MeshLineMaterial extends THREE.Material {
       },
       vertexShader:   vertexShader,
       fragmentShader: fragmentShader
-    })
+    });
 
     if( __DEV__ ) {
-      HMR.enable(cacheInst, material)
+      HMR.enable(cacheInst, material);
     }
 
     for( let property in material.uniforms ) {
-      delete parameters[ property ]
+      delete parameters[ property ];
     }
 
-    material.type = 'MeshLineMaterial'
-    material.setValues( parameters )
+    material.type = 'MeshLineMaterial';
+    material.setValues( parameters );
 
-    return material
+    return material;
   }
 }
 
 // HMR
 if ( module.hot && __DEV__ ) {
-  module.hot.accept(err => { if( err ) throw errr })
+  module.hot.accept(err => { if( err ) throw err; });
   HMR.update(cacheInst, {
     vertexShader, fragmentShader
-  })
+  });
 }
 
-export default MeshLineMaterial
+export default MeshLineMaterial;

@@ -11,10 +11,10 @@ class Terrain extends THREE.Object3D {
    * @return {void}
    */
   constructor() {
-    super()
+    super();
     this.mesh = null;
     this.texture = null;
-    this.clock = container.get('Clock');
+    this.clock = Container.get('Clock');
   }
 
   /**
@@ -22,7 +22,7 @@ class Terrain extends THREE.Object3D {
    * @return {void}
    */
   init() {
-    
+
   }
 
   /**
@@ -35,4 +35,4 @@ class Terrain extends THREE.Object3D {
 
 }
 
-export default Terrain
+export default Terrain;

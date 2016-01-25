@@ -1,5 +1,5 @@
-import SPE from 'shader-particle-engine'
-import groupConfig from '../../config/ParticleSystem/group'
+import SPE from 'shader-particle-engine';
+import groupConfig from '../../config/ParticleSystem/group';
 
 /**
  * Group class
@@ -12,8 +12,8 @@ class Group extends SPE.Group {
    * @return {void}
    */
   constructor( customConfig = {} ) {
-    super( { ...groupConfig, ...customConfig } )
+    super( { ...groupConfig, ...customConfig } );
   }
 }
 
-export default Group
+export default Group;

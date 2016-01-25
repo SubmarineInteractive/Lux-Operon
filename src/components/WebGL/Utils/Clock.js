@@ -8,7 +8,7 @@ class Clock extends THREE.Clock {
    * @return {void}
    */
   constructor() {
-    super( true ) // Autostart
+    super( true ); // Autostart
   }
 
   /**
@@ -16,7 +16,7 @@ class Clock extends THREE.Clock {
    * @return {integer} Delta
    */
   get delta() {
-    return this.getDelta()
+    return this.getDelta();
   }
 
   /**
@@ -24,8 +24,8 @@ class Clock extends THREE.Clock {
    * @return {integer} Elapsed time
    */
   get time() {
-    return this.getElapsedTime()
+    return this.getElapsedTime();
   }
 }
 
-export default Clock
+export default Clock;
