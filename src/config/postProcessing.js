@@ -1,8 +1,8 @@
-import { BlendMode } from '@superguigui/wagner'
-import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass'
-import ZoomBlurPass from '@superguigui/wagner/src/passes/zoom-blur/ZoomBlurPass'
-import MultiPassBloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass'
-import DOFPass from '@superguigui/wagner/src/passes/dof/DOFPass'
+import { BlendMode } from '@superguigui/wagner';
+import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
+import ZoomBlurPass from '@superguigui/wagner/src/passes/zoom-blur/ZoomBlurPass';
+import MultiPassBloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass';
+import DOFPass from '@superguigui/wagner/src/passes/dof/DOFPass';
 
 export default {
   active: false,
@@ -41,4 +41,4 @@ export default {
       })
     }
   ]
-}
+};

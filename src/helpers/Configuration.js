@@ -1,23 +1,30 @@
-import config from '../config'
-import get from 'lodash.get'
-import set from 'lodash.set'
+import config from '../config';
+import get from 'lodash.get';
+import set from 'lodash.set';
 
 /**
  * Configuration class
  */
 class Configuration {
 
-  constructor() {
-
+  /**
+   * Get function
+   * @param  {string}               index Index
+   * @return {number|string|Object}       Value
+   */
+  get( index ) {
+    return get( config, index );
   }
 
-  get( value ) {
-    return get( config, value )
-  }
-
+  /**
+   * Set function
+   * @param  {string}                index Index
+   * @param  {number|string|Object}  value Value
+   * @return {number|string|Object}        Value
+   */
   set( index, value ) {
-    return set( config, index, value )
+    return set( config, index, value );
   }
 }
 
-export default Configuration
+export default Configuration;

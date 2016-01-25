@@ -1,4 +1,4 @@
-import SPE from 'shader-particle-engine'
+import SPE from 'shader-particle-engine';
 
 export default {
   type: SPE.distributions.BOX,
@@ -31,4 +31,4 @@ export default {
   },
   opacity: [0, 1, 0],
   particleCount: 1000
-}
+};

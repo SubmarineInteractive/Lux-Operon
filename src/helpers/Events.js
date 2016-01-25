@@ -1,5 +1,5 @@
-import Minivents from 'minivents'
-import { on } from 'dom-events'
+import Minivents from 'minivents';
+import { on } from 'dom-events';
 
 /**
  * Events class
@@ -11,9 +11,9 @@ class Events extends Minivents {
    * @return {void}
    */
   constructor() {
-    super()
+    super();
 
-    this.bindEvents()
+    this.bindEvents();
   }
 
   /**
@@ -24,9 +24,9 @@ class Events extends Minivents {
 
     // Resize listener
     on( window, 'resize', () => {
-      this.emit( 'resize', window.innerWidth, window.innerHeight )
-    })
+      this.emit( 'resize', window.innerWidth, window.innerHeight );
+    });
   }
 }
 
-export default new Events()
+export default new Events();

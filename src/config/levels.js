@@ -1,9 +1,11 @@
 export default [
-	{
-		name: "level 1",
-	},	{
-		name: "level 2",
-	},	{
-		name: "level 3",
-	}
-]
+  {
+    name: "level 1"
+  },
+  {
+    name: "level 2"
+  },
+  {
+    name: "level 3"
+  }
+];

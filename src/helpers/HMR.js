@@ -1,56 +1,57 @@
-var window = require('global/window')
+import window from 'global/window';
 
 // <filename, materialList> cache
 // Stores all materials created by a hot module.
-module.exports.cache = function (filename) {
-  var cache
+export function cache(filename) {
+  let cache;
   if (window.__hmrShaderCache) {
-    cache = window.__hmrShaderCache
+    cache = window.__hmrShaderCache;
   } else {
-    cache = {}
+    cache = {};
     Object.defineProperty(window, '__hmrShaderCache', {
       configurable: true,
       enumerable: false,
       writable: false,
       value: cache
-    })
+    });
   }
   if (!cache[filename]) {
-    cache[filename] = {}
+    cache[filename] = {};
   }
-  return cache[filename]
+  return cache[filename];
 }
 
 // Enables HMR on the given material
-module.exports.enable = enable
-function enable (cache, material) {
-  var uuid = material.uuid
+export function enable(cache, material) {
+  const uuid = material.uuid;
   if (cache[uuid]) {
-    throw new Error('This material already has HMR set.')
+    throw new Error('This material already has HMR set.');
   }
 
-  cache[uuid] = material
+  cache[uuid] = material;
 
-  var oldDispose = material.dispose
+  const oldDispose = material.dispose;
   material.dispose = function () {
-    if (cache[uuid]) delete cache[uuid]
-    return oldDispose.call(material)
-  }
+    if (cache[uuid]) delete cache[uuid];
+    return oldDispose.call(material);
+  };
 
-  var oldClone = material.clone
+  const oldClone = material.clone;
   material.clone = function () {
-    var newObj = oldClone.call(material)
-    enable(cache, newObj)
-    return newObj
-  }
+    const newObj = oldClone.call(material);
+    enable(cache, newObj);
+    return newObj;
+  };
 }
 
-module.exports.update = function (cache, opt) {
-  console.log('[ThreeJS]', 'Patching shaders')
+export function update(cache, opt) {
+  /*eslint-disable no-console */
+  console.log('[ThreeJS]', 'Patching shaders');
+  /*eslint-enable no-console */
   Object.keys(cache).forEach(uuid => {
-    var material = cache[uuid]
-    if (!material) return
-    material.setValues(opt)
-    material.needsUpdate = true
-  })
+    const material = cache[uuid];
+    if (!material) return;
+    material.setValues(opt);
+    material.needsUpdate = true;
+  });
 }

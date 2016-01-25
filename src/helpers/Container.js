@@ -1,5 +1,5 @@
-import Bottle from 'bottlejs'
-import dependencies  from '../config/dependencies'
+import Bottle from 'bottlejs';
+import dependencies  from '../config/dependencies';
 
 /**
  * Container class
@@ -12,8 +12,8 @@ class Container extends Bottle {
    * @return {void}
    */
   constructor( dependencies = {} ) {
-    super()
-    this.register( dependencies )
+    super();
+    this.register( dependencies );
   }
 
   /**
@@ -29,15 +29,15 @@ class Container extends Bottle {
         case 'factory':
         case 'value':
         case 'constant':
-          this[ dependency.type ]( dependency.name, dependency.value )
-          break
+          this[ dependency.type ]( dependency.name, dependency.value );
+          break;
         case 'service':
-          this[ dependency.type ].apply( this, [ dependency.name, dependency.constructor, ...dependency.dependencies || [] ] )
-          break
+          this[ dependency.type ].apply( this, [ dependency.name, dependency.constructor, ...dependency.dependencies || [] ] );
+          break;
         default:
-          return false
+          return false;
       }
-    })
+    });
   }
 
   /**
@@ -46,8 +46,8 @@ class Container extends Bottle {
    * @return {object}         Service
    */
   get( service ) {
-    return this.container[ service ]
+    return this.container[ service ];
   }
 }
 
-export default new Container( dependencies )
+export default new Container( dependencies );

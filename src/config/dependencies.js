@@ -1,12 +1,12 @@
-import Configuration from '../helpers/Configuration'
-import Scene from '../components/Core/Scene'
-import Camera from '../components/Core/Camera'
-import Renderer from '../components/Core/Renderer'
-import PostProcessing from '../components/PostProcessing/PostProcessing'
-import EffectComposer from '../components/PostProcessing/EffectComposer'
-import Clock from '../components/Utils/Clock'
-import GUI from '../components/Utils/GUI'
-import TextureLoader from '../helpers/TextureLoader'
+import Configuration from '../helpers/Configuration';
+import Scene from '../components/WebGL/Core/Scene';
+import Camera from '../components/WebGL/Core/Camera';
+import Renderer from '../components/WebGL/Core/Renderer';
+import PostProcessing from '../components/WebGL/PostProcessing/PostProcessing';
+import EffectComposer from '../components/WebGL/PostProcessing/EffectComposer';
+import Clock from '../components/WebGL/Utils/Clock';
+import GUI from '../components/WebGL/Utils/GUI';
+import TextureLoader from '../helpers/TextureLoader';
 
 export default [
   // --- Services
@@ -39,6 +39,11 @@ export default [
   },
   {
     type: 'service',
+    name: 'GUI',
+    constructor: GUI
+  },
+  {
+    type: 'service',
     name: 'PostProcessing',
     constructor: PostProcessing,
     dependencies: [ 'EffectComposer', 'Scene', 'Camera', 'Renderer', 'GUI', 'Configuration' ]
@@ -50,13 +55,8 @@ export default [
   },
   {
     type: 'service',
-    name: 'GUI',
-    constructor: GUI
-  },
-  {
-    type: 'service',
     name: 'TextureLoader',
     constructor: TextureLoader,
     dependencies: [ 'Configuration' ]
   }
-]
+];
