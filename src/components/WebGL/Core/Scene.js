@@ -2,6 +2,7 @@ import Stats from 'stats.js';
 import raf from 'raf';
 import Container from 'Container';
 import { Events } from 'helpers';
+import Level from '../Level';
 
 /**
  * Scene class
@@ -86,6 +87,11 @@ class Scene extends THREE.Scene {
    * @return {void}
    */
   createScene() {
+
+    this.add( new THREE.AmbientLight( 0xffffff ) );
+
+    const level = new Level();
+    this.add(level);
 
     this.animate();
   }

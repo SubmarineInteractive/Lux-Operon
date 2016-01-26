@@ -1,3 +1,5 @@
+import Container from 'Container';
+
 /**
  * Level class
  */
@@ -9,6 +11,8 @@ class Level extends THREE.Object3D {
   constructor() {
     super();
 
+    this.terrain = Container.get('Terrain');
+    this.add(this.terrain);
   }
 
 }

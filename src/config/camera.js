@@ -4,6 +4,6 @@ export default {
   near: 1,
   far: 10000,
   position: new THREE.Vector3( 0, 0, 100 ),
-  target: new THREE.Vector3( 0, 0, -1000 ),
+  target: new THREE.Vector3( 0, 0, 0 ),
   orbitControls: true
 };

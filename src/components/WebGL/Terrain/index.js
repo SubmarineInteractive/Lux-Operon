@@ -1,7 +1,3 @@
-import Container from 'Container';
-import TerrainGeometry from './TerrainGeometry';
-import TerrainMaterial from './TerrainMaterial';
-
 /**
  * Terrain class
  */
@@ -9,34 +5,19 @@ class Terrain extends THREE.Mesh {
 
   /**
    * Constructor function
-   * @param  {object} options Options
-   * @return {void}
+   * @param {TerrainGeometry} TerrainGeometry instance
+   * @param {TerrainMaterial} TerrainMaterial instance
    */
-  constructor() {
+  constructor(TerrainGeometry, TerrainMaterial) {
     super();
 
-    this.material = new TerrainMaterial();
-    this.geometry = new TerrainGeometry();
+    this.geometry = TerrainGeometry;
+    this.material = TerrainMaterial;
 
-    this.clock = Container.get('Clock');
+    this.position.set( 0, -200, 0 );
+    this.rotation.x = -Math.PI / 2;
+    this.visible = true;
   }
-
-  /**
-   * Constructor function
-   * @return {void}
-   */
-  init() {
-
-  }
-
-  /**
-   * Constructor function
-   * @return {void}
-   */
-  animate() {
-
-  }
-
 }
 
 export default Terrain;
