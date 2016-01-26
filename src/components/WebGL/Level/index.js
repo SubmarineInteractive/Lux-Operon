@@ -1,5 +1,3 @@
-import Container from 'Container';
-
 /**
  * Level class
  */
@@ -7,12 +5,14 @@ class Level extends THREE.Object3D {
 
   /**
    * Constructor function
+   * @param {Fog} Fog instance
+   * @param {Terrain} Terrain instance
    */
-  constructor() {
+  constructor(Fog, Terrain) {
     super();
 
-    this.terrain = Container.get('Terrain');
-    this.fog = Container.get('Fog');
+    this.terrain = Terrain;
+    this.fog = Fog;
     this.add(this.terrain);
   }
 
