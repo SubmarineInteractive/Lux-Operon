@@ -71,11 +71,11 @@ class Scene extends THREE.Scene {
 
     // Axis helper
     const axis = new THREE.AxisHelper( 5 );
-    this.add( axis );
+    // this.add( axis );
 
     // Grid helper
     const gridHelper = new THREE.GridHelper( 50, 1 );
-    this.add( gridHelper );
+    // this.add( gridHelper );
 
     // Texture loader
     Events.on( 'textureLoader:loading', ( current, total ) =>
@@ -88,10 +88,9 @@ class Scene extends THREE.Scene {
    */
   createScene() {
 
-    this.add( new THREE.AmbientLight( 0xffffff ) );
-
-    this.level = new Level();
-    this.add(this.level);
+    // Level
+    this.level = Container.get( 'Level' );
+    this.add( this.level );
 
     this.animate();
 
