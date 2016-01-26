@@ -88,7 +88,7 @@ class Scene extends THREE.Scene {
   createScene() {
 
     // Level
-    Container.get( 'Level' );
+    this.level = Container.get( 'Level' );
     this.add( this.level );
 
     this.animate();
