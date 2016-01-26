@@ -13,13 +13,13 @@ class TerrainMaterial extends THREE.ShaderMaterial {
   constructor (Configuration, TextureLoader) {
     super();
 
-    const heightMap = TextureLoader.get('heightMap');
-    const normalMap = TextureLoader.get('normalMap');
-    const diffuseTexture1 = TextureLoader.get('diffuseTexture1');
-    const detailTexture = TextureLoader.get('detailTexture');
+    const heightMap = TextureLoader.get('rockHeightmap');
+    const normalMap = TextureLoader.get('rockNorm');
+    const diffuseTexture1 = TextureLoader.get('rockDiffuse');
+    // const detailTexture = TextureLoader.get('detailTexture');
 
     diffuseTexture1.wrapS = diffuseTexture1.wrapT = THREE.RepeatWrapping;
-    detailTexture.wrapS = detailTexture.wrapT = THREE.RepeatWrapping;
+    // detailTexture.wrapS = detailTexture.wrapT = THREE.RepeatWrapping;
 
     const terrainShader = TerrainShader[ "terrain" ];
     let uniformsTerrain = THREE.UniformsUtils.clone( terrainShader.uniforms );
@@ -49,7 +49,7 @@ class TerrainMaterial extends THREE.ShaderMaterial {
     this.lights = true;
     this.fog = true;
     this.shading = THREE.FlatShading;
-    this.wireframe = true;
+    this.wireframe = false;
   }
 }
 
