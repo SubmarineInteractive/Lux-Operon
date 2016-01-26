@@ -8,6 +8,7 @@ import Clock from '../components/WebGL/Utils/Clock';
 import GUI from '../components/WebGL/Utils/GUI';
 import TextureLoader from '../helpers/TextureLoader';
 
+import Fog from '../components/WebGL/Fog';
 import Terrain from '../components/WebGL/Terrain';
 import TerrainGeometry from '../components/WebGL/Terrain/TerrainGeometry';
 import TerrainMaterial from '../components/WebGL/Terrain/TerrainMaterial';
@@ -66,6 +67,12 @@ export default [
     dependencies: [ 'Configuration' ]
   },
   // --- WebGL scene objects
+  {
+    type: 'service',
+    name: 'Fog',
+    constructor: Fog,
+    dependencies: ['Scene', 'Renderer', 'Configuration']
+  },
   //  |---- WebGl Terrain
   {
     type: 'service',
