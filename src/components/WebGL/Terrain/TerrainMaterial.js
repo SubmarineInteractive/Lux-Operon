@@ -26,9 +26,7 @@ class TerrainMaterial extends THREE.ShaderMaterial {
     const diffuseTexture1 = TextureLoader.get('rockDiffuse');
     // const detailTexture = TextureLoader.get('detailTexture');
 
-    let uniformsTerrain = THREE.UniformsUtils.clone( UniformsTerrain );
-
-    this.uniforms = uniformsTerrain;
+    this.uniforms = THREE.UniformsUtils.clone( UniformsTerrain );
     this.vertexShader = glslify('./shaders/vert.glsl');
     this.fragmentShader = glslify('./shaders/frag.glsl');
     this.lights = true;
@@ -39,25 +37,25 @@ class TerrainMaterial extends THREE.ShaderMaterial {
     diffuseTexture1.wrapS = diffuseTexture1.wrapT = THREE.RepeatWrapping;
     // detailTexture.wrapS = detailTexture.wrapT = THREE.RepeatWrapping;
 
-    uniformsTerrain[ "tNormal" ].value = normalMap;
-		// uniformsTerrain[ "uNormalScale" ].value = 3.5;
-    uniformsTerrain[ "tDisplacement" ].value = heightMap;
+    this.uniforms[ "tNormal" ].value = normalMap;
+		// this.uniforms[ "uNormalScale" ].value = 3.5;
+    this.uniforms[ "tDisplacement" ].value = heightMap;
 
-    uniformsTerrain[ "enableDiffuse1" ].value = false;
-    uniformsTerrain[ "enableDiffuse2" ].value = false;
-    uniformsTerrain[ "enableSpecular" ].value = false;
+    this.uniforms[ "enableDiffuse1" ].value = false;
+    this.uniforms[ "enableDiffuse2" ].value = false;
+    this.uniforms[ "enableSpecular" ].value = false;
 
-    uniformsTerrain[ "tDiffuse1" ].value = diffuseTexture1;
-    // uniformsTerrain[ "tDetail" ].value = detailTexture;
+    this.uniforms[ "tDiffuse1" ].value = diffuseTexture1;
+    // this.uniforms[ "tDetail" ].value = detailTexture;
 
-    uniformsTerrain[ "diffuse" ].value.setHex( 0xffffff );
-    uniformsTerrain[ "specular" ].value.setHex( 0xffffff );
+    this.uniforms[ "diffuse" ].value.setHex( 0xffffff );
+    this.uniforms[ "specular" ].value.setHex( 0xffffff );
 
-    uniformsTerrain[ "shininess" ].value = 30;
+    this.uniforms[ "shininess" ].value = 30;
 
-    uniformsTerrain[ "uDisplacementScale" ].value = 300;
+    this.uniforms[ "uDisplacementScale" ].value = 300;
 
-    uniformsTerrain[ "uRepeatOverlay" ].value.set( 6, 6 );
+    this.uniforms[ "uRepeatOverlay" ].value.set( 6, 6 );
   }
 }
 
