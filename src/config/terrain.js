@@ -7,4 +7,4 @@ export default {
       "depth": 32
     }
   }
-}
+};

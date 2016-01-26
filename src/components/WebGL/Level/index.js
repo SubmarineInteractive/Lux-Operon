@@ -22,7 +22,6 @@ class Level extends THREE.Object3D {
   update() {
     this.fog.update();
   }
-
 }
 
 export default Level;

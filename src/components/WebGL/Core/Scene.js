@@ -2,7 +2,6 @@ import Stats from 'stats.js';
 import raf from 'raf';
 import Container from 'Container';
 import { Events } from 'helpers';
-import Level from '../Level';
 
 /**
  * Scene class
@@ -11,7 +10,6 @@ class Scene extends THREE.Scene {
 
   /**
    * Constructor function
-   * @return {void}
    */
   constructor() {
     super();
@@ -28,6 +26,7 @@ class Scene extends THREE.Scene {
 
     this.container = container;
     Container.get('Configuration').set('canvas', this.container);
+
      // Renderer
     this.renderer = Container.get( 'Renderer' );
     this.container.appendChild( this.renderer.domElement );
@@ -71,11 +70,11 @@ class Scene extends THREE.Scene {
 
     // Axis helper
     const axis = new THREE.AxisHelper( 5 );
-    // this.add( axis );
+    this.add( axis );
 
     // Grid helper
     const gridHelper = new THREE.GridHelper( 50, 1 );
-    // this.add( gridHelper );
+    this.add( gridHelper );
 
     // Texture loader
     Events.on( 'textureLoader:loading', ( current, total ) =>
@@ -89,11 +88,10 @@ class Scene extends THREE.Scene {
   createScene() {
 
     // Level
-    this.level = Container.get( 'Level' );
+    Container.get( 'Level' );
     this.add( this.level );
 
     this.animate();
-
   }
 
   /**
