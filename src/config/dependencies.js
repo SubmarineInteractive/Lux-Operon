@@ -8,10 +8,13 @@ import Clock from '../components/WebGL/Utils/Clock';
 import GUI from '../components/WebGL/Utils/GUI';
 import TextureLoader from '../helpers/TextureLoader';
 
+import Level from '../components/WebGL/Level';
 import Fog from '../components/WebGL/Fog';
 import Terrain from '../components/WebGL/Terrain';
 import TerrainGeometry from '../components/WebGL/Terrain/TerrainGeometry';
 import TerrainMaterial from '../components/WebGL/Terrain/TerrainMaterial';
+
+import AmbientLight from '../components/WebGL/Light/AmbientLight';
 
 export default [
   // --- Core
@@ -69,6 +72,12 @@ export default [
   // --- WebGL scene objects
   {
     type: 'service',
+    name: 'Level',
+    constructor: Level,
+    dependencies: ['Fog', 'Terrain']
+  },
+  {
+    type: 'service',
     name: 'Fog',
     constructor: Fog,
     dependencies: ['Scene', 'Renderer', 'Configuration']
@@ -91,5 +100,12 @@ export default [
     name: 'TerrainMaterial',
     constructor: TerrainMaterial,
     dependencies: ['Configuration', 'TextureLoader']
+  },
+  //  |---- WebGl Lights
+  {
+    type: 'service',
+    name: 'AmbientLight',
+    constructor: AmbientLight,
+    dependencies: ['Configuration', 'Level']
   }
 ];
