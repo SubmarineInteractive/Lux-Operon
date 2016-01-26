@@ -77,5 +77,5 @@ export default [
     name: 'TerrainMaterial',
     constructor: TerrainMaterial,
     dependencies: ['Configuration']
-  },
+  }
 ];

@@ -10,4 +10,4 @@ class TerrainMaterial extends THREE.ShaderMaterial {
 
 }
 
-export default TerrainMaterial
+export default TerrainMaterial;
