@@ -14,7 +14,7 @@ class Terrain extends THREE.Mesh {
     this.geometry = TerrainGeometry;
     this.material = TerrainMaterial;
 
-    this.position.set( 0, -200, 0 );
+    this.position.set( 0, 0, 0 );
     this.rotation.x = -Math.PI / 2;
     this.visible = true;
   }

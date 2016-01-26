@@ -1,7 +1,15 @@
-import TerrainShader from './TerrainShader';
+import UniformsTerrain from './shaders/uniforms';
+
+const glslify = require('glslify');
 
 /**
  * TerrainMaterial class
+ *
+ * Dynamic terrain shader :
+ * 	- Blinn-Phong
+ *  - height + normal + diffuse1 + diffuse2 + specular + detail maps
+ *  - point, directional and hemisphere lights (use with "lights: true" material option)
+ *  - shadow maps receiving
  */
 class TerrainMaterial extends THREE.ShaderMaterial {
 
@@ -18,16 +26,24 @@ class TerrainMaterial extends THREE.ShaderMaterial {
     const diffuseTexture1 = TextureLoader.get('rockDiffuse');
     // const detailTexture = TextureLoader.get('detailTexture');
 
+    let uniformsTerrain = THREE.UniformsUtils.clone( UniformsTerrain );
+
+    this.uniforms = uniformsTerrain;
+    this.vertexShader = glslify('./shaders/vert.glsl');
+    this.fragmentShader = glslify('./shaders/frag.glsl');
+    this.lights = true;
+    this.fog = true;
+    this.shading = THREE.FlatShading;
+    this.wireframe = false;
+
     diffuseTexture1.wrapS = diffuseTexture1.wrapT = THREE.RepeatWrapping;
     // detailTexture.wrapS = detailTexture.wrapT = THREE.RepeatWrapping;
 
-    const terrainShader = TerrainShader[ "terrain" ];
-    let uniformsTerrain = THREE.UniformsUtils.clone( terrainShader.uniforms );
     uniformsTerrain[ "tNormal" ].value = normalMap;
 		// uniformsTerrain[ "uNormalScale" ].value = 3.5;
     uniformsTerrain[ "tDisplacement" ].value = heightMap;
 
-    uniformsTerrain[ "enableDiffuse1" ].value = true;
+    uniformsTerrain[ "enableDiffuse1" ].value = false;
     uniformsTerrain[ "enableDiffuse2" ].value = false;
     uniformsTerrain[ "enableSpecular" ].value = false;
 
@@ -39,17 +55,9 @@ class TerrainMaterial extends THREE.ShaderMaterial {
 
     uniformsTerrain[ "shininess" ].value = 30;
 
-    uniformsTerrain[ "uDisplacementScale" ].value = 375;
+    uniformsTerrain[ "uDisplacementScale" ].value = 300;
 
-    // uniformsTerrain[ "uRepeatOverlay" ].value.set( 6, 6 );
-
-    this.uniforms = uniformsTerrain;
-    this.vertexShader = terrainShader.vertexShader;
-    this.fragmentShader = terrainShader.fragmentShader;
-    this.lights = true;
-    this.fog = true;
-    this.shading = THREE.FlatShading;
-    this.wireframe = false;
+    uniformsTerrain[ "uRepeatOverlay" ].value.set( 6, 6 );
   }
 }
 
