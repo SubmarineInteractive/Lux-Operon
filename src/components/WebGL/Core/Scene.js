@@ -90,10 +90,11 @@ class Scene extends THREE.Scene {
 
     this.add( new THREE.AmbientLight( 0xffffff ) );
 
-    const level = new Level();
-    this.add(level);
+    this.level = new Level();
+    this.add(this.level);
 
     this.animate();
+
   }
 
   /**
@@ -116,7 +117,7 @@ class Scene extends THREE.Scene {
    * @return {void}
    */
   render() {
-
+    this.level.update();
     this.postProcessing.update();
   }
 }

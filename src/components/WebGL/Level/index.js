@@ -12,7 +12,15 @@ class Level extends THREE.Object3D {
     super();
 
     this.terrain = Container.get('Terrain');
+    this.fog = Container.get('Fog');
     this.add(this.terrain);
+  }
+
+  /**
+   * update function
+   */
+  update() {
+    this.fog.update();
   }
 
 }
