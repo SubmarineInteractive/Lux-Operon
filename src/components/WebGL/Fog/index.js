@@ -13,9 +13,6 @@ class Fog extends THREE.FogExp2 {
 
     this.scene = Scene;
 
-    this.near = 0;
-    this.far = 1000;
-
     this.scene.fog = this;
 
     this.renderer = Renderer;
