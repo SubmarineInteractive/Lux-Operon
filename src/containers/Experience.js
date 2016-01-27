@@ -15,7 +15,7 @@ class Experience extends Component {
 
   render() {
     return (
-      <div ref="container" />
+      <div className="container" ref="container" />
     );
   }
 }
