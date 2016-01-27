@@ -8,7 +8,7 @@
     "react",
     "sass",
     "glsl",
-    "threjs",
+    "threejs",
     "webgl",
     "eslint",
     "esdoc"
