@@ -7,6 +7,7 @@ class Fog extends THREE.FogExp2 {
    * @param {Configuration} Configuration instance
    */
   constructor(Scene, Renderer, Configuration) {
+
     const fogConfig = Configuration.get('fog');
 
     super(fogConfig.color, fogConfig.density);
@@ -17,18 +18,7 @@ class Fog extends THREE.FogExp2 {
 
     this.renderer = Renderer;
     this.renderer.setClearColor( this.color );
-
-
   }
-
-  /**
-   * Update fog render
-   */
-  update() {
-
-    this.renderer.setClearColor( this.color );
-  }
-
 }
 
 export default Fog;

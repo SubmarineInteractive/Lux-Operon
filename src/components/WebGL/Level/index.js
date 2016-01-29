@@ -15,13 +15,6 @@ class Level extends THREE.Object3D {
     this.fog = Fog;
     this.add(this.terrain);
   }
-
-  /**
-   * update function
-   */
-  update() {
-    this.fog.update();
-  }
 }
 
 export default Level;

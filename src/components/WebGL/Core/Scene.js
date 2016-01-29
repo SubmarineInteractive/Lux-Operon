@@ -114,7 +114,6 @@ class Scene extends THREE.Scene {
    * @return {void}
    */
   render() {
-    this.level.update();
     this.postProcessing.update();
   }
 }
