@@ -56,6 +56,10 @@ export default {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /\.glsl$/,
+        loader: 'raw'
       }
     ],
     postLoaders: [

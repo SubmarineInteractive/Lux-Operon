@@ -1,6 +1,16 @@
 import UniformsTerrain from './shaders/uniforms';
+import vertexShader from './shaders/vert.glsl';
+import fragmentShader from './shaders/frag.glsl';
 
 const glslify = require('glslify');
+
+function replaceThreeChunkFn(a, b) {
+  return THREE.ShaderChunk[b] + '\n';
+}
+
+function shaderParse(glsl) {
+  return glsl.replace(/\/\/\s?chunk\(\s?(\w+)\s?\);/g, replaceThreeChunkFn);
+}
 
 /**
  * TerrainMaterial class
@@ -25,10 +35,20 @@ class TerrainMaterial extends THREE.ShaderMaterial {
     const normalMap = TextureLoader.get('rockNorm');
     const diffuseTexture1 = TextureLoader.get('rockDiffuse');
     // const detailTexture = TextureLoader.get('detailTexture');
-
+// console.log(shaderParse(vertexShader));
     this.uniforms = THREE.UniformsUtils.clone( UniformsTerrain );
-    this.vertexShader = glslify('./shaders/vert.glsl');
-    this.fragmentShader = glslify('./shaders/frag.glsl');
+
+    // console.log(shaderParse(vertexShader));
+    // var src = glslify(`
+    //   precision mediump float;
+    //
+    //   void main() {
+    //     gl_FragColor = vec4(1.0);
+    //   }
+    // `, { inline: true });
+    // console.log(src);
+    this.vertexShader = glslify( vertexShader + '', { inline: true } );
+    // this.fragmentShader = glslify( shaderParse(fragmentShader), { inline: true } );
     this.lights = true;
     this.fog = true;
     this.shading = THREE.FlatShading;

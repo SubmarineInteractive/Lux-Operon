@@ -114,7 +114,9 @@ class Scene extends THREE.Scene {
    * @return {void}
    */
   render() {
+
     this.postProcessing.update();
+    this.camera.update(this.clock.delta);
   }
 }
 
