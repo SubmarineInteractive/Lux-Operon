@@ -106,6 +106,6 @@ export default [
     type: 'service',
     name: 'AmbientLight',
     constructor: AmbientLight,
-    dependencies: ['Configuration', 'Level']
+    dependencies: ['Configuration']
   }
 ];

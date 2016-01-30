@@ -91,6 +91,9 @@ class Scene extends THREE.Scene {
     this.level = Container.get( 'Level' );
     this.add( this.level );
 
+    this.ambientLight = Container.get( 'AmbientLight' );
+    this.add( this.ambientLight );
+
     this.animate();
   }
 

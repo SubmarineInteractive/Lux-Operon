@@ -1,3 +1,6 @@
+/**
+ * Fog class
+ */
 class Fog extends THREE.FogExp2 {
 
   /**
