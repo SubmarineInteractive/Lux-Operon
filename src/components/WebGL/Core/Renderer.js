@@ -18,9 +18,13 @@ class Renderer extends THREE.WebGLRenderer {
     this.setPixelRatio( window.devicePixelRatio );
     this.clear();
 
+    this.shadowMapEnabled = true;
+    this.shadowMapSoft = true;
+
     // Gamma 2.2 / Linear workflow
     this.gammaInput = true;
     this.gammaOutput = true;
+
 
     // Resize listener
     Events.on( 'resize', ::this.resize );

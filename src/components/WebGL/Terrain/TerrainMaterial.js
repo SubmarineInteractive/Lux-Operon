@@ -22,8 +22,9 @@ class TerrainMaterial extends THREE.ShaderMaterial {
   constructor (Configuration, TextureLoader) {
     super();
 
-    const heightMap = TextureLoader.get('rockHeightmap');
-    const normalMap = TextureLoader.get('rockNorm');
+    const heightMap = TextureLoader.get('heightMap');
+    const normalMap = TextureLoader.get('normalMap');
+
     const diffuseTexture1 = TextureLoader.get('rockDiffuse');
     // const detailTexture = TextureLoader.get('detailTexture');
 
@@ -35,8 +36,10 @@ class TerrainMaterial extends THREE.ShaderMaterial {
     this.fog = true;
     this.shading = THREE.FlatShading;
     this.wireframe = false;
-
     diffuseTexture1.wrapS = diffuseTexture1.wrapT = THREE.RepeatWrapping;
+
+    this.castShadow = true;
+    this.receiveShadow = true;
     // detailTexture.wrapS = detailTexture.wrapT = THREE.RepeatWrapping;
 
     this.uniforms[ "tNormal" ].value = normalMap;

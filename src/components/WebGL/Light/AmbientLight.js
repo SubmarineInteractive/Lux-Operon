@@ -17,7 +17,6 @@ class AmbientLight extends THREE.AmbientLight {
 
     this.level = Level;
 
-    Container.get('Scene').add(this);
   }
 
 }
