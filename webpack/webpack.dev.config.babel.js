@@ -58,14 +58,9 @@ export default {
         loaders: ['style', 'css', 'sass']
       },
       {
-        test: /\.glsl$/,
-        loader: 'raw'
-      }
-    ],
-    postLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'ify'
+        test: /\.(glsl|frag|vert)$/,
+        exclude: /node_modules/,
+        loader: 'raw!glslify'
       }
     ]
   },

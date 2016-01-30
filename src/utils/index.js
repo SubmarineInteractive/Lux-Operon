@@ -10,5 +10,6 @@ export parabola           from './parabola';
 export randomFloat        from './random-float';
 export randomHexColor     from './random-hex-color';
 export randomInt          from './random-int';
+export shaderParse        from './shader-parse';
 export smoothStep         from './smooth-step';
 export toType             from './to-type';
