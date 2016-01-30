@@ -8,14 +8,12 @@ class AmbientLight extends THREE.AmbientLight {
   /**
    * Constructor function
    * @param {Configuration} Configuration instance
-   * @param {Level} Level instance
    */
-  constructor(Configuration, Level) {
-    const lightColor = Configuration.get('lights').ambientLight.color;
+  constructor(Configuration) {
+
+    const lightColor = Configuration.get('lights.ambientLight.color');
 
     super(lightColor);
-
-    this.level = Level;
 
   }
 

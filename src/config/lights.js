@@ -1,5 +1,5 @@
 export default {
   "ambientLight" : {
-    color: 0x26454F
+    color: 0x027fc1
   }
 };
