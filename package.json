@@ -48,6 +48,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@fabienmotte/three-first-person-controls": "file:///Users/Swadon/Projets/NPM/three-first-person-controls",
     "@superguigui/wagner": "^0.1.13",
     "babel-plugin-transform-react-constant-elements": "^6.4.0",
     "babel-plugin-transform-react-inline-elements": "^6.4.0",
@@ -98,10 +99,12 @@
     "glslify": "^5.0.0",
     "glslify-fancy-imports": "^1.0.1",
     "glslify-hex": "^2.0.1",
+    "glslify-loader": "^1.0.2",
     "html-webpack-plugin": "^2.7.2",
     "ify-loader": "^1.0.3",
     "json-loader": "^0.5.4",
     "node-sass": "^3.4.2",
+    "raw-loader": "^0.5.1",
     "react-transform-catch-errors": "^1.0.1",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
@@ -113,11 +116,6 @@
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.2"
-  },
-  "browserify": {
-    "transform": [
-      "glslify"
-    ]
   },
   "glslify": {
     "transform": [

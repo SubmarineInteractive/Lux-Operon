@@ -56,12 +56,11 @@ export default {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
-      }
-    ],
-    postLoaders: [
+      },
       {
-        test: /\.js$/,
-        loader: 'ify'
+        test: /\.(glsl|frag|vert)$/,
+        exclude: /node_modules/,
+        loader: 'raw!glslify'
       }
     ]
   },

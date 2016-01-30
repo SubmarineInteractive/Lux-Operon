@@ -1,6 +1,7 @@
 import UniformsTerrain from './shaders/uniforms';
-
-const glslify = require('glslify');
+import vertexShader from './shaders/vert.glsl';
+import fragmentShader from './shaders/frag.glsl';
+import { shaderParse } from 'utils';
 
 /**
  * TerrainMaterial class
@@ -27,8 +28,9 @@ class TerrainMaterial extends THREE.ShaderMaterial {
     // const detailTexture = TextureLoader.get('detailTexture');
 
     this.uniforms = THREE.UniformsUtils.clone( UniformsTerrain );
-    this.vertexShader = glslify('./shaders/vert.glsl');
-    this.fragmentShader = glslify('./shaders/frag.glsl');
+    this.vertexShader = shaderParse(vertexShader);
+    this.fragmentShader = shaderParse(fragmentShader);
+
     this.lights = true;
     this.fog = true;
     this.shading = THREE.FlatShading;
