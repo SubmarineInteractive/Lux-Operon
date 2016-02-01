@@ -1,5 +1,3 @@
-import Container from 'Container';
-
 /**
  * AmbientLight class
  */
@@ -12,10 +10,8 @@ class AmbientLight extends THREE.AmbientLight {
   constructor(Configuration) {
 
     const lightColor = Configuration.get('lights.ambientLight.color');
-
     super(lightColor);
   }
-
 }
 
 export default AmbientLight;

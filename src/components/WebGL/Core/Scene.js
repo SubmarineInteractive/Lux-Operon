@@ -71,7 +71,9 @@ class Scene extends THREE.Scene {
 
     // Texture loader
     Events.on( 'textureLoader:loading', ( current, total ) =>
+      /*eslint-disable no-console */
       console.log( `[TextureLoader] Loading ${current}/${total} textures` ));
+      /*eslint-enable no-console */
   }
 
   /**
