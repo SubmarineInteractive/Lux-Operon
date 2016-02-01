@@ -21,14 +21,12 @@ class Scene extends THREE.Scene {
    * Begin function
    * @return {void}
    */
-  begin(container) {
+  begin() {
 
-    this.container = container;
     Container.get('Configuration').set('canvas', this.container);
 
      // Renderer
     this.renderer = Container.get( 'Renderer' );
-    this.container.appendChild( this.renderer.domElement );
 
     // Camera
     this.camera = Container.get( 'Camera' );
