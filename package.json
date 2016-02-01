@@ -59,6 +59,7 @@
     "global": "^4.3.0",
     "gsap": "^1.18.2",
     "history": "^1.17.0",
+    "is-dom": "^1.0.5",
     "lodash.get": "^4.0.0",
     "lodash.set": "^4.0.0",
     "minivents": "^2.0.1",
@@ -74,6 +75,7 @@
     "three-orbit-controls": "^72.0.0"
   },
   "devDependencies": {
+    "@jordandelcros/stats-js": "github:jordandelcros/stats-js",
     "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.4.0",
     "babel-core": "^6.3.26",
@@ -111,7 +113,6 @@
     "rimraf": "^2.5.1",
     "sass-loader": "^3.1.2",
     "stats-webpack-plugin": "^0.3.0",
-    "stats.js": "^1.0.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",

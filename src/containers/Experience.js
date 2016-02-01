@@ -1,21 +1,26 @@
 import { Component } from 'react';
 import Container from 'Container';
+import { Stats, DOMElement } from 'components';
 
+/**
+ * Experience class
+ */
 class Experience extends Component {
 
-  componentDidMount() {
+  constructor(props) {
+    super(props);
 
-    const container = this.refs.container;
-    Container.get('Scene').begin(container);
-  }
-
-  componentWillUnmount() {
-
+    Container.get('Scene').begin();
   }
 
   render() {
+    this.canvas = Container.get('Renderer').domElement;
+
     return (
-      <div className="container" ref="container" />
+      <div className="container">
+        <Stats isActive={__DEV__} />
+        <DOMElement child={this.canvas} />
+      </div>
     );
   }
 }

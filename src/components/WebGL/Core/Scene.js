@@ -1,4 +1,3 @@
-import Stats from 'stats.js';
 import raf from 'raf';
 import Container from 'Container';
 import { Events } from 'helpers';
@@ -62,12 +61,6 @@ class Scene extends THREE.Scene {
    */
   debug() {
 
-    // Stats
-    this.stats = new Stats();
-    this.stats.domElement.style.position = 'absolute';
-    this.stats.domElement.style.top = '0';
-    this.container.appendChild( this.stats.domElement );
-
     // Axis helper
     const axis = new THREE.AxisHelper( 5 );
     this.add( axis );
@@ -104,11 +97,6 @@ class Scene extends THREE.Scene {
   animate() {
 
     raf( ::this.animate );
-
-    if( __DEV__ ) {
-      this.stats.update();
-    }
-
     this.render();
   }
 
