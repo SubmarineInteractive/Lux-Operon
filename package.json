@@ -67,8 +67,8 @@
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
     "react-router": "^1.0.3",
+    "react-router-redux": "^2.1.0",
     "redux": "^3.0.5",
-    "redux-simple-router": "^2.0.4",
     "shader-particle-engine": "FabienMotte/ShaderParticleEngine",
     "three": "^0.73.0",
     "three-orbit-controls": "^72.0.0"
