@@ -10,7 +10,6 @@ class AmbientLight extends THREE.AmbientLight {
   constructor(Configuration, gui) {
 
     const lightColor = Configuration.get('lights.ambientLight.color');
-
     super(lightColor);
 
     this.gui = gui;
@@ -34,7 +33,6 @@ class AmbientLight extends THREE.AmbientLight {
     });
 
   }
-
 }
 
 export default AmbientLight;

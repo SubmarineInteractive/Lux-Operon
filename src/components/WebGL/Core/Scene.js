@@ -1,4 +1,3 @@
-import Stats from 'stats.js';
 import raf from 'raf';
 import Container from 'Container';
 import { Events } from 'helpers';
@@ -22,14 +21,12 @@ class Scene extends THREE.Scene {
    * Begin function
    * @return {void}
    */
-  begin(container) {
+  begin() {
 
-    this.container = container;
     Container.get('Configuration').set('canvas', this.container);
 
      // Renderer
     this.renderer = Container.get( 'Renderer' );
-    this.container.appendChild( this.renderer.domElement );
 
     // Camera
     this.camera = Container.get( 'Camera' );
@@ -62,12 +59,6 @@ class Scene extends THREE.Scene {
    */
   debug() {
 
-    // Stats
-    this.stats = new Stats();
-    this.stats.domElement.style.position = 'absolute';
-    this.stats.domElement.style.top = '0';
-    this.container.appendChild( this.stats.domElement );
-
     // Axis helper
     const axis = new THREE.AxisHelper( 5 );
     this.add( axis );
@@ -78,7 +69,9 @@ class Scene extends THREE.Scene {
 
     // Texture loader
     Events.on( 'textureLoader:loading', ( current, total ) =>
+      /*eslint-disable no-console */
       console.log( `[TextureLoader] Loading ${current}/${total} textures` ));
+      /*eslint-enable no-console */
   }
 
   /**
@@ -107,11 +100,6 @@ class Scene extends THREE.Scene {
   animate() {
 
     raf( ::this.animate );
-
-    if( __DEV__ ) {
-      this.stats.update();
-    }
-
     this.render();
   }
 
