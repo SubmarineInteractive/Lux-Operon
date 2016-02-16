@@ -9,13 +9,12 @@ class DirectionalLight extends THREE.DirectionalLight {
    */
   constructor(Configuration, gui) {
 
-    const {color, intensity, position, shadow} = Configuration.get('lights.directionalLight');
+    const {color, intensity, shadow} = Configuration.get('lights.directionalLight');
 
     super(color, intensity);
 
     this.gui = gui;
 
-    this.position.copy( position );
     this.castShadow = true;
     this.shadowDarkness = shadow.darkness;
     this.shadowMapWidth = shadow.width;
@@ -41,7 +40,7 @@ class DirectionalLight extends THREE.DirectionalLight {
 
     console.info(this);
 
-    folder.add(this.position, 'x', -1000, 1000);
+    folder.add(this.position, 'x', -1000, 1000).listen();
 
     folder.add(this.position, 'y', -1000, 1000);
 
@@ -55,6 +54,15 @@ class DirectionalLight extends THREE.DirectionalLight {
 
     folder.add(this.shadow.mapSize, 'y', 0, 9000).name('shadow Y');
 
+  }
+
+  /**
+   * move function
+   * Move the light where the camera is
+   * @param {object} newPos Position vector of the camera
+   */
+  move(newPos) {
+    this.position.copy(newPos);
   }
 
 }

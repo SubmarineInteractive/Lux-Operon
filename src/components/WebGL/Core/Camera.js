@@ -18,11 +18,15 @@ class Camera extends THREE.PerspectiveCamera {
     const { fov, aspect, near, far, position, target, orbitControls, firstPersonControls, lookSpeed, movementSpeed } = configuration.get('camera');
 
     super( fov, aspect, near, far );
+
     this.position.set( position.x, position.y, position.z );
+
     this.lookAt(target);
 
+    this.directionalLight = Container.get('DirectionalLight');
+
     if( orbitControls ) {
-      this.controls = new OrbitControls( this, Container.get('Configuration').get('canvas') );
+      this.controls = new OrbitControls( this, configuration.get('canvas') );
     }
 
     if( firstPersonControls ) {
@@ -55,6 +59,8 @@ class Camera extends THREE.PerspectiveCamera {
 
   update(delta) {
     this.controls.update( delta );
+
+    this.directionalLight.move(this.position.clone());
   }
 }
 

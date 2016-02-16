@@ -3,9 +3,8 @@ export default {
     color: 0x000000
   },
   "directionalLight" : {
-    color: 0xffffff,
-    intensity: 0.01,
-    position: new THREE.Vector3(0, 500, 0),
+    color: 0x243465,
+    intensity: 0.2,
     shadow: {
       darkness: 0.6,
       width: 4096,
