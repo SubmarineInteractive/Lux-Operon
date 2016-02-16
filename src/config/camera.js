@@ -5,6 +5,6 @@ export default {
   far: 10000,
   position: new THREE.Vector3( 0, 200, 300 ),
   target: new THREE.Vector3( 0, 0, 0 ),
-  orbitControls: false,
-  firstPersonControls: true
+  orbitControls: true,
+  firstPersonControls: false
 };

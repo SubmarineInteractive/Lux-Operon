@@ -47,12 +47,11 @@ export default {
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass')
-      }
-    ],
-    postLoaders: [
+      },
       {
-        test: /\.js$/,
-        loader: 'ify'
+        test: /\.(glsl|frag|vert)$/,
+        exclude: /node_modules/,
+        loader: 'raw!glslify'
       }
     ]
   },

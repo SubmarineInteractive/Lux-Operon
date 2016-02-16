@@ -1,6 +1,7 @@
 import UniformsTerrain from './shaders/uniforms';
 import vertexShader from './shaders/vert.glsl';
 import fragmentShader from './shaders/frag.glsl';
+import ShaderTerrain from './ShaderTerrain';
 import { shaderParse } from 'utils';
 
 /**
@@ -22,45 +23,69 @@ class TerrainMaterial extends THREE.ShaderMaterial {
   constructor (Configuration, TextureLoader) {
     super();
 
-    const heightMap = TextureLoader.get('heightMap');
+    const heightMapTexture = TextureLoader.get('heightMap');
     const normalMap = TextureLoader.get('normalMap');
+
+    var rx = 256,
+    ry = 256;
+
+    var pars = {
+      minFilter: THREE.LinearFilter,
+      magFilter: THREE.LinearFilter,
+      format: THREE.RGBFormat
+    };
+
+    var heightMap = new THREE.WebGLRenderTarget( rx, ry, pars );
+    heightMap.texture = heightMapTexture;
 
     const diffuseTexture1 = TextureLoader.get('rockDiffuse');
     // const detailTexture = TextureLoader.get('detailTexture');
 
-    this.uniforms = THREE.UniformsUtils.clone( UniformsTerrain );
-    this.vertexShader = shaderParse(vertexShader);
-    this.fragmentShader = shaderParse(fragmentShader);
+    var terrainShader = ShaderTerrain[ "terrain" ];
+
+      var uniformsTerrain = Object.assign(
+
+          THREE.UniformsUtils.clone( terrainShader.uniforms ),
+
+          {
+              fog: false,
+              lights: true
+          },
+
+          THREE.UniformsLib['common'],
+          THREE.UniformsLib['fog'],
+          THREE.UniformsLib['lights'],
+          THREE.UniformsLib['shadowmap'],
+
+          {
+                  ambient  : { type: "c", value: new THREE.Color( 0xffffff ) },
+                  emissive : { type: "c", value: new THREE.Color( 0x000000 ) },
+                  wrapRGB  : { type: "v3", value: new THREE.Vector3( 1, 1, 1 ) }
+          }
+
+      );
+
+      uniformsTerrain[ "tDisplacement" ].value = heightMap;
+      uniformsTerrain[ "shadowMap" ].value = [normalMap];
+
+      uniformsTerrain[ "uDisplacementScale" ].value = 100;
+      uniformsTerrain[ "uRepeatOverlay" ].value.set( 6, 6 );
+
 
     this.lights = true;
-    this.fog = true;
-    this.shading = THREE.FlatShading;
-    this.wireframe = false;
-    diffuseTexture1.wrapS = diffuseTexture1.wrapT = THREE.RepeatWrapping;
+    this.side = THREE.DoubleSide;
+    this.shading = THREE.SmoothShading;
 
-    this.castShadow = true;
-    this.receiveShadow = true;
-    // detailTexture.wrapS = detailTexture.wrapT = THREE.RepeatWrapping;
+    this.uniforms = uniformsTerrain;
+    this.vertexShader = terrainShader.vertexShader;
+    this.fragmentShader = terrainShader.fragmentShader;
+    // this.vertexShader = shaderParse(vertexShader);
+    // this.fragmentShader = shaderParse(fragmentShader);
 
-    this.uniforms[ "tNormal" ].value = normalMap;
-		// this.uniforms[ "uNormalScale" ].value = 3.5;
-    this.uniforms[ "tDisplacement" ].value = heightMap;
-
-    this.uniforms[ "enableDiffuse1" ].value = false;
-    this.uniforms[ "enableDiffuse2" ].value = false;
-    this.uniforms[ "enableSpecular" ].value = false;
-
-    this.uniforms[ "tDiffuse1" ].value = diffuseTexture1;
-    // this.uniforms[ "tDetail" ].value = detailTexture;
-
-    this.uniforms[ "diffuse" ].value.setHex( 0xffffff );
-    this.uniforms[ "specular" ].value.setHex( 0xffffff );
-
-    this.uniforms[ "shininess" ].value = 30;
-
-    this.uniforms[ "uDisplacementScale" ].value = 300;
-
-    this.uniforms[ "uRepeatOverlay" ].value.set( 6, 6 );
+    // this.lights = true;
+    // this.fog = true;
+    // this.shading = THREE.FlatShading;
+    // this.wireframe = false;
   }
 }
 

@@ -41,9 +41,6 @@ class Scene extends THREE.Scene {
     // Texture loader
     this.textureLoader = Container.get( 'TextureLoader' );
 
-    // Lights
-    this.ambientLight = Container.get( 'AmbientLight' );
-
     // Utils
     this.clock = Container.get( 'Clock' );
 
@@ -93,41 +90,33 @@ class Scene extends THREE.Scene {
     // Level
     this.level = Container.get( 'Level' );
     this.add( this.level );
-    this.add( this.ambientLight );
 
-    var geometry = new THREE.PlaneGeometry( 1000, 1000, 32 );
-    var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-    var plane = new THREE.Mesh( geometry, material );
+    const geometry = new THREE.PlaneGeometry( 1000, 1000, 32 );
+    const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+    const plane = new THREE.Mesh( geometry, material );
     plane.rotation.x = Math.PI / 2;
     plane.position.y = 1;
     plane.receiveShadow = true;
-    this.add( plane );
+    // this.add( plane );
 
-    var geometry2 = new THREE.OctahedronGeometry(10, 1)
-    var material2 = new THREE.MeshBasicMaterial( {color: 0x000000, side: THREE.DoubleSide} );
-    var octa = new THREE.Mesh( geometry2, material2 );
+    const geometry2 = new THREE.OctahedronGeometry(100, 1);
+    const material2 = new THREE.MeshBasicMaterial( {color: 0x000000, side: THREE.DoubleSide} );
+    const octa = new THREE.Mesh( geometry2, material2 );
     octa.castShadow = true;
-    octa.position.y = 10;
+    octa.position.y = 400;
     this.add( octa );
 
-    // this.directionalLight = new THREE.DirectionalLight( 0xffffff, 3 );
-    // this.directionalLight.position.set( 0, 1000, 0 );
-    // this.directionalLight.castShadow = true;
-    // this.directionalLight.shadowCameraVisible = true;
-    // this.add( this.directionalLight );
-
     this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
-    this.directionalLight.position.set( 0, 1000, 0 );
+    // this.directionalLight.position.set(1, 1, 1);
+    this.directionalLight.position.set( 0, 500, 0 );
     this.directionalLight.castShadow = true;
-    this.directionalLight.shadowCameraVisible = true;
-
-
-
+    this.directionalLight.shadowDarkness = 0.6;
+    this.directionalLight.shadowMapWidth = 4096;
+    this.directionalLight.shadowMapHeight = 4096;
     this.add(this.directionalLight);
 
-    this.directionalLightHelper = new THREE.DirectionalLightHelper(this.directionalLight, 100);
-
-    this.add(this.directionalLightHelper);
+    // this.directionalLightHelper = new THREE.DirectionalLightHelper(this.directionalLight, 100);
+    // this.add(this.directionalLightHelper);
 
     this.ambientLight = Container.get( 'AmbientLight' );
     this.add( this.ambientLight );

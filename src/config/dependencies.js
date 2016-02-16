@@ -93,7 +93,7 @@ export default [
     type: 'service',
     name: 'TerrainGeometry',
     constructor: TerrainGeometry,
-    dependencies: ['Configuration']
+    dependencies: ['Configuration', 'TextureLoader']
   },
   {
     type: 'service',

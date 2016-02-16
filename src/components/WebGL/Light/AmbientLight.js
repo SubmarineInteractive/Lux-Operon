@@ -1,5 +1,3 @@
-import Container from 'Container';
-
 /**
  * AmbientLight class
  */
