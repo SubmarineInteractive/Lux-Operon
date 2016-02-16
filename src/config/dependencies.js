@@ -9,6 +9,7 @@ import GUI from '../components/WebGL/Utils/GUI';
 import TextureLoader from '../helpers/TextureLoader';
 
 import Level from '../components/WebGL/Level';
+import Player from '../components/WebGL/Level/Player';
 import Fog from '../components/WebGL/Fog';
 import Terrain from '../components/WebGL/Terrain';
 import TerrainGeometry from '../components/WebGL/Terrain/TerrainGeometry';
@@ -73,9 +74,14 @@ export default [
   // --- WebGL scene objects
   {
     type: 'service',
+    name: 'Player',
+    constructor: Player
+  },
+  {
+    type: 'service',
     name: 'Level',
     constructor: Level,
-    dependencies: ['Fog', 'Terrain']
+    dependencies: ['Fog', 'Terrain', 'Player']
   },
   {
     type: 'service',

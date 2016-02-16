@@ -11,7 +11,6 @@ class Camera extends THREE.PerspectiveCamera {
   /**
    * Constructor function
    * @param  {object} configuration Configuration
-   * @return {void}
    */
   constructor( configuration ) {
 
@@ -24,6 +23,8 @@ class Camera extends THREE.PerspectiveCamera {
     this.lookAt(target);
 
     this.directionalLight = Container.get('DirectionalLight');
+
+    this.player = Container.get('Player');
 
     if( orbitControls ) {
       this.controls = new OrbitControls( this, configuration.get('canvas') );
@@ -40,7 +41,6 @@ class Camera extends THREE.PerspectiveCamera {
 
   /**
    * BindEvents function
-   * @return {void}
    */
   bindEvents() {
     Events.on( 'resize', ::this.resize );
@@ -48,19 +48,24 @@ class Camera extends THREE.PerspectiveCamera {
 
   /**
    * Resize function
-   * @param  {integer} width  Width
-   * @param  {integer} height Height
-   * @return {void}
+   * @param {number} width  Width
+   * @param {number} height Height
    */
   resize( width, height ) {
     this.aspect = width / height;
     this.updateProjectionMatrix();
   }
 
+  /**
+   * Update function
+   * @param {number} delta  Delta time from three global clock
+   */
   update(delta) {
     this.controls.update( delta );
 
     this.directionalLight.move(this.position.clone());
+    
+    this.player.move(this.position.clone());
   }
 }
 

@@ -1,20 +1,39 @@
 /**
  * Level class
  */
-class Level extends THREE.Object3D {
+ class Level extends THREE.Object3D {
 
-  /**
-   * Constructor function
-   * @param {Fog} Fog instance
-   * @param {Terrain} Terrain instance
-   */
-  constructor(Fog, Terrain) {
-    super();
+   /**
+    * Constructor function
+    * @param {Fog} Fog instance
+    * @param {Terrain} Terrain instance
+    * @param {Player} Player instance
+    */
+   constructor(Fog, Terrain, Player) {
 
-    this.terrain = Terrain;
-    this.fog = Fog;
-    this.add(this.terrain);
-  }
-}
+     super();
+
+     this.terrain = Terrain;
+
+     this.fog = Fog;
+
+     this.player = Player;
+
+     this.add(this.terrain);
+
+     this.add(this.player);
+
+   }
+
+   /**
+    * update function
+    * @param {number} delta  Delta time from three global clock
+    */
+   update(delta) {
+     this.player.update(delta);
+
+   }
+ }
+
 
 export default Level;
