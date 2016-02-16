@@ -7,7 +7,6 @@ class GUI extends dat.GUI {
 
   /**
    * Constructor function
-   * @return {void}
    */
   constructor() {
     super();

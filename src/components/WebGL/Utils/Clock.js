@@ -5,7 +5,6 @@ class Clock extends THREE.Clock {
 
   /**
    * Constructor function
-   * @return {void}
    */
   constructor() {
     super( true ); // Autostart

@@ -10,7 +10,6 @@ class Emitter extends SPE.Emitter {
   /**
    * Constructor function
    * @param  {object} customConfig Custom configuration
-   * @return {void}
    */
   constructor( customConfig = {} ) {
     super( { ...emitterConfig, ...customConfig } );

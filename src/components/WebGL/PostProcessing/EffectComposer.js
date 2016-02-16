@@ -10,7 +10,6 @@ class EffectComposer extends Composer {
    * Constructor function
    * @param  {object} renderer      Renderer
    * @param  {object} configuration Configuration
-   * @return {void}
    */
   constructor( renderer, configuration ) {
     const effectComposer = configuration.get( 'effectComposer' );
@@ -25,7 +24,6 @@ class EffectComposer extends Composer {
    * Resize function
    * @param  {integer} width  Width
    * @param  {integer} height Height
-   * @return {void}
    */
   resize( width, height ) {
     this.setSize( width, height );

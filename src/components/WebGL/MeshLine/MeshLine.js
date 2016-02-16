@@ -5,7 +5,6 @@ class MeshLine {
 
   /**
    * Constructor function
-   * @return {void}
    */
   constructor() {
 
@@ -61,31 +60,26 @@ class MeshLine {
    * compareV3 function
    * @param  {[type]} a [description]
    * @param  {[type]} b [description]
-   * @return {[type]}   [description]
    */
   compareV3( a, b ) {
 
     const aa = a * 6;
     const ab = b * 6;
-    return ( this.positions[ aa ] === this.positions[ ab ] ) && ( this.positions[ aa + 1 ] === this.positions[ ab + 1 ] ) && ( this.positions[ aa + 2 ] === this.positions[ ab + 2 ] );
 
   }
 
   /**
    * copyV3 function
    * @param  {[type]} a [description]
-   * @return {[type]}   [description]
    */
   copyV3( a ) {
 
     const aa = a * 6;
-    return [ this.positions[ aa ], this.positions[ aa + 1 ], this.positions[ aa + 2 ] ];
 
   }
 
   /**
    * ComputeLineDistances function
-   * @return {void}
    */
   computeLineDistances() {
 
@@ -115,7 +109,6 @@ class MeshLine {
 
   /**
    * process function
-   * @return {[type]} [description]
    */
   process() {
 

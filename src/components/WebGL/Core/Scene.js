@@ -19,7 +19,6 @@ class Scene extends THREE.Scene {
 
   /**
    * Begin function
-   * @return {void}
    */
   begin() {
 
@@ -55,7 +54,6 @@ class Scene extends THREE.Scene {
   /**
    * Debug function
    * @todo Create a separate class
-   * @return {void}
    */
   debug() {
 
@@ -76,7 +74,6 @@ class Scene extends THREE.Scene {
 
   /**
    * CreateScene function
-   * @return {void}
    */
   createScene() {
 
@@ -95,7 +92,6 @@ class Scene extends THREE.Scene {
 
   /**
    * Animate function
-   * @return {void}
    */
   animate() {
 
@@ -105,7 +101,6 @@ class Scene extends THREE.Scene {
 
   /**
    * Render function
-   * @return {void}
    */
   render() {
 

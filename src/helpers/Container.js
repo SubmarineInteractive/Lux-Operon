@@ -9,7 +9,6 @@ class Container extends Bottle {
   /**
    * Constructor function
    * @param  {object} dependencies Dependencies
-   * @return {void}
    */
   constructor( dependencies = {} ) {
     super();
@@ -19,7 +18,6 @@ class Container extends Bottle {
   /**
    * Register function
    * @param  {object} dependencies Dependencies
-   * @return {void}
    */
   register( dependencies ) {
 
