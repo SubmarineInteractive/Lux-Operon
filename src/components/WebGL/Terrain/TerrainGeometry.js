@@ -9,57 +9,54 @@ class TerrainGeometry extends THREE.PlaneGeometry {
   constructor(Configuration, TextureLoader) {
     const terrainGeomConfig = Configuration.get('terrain.geometry');
 
-    super(terrainGeomConfig.width, terrainGeomConfig.depth, terrainGeomConfig.segments.width, terrainGeomConfig.segments.depth);
+    super(terrainGeomConfig.width, terrainGeomConfig.depth, terrainGeomConfig.segments.width/2, terrainGeomConfig.segments.depth/10);
 
-    this.verticesNeedUpdate = true;
-    this.terrainWidth = terrainGeomConfig.width;
-    this.terrainHeight = terrainGeomConfig.depth;
+    // this.verticesNeedUpdate = true;
+    // this.terrainWidth = terrainGeomConfig.width;
+    // this.terrainHeight = terrainGeomConfig.depth;
+    // this.heightmapScale = 5;
+    // const heightMapTexture = TextureLoader.get('heightMap');
+    // let index = 0;
+    // const heightData = this.getHeightData(heightMapTexture.image);
+    //
+    // for (let i = 0; i < this.vertices.length; i++) {
+    //   this.vertices[i].z = heightData[i] * this.heightmapScale;
+    // }
 
-    const heightMapTexture = TextureLoader.get('heightMap');
-
-    var index = 0,
-    i = 0;
-
-    const heightData = this.getHeightData(heightMapTexture.image);
-
-    for ( var i = 0; i < this.vertices.length; i++ ) {
-         this.vertices[i].z = heightData[i] * 100;
-    }
-
-    this.computeFaceNormals();
-    this.computeVertexNormals();
-    this.computeTangents();
+    // this.computeFaceNormals();
+    // this.computeVertexNormals();
+    // this.computeTangents();
   }
 
   getHeightData(image) {
 
-      var canvas = document.createElement( 'canvas' );
+    const canvas = document.createElement('canvas');
 
-      canvas.width = this.terrainWidth;
-      canvas.height = this.terrainHeight;
+    canvas.width = image.width;
+    canvas.height = image.height;
 
-      var context = canvas.getContext( '2d' );
+    const context = canvas.getContext('2d');
 
-      var size = canvas.width * canvas.height;
-      var data = new Float32Array( size );
+    const size = canvas.width * canvas.height;
+    const data = new Float32Array(size);
 
-      context.drawImage(image,0,0);
+    context.drawImage(image, 0, 0);
 
-      for ( var i = 0; i < size; i ++ ) {
-          data[i] = 0
-      }
+    for (let i = 0; i < size; i++) {
+      data[i] = 0;
+    }
 
-      var imgd = context.getImageData(0, 0, canvas.width, canvas.height);
-      var pix = imgd.data;
+    const imgd = context.getImageData(0, 0, canvas.width, canvas.height);
+    const pix = imgd.data;
 
-      var j=0;
+    let j = 0;
 
-      for (var i = 0, n = pix.length; i < n; i += (4)) {
-          var all = pix[i]+pix[i+1]+pix[i+2];
-          data[j++] = all/30;
-      }
+    for (let i = 0, n = pix.length; i < n; i += (4)) {
+      const all = pix[i] + pix[i + 1] + pix[i + 2];
+      data[j++] = all / 3;
+    }
 
-      return data;
+    return data;
   }
 }
 

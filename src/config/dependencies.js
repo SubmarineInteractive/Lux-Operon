@@ -99,7 +99,7 @@ export default [
     type: 'service',
     name: 'TerrainMaterial',
     constructor: TerrainMaterial,
-    dependencies: ['Configuration', 'TextureLoader']
+    dependencies: ['Configuration', 'TextureLoader', 'GUI']
   },
   //  |---- WebGl Lights
   {
