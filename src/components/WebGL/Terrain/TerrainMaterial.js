@@ -37,12 +37,18 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
     this.initGUI();
   }
 
+  /**
+   * initGUI function
+   * Add datGui folder
+   */
   initGUI() {
 
     const folder = this.gui.addFolder('Terrain Material');
 
     folder.addColor(this, 'color').onChange((c) => {
+
       return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
+
     });
 
     folder.add(this, 'shininess', 0, 300);

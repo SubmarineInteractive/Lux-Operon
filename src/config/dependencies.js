@@ -15,6 +15,7 @@ import TerrainGeometry from '../components/WebGL/Terrain/TerrainGeometry';
 import TerrainMaterial from '../components/WebGL/Terrain/TerrainMaterial';
 
 import AmbientLight from '../components/WebGL/Light/AmbientLight';
+import DirectionalLight from '../components/WebGL/Light/DirectionalLight';
 
 export default [
   // --- Core
@@ -93,7 +94,7 @@ export default [
     type: 'service',
     name: 'TerrainGeometry',
     constructor: TerrainGeometry,
-    dependencies: ['Configuration', 'TextureLoader']
+    dependencies: ['Configuration', 'TextureLoader', 'GUI']
   },
   {
     type: 'service',
@@ -106,6 +107,12 @@ export default [
     type: 'service',
     name: 'AmbientLight',
     constructor: AmbientLight,
-    dependencies: ['Configuration']
+    dependencies: ['Configuration', 'GUI']
+  },
+  {
+    type: 'service',
+    name: 'DirectionalLight',
+    constructor: DirectionalLight,
+    dependencies: ['Configuration', 'GUI']
   }
 ];

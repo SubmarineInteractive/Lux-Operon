@@ -91,32 +91,8 @@ class Scene extends THREE.Scene {
     this.level = Container.get( 'Level' );
     this.add( this.level );
 
-    const geometry = new THREE.PlaneGeometry( 1000, 1000, 32 );
-    const material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-    const plane = new THREE.Mesh( geometry, material );
-    plane.rotation.x = Math.PI / 2;
-    plane.position.y = 1;
-    plane.receiveShadow = true;
-    // this.add( plane );
-
-    const geometry2 = new THREE.OctahedronGeometry(100, 1);
-    const material2 = new THREE.MeshBasicMaterial( {color: 0x000000, side: THREE.DoubleSide} );
-    const octa = new THREE.Mesh( geometry2, material2 );
-    octa.castShadow = true;
-    octa.position.y = 400;
-    this.add( octa );
-
-    this.directionalLight = new THREE.DirectionalLight(0xffffff, 0.2);
-    // this.directionalLight.position.set(1, 1, 1);
-    this.directionalLight.position.set( 0, 500, 0 );
-    this.directionalLight.castShadow = true;
-    this.directionalLight.shadowDarkness = 0.6;
-    this.directionalLight.shadowMapWidth = 4096;
-    this.directionalLight.shadowMapHeight = 4096;
+    this.directionalLight = Container.get( 'DirectionalLight' );
     this.add(this.directionalLight);
-
-    // this.directionalLightHelper = new THREE.DirectionalLightHelper(this.directionalLight, 100);
-    // this.add(this.directionalLightHelper);
 
     this.ambientLight = Container.get( 'AmbientLight' );
     this.add( this.ambientLight );
