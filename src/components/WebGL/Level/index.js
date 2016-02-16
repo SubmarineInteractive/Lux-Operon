@@ -27,10 +27,11 @@
 
    /**
     * update function
+    * @param {number} time  Elapsed time from three global clock
     * @param {number} delta  Delta time from three global clock
     */
-   update(delta) {
-     this.player.update(delta);
+   update(time, delta) {
+     this.player.update(time, delta);
 
    }
  }

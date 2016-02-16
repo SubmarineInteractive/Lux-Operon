@@ -107,7 +107,7 @@ class Scene extends THREE.Scene {
 
     this.postProcessing.update();
     this.camera.update(this.clock.delta);
-    this.level.update(this.clock.delta);
+    this.level.update(this.clock.time, this.clock.delta);
   }
 }
 

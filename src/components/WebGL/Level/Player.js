@@ -1,4 +1,6 @@
 import PointLight from '../Light/PointLight';
+import randomInt from '../../../utils/random-int';
+import randomFloat from '../../../utils/random-float';
 
 /**
  * Player class
@@ -12,7 +14,7 @@ class Player extends THREE.Object3D {
     super();
 
     this.lights = [];
-    this.nbLights = 5;
+    this.nbLights = 6;
 
     this.initLights();
   }
@@ -26,15 +28,35 @@ class Player extends THREE.Object3D {
 
       const plight = new PointLight(
         0xffffff,
-        0.1,
-        0
+        0.05,
+        0.2
       );
+
+      plight.gravitationOptions = {
+        x: {
+          offset: randomFloat(-Math.PI/2, Math.PI/2),
+          distance: randomInt(200, 300),
+          velocity: randomFloat(1, 2)
+        },
+        y: {
+          offset: randomFloat(-Math.PI/2, Math.PI/2),
+          distance: randomInt(200, 300),
+          velocity: randomFloat(1, 2)
+        },
+        z: {
+          offset: randomFloat(-Math.PI/2, Math.PI/2),
+          distance: randomInt(200, 500),
+          velocity: randomFloat(1, 2)
+        }
+      }
 
       // plight.addSphere();
 
-      const geom = new THREE.SphereGeometry(0.3, 32, 32);
+      //Generate Spheres
+      const geom = new THREE.SphereGeometry(1, 32, 32);
       const mat = new THREE.MeshBasicMaterial({
-        color: this.color
+        color: 0xffffff,
+        wireframe: true
       });
 
       plight.add(new THREE.Mesh(geom, mat));
@@ -56,21 +78,26 @@ class Player extends THREE.Object3D {
 
   /**
    * update function
+   * @param {number} time  Elapsed time from three global clock
    * @param {number} delta  Delta time from three global clock
    */
-  update(delta) {
+  update(time, delta) {
     for (let i = 0; i < this.nbLights; i++) {
-      this.updateLight(this.lights[i], delta);
+      this.updateLight(this.lights[i], time, delta);
     }
   }
 
   /**
    * updateLight function
    * @param {Light} light Light to update
+   * @param {time} delta  Elapsed time from three global clock
    * @param {number} delta  Delta time from three global clock
    */
-  updateLight(light, delta) {
-
+  updateLight(light, time, delta) {
+    const gOption = light.gravitationOptions;
+    light.position.x = Math.sin(gOption.x.velocity * time + gOption.x.offset) * gOption.x.distance;
+    light.position.y = Math.sin(gOption.y.velocity * time + gOption.y.offset) * gOption.y.distance;
+    light.position.z = Math.cos(gOption.z.velocity * time + gOption.z.offset) * gOption.z.distance;
   }
 }
 
