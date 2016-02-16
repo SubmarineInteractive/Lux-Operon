@@ -15,7 +15,7 @@ class Camera extends THREE.PerspectiveCamera {
    */
   constructor( configuration ) {
 
-    const { fov, aspect, near, far, position, target, orbitControls, firstPersonControls } = configuration.get('camera');
+    const { fov, aspect, near, far, position, target, orbitControls, firstPersonControls, lookSpeed, movementSpeed } = configuration.get('camera');
 
     super( fov, aspect, near, far );
     this.position.set( position.x, position.y, position.z );
@@ -27,8 +27,8 @@ class Camera extends THREE.PerspectiveCamera {
 
     if( firstPersonControls ) {
       this.controls = new FirstPersonControls(this);
-      this.controls.lookSpeed = 0.1;
-      this.controls.movementSpeed = 100;
+      this.controls.lookSpeed = lookSpeed;
+      this.controls.movementSpeed = movementSpeed;
     }
 
     this.bindEvents();

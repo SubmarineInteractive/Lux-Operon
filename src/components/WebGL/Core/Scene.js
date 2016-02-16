@@ -87,8 +87,8 @@ class Scene extends THREE.Scene {
     this.directionalLight = Container.get( 'DirectionalLight' );
     this.add(this.directionalLight);
 
-    this.ambientLight = Container.get( 'AmbientLight' );
-    this.add( this.ambientLight );
+    // this.ambientLight = Container.get( 'AmbientLight' );
+    // this.add( this.ambientLight );
 
     this.animate();
   }

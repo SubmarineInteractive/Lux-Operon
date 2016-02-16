@@ -22,17 +22,21 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
     // Set properties
     this.color = this.configuration.color;
 
-    this.map = heightMapTexture;
+    // this.map = heightMapTexture;
 
     this.displacementMap = heightMapTexture;
 
-    this.displacementScale = 900;
+    this.displacementScale = this.configuration.displacementScale;
 
     this.shading = THREE.FlatShading;
 
-    this.shininess = 80;
+    this.shininess = this.configuration.shininess;
 
-    this.fog = false;
+    this.emissive = this.configuration.emissive;
+
+    this.specular = this.configuration.specular;
+
+    this.fog = true;
 
     this.initGUI();
   }
@@ -46,6 +50,18 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
     const folder = this.gui.addFolder('Terrain Material');
 
     folder.addColor(this, 'color').onChange((c) => {
+
+      return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
+
+    });
+
+    folder.addColor(this, 'specular').onChange((c) => {
+
+      return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
+
+    });
+
+    folder.addColor(this, 'emissive').onChange((c) => {
 
       return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
 

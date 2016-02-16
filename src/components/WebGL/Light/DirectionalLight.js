@@ -47,6 +47,7 @@ class DirectionalLight extends THREE.DirectionalLight {
 
     folder.add(this.position, 'z', -1000, 1000);
 
+    folder.add(this, 'intensity', 0, 0.3);
 
     folder.add(this.shadow, 'darkness', 0, 1000);
 
