@@ -3,8 +3,8 @@ export default {
     "width": 2000,
     "depth": 2000,
     "segments": {
-      "width": 15,
-      "depth": 25
+      "width": 25,
+      "depth": 30
     }
   },
   "material" : {
