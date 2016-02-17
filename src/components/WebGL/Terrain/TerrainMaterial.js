@@ -78,14 +78,16 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
    * Add / Dims displacement scale with B / N key
    */
   keyboardDebug() {
-    document.addEventListener('keyup', (ev)=>{
+
+    document.addEventListener('keyup', ev => {
+
       if(ev.keyCode === 66) {
         this.displacementScale += 50;
       } else if(ev.keyCode === 78){
         this.displacementScale -= 50;
       }
-      console.log('this.displacementScale', this.displacementScale)
-    }, false)
+
+    }, false);
   }
 }
 

@@ -68,7 +68,7 @@ class Player extends THREE.Object3D {
    * @param {time} delta  Elapsed time from three global clock
    * @param {number} delta  Delta time from three global clock
    */
-  updateLight(light, time, delta) {
+  updateLight(light, time) {
     const gOption = light.gravitationOptions;
     light.position.x = Math.sin(gOption.x.velocity * time + gOption.x.offset) * gOption.x.distance;
     light.position.y = Math.sin(gOption.y.velocity * time + gOption.y.offset) * gOption.y.distance;

@@ -38,8 +38,6 @@ class DirectionalLight extends THREE.DirectionalLight {
 
     });
 
-    console.info(this);
-
     folder.add(this.position, 'x', -1000, 1000).listen();
 
     folder.add(this.position, 'y', -1000, 1000);
@@ -62,6 +60,7 @@ class DirectionalLight extends THREE.DirectionalLight {
    * @param {object} newPos Position vector of the camera
    */
   move(newPos) {
+    
     this.position.copy(newPos);
   }
 
