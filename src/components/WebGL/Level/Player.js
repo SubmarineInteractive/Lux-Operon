@@ -26,27 +26,28 @@ class Player extends THREE.Object3D {
   initLights() {
     for (let i = 0; i < this.nbLights; i++) {
 
-      const plight = new PointLight(
-        0xffffff,
-        0.05,
-        0.2
-      );
+      const plight = new PointLight({
+        hex: 0xffffff,
+        intensity: 1,
+        distance: 100,
+        decay: 1
+      });
 
       plight.gravitationOptions = {
         x: {
           offset: randomFloat(-Math.PI/2, Math.PI/2),
-          distance: randomInt(200, 300),
-          velocity: randomFloat(1, 2)
+          distance: randomInt(150, 300),
+          velocity: randomFloat(0.5, 1)
         },
         y: {
           offset: randomFloat(-Math.PI/2, Math.PI/2),
-          distance: randomInt(200, 300),
-          velocity: randomFloat(1, 2)
+          distance: randomInt(150, 300),
+          velocity: randomFloat(0.5, 1)
         },
         z: {
           offset: randomFloat(-Math.PI/2, Math.PI/2),
-          distance: randomInt(200, 500),
-          velocity: randomFloat(1, 2)
+          distance: randomInt(150, 400),
+          velocity: randomFloat(0.5, 1)
         }
       }
 
