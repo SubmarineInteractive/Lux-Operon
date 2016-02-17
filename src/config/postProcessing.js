@@ -11,21 +11,11 @@ export default {
   },
   passes: [
     {
-      name: 'fxaaPass',
-      active: true,
-      constructor: new FXAAPass()
-    },
-    {
-      name: 'zoomBlurPass',
-      active: true,
-      constructor: new ZoomBlurPass({ strength: 0.04 })
-    },
-    {
       name: 'multiPassBloomPass',
       active: true,
       constructor: new MultiPassBloomPass({
         blurAmount: .5,
-        applyZoomBlur: true,
+        applyZoomBlur: false,
         zoomBlurStrength: 0.7,
         blendMode: BlendMode.Screen
       })
@@ -39,6 +29,16 @@ export default {
         tBias: null,
         blurAmount: 1
       })
+    },
+    {
+      name: 'zoomBlurPass',
+      active: false,
+      constructor: new ZoomBlurPass({ strength: 0.04 })
+    },
+    {
+      name: 'fxaaPass',
+      active: true,
+      constructor: new FXAAPass()
     }
   ]
 };

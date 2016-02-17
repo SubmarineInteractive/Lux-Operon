@@ -27,10 +27,9 @@ class Player extends THREE.Object3D {
     for (let i = 0; i < this.nbLights; i++) {
 
       const plight = new PointLight({
-        hex: 0xffffff,
+        hex: 0x6d7caa,
         intensity: 1,
-        distance: 100,
-        decay: 1
+        distance: 200
       });
 
       plight.gravitationOptions = {
@@ -54,7 +53,7 @@ class Player extends THREE.Object3D {
       // plight.addSphere();
 
       //Generate Spheres
-      const geom = new THREE.SphereGeometry(1, 32, 32);
+      const geom = new THREE.SphereGeometry(1, 10, 10);
       const mat = new THREE.MeshBasicMaterial({
         color: 0xffffff,
         wireframe: true

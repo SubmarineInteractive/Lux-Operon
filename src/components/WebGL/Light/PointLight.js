@@ -7,7 +7,7 @@ class PointLight extends THREE.PointLight {
    * Constructor function
    * @param {Configuration} Configuration instance
    */
-  constructor( { hex, intensity, distance, decay } ) {
+  constructor( { hex = 0xffffff, intensity = 1, distance = 0, decay = 1 } ) {
 
     super( hex, intensity, distance, decay );
   }
