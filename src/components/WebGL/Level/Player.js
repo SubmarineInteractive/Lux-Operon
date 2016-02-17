@@ -1,6 +1,6 @@
 import PointLight from '../Light/PointLight';
-import randomInt from '../../../utils/random-int';
-import randomFloat from '../../../utils/random-float';
+import randomHexColor from 'utils/random-hex-color';
+
 
 /**
  * Player class
@@ -14,7 +14,7 @@ class Player extends THREE.Object3D {
     super();
 
     this.lights = [];
-    this.nbLights = 6;
+    this.nbLights = 20;
 
     this.initLights();
   }
@@ -26,40 +26,15 @@ class Player extends THREE.Object3D {
   initLights() {
     for (let i = 0; i < this.nbLights; i++) {
 
+      // hex: 0x6d7caa,
       const plight = new PointLight({
-        hex: 0x6d7caa,
+        hex: randomHexColor(),
         intensity: 1,
-        distance: 200
+        distance: 200,
+        decay: 1
       });
 
-      plight.gravitationOptions = {
-        x: {
-          offset: randomFloat(-Math.PI/2, Math.PI/2),
-          distance: randomInt(150, 300),
-          velocity: randomFloat(0.5, 1)
-        },
-        y: {
-          offset: randomFloat(-Math.PI/2, Math.PI/2),
-          distance: randomInt(150, 300),
-          velocity: randomFloat(0.5, 1)
-        },
-        z: {
-          offset: randomFloat(-Math.PI/2, Math.PI/2),
-          distance: randomInt(150, 400),
-          velocity: randomFloat(0.5, 1)
-        }
-      }
-
-      // plight.addSphere();
-
-      //Generate Spheres
-      const geom = new THREE.SphereGeometry(1, 10, 10);
-      const mat = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        wireframe: true
-      });
-
-      plight.add(new THREE.Mesh(geom, mat));
+      plight.addSphere();
 
       this.lights.push(plight);
 

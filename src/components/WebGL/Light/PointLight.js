@@ -1,3 +1,6 @@
+import randomInt from 'utils/random-int';
+import randomFloat from 'utils/random-float';
+
 /**
  * PointLight class
  */
@@ -9,13 +12,34 @@ class PointLight extends THREE.PointLight {
    */
   constructor( { hex = 0xffffff, intensity = 1, distance = 0, decay = 1 } ) {
 
-    super( hex, intensity, distance, decay );
+    super( parseInt(hex, 16), intensity, distance, decay );
+
+    this.hex = parseInt(hex, 16);
+
+    this.gravitationOptions = {
+      x: {
+        offset: randomFloat(-Math.PI/2, Math.PI/2),
+        distance: randomInt(120, 200),
+        velocity: randomFloat(0.5, 1)
+      },
+      y: {
+        offset: randomFloat(-Math.PI/2, Math.PI/2),
+        distance: randomInt(120, 200),
+        velocity: randomFloat(0.5, 1)
+      },
+      z: {
+        offset: randomFloat(-Math.PI/2, Math.PI/2),
+        distance: randomInt(120, 200),
+        velocity: randomFloat(0.5, 1)
+      }
+    }
   }
 
   addSphere() {
-    const geom = new THREE.SphereGeometry(0.3, 32, 32);
+    const geom = new THREE.SphereGeometry(1, 5, 5);
     const mat = new THREE.MeshBasicMaterial({
-      color: this.color
+      color: this.hex,
+      wireframe: true
     });
 
     this.add(new THREE.Mesh(geom, mat));
