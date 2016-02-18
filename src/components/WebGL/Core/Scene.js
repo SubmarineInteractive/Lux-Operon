@@ -19,7 +19,6 @@ class Scene extends THREE.Scene {
 
   /**
    * Begin function
-   * @return {void}
    */
   begin() {
 
@@ -55,7 +54,6 @@ class Scene extends THREE.Scene {
   /**
    * Debug function
    * @todo Create a separate class
-   * @return {void}
    */
   debug() {
 
@@ -76,7 +74,6 @@ class Scene extends THREE.Scene {
 
   /**
    * CreateScene function
-   * @return {void}
    */
   createScene() {
 
@@ -87,15 +84,14 @@ class Scene extends THREE.Scene {
     this.directionalLight = Container.get( 'DirectionalLight' );
     this.add(this.directionalLight);
 
-    this.ambientLight = Container.get( 'AmbientLight' );
-    this.add( this.ambientLight );
+    // this.ambientLight = Container.get( 'AmbientLight' );
+    // this.add( this.ambientLight );
 
     this.animate();
   }
 
   /**
    * Animate function
-   * @return {void}
    */
   animate() {
 
@@ -105,12 +101,13 @@ class Scene extends THREE.Scene {
 
   /**
    * Render function
-   * @return {void}
    */
   render() {
 
+
     this.postProcessing.update();
     this.camera.update(this.clock.delta);
+    this.level.update(this.clock.time, this.clock.delta);
   }
 }
 

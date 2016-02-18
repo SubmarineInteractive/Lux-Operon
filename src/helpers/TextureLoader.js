@@ -8,7 +8,6 @@ class TextureLoader extends THREE.TextureLoader {
   /**
    * Constructor function
    * @param  {object} textures
-   * @return {void}
    */
   constructor( configuration ) {
     super();

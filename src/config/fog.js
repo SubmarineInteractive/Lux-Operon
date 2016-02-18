@@ -1,4 +1,4 @@
 export default {
   "color": 0x243465,
-  "density": 0.0017
+  "density": 0.002
 };

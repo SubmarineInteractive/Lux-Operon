@@ -9,7 +9,6 @@ class Group extends SPE.Group {
   /**
    * Constructor function
    * @param  {object} customConfig Custom configuration
-   * @return {void}
    */
   constructor( customConfig = {} ) {
     super( { ...groupConfig, ...customConfig } );

@@ -8,7 +8,6 @@ class Renderer extends THREE.WebGLRenderer {
   /**
    * Constructor function
    * @param  {object} options Options
-   * @return {void}
    */
   constructor( options = { antialias: true, alpha: true } ) {
     super( options );
@@ -35,7 +34,6 @@ class Renderer extends THREE.WebGLRenderer {
    * Resize function
    * @param  {integer} width  Width
    * @param  {integer} height Height
-   * @return {void}
    */
   resize( width, height ) {
 

@@ -1,11 +1,10 @@
 export default {
   "ambientLight" : {
-    color: 0x282828
+    color: 0x000000
   },
   "directionalLight" : {
-    color: 0xffffff,
+    color: 0x243465,
     intensity: 0.2,
-    position: new THREE.Vector3(0, 500, 0),
     shadow: {
       darkness: 0.6,
       width: 4096,
