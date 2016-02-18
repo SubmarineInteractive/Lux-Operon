@@ -32,7 +32,7 @@ class PointLight extends THREE.PointLight {
         distance: randomInt(120, 200),
         velocity: randomFloat(0.5, 1)
       }
-    }
+    };
   }
 
   addSphere() {
