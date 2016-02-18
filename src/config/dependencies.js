@@ -74,15 +74,15 @@ export default [
   // --- WebGL scene objects
   {
     type: 'service',
-    name: 'Player',
-    constructor: Player,
-    dependencies: [ 'Configuration' ]
-  },
-  {
-    type: 'service',
     name: 'Level',
     constructor: Level,
     dependencies: ['Fog', 'Terrain', 'Player']
+  },
+  {
+    type: 'service',
+    name: 'Player',
+    constructor: Player,
+    dependencies: [ 'Configuration', 'Terrain' ]
   },
   {
     type: 'service',

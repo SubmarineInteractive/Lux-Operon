@@ -36,7 +36,7 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
 
     this.specular = this.configuration.specular;
 
-    this.fog = true;
+    this.fog = false;
 
     this.initGUI();
     this.keyboardDebug();
