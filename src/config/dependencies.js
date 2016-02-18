@@ -75,7 +75,8 @@ export default [
   {
     type: 'service',
     name: 'Player',
-    constructor: Player
+    constructor: Player,
+    dependencies: [ 'Configuration' ]
   },
   {
     type: 'service',

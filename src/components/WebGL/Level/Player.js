@@ -1,21 +1,24 @@
 import PointLight from '../Light/PointLight';
+import randomInt from 'utils/random-int';
 import randomHexColor from 'utils/random-hex-color';
 
 
 /**
  * Player class
+ * @param {Configuration} Configuration Configuration
  */
 class Player extends THREE.Object3D {
 
   /**
    * constructor function
    */
-  constructor() {
+  constructor(Configuration) {
     super();
 
     this.lights = [];
-    this.nbLights = 20;
+    this.nbLights = 10;
 
+    this.configuration = Configuration.get( 'player.pointLights' );
     this.initLights();
   }
 
@@ -26,12 +29,11 @@ class Player extends THREE.Object3D {
   initLights() {
     for (let i = 0; i < this.nbLights; i++) {
 
-      // hex: 0x6d7caa,
       const plight = new PointLight({
-        hex: randomHexColor(),
-        intensity: 1,
-        distance: 200,
-        decay: 1
+        hex: parseInt(this.configuration.colors[randomInt(0, this.configuration.colors.length - 1)], 16),
+        intensity: this.configuration.intensity,
+        distance: this.configuration.distance,
+        decay: this.configuration.decay
       });
 
       plight.addSphere();
