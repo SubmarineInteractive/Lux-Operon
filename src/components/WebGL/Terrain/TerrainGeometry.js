@@ -72,7 +72,6 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     folder.add(this.parameters, 'widthSegments', 0, 90);
     folder.add(this.parameters, 'heightSegments', 0, 90);
   }
-
 }
 
 export default TerrainGeometry;

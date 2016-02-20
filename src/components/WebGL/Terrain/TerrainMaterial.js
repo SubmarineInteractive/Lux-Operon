@@ -30,7 +30,6 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
     this.fog = false;
 
     this.initGUI();
-    this.keyboardDebug();
   }
 
   /**
@@ -60,23 +59,6 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
     });
 
     folder.add(this, 'shininess', 0, 300);
-  }
-
-  /**
-   * keyboardDebug function
-   * Add / Dims displacement scale with B / N key
-   */
-  keyboardDebug() {
-
-    document.addEventListener('keyup', ev => {
-
-      if(ev.keyCode === 66) {
-        this.displacementScale += 50;
-      } else if(ev.keyCode === 78) {
-        this.displacementScale -= 50;
-      }
-
-    }, false);
   }
 }
 
