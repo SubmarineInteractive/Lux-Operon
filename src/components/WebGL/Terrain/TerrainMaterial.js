@@ -6,10 +6,9 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
   /**
    * Constructor function
    * @param {Configuration} Configuration instance
-   * @param {TextureLoader} TextureLoader instance
    * @param  {GUI} gui GUI instance
    */
-  constructor(Configuration, TextureLoader, gui) {
+  constructor(Configuration, gui) {
 
     super();
 
@@ -17,16 +16,8 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
 
     this.configuration = Configuration.get('terrain.material');
 
-    const heightMapTexture = TextureLoader.get('heightMap');
-
     // Set properties
     this.color = this.configuration.color;
-
-    // this.map = heightMapTexture;
-
-    this.displacementMap = heightMapTexture;
-
-    this.displacementScale = this.configuration.displacementScale;
 
     this.shading = THREE.FlatShading;
 
@@ -69,8 +60,6 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
     });
 
     folder.add(this, 'shininess', 0, 300);
-
-    folder.add(this, 'displacementScale', 1, 3000);
   }
 
   /**
@@ -83,7 +72,7 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
 
       if(ev.keyCode === 66) {
         this.displacementScale += 50;
-      } else if(ev.keyCode === 78){
+      } else if(ev.keyCode === 78) {
         this.displacementScale -= 50;
       }
 

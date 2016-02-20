@@ -76,50 +76,50 @@ export default [
     type: 'service',
     name: 'Level',
     constructor: Level,
-    dependencies: ['Fog', 'Terrain', 'Player']
+    dependencies: [ 'Terrain', 'Player' ]
   },
   {
     type: 'service',
     name: 'Player',
     constructor: Player,
-    dependencies: [ 'Configuration', 'Terrain' ]
+    dependencies: [ 'Configuration' ]
   },
   {
     type: 'service',
     name: 'Fog',
     constructor: Fog,
-    dependencies: ['Scene', 'Renderer', 'Configuration']
+    dependencies: [ 'Scene', 'Renderer', 'Configuration' ]
   },
-  //  |---- WebGl Terrain
+  //  |---- WebGL Terrain
   {
     type: 'service',
     name: 'Terrain',
     constructor: Terrain,
-    dependencies: ['TerrainGeometry', 'TerrainMaterial']
+    dependencies: [ 'TerrainGeometry', 'TerrainMaterial' ]
   },
   {
     type: 'service',
     name: 'TerrainGeometry',
     constructor: TerrainGeometry,
-    dependencies: ['Configuration', 'TextureLoader', 'GUI']
+    dependencies: [ 'Configuration', 'TextureLoader', 'GUI' ]
   },
   {
     type: 'service',
     name: 'TerrainMaterial',
     constructor: TerrainMaterial,
-    dependencies: ['Configuration', 'TextureLoader', 'GUI']
+    dependencies: [ 'Configuration', 'GUI' ]
   },
-  //  |---- WebGl Lights
+  //  |---- WebGL Lights
   {
     type: 'service',
     name: 'AmbientLight',
     constructor: AmbientLight,
-    dependencies: ['Configuration', 'GUI']
+    dependencies: [ 'Configuration', 'GUI' ]
   },
   {
     type: 'service',
     name: 'DirectionalLight',
     constructor: DirectionalLight,
-    dependencies: ['Configuration', 'GUI']
+    dependencies: [ 'Configuration', 'GUI' ]
   }
 ];

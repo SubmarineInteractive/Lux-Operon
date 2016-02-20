@@ -14,7 +14,6 @@ class Terrain extends THREE.Mesh {
     this.geometry = TerrainGeometry;
     this.material = TerrainMaterial;
 
-    this.updateMatrix();
     this.receiveShadow = true;
     this.castShadow = true;
 

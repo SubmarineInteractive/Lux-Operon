@@ -77,15 +77,15 @@ class Scene extends THREE.Scene {
    */
   createScene() {
 
+    // Fog
+    this.fog = Container.get( 'Fog' );
+
     // Level
     this.level = Container.get( 'Level' );
     this.add( this.level );
 
     this.directionalLight = Container.get( 'DirectionalLight' );
     this.add(this.directionalLight);
-
-    // this.ambientLight = Container.get( 'AmbientLight' );
-    // this.add( this.ambientLight );
 
     this.animate();
   }
