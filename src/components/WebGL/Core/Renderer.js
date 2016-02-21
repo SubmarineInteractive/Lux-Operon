@@ -7,14 +7,17 @@ class Renderer extends THREE.WebGLRenderer {
 
   /**
    * Constructor function
-   * @param  {object} options Options
+   * @param {Object} Configuration Configuration
    */
-  constructor( options = { antialias: true, alpha: true }) {
-    super( options );
+  constructor( Configuration ) {
+
+    const { antialias, alpha, clearColor, pixelRatio } = Configuration.get( 'renderer' );
+
+    super({ antialias, alpha });
 
     this.setSize( window.innerWidth, window.innerHeight );
-    this.setClearColor( 0x000000 );
-    this.setPixelRatio( window.devicePixelRatio );
+    this.setClearColor( clearColor, 1 );
+    this.setPixelRatio( pixelRatio );
     this.clear();
 
     // Shadows

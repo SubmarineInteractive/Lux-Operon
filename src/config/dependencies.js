@@ -41,7 +41,8 @@ export default [
   {
     type: 'service',
     name: 'Renderer',
-    constructor: Renderer
+    constructor: Renderer,
+    dependencies: [ 'Configuration' ]
   },
   {
     type: 'service',
