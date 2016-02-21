@@ -28,6 +28,12 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     // this.initGUI();
   }
 
+  /**
+   * getHeightData function
+   * @param  {Object} image            Height map image
+   * @param  {Object} geometrySegments Width and height of the geometry segments
+   * @return {array}                   Displaced vertices
+   */
   getHeightData( image, geometrySegments ) {
 
     const canvas = document.createElement( 'canvas' );
@@ -38,7 +44,7 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     const size = canvas.width * canvas.height;
     const data = new Float32Array( size );
 
-    context.drawImage( image, 0, 0, 30, 30 );
+    context.drawImage( image, 0, 0, canvas.width, canvas.height );
 
     for ( let i = 0; i < size; i ++ ) {
       data[ i ] = 0;
@@ -50,7 +56,7 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     let j = 0;
     for ( let i = 0; i < pix.length; i += 4 ) {
       const all = pix[ i ] + pix[ i + 1 ] + pix[ i + 2 ];
-      data[ j++ ] = all / 30;
+      data[ j++ ] = all / Math.max( canvas.width, canvas.height );
     }
 
     return data;
