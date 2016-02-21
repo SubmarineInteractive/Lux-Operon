@@ -9,11 +9,11 @@ class Fog extends THREE.FogExp2 {
    * @param {Renderer} Renderer instance
    * @param {Configuration} Configuration instance
    */
-  constructor(Scene, Renderer, Configuration) {
+  constructor( Scene, Renderer, Configuration ) {
 
-    const fogConfig = Configuration.get('fog');
+    const fogConfig = Configuration.get( 'fog' );
 
-    super(fogConfig.color, fogConfig.density);
+    super( fogConfig.color, fogConfig.density );
 
     this.scene = Scene;
 

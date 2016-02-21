@@ -7,16 +7,16 @@ class TerrainGeometry extends THREE.PlaneGeometry {
    * Constructor function
    * @param {Configuration} Configuration instance
    * @param {TextureLoader} TextureLoader instance
-   * @param {GUI} gui       GUI instance
+   * @param {GUI} Gui       GUI instance
    */
-  constructor( Configuration, TextureLoader, gui ) {
+  constructor( Configuration, TextureLoader, Gui ) {
 
     const configuration = Configuration.get( 'terrain.geometry' );
     const geometrySegments = Configuration.get( 'terrain.geometry.segments' );
 
     super( configuration.width, configuration.height, configuration.segments.width, configuration.segments.height );
 
-    this.gui = gui;
+    this.gui = Gui;
 
     const heightMapTexture = TextureLoader.get( 'heightMap' );
     const data = this.getHeightData( heightMapTexture.image, geometrySegments );
@@ -41,7 +41,7 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     context.drawImage( image, 0, 0, 30, 30 );
 
     for ( let i = 0; i < size; i ++ ) {
-      data[i] = 0;
+      data[ i ] = 0;
     }
 
     const imgd = context.getImageData( 0, 0, canvas.width, canvas.height );
@@ -62,15 +62,14 @@ class TerrainGeometry extends THREE.PlaneGeometry {
    */
   initGUI() {
 
-    const folder = this.gui.addFolder('Terrain Geometry');
+    const folder = this.gui.addFolder( 'Terrain Geometry' );
 
-    folder.add(this.parameters, 'width', 0, 4000).onChange(()=> {
+    folder.add( this.parameters, 'width', 0, 4000 ).onChange( () => {
       this.verticesNeedUpdate = true;
-
     });
-    folder.add(this.parameters, 'height', 0, 4000);
-    folder.add(this.parameters, 'widthSegments', 0, 90);
-    folder.add(this.parameters, 'heightSegments', 0, 90);
+    folder.add( this.parameters, 'height', 0, 4000 );
+    folder.add( this.parameters, 'widthSegments', 0, 90 );
+    folder.add( this.parameters, 'heightSegments', 0, 90 );
   }
 }
 

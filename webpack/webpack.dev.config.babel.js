@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
-  context: path.resolve(__dirname, '..'),
+  context: path.resolve( __dirname, '..' ),
   devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true',
@@ -51,11 +51,11 @@ export default {
       },
       {
         test: /\.css$/,
-        loaders: ['style', 'css']
+        loaders: [ 'style', 'css' ]
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass']
+        loaders: [ 'style', 'css', 'sass' ]
       },
       {
         test: /\.(glsl|frag|vert)$/,
@@ -73,17 +73,17 @@ export default {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      '__DEV__': JSON.stringify(true),
-      '__PROD__': JSON.stringify(false)
+      'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
+      '__DEV__': JSON.stringify( true ),
+      '__PROD__': JSON.stringify( false )
     }),
     new webpack.ProvidePlugin({
       'THREE': 'three',
       'React': 'react'
     }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin( [
       { from: 'static' }
     ],
-    { ignore: ['.DS_Store', '.keep'] })
+    { ignore: [ '.DS_Store', '.keep' ] })
   ]
 };

@@ -40,7 +40,7 @@ class PostProcessing {
 
     folder.add( this.configuration, 'active' );
 
-    this.passes.forEach(pass => {
+    this.passes.forEach( pass => {
 
       const passFolder = folder.addFolder( pass.name );
       const passParams = pass.constructor.params;
@@ -53,24 +53,24 @@ class PostProcessing {
 
           const paramType = toType( passParams[ paramName ] );
 
-          if (paramType === 'number' ||
+          if ( paramType === 'number' ||
               paramType === 'boolean' ||
-              paramType === 'string') {
+              paramType === 'string' ) {
 
             passFolder.add( passParams, paramName );
 
-          } else if (paramType === 'object') {
+          } else if ( paramType === 'object' ) {
 
             const paramFolder = passFolder.addFolder( paramName );
 
             for( let subParamName in passParams[ paramName ] ) {
 
-              if (passParams[ paramName ].hasOwnProperty( subParamName )) {
+              if ( passParams[ paramName ].hasOwnProperty( subParamName ) ) {
 
-                const subParamType = toType(passParams[paramName][subParamName]);
-                if (subParamType === 'number' ||
+                const subParamType = toType( passParams[ paramName ][ subParamName ] );
+                if ( subParamType === 'number' ||
                     subParamType === 'boolean' ||
-                    subParamType === 'string') {
+                    subParamType === 'string' ) {
 
                   paramFolder.add( passParams[ paramName ], subParamName );
                 }

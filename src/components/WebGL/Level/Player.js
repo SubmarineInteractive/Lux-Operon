@@ -10,7 +10,8 @@ class Player extends THREE.Object3D {
   /**
    * constructor function
    */
-  constructor(Configuration) {
+  constructor( Configuration ) {
+    
     super();
 
     this.configuration = Configuration.get( 'player.pointLights' );
@@ -23,14 +24,13 @@ class Player extends THREE.Object3D {
 
   /**
    * initLights function
-   * @param {number} delta  Delta time from three global clock
    */
   initLights() {
 
     for ( let i = 0; i < this.nbLights; i++ ) {
 
       const plight = new PointLight({
-        hex: parseInt( this.configuration.colors[ randomInt(0, this.configuration.colors.length - 1) ], 16 ),
+        hex: parseInt( this.configuration.colors[ randomInt( 0, this.configuration.colors.length - 1 ) ], 16 ),
         intensity: this.configuration.intensity,
         distance: this.configuration.distance,
         decay: this.configuration.decay
@@ -38,9 +38,9 @@ class Player extends THREE.Object3D {
 
       plight.addSphere();
 
-      this.lights.push(plight);
+      this.lights.push( plight );
 
-      this.add(plight);
+      this.add( plight );
     }
   }
 
@@ -49,20 +49,20 @@ class Player extends THREE.Object3D {
    * Move the light where the camera is
    * @param {object} newPos Position vector of the camera
    */
-  move(newPos) {
+  move( newPos ) {
 
-    this.position.copy(newPos);
+    this.position.copy( newPos );
   }
 
   /**
    * update function
    * @param {number} time  Elapsed time from three global clock
-   * @param {number} delta  Delta time from three global clock
+   * @param {number} delta Delta time from three global clock
    */
-  update(time, delta) {
-    
-    for (let i = 0; i < this.nbLights; i++) {
-      this.updateLight(this.lights[i], time, delta);
+  update( time, delta ) {
+
+    for ( let i = 0; i < this.nbLights; i++ ) {
+      this.updateLight( this.lights[ i ], time, delta );
     }
   }
 
@@ -72,11 +72,12 @@ class Player extends THREE.Object3D {
    * @param {time} delta  Elapsed time from three global clock
    * @param {number} delta  Delta time from three global clock
    */
-  updateLight(light, time) {
+  updateLight( light, time ) {
+
     const gOption = light.gravitationOptions;
-    light.position.x = Math.sin(gOption.x.velocity * time + gOption.x.offset) * gOption.x.distance;
-    light.position.y = Math.sin(gOption.y.velocity * time + gOption.y.offset) * gOption.y.distance;
-    light.position.z = Math.cos(gOption.z.velocity * time + gOption.z.offset) * gOption.z.distance;
+    light.position.x = Math.sin( gOption.x.velocity * time + gOption.x.offset ) * gOption.x.distance;
+    light.position.y = Math.sin( gOption.y.velocity * time + gOption.y.offset ) * gOption.y.distance;
+    light.position.z = Math.cos( gOption.z.velocity * time + gOption.z.offset ) * gOption.z.distance;
   }
 }
 

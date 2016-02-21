@@ -19,29 +19,29 @@ class DOMElement extends Component {
     );
   }
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate( nextProps ) {
     return this.props.child !== nextProps.child;
   }
 
-  componentDidUpdate(prevProps) {
-    this._updateChild(prevProps);
+  componentDidUpdate( prevProps ) {
+    this._updateChild( prevProps );
   }
 
   componentDidMount() {
     this._updateChild({});
   }
 
-  _updateChild(prevProps) {
-    const wrap = ReactDOM.findDOMNode(this.refs.container);
+  _updateChild( prevProps ) {
+    const wrap = ReactDOM.findDOMNode( this.refs.container );
     const next = this.props.child;
     const prev = prevProps.child;
 
-    if (next) {
-      wrap.appendChild(next);
+    if ( next ) {
+      wrap.appendChild( next );
     }
 
-    if (prev && prev !== next && prev.parentNode === wrap) {
-      wrap.removeChild(prev);
+    if ( prev && prev !== next && prev.parentNode === wrap ) {
+      wrap.removeChild( prev );
     }
   }
 }

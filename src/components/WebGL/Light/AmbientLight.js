@@ -6,13 +6,14 @@ class AmbientLight extends THREE.AmbientLight {
   /**
    * Constructor function
    * @param {Configuration} Configuration instance
+   * @param {GUI} Gui instance
    */
-  constructor(Configuration, gui) {
+  constructor( Configuration, Gui ) {
 
-    const lightColor = Configuration.get('lights.ambientLight.color');
-    super(lightColor);
+    const lightColor = Configuration.get( 'lights.ambientLight.color' );
+    super( lightColor );
 
-    this.gui = gui;
+    this.gui = Gui;
 
     this.initGUI();
 
@@ -24,13 +25,9 @@ class AmbientLight extends THREE.AmbientLight {
    */
   initGUI() {
 
-    const folder = this.gui.addFolder('Ambient Light');
+    const folder = this.gui.addFolder( 'Ambient Light' );
 
-    folder.addColor(this, 'color').onChange((c) => {
-
-      return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
-
-    });
+    folder.addColor( this, 'color' ).onChange( c => new THREE.Color( `rgb(${~~c.r},${~~c.g},${~~c.b})` ) );
 
   }
 }

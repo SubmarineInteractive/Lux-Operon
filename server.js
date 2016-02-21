@@ -12,13 +12,13 @@ const port = isDeveloping ? 3000 : process.env.PORT;
 const ip = 'localhost';
 
 const app = express();
-const compiler = webpack(config);
+const compiler = webpack( config );
 
-app.use(history());
+app.use( history() );
 
-app.use(webpackDevMiddleware(compiler, {
+app.use( webpackDevMiddleware( compiler, {
   publicPath: config.output.publicPath,
-  headers: {'Access-Control-Allow-Origin': '*'},
+  headers: { 'Access-Control-Allow-Origin': '*' },
   stats: {
     colors: true,
     hash: false,
@@ -27,16 +27,16 @@ app.use(webpackDevMiddleware(compiler, {
     chunkModules: false,
     modules: false
   }
-}));
+}) );
 
-app.use(webpackHotMiddleware(compiler));
+app.use( webpackHotMiddleware( compiler ) );
 
-app.get('*', (req, res) => res.sendFile(path.join( __dirname, 'index.html')));
+app.get( '*', ( req, res ) => res.sendFile( path.join( __dirname, 'index.html' ) ) );
 
 app.listen( port, ip, error => {
-  if (error) throw error;
+  if ( error ) throw error;
 
   /*eslint-disable no-console */
-  console.info(`=> 🚧 Listening on port ${port}. Open up http://${ip}:${port}/ in your browser.`);
+  console.info( `=> 🚧 Listening on port ${port}. Open up http://${ip}:${port}/ in your browser.` );
   /*eslint-enable no-console */
 });

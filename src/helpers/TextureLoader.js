@@ -21,7 +21,7 @@ class TextureLoader extends THREE.TextureLoader {
     for( let t in this.textures ) {
       const url = this.textures[ t ];
 
-      const promise = new Promise(( resolve, reject ) => {
+      const promise = new Promise( ( resolve, reject ) => {
         this.load(
           url,
           texture => {

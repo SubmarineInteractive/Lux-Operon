@@ -10,7 +10,7 @@ class Container extends Bottle {
    * Constructor function
    * @param  {object} dependencies Dependencies
    */
-  constructor( dependencies = {} ) {
+  constructor( dependencies = {}) {
     super();
     this.register( dependencies );
   }
@@ -21,7 +21,7 @@ class Container extends Bottle {
    */
   register( dependencies ) {
 
-    dependencies.forEach(( dependency ) => {
+    dependencies.forEach( dependency => {
 
       switch ( dependency.type ) {
         case 'factory':

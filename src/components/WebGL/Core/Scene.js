@@ -22,7 +22,7 @@ class Scene extends THREE.Scene {
    */
   begin() {
 
-    Container.get('Configuration').set('canvas', this.container);
+    Container.get( 'Configuration' ).set( 'canvas', this.container );
 
      // Renderer
     this.renderer = Container.get( 'Renderer' );
@@ -68,7 +68,7 @@ class Scene extends THREE.Scene {
     // Texture loader
     Events.on( 'textureLoader:loading', ( current, total ) =>
       /*eslint-disable no-console */
-      console.log( `[TextureLoader] Loading ${current}/${total} textures` ));
+      console.log( `[TextureLoader] Loading ${current}/${total} textures` ) );
       /*eslint-enable no-console */
   }
 
@@ -85,7 +85,7 @@ class Scene extends THREE.Scene {
     this.add( this.level );
 
     this.directionalLight = Container.get( 'DirectionalLight' );
-    this.add(this.directionalLight);
+    this.add( this.directionalLight );
 
     this.animate();
   }
@@ -106,8 +106,8 @@ class Scene extends THREE.Scene {
 
 
     this.postProcessing.update();
-    this.camera.update(this.clock.delta);
-    this.level.update(this.clock.time, this.clock.delta);
+    this.camera.update( this.clock.delta );
+    this.level.update( this.clock.time, this.clock.delta );
   }
 }
 

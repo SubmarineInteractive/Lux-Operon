@@ -9,7 +9,7 @@ class Renderer extends THREE.WebGLRenderer {
    * Constructor function
    * @param  {object} options Options
    */
-  constructor( options = { antialias: true, alpha: true } ) {
+  constructor( options = { antialias: true, alpha: true }) {
     super( options );
 
     this.setSize( window.innerWidth, window.innerHeight );

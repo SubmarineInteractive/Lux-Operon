@@ -8,7 +8,7 @@ class Terrain extends THREE.Mesh {
    * @param {TerrainGeometry} TerrainGeometry instance
    * @param {TerrainMaterial} TerrainMaterial instance
    */
-  constructor(TerrainGeometry, TerrainMaterial) {
+  constructor( TerrainGeometry, TerrainMaterial ) {
     super();
 
     this.geometry = TerrainGeometry;

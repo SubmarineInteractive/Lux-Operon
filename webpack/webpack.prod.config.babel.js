@@ -7,10 +7,10 @@ import CleanWebpackPlugin from 'clean-webpack-plugin';
 import StatsWebpackPlugin from 'stats-webpack-plugin';
 
 export default {
-  context: path.resolve(__dirname, '..'),
+  context: path.resolve( __dirname, '..' ),
   entry: './src/main.js',
   output: {
-    path: path.join(__dirname, '..', 'dist'),
+    path: path.join( __dirname, '..', 'dist' ),
     filename: '[name]-[hash].min.js'
   },
   resolve: {
@@ -42,11 +42,11 @@ export default {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version')
+        loader: ExtractTextPlugin.extract( 'style', 'css!autoprefixer?browsers=last 2 version' )
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass')
+        loader: ExtractTextPlugin.extract( 'style', 'css!autoprefixer?browsers=last 2 version!sass' )
       },
       {
         test: /\.(glsl|frag|vert)$/,
@@ -64,27 +64,27 @@ export default {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-      '__DEV__': JSON.stringify(false),
-      '__PROD__': JSON.stringify(true)
+      'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
+      '__DEV__': JSON.stringify( false ),
+      '__PROD__': JSON.stringify( true )
     }),
     new webpack.ProvidePlugin({
       'THREE': 'three',
       'React': 'react'
     }),
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin( [
       { from: 'static' }
     ],
-    { ignore: ['.DS_Store', '.keep'] }),
+    { ignore: [ '.DS_Store', '.keep' ] }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
         drop_console: true,
-        pure_funcs: ['console.log']
+        pure_funcs: [ 'console.log' ]
       }
     }),
-    new ExtractTextPlugin('[name]-[hash].min.css', { allChunks: true }),
-    new CleanWebpackPlugin(['dist'], { root: path.join(__dirname, '..') }),
-    new StatsWebpackPlugin('webpack.stats.json')
+    new ExtractTextPlugin( '[name]-[hash].min.css', { allChunks: true }),
+    new CleanWebpackPlugin( [ 'dist' ], { root: path.join( __dirname , '..' ) }),
+    new StatsWebpackPlugin( 'webpack.stats.json' )
   ]
 };

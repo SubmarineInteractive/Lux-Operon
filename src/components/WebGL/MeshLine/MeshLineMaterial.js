@@ -1,12 +1,12 @@
-const glslify = require('glslify');
+const glslify = require( 'glslify' );
 import HMR from '../../helpers/HMR';
 
 // Cache instance
-const cacheInst = __DEV__ ? HMR.cache(__filename) : null;
+const cacheInst = __DEV__ ? HMR.cache( __filename ) : null;
 
 // Shaders
-const vertexShader = glslify('./shaders/vert.glsl');
-const fragmentShader = glslify('./shaders/frag.glsl');
+const vertexShader = glslify( './shaders/vert.glsl' );
+const fragmentShader = glslify( './shaders/frag.glsl' );
 
 /**
  * MeshLineMaterial class
@@ -18,7 +18,7 @@ class MeshLineMaterial extends THREE.Material {
    * @param  {object} parameters Parameters
    * @return {object}            Material
    */
-  constructor( parameters = {} ) {
+  constructor( parameters = {}) {
     super();
 
     for ( let parameter in parameters ) {
@@ -45,7 +45,7 @@ class MeshLineMaterial extends THREE.Material {
     });
 
     if( __DEV__ ) {
-      HMR.enable(cacheInst, material);
+      HMR.enable( cacheInst, material );
     }
 
     for( let property in material.uniforms ) {
@@ -61,8 +61,8 @@ class MeshLineMaterial extends THREE.Material {
 
 // HMR
 if ( module.hot && __DEV__ ) {
-  module.hot.accept(err => { if( err ) throw err; });
-  HMR.update(cacheInst, {
+  module.hot.accept( err => { if( err ) throw err; });
+  HMR.update( cacheInst, {
     vertexShader, fragmentShader
   });
 }

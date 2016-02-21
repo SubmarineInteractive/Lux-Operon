@@ -57,28 +57,6 @@ class MeshLine {
   }
 
   /**
-   * compareV3 function
-   * @param  {[type]} a [description]
-   * @param  {[type]} b [description]
-   */
-  compareV3( a, b ) {
-
-    const aa = a * 6;
-    const ab = b * 6;
-
-  }
-
-  /**
-   * copyV3 function
-   * @param  {[type]} a [description]
-   */
-  copyV3( a ) {
-
-    const aa = a * 6;
-
-  }
-
-  /**
    * ComputeLineDistances function
    */
   computeLineDistances() {

@@ -6,14 +6,15 @@ class DirectionalLight extends THREE.DirectionalLight {
   /**
    * Constructor function
    * @param {Configuration} Configuration instance
+   * @param {GUI} Gui instance
    */
-  constructor(Configuration, gui) {
+  constructor( Configuration, Gui ) {
 
-    const {color, intensity, shadow} = Configuration.get('lights.directionalLight');
+    const { color, intensity, shadow } = Configuration.get( 'lights.directionalLight' );
 
-    super(color, intensity);
+    super( color, intensity );
 
-    this.gui = gui;
+    this.gui = Gui;
 
     this.castShadow = true;
     this.shadowDarkness = shadow.darkness;
@@ -30,27 +31,23 @@ class DirectionalLight extends THREE.DirectionalLight {
    */
   initGUI() {
 
-    const folder = this.gui.addFolder('Directional Light');
+    const folder = this.gui.addFolder( 'Directional Light' );
 
-    folder.addColor(this, 'color').onChange((c) => {
+    folder.addColor( this, 'color' ).onChange( c => new THREE.Color( `rgb(${~~c.r},${~~c.g},${~~c.b})` ) );
 
-      return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
+    folder.add( this.position, 'x', -1000, 1000 ).listen();
 
-    });
+    folder.add( this.position, 'y', -1000, 1000 );
 
-    folder.add(this.position, 'x', -1000, 1000).listen();
+    folder.add( this.position, 'z', -1000, 1000 );
 
-    folder.add(this.position, 'y', -1000, 1000);
+    folder.add( this, 'intensity', 0, 0.3 );
 
-    folder.add(this.position, 'z', -1000, 1000);
+    folder.add( this.shadow, 'darkness', 0, 1000 );
 
-    folder.add(this, 'intensity', 0, 0.3);
+    folder.add( this.shadow.mapSize, 'x', 0, 9000 ).name( 'shadow X' );
 
-    folder.add(this.shadow, 'darkness', 0, 1000);
-
-    folder.add(this.shadow.mapSize, 'x', 0, 9000).name('shadow X');
-
-    folder.add(this.shadow.mapSize, 'y', 0, 9000).name('shadow Y');
+    folder.add( this.shadow.mapSize, 'y', 0, 9000 ).name( 'shadow Y' );
 
   }
 
@@ -59,9 +56,9 @@ class DirectionalLight extends THREE.DirectionalLight {
    * Move the light where the camera is
    * @param {object} newPos Position vector of the camera
    */
-  move(newPos) {
-    
-    this.position.copy(newPos);
+  move( newPos ) {
+
+    this.position.copy( newPos );
   }
 
 }

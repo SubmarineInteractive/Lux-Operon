@@ -6,6 +6,6 @@
  * @param  {number} x Coordinate on X axis
  * @return {number}   Mapped value
  */
-export default function parabola(k, x) {
+export default function parabola( k, x ) {
   return Math.pow( 4 * x * ( 1 - x ), k );
 }

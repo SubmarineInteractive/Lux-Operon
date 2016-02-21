@@ -10,8 +10,8 @@ class Group extends SPE.Group {
    * Constructor function
    * @param  {object} customConfig Custom configuration
    */
-  constructor( customConfig = {} ) {
-    super( { ...groupConfig, ...customConfig } );
+  constructor( customConfig = {}) {
+    super({ ...groupConfig, ...customConfig });
   }
 }
 

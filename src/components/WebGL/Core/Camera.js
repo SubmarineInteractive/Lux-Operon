@@ -14,24 +14,24 @@ class Camera extends THREE.PerspectiveCamera {
    */
   constructor( configuration ) {
 
-    const { fov, aspect, near, far, position, target, orbitControls, firstPersonControls, lookSpeed, movementSpeed } = configuration.get('camera');
+    const { fov, aspect, near, far, position, target, orbitControls, firstPersonControls, lookSpeed, movementSpeed } = configuration.get( 'camera' );
 
     super( fov, aspect, near, far );
 
     this.position.set( position.x, position.y, position.z );
 
-    this.lookAt(target);
+    this.lookAt( target );
 
-    this.directionalLight = Container.get('DirectionalLight');
+    this.directionalLight = Container.get( 'DirectionalLight' );
 
-    this.player = Container.get('Player');
+    this.player = Container.get( 'Player' );
 
     if( orbitControls ) {
-      this.controls = new OrbitControls( this, configuration.get('canvas') );
+      this.controls = new OrbitControls( this, configuration.get( 'canvas' ) );
     }
 
     if( firstPersonControls ) {
-      this.controls = new FirstPersonControls(this);
+      this.controls = new FirstPersonControls( this );
       this.controls.lookSpeed = lookSpeed;
       this.controls.movementSpeed = movementSpeed;
     }
@@ -60,12 +60,12 @@ class Camera extends THREE.PerspectiveCamera {
    * Update function
    * @param {number} delta  Delta time from three global clock
    */
-  update(delta) {
+  update( delta ) {
     this.controls.update( delta );
 
-    this.directionalLight.move(this.position.clone());
+    this.directionalLight.move( this.position.clone() );
 
-    this.player.move(this.position.clone());
+    this.player.move( this.position.clone() );
   }
 }
 

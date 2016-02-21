@@ -7,7 +7,7 @@ import routes from './routes';
 import history from 'helpers/history';
 import 'stylesheets/main.scss';
 
-attachFastClick.attach(document.body);
+attachFastClick.attach( document.body );
 
 ReactDOM.render(
   <Provider store={store}>
@@ -15,5 +15,5 @@ ReactDOM.render(
       {routes}
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById( 'root' )
 );

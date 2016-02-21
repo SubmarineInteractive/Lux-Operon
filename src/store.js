@@ -9,12 +9,12 @@ const reducer = combineReducers({
 });
 
 // Sync dispatched route actions to the history
-const reduxRouterMiddleware = syncHistory(history);
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore);
+const reduxRouterMiddleware = syncHistory( history );
+const createStoreWithMiddleware = applyMiddleware( reduxRouterMiddleware )( createStore );
 
-const store = createStoreWithMiddleware(reducer);
+const store = createStoreWithMiddleware( reducer );
 
 // Required for replaying actions from devtools to work
-reduxRouterMiddleware.listenForReplays(store);
+reduxRouterMiddleware.listenForReplays( store );
 
 export default store;

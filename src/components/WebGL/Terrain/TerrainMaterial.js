@@ -6,15 +6,15 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
   /**
    * Constructor function
    * @param {Configuration} Configuration instance
-   * @param  {GUI} gui GUI instance
+   * @param {GUI} Gui       GUI instance
    */
-  constructor(Configuration, gui) {
+  constructor( Configuration, Gui ) {
 
     super();
 
-    this.gui = gui;
+    this.gui = Gui;
 
-    this.configuration = Configuration.get('terrain.material');
+    this.configuration = Configuration.get( 'terrain.material' );
 
     // Set properties
     this.color = this.configuration.color;
@@ -38,27 +38,15 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
    */
   initGUI() {
 
-    const folder = this.gui.addFolder('Terrain Material');
+    const folder = this.gui.addFolder( 'Terrain Material' );
 
-    folder.addColor(this, 'color').onChange((c) => {
+    folder.addColor( this, 'color' ).onChange( c => new THREE.Color( `rgb(${~~c.r},${~~c.g},${~~c.b})` ) );
 
-      return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
+    folder.addColor( this, 'specular' ).onChange( c => new THREE.Color( `rgb(${~~c.r},${~~c.g},${~~c.b})` ) );
 
-    });
+    folder.addColor( this, 'emissive' ).onChange( c => new THREE.Color( `rgb(${~~c.r},${~~c.g},${~~c.b})` ) );
 
-    folder.addColor(this, 'specular').onChange((c) => {
-
-      return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
-
-    });
-
-    folder.addColor(this, 'emissive').onChange((c) => {
-
-      return new THREE.Color(`rgb(${~~c.r},${~~c.g},${~~c.b})`);
-
-    });
-
-    folder.add(this, 'shininess', 0, 300);
+    folder.add( this, 'shininess', 0, 300 );
   }
 }
 

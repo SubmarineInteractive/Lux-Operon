@@ -16,8 +16,8 @@ class Stats extends Component {
     isActive: true
   };
 
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
 
     this.stats = new StatsJS( false );
     this.update();

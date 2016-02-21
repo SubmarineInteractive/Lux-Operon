@@ -7,14 +7,14 @@ import { Stats, DOMElement } from 'components';
  */
 class Experience extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
 
-    Container.get('Scene').begin();
+    Container.get( 'Scene' ).begin();
   }
 
   render() {
-    this.canvas = Container.get('Renderer').domElement;
+    this.canvas = Container.get( 'Renderer' ).domElement;
 
     return (
       <div className="container">
