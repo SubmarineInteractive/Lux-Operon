@@ -1,8 +1,9 @@
 import { BlendMode } from '@superguigui/wagner';
-import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
-import ZoomBlurPass from '@superguigui/wagner/src/passes/zoom-blur/ZoomBlurPass';
 import MultiPassBloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass';
 import DOFPass from '@superguigui/wagner/src/passes/dof/DOFPass';
+import ZoomBlurPass from '@superguigui/wagner/src/passes/zoom-blur/ZoomBlurPass';
+import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
+import NoisePass from '@superguigui/wagner/src/passes/noise/noise';
 
 export default {
   active: false,
@@ -12,7 +13,7 @@ export default {
   passes: [
     {
       name: 'multiPassBloomPass',
-      active: true,
+      active: false,
       constructor: new MultiPassBloomPass({
         blurAmount: .5,
         applyZoomBlur: false,
@@ -24,8 +25,8 @@ export default {
       name: 'dofPass',
       active: false,
       constructor: new DOFPass({
-        focalDistance: .01,
-        aperture: .005,
+        focalDistance: 0.05,
+        aperture: 0.005,
         tBias: null,
         blurAmount: 1
       })
@@ -33,11 +34,16 @@ export default {
     {
       name: 'zoomBlurPass',
       active: false,
-      constructor: new ZoomBlurPass({ strength: 0.04 })
+      constructor: new ZoomBlurPass({ strength: 0.05 })
+    },
+    {
+      name: 'noisePass',
+      active: false,
+      constructor: new NoisePass({ amount: 0.03, speed: 0 })
     },
     {
       name: 'fxaaPass',
-      active: true,
+      active: false,
       constructor: new FXAAPass()
     }
   ]
