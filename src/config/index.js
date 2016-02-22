@@ -6,5 +6,6 @@ import player from './player';
 import fog from './fog';
 import lights from './lights';
 import terrain from './terrain';
+import boundingBox from './boundingBox';
 
-export default { postProcessing, textures, camera, renderer, player, fog, lights, terrain };
+export default { postProcessing, textures, camera, renderer, player, fog, lights, terrain, boundingBox };

@@ -1,7 +1,7 @@
 export default {
   geometry: {
-    width: 2000,
-    height: 2000,
+    width: 4000,
+    height: 4000,
     segments: {
       width: 25,
       height: 30

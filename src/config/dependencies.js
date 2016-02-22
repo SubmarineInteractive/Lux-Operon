@@ -11,6 +11,11 @@ import TextureLoader from '../helpers/TextureLoader';
 import Level from '../components/WebGL/Level';
 import Player from '../components/WebGL/Level/Player';
 import Fog from '../components/WebGL/Fog';
+
+import BoundingBox from '../components/WebGL/Level/BoundingBox';
+import BoundingBoxGeometry from '../components/WebGL/Level/BoundingBox/BoundingBoxGeometry';
+import BoundingBoxMaterial from '../components/WebGL/Level/BoundingBox/BoundingBoxMaterial';
+
 import Terrain from '../components/WebGL/Terrain';
 import TerrainGeometry from '../components/WebGL/Terrain/TerrainGeometry';
 import TerrainMaterial from '../components/WebGL/Terrain/TerrainMaterial';
@@ -72,12 +77,12 @@ export default [
     constructor: TextureLoader,
     dependencies: [ 'Configuration' ]
   },
-  // --- WebGL scene objects
+  // --- WebGL Scene objects
   {
     type: 'service',
     name: 'Level',
     constructor: Level,
-    dependencies: [ 'Terrain', 'Player' ]
+    dependencies: [ 'Terrain', 'BoundingBox', 'Player' ]
   },
   {
     type: 'service',
@@ -91,6 +96,25 @@ export default [
     constructor: Fog,
     dependencies: [ 'Scene', 'Renderer', 'Configuration' ]
   },
+  //  |---- WebGL BoundingBox
+  {
+    type: 'service',
+    name: 'BoundingBox',
+    constructor: BoundingBox,
+    dependencies: [ 'BoundingBoxGeometry', 'BoundingBoxMaterial' ]
+  },
+  {
+    type: 'service',
+    name: 'BoundingBoxGeometry',
+    constructor: BoundingBoxGeometry,
+    dependencies: [ 'Configuration', 'Terrain' ]
+  },
+  {
+    type: 'service',
+    name: 'BoundingBoxMaterial',
+    constructor: BoundingBoxMaterial,
+    dependencies: [ 'Configuration' ]
+  },
   //  |---- WebGL Terrain
   {
     type: 'service',
@@ -102,7 +126,7 @@ export default [
     type: 'service',
     name: 'TerrainGeometry',
     constructor: TerrainGeometry,
-    dependencies: [ 'Configuration', 'TextureLoader', 'GUI' ]
+    dependencies: [ 'Configuration', 'TextureLoader' ]
   },
   {
     type: 'service',

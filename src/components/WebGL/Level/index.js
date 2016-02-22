@@ -7,10 +7,11 @@ class Level extends THREE.Object3D {
 
   /**
    * Constructor function
-   * @param {Terrain} Terrain instance
-   * @param {Player}  Player instance
+   * @param {Terrain}     Terrain instance
+   * @param {BoundingBox} BoundingBox instance
+   * @param {Player}      Player instance
    */
-  constructor( Terrain, Player ) {
+  constructor( Terrain, BoundingBox, Player ) {
 
     super();
 
@@ -37,20 +38,9 @@ class Level extends THREE.Object3D {
 
     this.caster = new THREE.Raycaster();
 
-    const boundingBoxOffset = 200;
-
-    this.terrain.geometry.computeBoundingBox();
-    this.boundingBoxHeight = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z ) + boundingBoxOffset;
-
-    this.boundingBoxGeometry = new THREE.BoxGeometry(
-      this.terrain.geometry.parameters.width - 600,
-      this.boundingBoxHeight,
-      this.terrain.geometry.parameters.height - 600
-    );
-    this.boundingBoxMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true });
-
-    this.boundingBox = new THREE.Mesh( this.boundingBoxGeometry, this.boundingBoxMaterial );
+    this.boundingBox = BoundingBox;
     this.boundingBox.position.y = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z );
+
     this.add( this.boundingBox );
 
   }
