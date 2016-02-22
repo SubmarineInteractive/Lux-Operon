@@ -31,8 +31,7 @@ class Level extends THREE.Object3D {
       right: new THREE.Vector3( 1, 0, 0 ),
       front: new THREE.Vector3( 0, 0, 1 ),
       back: new THREE.Vector3( 0, 0, -1 )
-    }
-
+    };
 
     this.distance = 20;
 
@@ -50,8 +49,10 @@ class Level extends THREE.Object3D {
    * Check player collisions and disable direction accordingly
    */
   checkCollisions() {
-    for ( let rayDirection in this.rays) {
-      const ray = this.rays[rayDirection];
+
+    for ( let rayDirection in this.rays ) {
+
+      const ray = this.rays[ rayDirection ];
 
       // We reset the raycaster to this direction
       this.caster.set( this.player.position, ray );
@@ -60,14 +61,14 @@ class Level extends THREE.Object3D {
       const collisions = this.caster.intersectObjects( [ this.terrain, this.boundingBox ] );
 
       // And disable that direction if we do
-      if ( collisions.length > 0 && collisions[ 0 ].distance <= this.distance) {
+      if ( collisions.length > 0 && collisions[ 0 ].distance <= this.distance ) {
 
         this.isTweening = true;
 
         let directionVector = this.camera.getWorldDirection();
 
-        if(rayDirection === 'back') {
-          alert('BACK');
+        if( rayDirection === 'back' ) {
+          alert( 'BACK' );
           TweenMax.to( this.camera.position, 0.4, {
             x: this.camera.position.y - directionVector.y * -500,
             y: this.camera.position.y - directionVector.y * -500,
@@ -78,8 +79,7 @@ class Level extends THREE.Object3D {
             }
           });
 
-        }
-        else {
+        } else {
 
           TweenMax.to( this.camera.position, 0.8, {
             x: this.camera.position.x - directionVector.x * 300,
@@ -115,9 +115,10 @@ class Level extends THREE.Object3D {
    */
   update( time, delta ) {
 
-    if(this.isTweening) {
-        this.checkCollisions('tweening');
+    if( this.isTweening ) {
+      this.checkCollisions( 'tweening' );
     }
+
     this.player.update( time, delta );
     this.checkCollisions();
 
