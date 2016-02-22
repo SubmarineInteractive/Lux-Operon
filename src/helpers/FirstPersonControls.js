@@ -147,17 +147,24 @@ class FirstPersonControls {
     this.mouseDown = false;
     this.mouseDragOn = false;
 
-    TweenMax.to( this, 3, { actualMoveSpeed: 0, ease: Expo.easeOut, onComplete: () => {
+    TweenMax.to( this, 3, {
+      actualMoveSpeed: 0,
+      ease: Expo.easeOut,
+      onComplete: () => {
+        if ( this.activeLook ) {
+          this.moveForward = false;
+          this.moveBackward = false;
+        }
 
-      if ( this.activeLook ) {
-        this.moveForward = false;
-        this.moveBackward = false;
+        this.isTweening = false;
       }
+    });
 
-      this.isTweening = false;
-    } });
-
-    TweenMax.to( this, 3, { mouseX : 0, mouseY: 0, ease: Expo.easeOut });
+    TweenMax.to( this, 3, {
+      mouseX: 0,
+      mouseY: 0,
+      ease: Expo.easeOut
+    });
   }
 
   /**
