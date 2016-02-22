@@ -64,12 +64,9 @@ class FirstPersonControls {
       this.domElement.setAttribute( 'tabindex', - 1 );
     }
 
-    this._contextMenu = ::this.contextMenu;
     this._onMouseMove = ::this.onMouseMove;
     this._onMouseDown = ::this.onMouseDown;
     this._onMouseUp = ::this.onMouseUp;
-    this._onKeyDown = ::this.onKeyDown;
-    this._onKeyUp = ::this.onKeyUp;
 
     this.handleResize();
     this.bindEvents();
@@ -89,13 +86,9 @@ class FirstPersonControls {
    */
   bindEvents() {
 
-    this.domElement.addEventListener( 'contextmenu', this._contextmenu, false );
     this.domElement.addEventListener( 'mousemove', this._onMouseMove, false );
     this.domElement.addEventListener( 'mousedown', this._onMouseDown, false );
     this.domElement.addEventListener( 'mouseup', this._onMouseUp, false );
-
-    window.addEventListener( 'keydown', this._onKeyDown, false );
-    window.addEventListener( 'keyup', this._onKeyUp, false );
   }
 
   /**
@@ -111,25 +104,22 @@ class FirstPersonControls {
     event.preventDefault();
     event.stopPropagation();
 
-    if ( this.activeLook ) {
-      switch ( event.button ) {
-        case 0: this.moveForward = true; break;
-        case 2: this.moveBackward = true; break;
-      }
+    if ( this.activeLook && event.button === 0 ) {
+      this.moveForward = true;
+
+      this.mouseDown = true;
+      this.mouseDragOn = true;
+
+      this.onMouseMove( event );
+
+      TweenMax.killTweensOf( this, {
+        actualMoveSpeed: true,
+        mouseX: true,
+        mouseY: true
+      });
+
+      this.isTweening = false;
     }
-
-    this.mouseDown = true;
-    this.mouseDragOn = true;
-
-    this.onMouseMove( event );
-
-    TweenMax.killTweensOf( this, {
-      actualMoveSpeed: true,
-      mouseX: true,
-      mouseY: true
-    });
-
-    this.isTweening = false;
 
   }
 
@@ -142,29 +132,32 @@ class FirstPersonControls {
     event.preventDefault();
     event.stopPropagation();
 
-    this.isTweening = true;
+    if ( this.activeLook && event.button === 0 ) {
 
-    this.mouseDown = false;
-    this.mouseDragOn = false;
+      this.isTweening = true;
 
-    TweenMax.to( this, 3, {
-      actualMoveSpeed: 0,
-      ease: Expo.easeOut,
-      onComplete: () => {
-        if ( this.activeLook ) {
-          this.moveForward = false;
-          this.moveBackward = false;
+      this.mouseDown = false;
+      this.mouseDragOn = false;
+
+      TweenMax.to( this, 3, {
+        actualMoveSpeed: 0,
+        ease: Expo.easeOut,
+        onComplete: () => {
+          if ( this.activeLook ) {
+            this.moveForward = false;
+            this.moveBackward = false;
+          }
+
+          this.isTweening = false;
         }
+      });
 
-        this.isTweening = false;
-      }
-    });
-
-    TweenMax.to( this, 3, {
-      mouseX: 0,
-      mouseY: 0,
-      ease: Expo.easeOut
-    });
+      TweenMax.to( this, 3, {
+        mouseX: 0,
+        mouseY: 0,
+        ease: Expo.easeOut
+      });
+    }
   }
 
   /**
@@ -184,56 +177,6 @@ class FirstPersonControls {
         this.mouseX = event.pageX - this.domElement.offsetLeft - this.viewHalfX;
         this.mouseY = event.pageY - this.domElement.offsetTop - this.viewHalfY;
       }
-    }
-  }
-
-  /**
-   * OnKeyDown function
-   * @param  {object} event Event
-   */
-  onKeyDown( event ) {
-
-    switch ( event.keyCode ) {
-
-      case 38: /*up*/
-      case 87: /*W*/ this.moveForward = true; break;
-
-      case 37: /*left*/
-      case 65: /*A*/ this.moveLeft = true; break;
-
-      case 40: /*down*/
-      case 83: /*S*/ this.moveBackward = true; break;
-
-      case 39: /*right*/
-      case 68: /*D*/ this.moveRight = true; break;
-
-      case 82: /*R*/ this.moveUp = true; break;
-      case 70: /*F*/ this.moveDown = true; break;
-    }
-  }
-
-  /**
-   * OnKeyUp function
-   * @param  {object} event Event
-   */
-  onKeyUp( event ) {
-
-    switch ( event.keyCode ) {
-
-      case 38: /*up*/
-      case 87: /*W*/ this.moveForward = false; break;
-
-      case 37: /*left*/
-      case 65: /*A*/ this.moveLeft = false; break;
-
-      case 40: /*down*/
-      case 83: /*S*/ this.moveBackward = false; break;
-
-      case 39: /*right*/
-      case 68: /*D*/ this.moveRight = false; break;
-
-      case 82: /*R*/ this.moveUp = false; break;
-      case 70: /*F*/ this.moveDown = false; break;
     }
   }
 
@@ -308,26 +251,13 @@ class FirstPersonControls {
   }
 
   /**
-   * ContextMenu function
-   * @param  {object} event Event
-   */
-  contextMenu( event ) {
-
-    event.preventDefault();
-  }
-
-  /**
    * Dispose function
    */
   dispose() {
 
-    this.domElement.removeEventListener( 'contextmenu', this._contextmenu, false );
     this.domElement.removeEventListener( 'mousedown', this._onMouseDown, false );
     this.domElement.removeEventListener( 'mousemove', this._onMouseMove, false );
     this.domElement.removeEventListener( 'mouseup', this._onMouseUp, false );
-
-    window.removeEventListener( 'keydown', this._onKeyDown, false );
-    window.removeEventListener( 'keyup', this._onKeyUp, false );
   }
 }
 
