@@ -6,6 +6,7 @@ import store from './store';
 import routes from './routes';
 import history from 'helpers/history';
 import 'stylesheets/main.scss';
+import 'gsap';
 
 attachFastClick.attach( document.body );
 

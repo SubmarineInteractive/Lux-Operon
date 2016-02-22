@@ -36,7 +36,7 @@ export default [
     type: 'service',
     name: 'Camera',
     constructor: Camera,
-    dependencies: [ 'Configuration' ]
+    dependencies: [ 'Configuration', 'Renderer' ]
   },
   {
     type: 'service',

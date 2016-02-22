@@ -30,6 +30,11 @@
     "__DEV__": true,
     "__PROD__": true,
     "THREE": true,
-    "React": true
+    "React": true,
+    "TweenMax": true,
+    "TimelineMax": true,
+    "Expo": true,
+    "Back": true,
+    "Power2": true
   }
 }

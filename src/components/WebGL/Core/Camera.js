@@ -1,5 +1,5 @@
 import OrbitControls from '../Utils/OrbitControls';
-import FirstPersonControls from '@fabienmotte/three-first-person-controls';
+import { FirstPersonControls } from 'helpers';
 import Container from 'Container';
 import { Events } from 'helpers';
 
@@ -10,11 +10,12 @@ class Camera extends THREE.PerspectiveCamera {
 
   /**
    * Constructor function
-   * @param  {object} configuration Configuration
+   * @param {object} onfiguration Configuration
+   * @param {Renderer} Renderer Renderer
    */
-  constructor( configuration ) {
+  constructor( Configuration, Renderer ) {
 
-    const { fov, aspect, near, far, position, target, orbitControls, firstPersonControls, lookSpeed, movementSpeed } = configuration.get( 'camera' );
+    const { fov, aspect, near, far, position, target, orbitControls, firstPersonControls, lookSpeed, movementSpeed } = Configuration.get( 'camera' );
 
     super( fov, aspect, near, far );
 
@@ -27,11 +28,11 @@ class Camera extends THREE.PerspectiveCamera {
     this.player = Container.get( 'Player' );
 
     if( orbitControls ) {
-      this.controls = new OrbitControls( this, configuration.get( 'canvas' ) );
+      this.controls = new OrbitControls( this, Configuration.get( 'canvas' ) );
     }
 
     if( firstPersonControls ) {
-      this.controls = new FirstPersonControls( this );
+      this.controls = new FirstPersonControls( this, Renderer.domElement );
       this.controls.lookSpeed = lookSpeed;
       this.controls.movementSpeed = movementSpeed;
     }
