@@ -30,9 +30,25 @@ class Level extends THREE.Object3D {
       new THREE.Vector3( 0, 1, -1 )  // Back
     ];
 
-    this.distance = 15;
+    this.distance = 10;
 
     this.caster = new THREE.Raycaster();
+
+    const boundingBoxOffset = 200;
+
+    this.terrain.geometry.computeBoundingBox();
+    this.boundingBoxHeight = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z ) + boundingBoxOffset;
+
+    this.boundingBoxGeometry = new THREE.BoxGeometry(
+      this.terrain.geometry.parameters.width - 600,
+      this.boundingBoxHeight,
+      this.terrain.geometry.parameters.height - 600
+    );
+    this.boundingBoxMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff, wireframe: true });
+
+    this.boundingBox = new THREE.Mesh( this.boundingBoxGeometry, this.boundingBoxMaterial );
+    this.boundingBox.position.y = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z );
+    this.add( this.boundingBox );
 
   }
 
@@ -48,19 +64,31 @@ class Level extends THREE.Object3D {
       this.caster.set( this.player.position, this.rays[ i ] );
 
       // Test if we intersect with any obstacle mesh
-      const collisions = this.caster.intersectObjects( [ this.terrain ] );
+      const collisions = this.caster.intersectObjects( [ this.terrain, this.boundingBox ] );
 
       // And disable that direction if we do
       if ( collisions.length > 0 && collisions[ 0 ].distance <= this.distance ) {
 
         let directionVector = this.camera.getWorldDirection();
 
-        directionVector = Object.keys( directionVector ).map( axis => directionVector[ axis ].toFixed( 2 ) );
-
-        console.log( 'BOOOOOOOMM BOOOOOOM', i, directionVector );
+        TweenMax.to( this.camera.position, 1, {
+          x: this.camera.position.x - directionVector.x * 80,
+          y: this.camera.position.y - directionVector.y * 80,
+          z: this.camera.position.z - directionVector.z * 80,
+          ease: Back.easeOut
+        });
       }
     }
 
+  }
+
+  killTweens() {
+
+    TweenMax.killTweensOf( this.camera.position, {
+      x: true,
+      y: true,
+      z: true
+    });
   }
 
   /**
@@ -68,7 +96,8 @@ class Level extends THREE.Object3D {
    * @param {number} time  Elapsed time from three global clock
    * @param {number} delta Delta time from three global clock
    */
-  update( time, delta ) {
+  update( time,
+    delta ) {
 
     this.player.update( time, delta );
     this.checkCollisions();

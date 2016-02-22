@@ -128,6 +128,7 @@ class FirstPersonControls {
       mouseX: true,
       mouseY: true
     });
+
     this.isTweening = false;
 
   }
@@ -141,24 +142,18 @@ class FirstPersonControls {
     event.preventDefault();
     event.stopPropagation();
 
-
-    // if ( this.activeLook ) {
-    //
-    //   switch ( event.button ) {
-    //
-    //     case 0: this.moveForward = false; break;
-    //     case 2: this.moveBackward = false; break;
-    //   }
-    // }
-
     this.isTweening = true;
 
     this.mouseDown = false;
     this.mouseDragOn = false;
 
     TweenMax.to( this, 3, { actualMoveSpeed: 0, ease: Expo.easeOut, onComplete: () => {
-      this.moveForward = false;
-      this.moveBackward = false;
+
+      if ( this.activeLook ) {
+        this.moveForward = false;
+        this.moveBackward = false;
+      }
+
       this.isTweening = false;
     } });
 

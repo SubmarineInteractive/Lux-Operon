@@ -5,7 +5,7 @@ export default {
   far: 1200,
   lookSpeed: 0.1,
   movementSpeed: 150,
-  position: new THREE.Vector3( 0, 800, 800 ),
+  position: new THREE.Vector3( 0, 800, 0 ),
   target: new THREE.Vector3( 0, 0, 0 ),
   orbitControls: false,
   firstPersonControls: true
