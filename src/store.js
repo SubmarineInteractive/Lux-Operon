@@ -1,20 +1,33 @@
+import { createDevTools } from 'redux-devtools';
+import LogMonitor from 'redux-devtools-log-monitor';
+import DockMonitor from 'redux-devtools-dock-monitor';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { syncHistory, routeReducer } from 'react-router-redux';
+import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 import * as reducers from 'reducers';
-import history from 'helpers/history';
 
+// Combine reducers
 const reducer = combineReducers({
   ...reducers,
-  routing: routeReducer
+  routing: routerReducer
 });
 
-// Sync dispatched route actions to the history
-const reduxRouterMiddleware = syncHistory( history );
-const createStoreWithMiddleware = applyMiddleware( reduxRouterMiddleware )( createStore );
+// Apply the middleware to the store
+const middleware = routerMiddleware( browserHistory );
 
-const store = createStoreWithMiddleware( reducer );
+// Create Redux DevTools
+export const DevTools = createDevTools(
+  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q" defaultIsVisible={false}>
+    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
+  </DockMonitor>
+);
 
-// Required for replaying actions from devtools to work
-reduxRouterMiddleware.listenForReplays( store );
+// Add the reducer to your store on the `routing` key
+export const store = createStore(
+  reducer,
+  DevTools.instrument(),
+  applyMiddleware( middleware )
+);
 
-export default store;
+// Create an enhanced history that syncs navigation events with the store
+export const history = syncHistoryWithStore( browserHistory, store );
