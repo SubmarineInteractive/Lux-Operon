@@ -62,6 +62,7 @@ class Camera extends THREE.PerspectiveCamera {
    * @param {number} delta  Delta time from three global clock
    */
   update( delta ) {
+    
     this.controls.update( delta );
 
     this.directionalLight.move( this.position.clone() );
