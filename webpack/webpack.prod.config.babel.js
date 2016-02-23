@@ -8,7 +8,10 @@ import StatsWebpackPlugin from 'stats-webpack-plugin';
 
 export default {
   context: path.resolve( __dirname, '..' ),
-  entry: './src/main.js',
+  entry: [
+    './src/main.js',
+    './src/stylesheets/main.scss'
+  ],
   output: {
     path: path.join( __dirname, '..', 'dist' ),
     filename: '[name]-[hash].min.js'
