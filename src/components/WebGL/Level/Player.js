@@ -11,7 +11,7 @@ class Player extends THREE.Object3D {
    * constructor function
    */
   constructor( Configuration ) {
-    
+
     super();
 
     this.configuration = Configuration.get( 'player.pointLights' );
@@ -69,8 +69,7 @@ class Player extends THREE.Object3D {
   /**
    * updateLight function
    * @param {Light} light Light to update
-   * @param {time} delta  Elapsed time from three global clock
-   * @param {number} delta  Delta time from three global clock
+   * @param {time} time   Elapsed time from three global clock
    */
   updateLight( light, time ) {
 
