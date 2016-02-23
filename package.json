@@ -43,8 +43,10 @@
     "lint": "eslint .",
     "doc": "rimraf ./doc && esdoc -c esdoc.json",
     "start": "NODE_ENV=development babel-node server",
-    "prebuild": "npm run doc",
     "build": "NODE_ENV=production webpack --config webpack/webpack.prod.config.babel.js --progress --profile --colors",
+    "build:watch": "NODE_ENV=production babel-node server",
+    "build:start": "npm run build && npm run build:watch",
+    "prebuild": "npm run doc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -106,6 +108,7 @@
     "ify-loader": "^1.0.3",
     "json-loader": "^0.5.4",
     "node-sass": "^3.4.2",
+    "port-number": "^1.0.0",
     "raw-loader": "^0.5.1",
     "react-transform-catch-errors": "^1.0.1",
     "react-transform-hmr": "^1.0.1",
