@@ -55,6 +55,16 @@ class Player extends THREE.Object3D {
   }
 
   /**
+   * rotate function
+   * Move the light where the camera is
+   * @param {object} newRotation Rotation vector of the camera
+   */
+  rotate( newRotation ) {
+
+    this.rotation.copy( newRotation );
+  }
+
+  /**
    * update function
    * @param {number} time  Elapsed time from three global clock
    * @param {number} delta Delta time from three global clock
