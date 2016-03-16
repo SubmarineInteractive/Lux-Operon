@@ -42,7 +42,7 @@
   "scripts": {
     "lint": "eslint .",
     "doc": "rimraf ./doc && esdoc -c esdoc.json",
-    "start": "NODE_ENV=development babel-node server",
+    "start": "NODE_ENV=development PORT=3000 babel-node server",
     "build": "NODE_ENV=production webpack --config webpack/webpack.prod.config.babel.js --progress --profile --colors",
     "build:watch": "NODE_ENV=production babel-node server",
     "build:start": "npm run build && npm run build:watch",
@@ -55,6 +55,7 @@
     "babel-plugin-transform-react-inline-elements": "^6.4.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.2.1",
     "bottlejs": "^1.2.1",
+    "cannon": "^0.6.2",
     "dom-events": "^0.1.1",
     "fastclick": "^1.0.6",
     "global": "^4.3.0",

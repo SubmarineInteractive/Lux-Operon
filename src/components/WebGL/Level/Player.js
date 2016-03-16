@@ -15,7 +15,6 @@ class Player extends THREE.Object3D {
     super();
 
     this.configuration = Configuration.get( 'player.pointLights' );
-
     this.lights = [];
     this.nbLights = this.configuration.number;
 
@@ -49,8 +48,8 @@ class Player extends THREE.Object3D {
    * Move the light where the camera is
    * @param {object} newPos Position vector of the camera
    */
-  move( newPos ) {
-
+  move( newPos, cam ) {
+    this.camera = cam;
     this.position.copy( newPos );
   }
 
@@ -74,6 +73,41 @@ class Player extends THREE.Object3D {
     for ( let i = 0; i < this.nbLights; i++ ) {
       this.updateLight( this.lights[ i ], time, delta );
     }
+
+  }
+
+  debugCollisions() {
+
+    const sphereGeometry = new THREE.SphereGeometry( 1, 4, 4 );
+    const sphereMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+    const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+    sphere.position.z = -100;
+    sphere.position.x = -50;
+    this.add( sphere );
+
+    /**
+     * Add debug line
+     */
+    const lineGeometry = new THREE.Geometry();
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: 0xff00ff
+    });
+
+    const linePoints = [
+      new THREE.Vector4(0,0,0,0),
+      sphere.position
+    ];
+
+    lineGeometry.vertices = linePoints;
+
+    const line = new THREE.Line( lineGeometry, lineMaterial );
+    this.add( line );
+
+    setTimeout(() => {
+      this.remove( sphere );
+      this.remove( line );
+    }, 3000);
+  
   }
 
   /**

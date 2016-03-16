@@ -67,7 +67,7 @@ class Camera extends THREE.PerspectiveCamera {
 
     this.directionalLight.move( this.position.clone() );
 
-    this.player.move( this.position.clone() );
+    this.player.move( this.position.clone(), this);
     this.player.rotate( this.rotation.clone() );
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Container from 'Container';
-import { Stats, DOMElement } from 'components';
+import { DOMElement } from 'components';
 
 /**
  * Experience class
@@ -16,9 +16,9 @@ class Experience extends Component {
   render() {
     this.canvas = Container.get( 'Renderer' ).domElement;
 
+    // <Stats isActive={__DEV__} />
     return (
       <div className="container">
-        <Stats isActive={__DEV__} />
         <DOMElement child={this.canvas} />
       </div>
     );
