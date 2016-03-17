@@ -28,8 +28,11 @@ class Scene extends THREE.Scene {
     this.renderer = Container.get( 'Renderer' );
 
     // Camera
-    this.camera = Container.get( 'Camera' );
-    this.add( this.camera );
+    // this.camera = Container.get( 'Camera' );
+    // this.add( this.camera );
+
+    this.cameraControls = Container.get( 'CameraControls' );
+    this.add( this.cameraControls.getObject() );
 
     // Post processing
     this.postProcessing = Container.get( 'PostProcessing' );
@@ -105,7 +108,7 @@ class Scene extends THREE.Scene {
   render() {
 
     this.postProcessing.update();
-    this.camera.update( this.clock.delta );
+    this.cameraControls.update( this.clock.delta );
     this.level.update( this.clock.time, this.clock.delta );
   }
 }

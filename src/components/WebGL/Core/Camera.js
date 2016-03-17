@@ -1,5 +1,5 @@
 import OrbitControls from '../Utils/OrbitControls';
-import { FirstPersonControls } from 'helpers';
+// import { NicePersonControls } from 'helpers';
 import Container from 'Container';
 import { Events } from 'helpers';
 
@@ -21,7 +21,7 @@ class Camera extends THREE.PerspectiveCamera {
 
     this.position.set( position.x, position.y, position.z );
 
-    this.lookAt( target );
+    // this.lookAt( target );
 
     this.directionalLight = Container.get( 'DirectionalLight' );
 
@@ -30,12 +30,12 @@ class Camera extends THREE.PerspectiveCamera {
     if( orbitControls ) {
       this.controls = new OrbitControls( this, Configuration.get( 'canvas' ) );
     }
-
-    if( firstPersonControls ) {
-      this.controls = new FirstPersonControls( this, Renderer.domElement );
-      this.controls.lookSpeed = lookSpeed;
-      this.controls.movementSpeed = movementSpeed;
-    }
+    //
+    // if( firstPersonControls ) {
+    //   // this.controls = new NicePersonControls( this, this.player.sphereBody );
+    //   this.controls.lookSpeed = lookSpeed;
+    //   this.controls.movementSpeed = movementSpeed;
+    // }
 
     this.bindEvents();
   }
@@ -63,7 +63,7 @@ class Camera extends THREE.PerspectiveCamera {
    */
   update( delta ) {
 
-    this.controls.update( delta );
+    // this.controls.update( delta );
 
     this.directionalLight.move( this.position.clone() );
 

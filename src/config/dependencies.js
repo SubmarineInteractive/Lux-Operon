@@ -1,6 +1,7 @@
 import Configuration from '../helpers/Configuration';
 import Scene from '../components/WebGL/Core/Scene';
 import Camera from '../components/WebGL/Core/Camera';
+import CameraControls from '../components/WebGL/Core/NicePersonControls';
 import Renderer from '../components/WebGL/Core/Renderer';
 import PostProcessing from '../components/WebGL/PostProcessing/PostProcessing';
 import EffectComposer from '../components/WebGL/PostProcessing/EffectComposer';
@@ -44,6 +45,12 @@ export default [
     name: 'Camera',
     constructor: Camera,
     dependencies: [ 'Configuration', 'Renderer' ]
+  },
+  {
+    type: 'service',
+    name: 'CameraControls',
+    constructor: CameraControls,
+    dependencies: [ 'Camera' ]
   },
   {
     type: 'service',
