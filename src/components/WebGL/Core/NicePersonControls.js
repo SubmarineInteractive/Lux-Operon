@@ -5,19 +5,23 @@ import { map } from 'utils';
  */
 class NicePersonControls {
 
-  constructor(camera, cannonBody = false) {
+  constructor(camera, player) {
 
     this.camera = camera;
-    this.cannonBody = cannonBody;
+    this.cannonBody = player.sphereBody;
 
     this.enabled = false;
 
     this.movementX = 0;
     this.movementY = 0;
 
-    this.velocity = new THREE.Vector3();
-    this.velocityFactor = 0.2;
+    this.inputVelocity = new THREE.Vector3(0, 0, 0);
+    this.cannonBodyVelocity = this.cannonBody.velocity;
+    this.velocityFactor = 200;
     this.jumpVelocity = 20;
+
+    this.euler = new THREE.Euler();
+    this.quaternion = new THREE.Quaternion();
 
     this.pitchObject = new THREE.Object3D();
     this.pitchObject.add( camera );
@@ -59,7 +63,7 @@ class NicePersonControls {
     // console.log( 'mousemove', event.movementX, event.movementY );
 
     if(!this.enabled) return;
-    
+
     this.movementX = map(event.pageX, 0, window.innerWidth, -1, 1) || 0;
     this.movementY = map(event.pageY, 0, window.innerHeight, -1, 1) || 0;
 
@@ -98,9 +102,13 @@ class NicePersonControls {
 
   moveForward(delta) {
 
-    // this.velocity.z = -this.velocityFactor * delta;
-    //
-    this.yawObject.translateZ( -10 );
+    // Move forward
+    this.inputVelocity.z = -this.velocityFactor * delta;
+
+    this.cannonBodyVelocity.z += this.inputVelocity.z;
+
+    this.yawObject.position.copy( this.cannonBody.position );
+
   }
 
   rotate() {
@@ -108,15 +116,23 @@ class NicePersonControls {
     this.yawObject.rotation.y -=  this.movementX * 0.02;
     this.pitchObject.rotation.x -= this.movementY * 0.01;
 
+    this.euler.x = this.pitchObject.rotation.x;
+    this.euler.y = this.pitchObject.rotation.y;
+
+    this.euler.order = "XYZ";
+
+    this.quaternion.setFromEuler( this.euler );
+    this.inputVelocity.applyQuaternion( this.quaternion );
+
   }
 
   update( delta ) {
 
     if( this.enabled ) {
 
+      this.rotate();
       this.moveForward( delta );
 
-      this.rotate();
 
     }
   }

@@ -50,7 +50,7 @@ export default [
     type: 'service',
     name: 'CameraControls',
     constructor: CameraControls,
-    dependencies: [ 'Camera' ]
+    dependencies: [ 'Camera', 'Player' ]
   },
   {
     type: 'service',

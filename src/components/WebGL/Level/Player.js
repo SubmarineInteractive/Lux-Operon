@@ -31,35 +31,35 @@ class Player extends THREE.Object3D {
    */
   createSphere() {
 
-    // // Create a sphere
-    // const sphereShape = new Cannon.Sphere( 10 );
-    // this.sphereBody = new Cannon.Body({ mass: 5 });
-    // this.sphereBody.addShape( sphereShape );
-    // this.sphereBody.linearDamping = 0.9;
-    // this.sphereBody.position.set( 0, 0, 0 );
-    // this.world.add( this.sphereBody );
-    //
-    // const geometry = new THREE.SphereGeometry( 100, 10, 10 );
-    // const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
-    // this.sphere = new THREE.Mesh( geometry, material );
-    // // this.add( this.sphere );
-    //
-    // this.sphereBody.addEventListener( 'collide', e => {
-    //   console.log('COLLISION', e.contact.bi.shapes[0], e.contact.bj.shapes[0]);
-    //
-    //   // var contact = e.contact;
-    //   //
-    //   // // contact.bi and contact.bj are the colliding bodies, and contact.ni is the collision normal.
-    //   // // We do not yet know which one is which! Let's check.
-    //   // if(contact.bi.id == cannonBody.id)  // bi is the player body, flip the contact normal
-    //   //     contact.ni.negate(contactNormal);
-    //   // else
-    //   //     contactNormal.copy(contact.ni); // bi is something else. Keep the normal as it is
-    //   //
-    //   // // If contactNormal.dot(upAxis) is between 0 and 1, we know that the contact normal is somewhat in the up direction.
-    //   // if(contactNormal.dot(upAxis) > 0.5) // Use a "good" threshold value between 0 and 1 here!
-    //   //     canJump = true;
-    // });
+    // Create a sphere
+    const sphereShape = new Cannon.Sphere( 10 );
+    this.sphereBody = new Cannon.Body({ mass: 5 });
+    this.sphereBody.addShape( sphereShape );
+    this.sphereBody.linearDamping = 0.9;
+    this.sphereBody.position.set( 0, 0, 0 );
+    this.world.add( this.sphereBody );
+
+    const geometry = new THREE.SphereGeometry( 100, 10, 10 );
+    const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
+    this.sphere = new THREE.Mesh( geometry, material );
+    // this.add( this.sphere );
+
+    this.sphereBody.addEventListener( 'collide', e => {
+      console.log('COLLISION', e.contact.bi.shapes[0], e.contact.bj.shapes[0]);
+
+      // var contact = e.contact;
+      //
+      // // contact.bi and contact.bj are the colliding bodies, and contact.ni is the collision normal.
+      // // We do not yet know which one is which! Let's check.
+      // if(contact.bi.id == cannonBody.id)  // bi is the player body, flip the contact normal
+      //     contact.ni.negate(contactNormal);
+      // else
+      //     contactNormal.copy(contact.ni); // bi is something else. Keep the normal as it is
+      //
+      // // If contactNormal.dot(upAxis) is between 0 and 1, we know that the contact normal is somewhat in the up direction.
+      // if(contactNormal.dot(upAxis) > 0.5) // Use a "good" threshold value between 0 and 1 here!
+      //     canJump = true;
+    });
   }
 
   /**
