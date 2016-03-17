@@ -240,8 +240,7 @@ class FirstPersonControls {
       this.phi = THREE.Math.mapLinear( this.phi, 0, Math.PI, this.verticalMin, this.verticalMax );
     }
 
-    const targetPosition = this.target,
-      position = this.object.position;
+    const position = this.object.position;
 
     this.target.x = position.x + 100 * Math.sin( this.phi ) * Math.cos( this.theta );
     this.target.y = position.y + 100 * Math.cos( this.phi );

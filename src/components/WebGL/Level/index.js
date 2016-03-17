@@ -15,8 +15,6 @@ class Level extends THREE.Object3D {
 
     super();
 
-    this.testAngle = 0;
-
     this.player = Player;
     this.terrain = Terrain;
     this.camera = Container.get( 'Camera' );
@@ -47,7 +45,7 @@ class Level extends THREE.Object3D {
     this.boundingBox = BoundingBox;
     this.boundingBox.position.y = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z );
 
-    this.player.add( this.boundingBox );
+    this.add( this.boundingBox );
 
   }
 
@@ -100,12 +98,23 @@ class Level extends THREE.Object3D {
    */
   update( time, delta ) {
 
-    if( this.isTweening ) {
-      this.checkCollisions();
+    // if( this.isTweening ) {
+    //   this.checkCollisions();
+    // }
+
+    if( this.camera.controls.moveForward ) {
+      // this.player.sphereBody.velocity.x += 1;
+      // this.player.sphereBody.velocity.y += 1;
+      // this.player.sphereBody.velocity.z += 1;
+      this.player.sphereBody.position.x = this.camera.position.x;
+      this.player.sphereBody.position.y = this.camera.position.y;
+      this.player.sphereBody.position.z = this.camera.position.z;
+      // console.log('camera', this.camera.position);
+      // console.log('sphereBody', this.player.sphereBody.position);
     }
 
     this.player.update( time, delta );
-    this.checkCollisions();
+    // this.checkCollisions();
 
   }
 }

@@ -20,6 +20,8 @@ import Terrain from '../components/WebGL/Terrain';
 import TerrainGeometry from '../components/WebGL/Terrain/TerrainGeometry';
 import TerrainMaterial from '../components/WebGL/Terrain/TerrainMaterial';
 
+import World from '../components/WebGL/Physics/World';
+
 import AmbientLight from '../components/WebGL/Light/AmbientLight';
 import DirectionalLight from '../components/WebGL/Light/DirectionalLight';
 
@@ -88,7 +90,7 @@ export default [
     type: 'service',
     name: 'Player',
     constructor: Player,
-    dependencies: [ 'Configuration' ]
+    dependencies: [ 'Configuration', 'World' ]
   },
   {
     type: 'service',
@@ -120,7 +122,7 @@ export default [
     type: 'service',
     name: 'Terrain',
     constructor: Terrain,
-    dependencies: [ 'TerrainGeometry', 'TerrainMaterial' ]
+    dependencies: [ 'TerrainGeometry', 'TerrainMaterial', 'World' ]
   },
   {
     type: 'service',
@@ -133,6 +135,12 @@ export default [
     name: 'TerrainMaterial',
     constructor: TerrainMaterial,
     dependencies: [ 'Configuration', 'GUI' ]
+  },
+  //  |---- WebGL Physics
+  {
+    type: 'service',
+    name: 'World',
+    constructor: World
   },
   //  |---- WebGL Lights
   {

@@ -6,7 +6,7 @@ export default {
       width: 25,
       height: 30
     },
-    heightMapScale: 50
+    heightMapScale: 30
   },
   material: {
     color: new THREE.Color( 0x243465 ),
