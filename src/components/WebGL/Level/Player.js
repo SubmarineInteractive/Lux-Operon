@@ -36,13 +36,12 @@ class Player extends THREE.Object3D {
     this.sphereBody = new Cannon.Body({ mass: 5 });
     this.sphereBody.addShape( sphereShape );
     this.sphereBody.linearDamping = 0.9;
-    this.sphereBody.position.set( 0, 0, 0 );
     this.world.add( this.sphereBody );
 
     const geometry = new THREE.SphereGeometry( 100, 10, 10 );
     const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
     this.sphere = new THREE.Mesh( geometry, material );
-    // this.add( this.sphere );
+    this.add( this.sphere );
 
     this.sphereBody.addEventListener( 'collide', e => {
       console.log('COLLISION', e.contact.bi.shapes[0], e.contact.bj.shapes[0]);
@@ -91,9 +90,6 @@ class Player extends THREE.Object3D {
    */
   move( newPos ) {
 
-    // this.sphereBody.position.copy( this.sphere.position );
-    // this.sphereBody.quaternion.copy( this.sphere.quaternion );
-
     this.position.copy( newPos );
   }
 
@@ -119,7 +115,6 @@ class Player extends THREE.Object3D {
     }
 
     this.world.update();
-
   }
 
   /**

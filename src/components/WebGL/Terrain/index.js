@@ -35,7 +35,7 @@ class Terrain extends THREE.Mesh {
       }
     }
 
-console.log(data);
+// console.log(data);
     // Create the heightfield shape
     this.heightfieldShape = new Cannon.Heightfield( data, {
       elementSize: 27
@@ -91,17 +91,17 @@ console.log(data);
 //                const meshTerrain = new THREE.Mesh(geometryTerrain, new THREE.MeshPhongMaterial({color: 0xff000}));
 //
 // this.add(meshTerrain)
-//     const groundShape = new Cannon.Box( new Cannon.Vec3( 100, 100, 100 ) );
-//     const groundBody = new Cannon.Body({ mass: 0 });
-//     groundBody.addShape( groundShape );
-//     this.world.addBody( groundBody );
-//
-//     const geometry = new THREE.BoxGeometry( 100 * 2, 100 * 2, 100 * 2 );
-//     const material = new THREE.MeshLambertMaterial({ color: 0xff0000 });
-//
-//     const mesh = new THREE.Mesh( geometry, material );
-//     mesh.position.x = 200;
-//     this.add( mesh );
+    const groundShape = new Cannon.Box( new Cannon.Vec3( 100, 100, 100 ) );
+    const groundBody = new Cannon.Body({ mass: 0 });
+    groundBody.addShape( groundShape );
+    this.world.addBody( groundBody );
+
+    const geometry = new THREE.BoxGeometry( 100 * 2, 100 * 2, 100 * 2 );
+    const material = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+
+    const mesh = new THREE.Mesh( geometry, material );
+    mesh.position.copy( groundBody.position );
+    this.add( mesh );
   }
 }
 

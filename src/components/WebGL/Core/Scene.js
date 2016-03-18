@@ -28,11 +28,8 @@ class Scene extends THREE.Scene {
     this.renderer = Container.get( 'Renderer' );
 
     // Camera
-    // this.camera = Container.get( 'Camera' );
-    // this.add( this.camera );
-
-    this.cameraControls = Container.get( 'CameraControls' );
-    this.add( this.cameraControls.getObject() );
+    this.camera = Container.get( 'Camera' );
+    this.add( this.camera.controls.getObject() );
 
     // Post processing
     this.postProcessing = Container.get( 'PostProcessing' );
@@ -86,6 +83,7 @@ class Scene extends THREE.Scene {
     // Level
     this.level = Container.get( 'Level' );
     this.add( this.level );
+    this.level.position.set(0,0,0);
 
     this.directionalLight = Container.get( 'DirectionalLight' );
     this.add( this.directionalLight );
@@ -108,7 +106,7 @@ class Scene extends THREE.Scene {
   render() {
 
     this.postProcessing.update();
-    this.cameraControls.update( this.clock.delta );
+    this.camera.update( this.clock.delta );
     this.level.update( this.clock.time, this.clock.delta );
   }
 }

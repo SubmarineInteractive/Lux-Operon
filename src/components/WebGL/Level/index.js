@@ -15,8 +15,8 @@ class Level extends THREE.Object3D {
 
     super();
 
-    this.player = Player;
     this.terrain = Terrain;
+    this.player = Player;
     this.camera = Container.get( 'Camera' );
     this.gui = Container.get( 'GUI' );
 
@@ -99,7 +99,6 @@ class Level extends THREE.Object3D {
   update( time, delta ) {
 
     this.player.update( time, delta );
-    // this.checkCollisions();
 
   }
 }

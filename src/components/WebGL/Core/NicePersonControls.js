@@ -30,7 +30,6 @@ class NicePersonControls {
     this.pitchObject.add( camera );
 
     this.yawObject = new THREE.Object3D();
-    // this.yawObject.position.y = 0.5;
     this.yawObject.add( this.pitchObject );
 
     this.bind();
