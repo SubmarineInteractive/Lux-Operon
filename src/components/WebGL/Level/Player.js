@@ -91,10 +91,9 @@ class Player extends THREE.Object3D {
    */
   move( newPos ) {
 
-    this.sphereBody.position.copy( this.sphere.position );
-    this.sphereBody.quaternion.copy( this.sphere.quaternion );
-    // this.sphere.position.copy( newPos );
-    //
+    // this.sphereBody.position.copy( this.sphere.position );
+    // this.sphereBody.quaternion.copy( this.sphere.quaternion );
+
     this.position.copy( newPos );
   }
 
