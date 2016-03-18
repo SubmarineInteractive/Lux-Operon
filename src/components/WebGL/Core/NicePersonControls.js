@@ -17,7 +17,7 @@ class NicePersonControls {
 
     this.inputVelocity = new THREE.Vector3();
     this.cannonBodyVelocity = this.cannonBody.velocity;
-    this.velocityFactor = 600;
+    this.velocityFactor = 1200;
 
     this.euler = new THREE.Euler();
     this.quaternion = new THREE.Quaternion();
@@ -26,7 +26,7 @@ class NicePersonControls {
     this.pitchObject.add( camera );
 
     this.yawObject = new THREE.Object3D();
-    this.yawObject.position.y = 2;
+    // this.yawObject.position.y = 0.5;
     this.yawObject.add( this.pitchObject );
 
     this.bind();
@@ -62,7 +62,7 @@ class NicePersonControls {
   handleMouseUp() {
 
     const duration = 3;
-    const rotationCoef = 0.4;
+    const rotationCoef = 0.1;
     const ease = Expo.easeOut;
 
     this.enabled = false;
@@ -96,14 +96,18 @@ class NicePersonControls {
       this.inputVelocity.set( 0, 0, 0 );
 
       this.yawObject.rotation.y -= this.movementX * 0.02;
-      this.pitchObject.rotation.x -= this.movementY * 0.01;
+      this.pitchObject.rotation.x -= this.movementY * 0.007;
 
       // Move forward
       this.inputVelocity.z = - this.velocityFactor * delta;
 
+
       // Apply rotation based on forward velocity
       this.euler.x = this.pitchObject.rotation.x;
       this.euler.y = this.yawObject.rotation.y;
+
+      // Movementy Y [-1, 1], indicate sinking direction
+      this.cannonBodyVelocity.y = -this.movementY * 300;
 
       this.euler.order = 'XYZ';
 
