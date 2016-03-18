@@ -1,8 +1,8 @@
 import { map } from 'utils';
 
 /**
- * NicePersonControls class
- */
+* NicePersonControls class
+*/
 class NicePersonControls {
 
   constructor( camera, player ) {
@@ -11,6 +11,10 @@ class NicePersonControls {
     this.cannonBody = player.sphereBody;
 
     this.enabled = false;
+    this.enableDamping = false;
+
+    this.dampingFactor = 0.25;
+    this.dampingThreshold = 0.01;
 
     this.movementX = 0;
     this.movementY = 0;
@@ -61,17 +65,11 @@ class NicePersonControls {
 
   handleMouseUp() {
 
-    const duration = 3;
-    const rotationCoef = 0.1;
-    const ease = Expo.easeOut;
-
     this.enabled = false;
+    this.enableDamping = true;
 
-    TweenMax.killTweensOf( this.yawObject.rotation, { y: true });
-    TweenMax.killTweensOf( this.pitchObject.rotation, { x: true });
-
-    TweenMax.to( this.yawObject.rotation, duration, { y: this.yawObject.rotation.y - this.movementX * ( rotationCoef / 2 ), ease });
-    TweenMax.to( this.pitchObject.rotation, duration, { x: this.pitchObject.rotation.x - this.movementY * rotationCoef, ease });
+    TweenMax.to( this.yawObject.rotation, 1, { y: this.yawObject.rotation.y - (this.movementX / 5) });
+    TweenMax.to( this.pitchObject.rotation, 1, { x: this.pitchObject.rotation.x - (this.movementY / 5)});
 
   }
 
@@ -80,6 +78,7 @@ class NicePersonControls {
     TweenMax.killTweensOf( this.yawObject.rotation, { y: true });
     TweenMax.killTweensOf( this.pitchObject.rotation, { x: true });
     this.enabled = true;
+    this.enableDamping = false;
 
   }
 
@@ -91,32 +90,43 @@ class NicePersonControls {
 
   update( delta ) {
 
-    if( this.enabled ) {
+    if( this.enabled || this.enableDamping ) {
 
       this.inputVelocity.set( 0, 0, 0 );
 
-      this.yawObject.rotation.y -= this.movementX * 0.02;
-      this.pitchObject.rotation.x -= this.movementY * 0.007;
+
 
       // Move forward
-      this.inputVelocity.z = - this.velocityFactor * delta;
+      this.inputVelocity.z = - this.velocityFactor * delta / 2;
 
-
-      // Apply rotation based on forward velocity
-      this.euler.x = this.pitchObject.rotation.x;
-      this.euler.y = this.yawObject.rotation.y;
 
       // Movementy Y [-1, 1], indicate sinking direction
       this.cannonBodyVelocity.y = -this.movementY * 300;
 
       this.euler.order = 'XYZ';
 
-      this.quaternion.setFromEuler( this.euler );
-      this.inputVelocity.applyQuaternion( this.quaternion );
+      console.log('this.enableDamping', this.enableDamping);
 
-      // Move forward
-      this.cannonBodyVelocity.x += this.inputVelocity.x;
-      this.cannonBodyVelocity.z += this.inputVelocity.z;
+      if ( this.enableDamping ) {
+
+        if(this.inputVelocity.z >= -0.05 || this.inputVelocity.z <= 0.05) {
+          this.enableDamping = false;
+        }
+
+      } else {
+
+        this.yawObject.rotation.y -= this.movementX * 0.02;
+        this.pitchObject.rotation.x -= this.movementY * 0.007;
+        // Apply rotation based on forward velocity
+        this.euler.x = this.pitchObject.rotation.x;
+        this.euler.y = this.yawObject.rotation.y;
+
+        this.quaternion.setFromEuler( this.euler );
+        this.inputVelocity.applyQuaternion( this.quaternion );
+
+        this.cannonBodyVelocity.x += this.inputVelocity.x;
+        this.cannonBodyVelocity.z += this.inputVelocity.z;
+      }
 
       this.yawObject.position.copy( this.cannonBody.position );
 
