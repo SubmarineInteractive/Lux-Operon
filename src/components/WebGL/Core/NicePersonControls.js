@@ -88,39 +88,33 @@ class NicePersonControls {
     return this.yawObject;
   }
 
-  moveForward( delta ) {
-
-    // Move forward
-    this.inputVelocity.z = - this.velocityFactor * delta;
-
-    this.cannonBodyVelocity.x += this.inputVelocity.x;
-    this.cannonBodyVelocity.z += this.inputVelocity.z;
-
-    this.yawObject.position.copy( this.cannonBody.position );
-
-  }
-
-  rotate() {
-
-    this.yawObject.rotation.y -= this.movementX * 0.02;
-    this.pitchObject.rotation.x -= this.movementY * 0.01;
-
-    this.euler.x = this.pitchObject.rotation.x;
-    this.euler.y = this.yawObject.rotation.y;
-
-    this.euler.order = 'XYZ';
-
-    this.quaternion.setFromEuler( this.euler );
-    this.inputVelocity.applyQuaternion( this.quaternion );
-
-  }
 
   update( delta ) {
 
     if( this.enabled ) {
 
-      this.rotate();
-      this.moveForward( delta );
+      this.inputVelocity.set( 0, 0, 0 );
+
+      this.yawObject.rotation.y -= this.movementX * 0.02;
+      this.pitchObject.rotation.x -= this.movementY * 0.01;
+
+      // Move forward
+      this.inputVelocity.z = - this.velocityFactor * delta;
+
+      // Apply rotation based on forward velocity
+      this.euler.x = this.pitchObject.rotation.x;
+      this.euler.y = this.yawObject.rotation.y;
+
+      this.euler.order = 'XYZ';
+
+      this.quaternion.setFromEuler( this.euler );
+      this.inputVelocity.applyQuaternion( this.quaternion );
+
+      // Move forward
+      this.cannonBodyVelocity.x += this.inputVelocity.x;
+      this.cannonBodyVelocity.z += this.inputVelocity.z;
+
+      this.yawObject.position.copy( this.cannonBody.position );
 
     }
   }
