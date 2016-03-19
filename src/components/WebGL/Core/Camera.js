@@ -36,6 +36,8 @@ class Camera extends THREE.PerspectiveCamera {
       this.controls = new NicePersonControls( this, this.player );
     }
 
+    this.controls.getObject().position.y = 2000;
+
     this.bindEvents();
   }
 
@@ -67,9 +69,8 @@ class Camera extends THREE.PerspectiveCamera {
     this.directionalLight.move( this.controls.getObject().position.clone() );
 
     this.player.move( this.controls.getObject().position.clone() );
-    this.player.rotate( this.controls.getObject().rotation.clone() );
+    this.player.rotate( this.controls.euler );
 
-        // console.log('cam : ', this.position, 'shpereBody : ', this.controls.getObject().position);
   }
 }
 

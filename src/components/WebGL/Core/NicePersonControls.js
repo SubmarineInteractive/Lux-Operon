@@ -104,7 +104,7 @@ class NicePersonControls {
 
       this.euler.order = 'XYZ';
 
-      console.log('this.enableDamping', this.enableDamping);
+      // console.log('this.enableDamping', this.enableDamping);
 
       if ( this.enableDamping ) {
 

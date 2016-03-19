@@ -3,10 +3,10 @@ export default {
     width: 4000,
     height: 4000,
     segments: {
-      width: 25,
-      height: 30
+      width: 20,
+      height: 20
     },
-    heightMapScale: 30
+    heightMapScale: 10
   },
   material: {
     color: new THREE.Color( 0x243465 ),

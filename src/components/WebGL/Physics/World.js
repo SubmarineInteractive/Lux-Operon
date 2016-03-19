@@ -12,8 +12,8 @@ class World extends Cannon.World {
 
     super();
 
-    this.quatNormalizeSkip = 0;
-    this.quatNormalizeFast = false;
+    // this.quatNormalizeSkip = 0;
+    // this.quatNormalizeFast = false;
 
     this.gravity.set( 0, 0, 0 );
     this.broadphase = new Cannon.NaiveBroadphase();

@@ -16,11 +16,30 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     super( configuration.width, configuration.height, configuration.segments.width, configuration.segments.height );
 
     const heightMapTexture = TextureLoader.get( 'heightMap' );
-    const data = this.getHeightData( heightMapTexture.image, geometrySegments );
 
-    for ( let i = 0; i < this.vertices.length; i++ ) {
-      this.vertices[ i ].z = data[ i ] * configuration.heightMapScale;
-    }
+    this.matrix = this.getMatrix( heightMapTexture.image, 21, 21, 0, 2000 );
+
+    const sizeX = this.matrix[ 0 ].length;
+
+    const halfWidth = configuration.width * 0.5;
+    const halfDepth = configuration.height * 0.5;
+
+    const z90deg = new THREE.Matrix4().makeRotationZ( Math.PI * 0.5 );
+    this.applyMatrix( z90deg );
+
+    this.vertices.forEach( ( vertex, i ) => {
+
+      const row = ( i / sizeX ) | 0;
+      const col = i % sizeX;
+
+      vertex.x = halfWidth + vertex.x;
+      vertex.y = halfDepth + vertex.y;
+      vertex.z = this.matrix[ row ][ col ];
+
+    });
+
+    this.computeFaceNormals();
+    this.computeVertexNormals();
   }
 
   /**
@@ -55,6 +74,41 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     }
 
     return data;
+  }
+
+  getMatrix( image, width = 0, depth = 0, minHeight, maxHeight ) {
+
+    const matrix = [];
+    const canvas = document.createElement( 'canvas' );
+    const ctx = canvas.getContext( '2d' );
+    const channels = 4;
+    const heightRange = maxHeight - minHeight;
+
+    let imgData, pixel;
+    let heightData;
+
+    canvas.width  = width;
+    canvas.height = depth;
+
+    ctx.drawImage( image, 0, 0, width, depth );
+    imgData = ctx.getImageData( 0, 0, width, depth ).data;
+
+    for ( let i = 0; i < depth; i++ ) { //row
+
+      matrix.push( [] );
+
+      for ( let j = 0; j < width; j++ ) { //col
+
+        pixel = i * depth + j;
+        heightData = imgData[ pixel * channels ] / 255 * heightRange + minHeight;
+
+        matrix[ i ].push( heightData );
+
+      }
+
+    }
+
+    return matrix;
   }
 }
 

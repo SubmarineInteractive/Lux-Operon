@@ -83,7 +83,6 @@ class Scene extends THREE.Scene {
     // Level
     this.level = Container.get( 'Level' );
     this.add( this.level );
-    this.level.position.set(0,0,0);
 
     this.directionalLight = Container.get( 'DirectionalLight' );
     this.add( this.directionalLight );

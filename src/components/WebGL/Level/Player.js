@@ -24,6 +24,7 @@ class Player extends THREE.Object3D {
 
     this.createSphere();
     this.initLights();
+
   }
 
   /**
@@ -32,16 +33,17 @@ class Player extends THREE.Object3D {
   createSphere() {
 
     // Create a sphere
-    const sphereShape = new Cannon.Sphere( 10 );
-    this.sphereBody = new Cannon.Body({ mass: 5 });
+    const sphereShape = new Cannon.Sphere( 100 );
+    this.sphereBody = new Cannon.Body({ mass: 10 });
     this.sphereBody.addShape( sphereShape );
     this.sphereBody.linearDamping = 0.9;
+    this.sphereBody.position.y = 2000;
     this.world.add( this.sphereBody );
 
-    const geometry = new THREE.SphereGeometry( 100, 10, 10 );
+    const geometry = new THREE.SphereGeometry( 10, 10, 10 );
     const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
     this.sphere = new THREE.Mesh( geometry, material );
-    this.add( this.sphere );
+    // this.add( this.sphere );
 
     this.sphereBody.addEventListener( 'collide', e => {
       console.log('COLLISION', e.contact.bi.shapes[0], e.contact.bj.shapes[0]);
@@ -99,8 +101,9 @@ class Player extends THREE.Object3D {
    * @param {object} newRotation Rotation vector of the camera
    */
   rotate( newRotation ) {
+    // console.log(newRotation);
 
-    this.rotation.copy( newRotation );
+    this.sphere.quaternion.setFromEuler( newRotation );
   }
 
   /**
