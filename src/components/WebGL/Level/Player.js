@@ -33,8 +33,8 @@ class Player extends THREE.Object3D {
   createSphere() {
 
     // Create a sphere
-    const sphereShape = new Cannon.Sphere( 100 );
-    this.sphereBody = new Cannon.Body({ mass: 10 });
+    const sphereShape = new Cannon.Sphere( 10 );
+    this.sphereBody = new Cannon.Body({ mass: 300 });
     this.sphereBody.addShape( sphereShape );
     this.sphereBody.linearDamping = 0.9;
     this.sphereBody.position.y = 2000;

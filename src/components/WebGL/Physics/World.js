@@ -15,7 +15,7 @@ class World extends Cannon.World {
     // this.quatNormalizeSkip = 0;
     // this.quatNormalizeFast = false;
 
-    this.gravity.set( 0, 0, 0 );
+    this.gravity.set( 0, 0, -4 );
     this.broadphase = new Cannon.NaiveBroadphase();
 
     const solver = new Cannon.GSSolver();

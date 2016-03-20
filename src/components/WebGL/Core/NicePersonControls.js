@@ -100,8 +100,8 @@ class NicePersonControls {
 
 
       // Movementy Y [-1, 1], indicate sinking direction
-      this.cannonBodyVelocity.y = -this.movementY * 300;
-
+      this.cannonBodyVelocity.y = (-this.movementY /  this.yawObject.position.y) * 700000;
+      console.log(this.cannonBodyVelocity.y);
       this.euler.order = 'XYZ';
 
       // console.log('this.enableDamping', this.enableDamping);
@@ -115,7 +115,7 @@ class NicePersonControls {
       } else {
 
         this.yawObject.rotation.y -= this.movementX * 0.02;
-        this.pitchObject.rotation.x -= this.movementY * 0.007;
+        this.pitchObject.rotation.x -= this.movementY * 0.013;
         // Apply rotation based on forward velocity
         this.euler.x = this.pitchObject.rotation.x;
         this.euler.y = this.yawObject.rotation.y;
