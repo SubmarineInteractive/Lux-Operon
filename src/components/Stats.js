@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import raf from 'raf';
 import StatsJS from '@jordandelcros/stats-js';
-import { DOMElement } from 'components';
+import DOMElement from 'components/DOMElement';
 
 /**
  * Stats class

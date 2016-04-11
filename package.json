@@ -46,7 +46,6 @@
     "build": "NODE_ENV=production webpack --config webpack/webpack.prod.config.babel.js --progress --profile --colors",
     "build:watch": "NODE_ENV=production babel-node server",
     "build:start": "npm run build && npm run build:watch",
-    "prebuild": "npm run doc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

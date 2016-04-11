@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Container from 'Container';
-import { DOMElement } from 'components';
+import DOMElement from 'components/DOMElement';
 
 /**
  * Experience class
