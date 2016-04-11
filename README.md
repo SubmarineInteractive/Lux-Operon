@@ -1,6 +1,9 @@
-# Abyss Project
+# Lux Operon - Gobelins project
 
-School project at Gobelins, Paris.
+WORK IN PROGRESS.
+WebGL school project at Gobelins, Paris.
+
+![Preview](https://i.imgsafe.org/3bcc35a.jpg)
 
 #### TEAM
 | Nom                 |  Role                |
