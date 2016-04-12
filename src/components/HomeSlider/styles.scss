@@ -3,7 +3,7 @@
 @import '~stylesheets/common/keyframes';
 
 .home-slider {
-  @include centerX;
+  @include center-x;
   bottom: 6rem;
   text-align: center;
 }
@@ -48,15 +48,6 @@
   transform-origin: center center;
 }
 
-// ::: Instructions
-.home-slider__instructions {
-  color: $color-white;
-  font-size: 1.4rem;
-  line-height: 1.7rem;
-  text-transform: uppercase;
-}
-
-
 // ::: Grabber
 .home-slider__grabber {
   position: relative;
@@ -64,8 +55,14 @@
   z-index: 10;
   cursor: pointer;
   transition: stroke 0.3s ease-out;
+}
 
-  // &:hover {
-  //   stroke: $color-yellow;
-  // }
+// ::: Instructions
+.home-slider__instructions {
+  color: $color-white;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  user-select: none;
+  font-weight: 200;
 }
