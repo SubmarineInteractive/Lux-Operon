@@ -12,7 +12,7 @@
   display: block;
   width: 4rem;
   margin: 0 auto 2.5rem auto;
-
+  overflow: visible;
   fill: transparent;
   stroke: $color-white;
   stroke-miterlimit: 10;
@@ -65,7 +65,7 @@
   cursor: pointer;
   transition: stroke 0.3s ease-out;
 
-  &:hover {
-    stroke: $color-yellow;
-  }
+  // &:hover {
+  //   stroke: $color-yellow;
+  // }
 }

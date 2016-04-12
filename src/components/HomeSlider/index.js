@@ -1,6 +1,10 @@
 import './styles.scss';
 
+import { clamp } from 'utils';
 import { Component } from 'react';
+import { on, off } from 'dom-events';
+import debounce from 'lodash.debounce';
+
 // import classNames from 'classnames';
 
 /**
@@ -12,9 +16,36 @@ class HomeSlider extends Component {
     canDrag: false
   }
 
+  componentWillMount() {
+    this.debounceWindowResize = debounce(this.onWindowResize, 200);
+  }
+
   componentDidMount() {
     this.generateRepeatTimelineMax();
     this.generateTimelineMax();
+
+    this.svg = {
+      offsetTop: this.refs.svg.getBoundingClientRect().top + 10,
+      height: this.refs.svg.getBoundingClientRect().height - 60,
+      dragProgression: 0
+    }
+
+    this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
+
+    setTimeout(()=>{
+      this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
+    }, 200);
+
+    //Listeners
+    on( document, 'mouseup', ::this.onMouseUp );
+    on( document, 'mousemove', ::this.onMouseMove );
+    on( window, 'resize', ::this.debounceWindowResize );
+  }
+
+  componentWillUnmount() {
+    off( document, 'mouseup', ::this.onMouseUp );
+    off( document, 'mousemove', ::this.onMouseMove );
+    off( window, 'resize', ::this.debounceWindowResize );
   }
 
   generateRepeatTimelineMax() {
@@ -23,55 +54,88 @@ class HomeSlider extends Component {
     this.bigCircleLoopTl = new TimelineMax({ repeat: -1 });
 
     this.innerCircleLoopTl.fromTo( this.refs.innerGrabberCircle, 0.8, { transformOrigin: "center center", scale: 1 }, { scale: 0.95, ease: Expo.easeOut });
-
-    this.bigCircleLoopTl.fromTo( this.refs.bigCircle, 15, { transformOrigin: "center center", rotation: 0 }, { rotation: 360, ease: Power0.easeNone });
+    this.bigCircleLoopTl.fromTo( this.refs.bigCircle, 15, { transformOrigin: "center center", rotation: 0 }, { rotation: 360 });
 
   }
 
   generateTimelineMax() {
 
-    this.grabberHoverTl = new TimelineMax({
+    this.grabberPressTl = new TimelineMax({
       paused: true,
       onReverseComplete: ()=> {
         this.innerCircleLoopTl.play( 0 );
       }
     });
 
+    this.grabberDragTl = new TimelineMax({
+      paused: true
+    })
 
-    this.grabberHoverTl
-      .fromTo( this.refs.innerGrabberCircle, 0.3, { scale: 1 }, { scale: 0.85, ease: Back.easeOut });
+    this.grabberPressTl
+      .fromTo( this.refs.innerGrabberCircle, 0.15, { scale: 1 }, { scale: 0.8, stroke: '#FFFF00', ease: Back.easeOut });
 
+    this.grabberDragTl
+      .to( this.refs.grabber, 1, { y: '312%' }, 0)
+      .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0)
+      .to( this.refs.bigCircle, 0.7, {  stroke: '#FFFF00', ease: Expo.easeOut }, 0.2)
+      .fromTo( this.refs.bigCircle, 0.4, {transformOrigin: "center center"}, {  scale: 1.15, ease: Expo.easeOut }, 0.5);
+  }
+
+  /**
+   *  ---- Events ----
+   */
+
+  onWindowResize() {
+    this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
   }
 
   onMouseUp() {
-    if( !this.state.canDrag ) return;
 
-    this.setState({
-      canDrag: false
-    });
+    if( this.state.canDrag ) {
+      this.setState({
+        canDrag: false
+      });
+    }
+
+    TweenMax.to( this.svg, 1, { dragProgression: 0, ease: Expo.easeOut, onUpdate: () => {
+      this.grabberDragTl.progress( this.svg.dragProgression );
+    } });
+
+    this.grabberPressTl.reverse();
   }
 
-  onMouseDown() {
+  onGrabberMouseDown() {
     if( this.state.canDrag ) return;
 
     this.setState({
       canDrag: true
     });
+
+    this.grabberPressTl.play();
   }
 
   onMouseMove( ev ) {
 
-    console.log( ev );
+    if( this.state.canDrag ) {
+      const val = ( ev.clientY - this.svg.offsetTop ) / this.svg.height;
+      this.svg.dragProgression = clamp( 0, 1, val );
+    }
+
+    this.grabberDragTl.progress( this.svg.dragProgression );
   }
 
-  // ---- Grabber ----
+  /**
+   *  ---- Grabber events ----
+   */
+
   onGrabberMouseEnter() {
     this.innerCircleLoopTl.pause();
-    this.grabberHoverTl.play();
+
   }
 
   onGrabberMouseLeave() {
-    this.grabberHoverTl.reverse();
+
+
   }
 
   render() {
@@ -82,6 +146,7 @@ class HomeSlider extends Component {
 
         <svg
           className="home-slider__svg"
+          ref="svg"
           viewBox="0 0 39.5 137.3"
         >
 
@@ -107,6 +172,7 @@ class HomeSlider extends Component {
             ref="grabber"
             onMouseEnter={::this.onGrabberMouseEnter}
             onMouseLeave={::this.onGrabberMouseLeave}
+            onMouseDown={::this.onGrabberMouseDown}
           >
 
             <circle
