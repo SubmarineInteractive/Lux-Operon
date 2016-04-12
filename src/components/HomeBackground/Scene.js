@@ -1,6 +1,8 @@
 import raf from 'raf';
 import Container from 'Container';
-import { Events } from 'helpers';
+import PostProcessing from 'components/WebGL/PostProcessing/PostProcessing';
+import EffectComposer from 'components/WebGL/PostProcessing/EffectComposer';
+import Plane from './Plane';
 
 /**
  * Scene class
@@ -17,25 +19,30 @@ class BackgroundScene extends THREE.Scene {
     this.bind();
 
     // Camera
-    this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
-    this.camera.position.z = 100;
+    this.camera = new THREE.PerspectiveCamera( 120, window.innerWidth / window.innerHeight, 0.1, 10000 );
+    this.camera.position.y = 200;
+    this.camera.position.z = 900;
 
     // Renderer
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
     this.renderer.setSize( window.innerWidth, window.innerHeight );
+    this.renderer.setClearColor( 0x000000, 1.0 );
 
-    // Object
-    this.geom = new THREE.BoxGeometry( 10, 10, 10 );
+    this.effectComposer = new EffectComposer( this.renderer, Container.get( 'Configuration' ) );
+    this.postProcessing = new PostProcessing( this.effectComposer, this, this.camera, this.renderer, Container.get( 'Configuration' ) );
 
-    this.mat = new THREE.MeshBasicMaterial({
-      color: 0x00ff00,
-      wireframe: true
-    });
+    this.clock = Container.get( 'Clock' );
 
-    this.mesh = new THREE.Mesh( this.geom, this.mat );
+    // Plane
+    const pointLight = new THREE.PointLight( 0xe7e3e3, 1.7, 1500 );
+    pointLight.position.set( 0, 400, 950 );
+    this.add( pointLight );
 
-    this.mesh.position.set( 0, 0, 0 );
-    this.add( this.mesh );
+    const sphere = new THREE.SphereGeometry( 10, 20, 20 );
+    pointLight.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial({ color: 0xffffff }) ) );
+
+    this.plane = new Plane();
+    this.add( this.plane );
 
     this.animate();
   }
@@ -63,10 +70,10 @@ class BackgroundScene extends THREE.Scene {
    */
   render() {
 
-    this.mesh.rotation.x += 0.05;
-    this.mesh.rotation.y += 0.05;
-    this.mesh.rotation.z += 0.05;
-    this.renderer.render( this, this.camera );
+    this.plane.update( this.clock.time );
+    this.camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
+
+    this.postProcessing.update();
   }
 }
 

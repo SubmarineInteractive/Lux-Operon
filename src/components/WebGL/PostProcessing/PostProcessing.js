@@ -12,10 +12,9 @@ class PostProcessing {
    * @param {Scene}          Scene          Scene instance
    * @param {Camera}         Camera         Camera instance
    * @param {Renderer}       Renderer       Renderer instance
-   * @param {GUI}            Gui            GUI instance
    * @param {Configuration}  Configuration  Configuration instance
    */
-  constructor( EffectComposer, Scene, Camera, Renderer, Gui, Configuration ) {
+  constructor( EffectComposer, Scene, Camera, Renderer, Configuration ) {
 
     this.scene = Scene;
     this.camera = Camera;
@@ -24,9 +23,9 @@ class PostProcessing {
     this.passes = this.configuration.passes.filter( pass => pass.active );
     this.usePostProcessing = this.configuration.active;
     this.composer = EffectComposer;
-    this.gui = Gui;
+    // this.gui = Gui;
 
-    this.initGUI();
+    // this.initGUI();
   }
 
   /**

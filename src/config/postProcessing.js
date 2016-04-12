@@ -1,49 +1,53 @@
 import { BlendMode } from '@superguigui/wagner';
 import MultiPassBloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass';
-import DOFPass from '@superguigui/wagner/src/passes/dof/DOFPass';
-import ZoomBlurPass from '@superguigui/wagner/src/passes/zoom-blur/ZoomBlurPass';
-import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
+import HorizontalTiltShiftPass from 'components/WebGL/PostProcessing/passes/HorizontalTiltShift';
+import VignettePass from '@superguigui/wagner/src/passes/vignette/VignettePass';
 import NoisePass from '@superguigui/wagner/src/passes/noise/noise';
+import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
 
 export default {
-  active: false,
+  active: true,
   effectComposer: {
     useRGBA: true
   },
   passes: [
     {
       name: 'multiPassBloomPass',
-      active: false,
+      active: true,
       constructor: new MultiPassBloomPass({
-        blurAmount: .5,
-        applyZoomBlur: false,
-        zoomBlurStrength: 0.7,
+        blurAmount: 0.5,
+        applyZoomBlur: true,
+        zoomBlurStrength: 1.5,
         blendMode: BlendMode.Screen
       })
     },
     {
-      name: 'dofPass',
-      active: false,
-      constructor: new DOFPass({
-        focalDistance: 0.05,
-        aperture: 0.005,
-        tBias: null,
-        blurAmount: 1
+      name: 'horizontalTiltShiftPass',
+      active: true,
+      constructor: new HorizontalTiltShiftPass({
+        h: 1 / 256,
+        r: 0.5
       })
     },
     {
-      name: 'zoomBlurPass',
-      active: false,
-      constructor: new ZoomBlurPass({ strength: 0.05 })
+      name: 'noisePass',
+      active: true,
+      constructor: new NoisePass({
+        amount: 0.02,
+        speed: 0.1
+      })
     },
     {
-      name: 'noisePass',
-      active: false,
-      constructor: new NoisePass({ amount: 0.03, speed: 0 })
+      name: 'vignettePass',
+      active: true,
+      constructor: new VignettePass({
+        boost: 1,
+        reduction: 0.3
+      })
     },
     {
       name: 'fxaaPass',
-      active: false,
+      active: true,
       constructor: new FXAAPass()
     }
   ]
