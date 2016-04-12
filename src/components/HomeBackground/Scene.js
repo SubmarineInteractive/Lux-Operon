@@ -73,8 +73,6 @@ class BackgroundScene extends THREE.Scene {
    */
   render() {
 
-    console.log(this.progress);
-
     this.camera.position.y = map( this.progress, 0, 1, 200, -800 );
 
     this.plane.update( this.clock.time );
