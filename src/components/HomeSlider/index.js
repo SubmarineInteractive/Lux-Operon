@@ -24,6 +24,7 @@ class HomeSlider extends Component {
   componentDidMount() {
     this.generateTimelineMax();
     this.generateRepeatTimelineMax();
+    this.enterAnimation();
 
     this.svg = {
       offsetTop: this.refs.svg.getBoundingClientRect().top + 10,
@@ -32,8 +33,6 @@ class HomeSlider extends Component {
     }
 
     this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
-
-    this.enterAnimation();
   }
 
   componentWillUnmount() {
@@ -66,10 +65,6 @@ class HomeSlider extends Component {
       }
     });
 
-    this.instructionsSplited = new SplitText( this.refs.instructions, {
-      type: 'chars'
-    });
-
     const enterTlConfig = {
       progress: 1
     };
@@ -99,6 +94,12 @@ class HomeSlider extends Component {
 
   generateTimelineMax() {
 
+    this.instructionsSplited = new SplitText( this.refs.instructions, {
+      type: 'chars'
+    });
+
+    this.instructionsSplited.reverseChars = this.instructionsSplited.chars.slice(0).reverse();
+
     this.grabberPressTl = new TimelineMax({
       paused: true,
       onReverseComplete: ()=> {
@@ -110,14 +111,22 @@ class HomeSlider extends Component {
       paused: true
     })
 
+    this.exitDragAnimationTl = new TimelineMax({
+      paused: true
+    })
+
     this.grabberPressTl
-      .fromTo( this.refs.innerGrabberCircle, 0.15, { scale: 1 }, { scale: 0.8, stroke: '#FFFF00', ease: Back.easeOut });
+      .fromTo( this.refs.innerGrabberCircle, 0.2, { scale: 1, transformOrigin: "center center" }, { scale: 0.8, stroke: '#61DAFF', ease: Back.easeOut })
+      .to( this.refs.bigCircle, 0.2, {  stroke: '#61DAFF', ease: Expo.easeOut }, 0)
 
     this.grabberDragTl
       .to( this.refs.grabber, 1, { y: '312%' }, 0)
       .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0)
-      .to( this.refs.bigCircle, 0.7, {  stroke: '#FFFF00', ease: Expo.easeOut }, 0.2)
       .fromTo( this.refs.bigCircle, 0.4, {transformOrigin: "center center"}, {  scale: 1.15, ease: Expo.easeOut }, 0.5);
+
+    this.exitDragAnimationTl
+      .staggerTo( this.instructionsSplited.reverseChars, 1, { opacity: 0, scale: 0.6, y: '-60%', ease: Back.easeOut.config(3)}, 0.1 );
+
   }
 
   /**
@@ -161,6 +170,7 @@ class HomeSlider extends Component {
     }
 
     this.grabberDragTl.progress( this.svg.dragProgression );
+    this.exitDragAnimationTl.progress( this.svg.dragProgression );
   }
 
   /**
