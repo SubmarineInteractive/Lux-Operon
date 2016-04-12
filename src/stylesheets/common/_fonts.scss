@@ -1,0 +1,44 @@
+
+/**
+ * AKKURAT FONT
+ */
+ @font-face {
+   font-family: 'Akkurat Pro';
+   src: url('/fonts/AkkLg_Pro_1.eot'); /* IE9 Compat Modes */
+   src: url('/fonts/AkkLg_Pro_1.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/AkkLg_Pro_1.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/AkkLg_Pro_1.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/AkkLg_Pro_1.svg#b5c01d1b960fd3c923f4c0466bcdd227') format('svg'); /* Legacy iOS */
+
+   font-style:   normal;
+   font-weight:  200;
+ }
+
+
+
+/**
+ * TSTAR FONT
+ */
+@font-face {
+  font-family: 'TSTAR Mono Round';
+  src: url('/fonts/TStar-Lig.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/TStar-Lig.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/TStar-Lig.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/TStar-Lig.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/TStar-Lig.svg#86e8189c0949e827949ecf2e444ded58') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  200;
+}
+
+@font-face {
+  font-family: 'TSTAR Mono Round';
+  src: url('/fonts/TStar-Reg.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/TStar-Reg.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/TStar-Reg.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/TStar-Reg.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/TStar-Reg.svg#c1bd07b51948d571deeef5e68b66bd55') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  400;
+}
