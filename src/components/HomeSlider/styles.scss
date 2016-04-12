@@ -59,10 +59,10 @@
 
 // ::: Instructions
 .home-slider__instructions {
+  @include no-select;
   color: $color-white;
   font-size: 1.8rem;
   text-transform: uppercase;
   font-variant: small-caps;
-  user-select: none;
   font-weight: 200;
 }

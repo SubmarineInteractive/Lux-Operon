@@ -2,15 +2,20 @@
 @import '~stylesheets/common/mixins';
 
 .page--home {
+  background: url('/images/misc/sample.png') center no-repeat;
+  background-size: cover;
+}
 
+canvas {
+  display: none;
 }
 
 .home-title {
   @include center-xy;
+  @include no-select;
   text-align: center;
   font-size: 5rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.3rem;
   font-family: $font-akkurat;
   color: $color-white;
-  user-select: none;
 }

@@ -4,6 +4,7 @@ import { clamp } from 'utils';
 import { Component } from 'react';
 import { on, off } from 'dom-events';
 import debounce from 'lodash.debounce';
+import SplitText from 'vendors/splitText.js';
 
 // import classNames from 'classnames';
 
@@ -21,8 +22,8 @@ class HomeSlider extends Component {
   }
 
   componentDidMount() {
-    this.generateRepeatTimelineMax();
     this.generateTimelineMax();
+    this.generateRepeatTimelineMax();
 
     this.svg = {
       offsetTop: this.refs.svg.getBoundingClientRect().top + 10,
@@ -32,26 +33,64 @@ class HomeSlider extends Component {
 
     this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
 
-    setTimeout(()=>{
-      this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
-    }, 200);
+    this.enterAnimation();
+  }
 
-    //Listeners
+  componentWillUnmount() {
+    this.removeListeners();
+  }
+
+  addListeners() {
     on( document, 'mouseup', ::this.onMouseUp );
     on( document, 'mousemove', ::this.onMouseMove );
     on( window, 'resize', ::this.debounceWindowResize );
   }
 
-  componentWillUnmount() {
+  removeListeners() {
     off( document, 'mouseup', ::this.onMouseUp );
     off( document, 'mousemove', ::this.onMouseMove );
     off( window, 'resize', ::this.debounceWindowResize );
   }
 
+  enterAnimation() {
+
+    this.enterTl = new TimelineMax({
+      onComplete: ()=> {
+        this.addListeners();
+
+        this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
+
+        this.innerCircleLoopTl.play();
+        this.bigCircleLoopTl.play();
+
+      }
+    });
+
+    this.instructionsSplited = new SplitText( this.refs.instructions, {
+      type: 'chars'
+    });
+
+    const enterTlConfig = {
+      progress: 1
+    };
+
+    this.grabberDragTl.progress( 1 );
+
+    this.enterTl
+      .from( this.refs.bigCircle, 1.5, { opacity: 0, y: '100%', scale: 0.8, ease: Expo.easeOut }, 1)
+      .from( this.refs.innerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.4")
+      .from( this.refs.outerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.3")
+      .fromTo( enterTlConfig, 1, {progress: 1}, { progress: 0, ease: Expo.easeOut, onUpdate: () => {
+        this.grabberDragTl.progress( enterTlConfig.progress );
+      } })
+      .staggerFrom( this.instructionsSplited.chars, 1, { opacity: 0, scale: 0.8, y: '60%', ease: Back.easeOut.config(3)}, 0.1 );
+
+  }
+
   generateRepeatTimelineMax() {
 
-    this.innerCircleLoopTl = new TimelineMax({ repeat: -1, yoyo: true });
-    this.bigCircleLoopTl = new TimelineMax({ repeat: -1 });
+    this.innerCircleLoopTl = new TimelineMax({ paused: true, repeat: -1, yoyo: true });
+    this.bigCircleLoopTl = new TimelineMax({ paused: true, repeat: -1 });
 
     this.innerCircleLoopTl.fromTo( this.refs.innerGrabberCircle, 0.8, { transformOrigin: "center center", scale: 1 }, { scale: 0.95, ease: Expo.easeOut });
     this.bigCircleLoopTl.fromTo( this.refs.bigCircle, 15, { transformOrigin: "center center", rotation: 0 }, { rotation: 360 });
