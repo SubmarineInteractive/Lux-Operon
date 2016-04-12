@@ -17,8 +17,12 @@ class Home extends Component {
 
     // <Stats isActive={__DEV__} />
     return (
-      <div className="container">
+      <div className="page page--home">
+
+        <h1 className="home-title">Lux Operon</h1>
+
         <HomeBackground />
+
       </div>
     );
   }

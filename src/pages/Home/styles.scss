@@ -4,3 +4,12 @@
 .page--home {
 
 }
+
+.home-title {
+  @include centerX;
+  top: 25%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10rem;
+  color: $color-white;
+}

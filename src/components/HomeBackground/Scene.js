@@ -5,7 +5,7 @@ import { Events } from 'helpers';
 /**
  * Scene class
  */
-class Scene extends THREE.Scene {
+class BackgroundScene extends THREE.Scene {
 
   /**
    * construcotr function
@@ -22,19 +22,20 @@ class Scene extends THREE.Scene {
 
     // Renderer
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize( window.innerWidth, window.innerHeight );
 
     // Object
-    this.geom = new THREE.BoxGeometry(100, 100, 100);
+    this.geom = new THREE.BoxGeometry( 10, 10, 10 );
+
     this.mat = new THREE.MeshBasicMaterial({
       color: 0x00ff00,
-      wireframe: true,
+      wireframe: true
     });
 
     this.mesh = new THREE.Mesh( this.geom, this.mat );
 
-    this.mesh.position.set(0, 0, 0);
-    this.add(this.mesh);
+    this.mesh.position.set( 0, 0, 0 );
+    this.add( this.mesh );
 
     this.animate();
   }
@@ -43,6 +44,7 @@ class Scene extends THREE.Scene {
    * Bind function
    */
    bind() {
+
      this.animate = this.animate.bind( this );
    }
 
@@ -61,8 +63,11 @@ class Scene extends THREE.Scene {
    */
   render() {
 
-    this.renderer.render( this.scene, this.camera );
+    this.mesh.rotation.x += 0.05;
+    this.mesh.rotation.y += 0.05;
+    this.mesh.rotation.z += 0.05;
+    this.renderer.render( this, this.camera );
   }
 }
 
-export default Scene;
+export default BackgroundScene;
