@@ -199,8 +199,7 @@ class HomeSlider extends Component {
           className="home-slider__instructions"
           ref="instructions"
         >
-          Rassemblez les cercles<br/>
-          pour plonger sous l’eau
+          Glisser pour plonger
         </p>
 
       </div>

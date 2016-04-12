@@ -28,6 +28,9 @@ export default {
       '.json'
     ]
   },
+  externals: {
+    'TweenMax': 'TweenMax'
+  },
   module: {
     loaders: [
       {
@@ -55,6 +58,10 @@ export default {
         test: /\.(glsl|frag|vert)$/,
         exclude: /node_modules/,
         loader: 'raw!glslify'
+      },
+      {
+        test: /splitText\.js$/,
+        loader: 'imports?define=>false!exports?SplitText'
       }
     ]
   },
