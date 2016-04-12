@@ -10,14 +10,16 @@ import Scene from './Scene';
  */
 class HomeBackground extends Component {
 
+  componentWillReceiveProps( nextProps ) {
+    if( this.props.progress != nextProps.progress ) {
+      this.scene.progress = this.props.progress;
+    }
+  }
+
   componentWillMount() {
 
     this.scene = new Scene();
     this.sceneDomEl = this.scene.renderer.domElement;
-
-  }
-
-  componentDidMount() {
 
   }
 

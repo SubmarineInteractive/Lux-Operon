@@ -13,8 +13,8 @@ import SplitText from 'vendors/splitText.js';
  */
 class Home extends Component {
 
-  constructor( props ) {
-    super( props );
+  state = {
+    progress: 0
   }
 
   componentDidMount() {
@@ -34,17 +34,23 @@ class Home extends Component {
       .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config(3), delay: 0.5}, 0.1 );
   }
 
+  onProgress( progress ) {
+    this.setState({
+      progress
+    });
+  }
+
   render() {
 
     // <Stats isActive={__DEV__} />
     return (
       <div className="page page--home">
 
-        <HomeBackground />
+        <HomeBackground progress={this.state.progress} />
 
         <h1 className="home-title" ref="title">luxoperon</h1>
 
-        <HomeSlider />
+        <HomeSlider onProgress={::this.onProgress} />
 
       </div>
     );

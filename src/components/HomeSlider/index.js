@@ -147,6 +147,7 @@ class HomeSlider extends Component {
 
     TweenMax.to( this.svg, 1, { dragProgression: 0, ease: Expo.easeOut, onUpdate: () => {
       this.grabberDragTl.progress( this.svg.dragProgression );
+      this.props.onProgress( this.svg.dragProgression );
     } });
 
     this.grabberPressTl.reverse();
@@ -168,6 +169,8 @@ class HomeSlider extends Component {
       const val = ( ev.clientY - this.svg.offsetTop ) / this.svg.height;
       this.svg.dragProgression = clamp( 0, 1, val );
     }
+
+    this.props.onProgress( this.svg.dragProgression );
 
     this.grabberDragTl.progress( this.svg.dragProgression );
     this.exitDragAnimationTl.progress( this.svg.dragProgression );

@@ -3,6 +3,7 @@ import Container from 'Container';
 import PostProcessing from 'components/WebGL/PostProcessing/PostProcessing';
 import EffectComposer from 'components/WebGL/PostProcessing/EffectComposer';
 import Plane from './Plane';
+import { map } from 'utils';
 
 /**
  * Scene class
@@ -15,6 +16,8 @@ class BackgroundScene extends THREE.Scene {
   constructor() {
 
     super();
+
+    this.progress = 0;
 
     this.bind();
 
@@ -69,6 +72,10 @@ class BackgroundScene extends THREE.Scene {
    * Render function
    */
   render() {
+
+    console.log(this.progress);
+
+    this.camera.position.y = map( this.progress, 0, 1, 200, -800 );
 
     this.plane.update( this.clock.time );
     this.camera.lookAt( new THREE.Vector3( 0, 0, 0 ) );
