@@ -4,7 +4,6 @@ import { Component } from 'react';
 import DOMElement from 'components/DOMElement';
 
 import Scene from './Scene';
-import HomeSlider from 'components/HomeSlider';
 
 /**
  * HomeBackground class
@@ -28,8 +27,6 @@ class HomeBackground extends Component {
       <div className="home-background">
 
         <DOMElement child={this.sceneDomEl} />
-
-        <HomeSlider />
 
       </div>
     );
