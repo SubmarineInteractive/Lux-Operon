@@ -4,11 +4,12 @@ import DockMonitor from 'redux-devtools-dock-monitor';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { syncHistoryWithStore, routerReducer, routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
-import * as reducers from 'reducers';
+import debounce from 'redux-debounced';
+import * as providers from 'providers';
 
 // Combine reducers
-const reducer = combineReducers({
-  ...reducers,
+const rootReducer = combineReducers({
+  ...providers,
   routing: routerReducer
 });
 
@@ -24,9 +25,9 @@ export const DevTools = createDevTools(
 
 // Add the reducer to your store on the `routing` key
 export const store = createStore(
-  reducer,
+  rootReducer,
   DevTools.instrument(),
-  applyMiddleware( middleware )
+  applyMiddleware( middleware, debounce() )
 );
 
 // Create an enhanced history that syncs navigation events with the store

@@ -6,8 +6,6 @@ import { on, off } from 'dom-events';
 import debounce from 'lodash.debounce';
 import SplitText from 'vendors/splitText.js';
 
-// import classNames from 'classnames';
-
 /**
  * HomeSlider class
  */
@@ -18,7 +16,7 @@ class HomeSlider extends Component {
   }
 
   componentWillMount() {
-    this.debounceWindowResize = debounce(this.onWindowResize, 200);
+    this.debounceWindowResize = debounce( this.onWindowResize, 200 );
   }
 
   componentDidMount() {
@@ -30,7 +28,7 @@ class HomeSlider extends Component {
       offsetTop: this.refs.svg.getBoundingClientRect().top + 10,
       height: this.refs.svg.getBoundingClientRect().height - 60,
       dragProgression: 0
-    }
+    };
 
     this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
   }
@@ -72,13 +70,13 @@ class HomeSlider extends Component {
     this.grabberDragTl.progress( 1 );
 
     this.enterTl
-      .from( this.refs.bigCircle, 1.5, { opacity: 0, y: '100%', scale: 0.8, ease: Expo.easeOut }, 1)
-      .from( this.refs.innerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.4")
-      .from( this.refs.outerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.3")
-      .fromTo( enterTlConfig, 1, {progress: 1}, { progress: 0, ease: Expo.easeOut, onUpdate: () => {
+      .from( this.refs.bigCircle, 1.5, { opacity: 0, y: '100%', scale: 0.8, ease: Expo.easeOut }, 1 )
+      .from( this.refs.innerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, '-=0.4' )
+      .from( this.refs.outerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, '-=0.3' )
+      .fromTo( enterTlConfig, 1, { progress: 1 }, { progress: 0, ease: Expo.easeOut, onUpdate: () => {
         this.grabberDragTl.progress( enterTlConfig.progress );
       } })
-      .staggerFrom( this.instructionsSplited.chars, 1, { opacity: 0, scale: 0.8, y: '60%', ease: Back.easeOut.config(3)}, 0.1 );
+      .staggerFrom( this.instructionsSplited.chars, 1, { opacity: 0, scale: 0.8, y: '60%', ease: Back.easeOut.config( 3 ) }, 0.1 );
 
   }
 
@@ -98,7 +96,7 @@ class HomeSlider extends Component {
       type: 'chars'
     });
 
-    this.instructionsSplited.reverseChars = this.instructionsSplited.chars.slice(0).reverse();
+    this.instructionsSplited.reverseChars = this.instructionsSplited.chars.slice( 0 ).reverse();
 
     this.grabberPressTl = new TimelineMax({
       paused: true,
@@ -109,23 +107,23 @@ class HomeSlider extends Component {
 
     this.grabberDragTl = new TimelineMax({
       paused: true
-    })
+    });
 
     this.exitDragAnimationTl = new TimelineMax({
       paused: true
-    })
+    });
 
     this.grabberPressTl
       .fromTo( this.refs.innerGrabberCircle, 0.2, { scale: 1, transformOrigin: "center center" }, { scale: 0.8, stroke: '#61DAFF', ease: Back.easeOut })
-      .to( this.refs.bigCircle, 0.2, {  stroke: '#61DAFF', ease: Expo.easeOut }, 0)
+      .to( this.refs.bigCircle, 0.2, { stroke: '#61DAFF', ease: Expo.easeOut }, 0 );
 
     this.grabberDragTl
-      .to( this.refs.grabber, 1, { y: '312%' }, 0)
-      .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0)
-      .fromTo( this.refs.bigCircle, 0.4, {transformOrigin: "center center"}, {  scale: 1.15, ease: Expo.easeOut }, 0.5);
+      .to( this.refs.grabber, 1, { y: '312%' }, 0 )
+      .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: 'bottom' }, { scaleY: 0 }, 0 )
+      .fromTo( this.refs.bigCircle, 0.4, { transformOrigin: 'center center' }, {  scale: 1.15, ease: Expo.easeOut }, 0.5 );
 
     this.exitDragAnimationTl
-      .staggerTo( this.instructionsSplited.reverseChars, 1, { opacity: 0, scale: 0.6, y: '-60%', ease: Back.easeOut.config(3)}, 0.1 );
+      .staggerTo( this.instructionsSplited.reverseChars, 1, { opacity: 0, scale: 0.6, y: '-60%', ease: Back.easeOut.config( 3 ) }, 0.1 );
 
   }
 

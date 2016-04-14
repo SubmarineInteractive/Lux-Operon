@@ -1,11 +1,6 @@
-import postProcessing from './postProcessing';
-import textures from './textures';
-import camera from './camera';
-import renderer from './renderer';
-import player from './player';
-import fog from './fog';
-import lights from './lights';
-import terrain from './terrain';
-import boundingBox from './boundingBox';
+import { common, homeBackground, experience } from './webgl';
 
-export default { postProcessing, textures, camera, renderer, player, fog, lights, terrain, boundingBox };
+const homeBackgroundMerged = Object.assign({}, common, homeBackground );
+const experienceMerged = Object.assign({}, common, experience );
+
+export default { common, homeBackground: homeBackgroundMerged, experience: experienceMerged };

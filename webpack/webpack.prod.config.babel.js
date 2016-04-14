@@ -19,7 +19,7 @@ export default {
   resolve: {
     root: path.resolve( __dirname, '..', 'src' ),
     alias: {
-      'Container': 'helpers/Container'
+      common: 'components/WebGLCommon'
     },
     extensions: [
       '',

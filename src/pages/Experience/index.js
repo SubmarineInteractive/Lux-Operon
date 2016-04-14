@@ -1,25 +1,23 @@
 import { Component } from 'react';
-import Container from 'Container';
-import DOMElement from 'components/DOMElement';
+import { connect } from 'react-redux';
+import WebGLExperience from 'components/WebGLExperience';
 
 /**
  * Experience class
  */
+@connect( state => ({ loading: state.resources.loading, resources: state.resources.resources }) )
 class Experience extends Component {
 
-  constructor( props ) {
-    super( props );
-
-    Container.get( 'Scene' ).begin();
-  }
-
   render() {
-    this.canvas = Container.get( 'Renderer' ).domElement;
 
-    // <Stats isActive={__DEV__} />
+    const { loading, resources } = this.props;
+
     return (
-      <div className="container">
-        <DOMElement child={this.canvas} />
+      <div className="page page--experience">
+        {
+          ! loading &&
+          <WebGLExperience resources={resources} />
+        }
       </div>
     );
   }

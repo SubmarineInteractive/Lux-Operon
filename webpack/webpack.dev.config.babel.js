@@ -19,7 +19,7 @@ export default {
   resolve: {
     root: path.resolve( __dirname, '..', 'src' ),
     alias: {
-      'Container': 'helpers/Container'
+      common: 'components/WebGLCommon'
     },
     extensions: [
       '',
@@ -29,13 +29,6 @@ export default {
     ]
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.js?$/,
-        exclude: /node_modules/,
-        loader: 'eslint'
-      }
-    ],
     loaders: [
       {
         test: /\.js?$/,

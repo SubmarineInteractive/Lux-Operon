@@ -1,26 +1,29 @@
-import './styles.scss';
-
 import { Component } from 'react';
-
-import HomeBackground  from 'components/HomeBackground';
-
+import WebGLHomeBackground  from 'components/WebGLHomeBackground';
 import HomeSlider from 'components/HomeSlider';
-
 import SplitText from 'vendors/splitText.js';
 
+import './styles.scss';
+
 /*
- * Home class
+ * WebGLHome class
  */
-class Home extends Component {
+class WebGLHome extends Component {
 
   state = {
     progress: 0
   }
 
+  /**
+   * componentDidMount function
+   */
   componentDidMount() {
     this.introAnimation();
   }
 
+  /**
+   * introAnimation function
+   */
   introAnimation() {
 
     this.enterTitleTl = new TimelineMax();
@@ -29,11 +32,14 @@ class Home extends Component {
       type: 'chars'
     });
 
-
     this.enterTitleTl
-      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config(3), delay: 0.5}, 0.1 );
+      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config( 3 ), delay: 0.5 }, 0.1 );
   }
 
+  /**
+   * onProgress function
+   * @param {number} progress Progress value
+   */
   onProgress( progress ) {
     this.setState({
       progress
@@ -42,13 +48,12 @@ class Home extends Component {
 
   render() {
 
-    // <Stats isActive={__DEV__} />
     return (
       <div className="page page--home">
 
-        <HomeBackground progress={this.state.progress} />
+        <WebGLHomeBackground progress={this.state.progress} />
 
-        <h1 className="home-title" ref="title">luxoperon</h1>
+        <h1 className="home-title" ref="title">Luxoperon</h1>
 
         <HomeSlider onProgress={::this.onProgress} />
 
@@ -57,4 +62,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default WebGLHome;
