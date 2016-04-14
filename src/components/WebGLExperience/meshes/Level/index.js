@@ -23,7 +23,7 @@ class Level extends THREE.Object3D {
     this.boundingBox = new BoundingBox( boundingBoxConfig, this.terrain );
     this.boundingBox.position.y = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z );
 
-    this.add( this.boundingBox );
+    // this.add( this.boundingBox );
 
   }
 }

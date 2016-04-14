@@ -94,10 +94,10 @@ class NicePersonControls {
       this.inputVelocity.set( 0, 0, 0 );
 
       // Move forward
-      this.inputVelocity.z = - this.velocityFactor * delta * 500;
+      this.inputVelocity.z = - this.velocityFactor * delta * 800;
 
       // Movementy Y [-1, 1], indicate sinking direction
-      this.cannonBodyVelocity.y = (-this.movementY /  this.yawObject.position.y) * 500000;
+      this.cannonBodyVelocity.y = ( -this.movementY /  this.yawObject.position.y ) * 500000;
       this.euler.order = 'XYZ';
 
       // console.log('this.enableDamping', this.enableDamping);
