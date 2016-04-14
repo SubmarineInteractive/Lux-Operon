@@ -22,7 +22,7 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
 
     this.specular = specular;
 
-    this.fog = false;
+    this.fog = true;
   }
 }
 

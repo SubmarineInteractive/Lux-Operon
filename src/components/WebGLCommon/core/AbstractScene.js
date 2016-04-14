@@ -14,10 +14,10 @@ class AbstractScene extends THREE.Scene {
 
     super();
 
-    const { fov, aspect, near, far, position, target, orbitControls } = camera;
+    const { fov, aspect, near, far, orbitControls } = camera;
 
     // Abstract camera
-    this.camera = new AbstractCamera({ fov, aspect, near, far, position, target, orbitControls });
+    this.camera = new AbstractCamera({ fov, aspect, near, far, orbitControls });
 
     const { antialias, alpha, clearColor, clearColorAlpha, pixelRatio } = renderer;
 

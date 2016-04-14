@@ -64,7 +64,6 @@ class Scene extends AbstractScene {
     // Controls
     if( this.cameraConfig.firstPersonControls ) {
       this.controls = new NicePersonControls( this.camera, this.player );
-      console.log(this.cameraConfig.position);
       this.controls.object.position.copy( this.cameraConfig.position );
       this.add( this.controls.object );
     }
@@ -93,7 +92,7 @@ class Scene extends AbstractScene {
 
     this.world.update();
     this.player.update( this.clock.time, this.clock.delta );
-    console.log(this.controls.object.position.clone());
+
     if( this.controls ) {
       this.controls.update( this.clock.delta );
       this.directionalLight.move( this.controls.object.position.clone() );

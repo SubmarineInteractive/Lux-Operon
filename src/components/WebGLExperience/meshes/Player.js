@@ -41,6 +41,7 @@ class Player extends THREE.Object3D {
     this.sphereBody.linearDamping = 0.9;
     this.sphereBody.position.x = 500;
     this.sphereBody.position.y = 1500;
+    this.sphereBody.position.z = -200;
     this.world.add( this.sphereBody );
 
     const geometry = new THREE.SphereGeometry( 10, 10, 10 );
