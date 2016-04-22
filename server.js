@@ -11,7 +11,7 @@ import devConfig from './webpack/webpack.dev.config.babel.js';
 const env = process.env.NODE_ENV;
 const isDeveloping = env !== 'production';
 const port = process.env.PORT ? process.env.PORT : portNumber();
-const ip = isDeveloping ? 'localhost' : '0.0.0.0';
+const ip = isDeveloping ? '0.0.0.0' : '0.0.0.0';
 
 const app = express();
 

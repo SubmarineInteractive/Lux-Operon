@@ -1,0 +1,46 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.home {
+  background-color: $color-sea-blue;
+  width: 100%;
+  height: 100%;
+}
+
+.home__wrapper {
+  width: 100%;
+  background-color: $color-sea-blue;
+}
+
+.home__title {
+  @include no-select;
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  text-align: center;
+  font-size: 5rem;
+  letter-spacing: 0.3rem;
+  font-family: $font-akkurat;
+  color: $color-white;
+}
+
+.home__transition-image {
+  display: block;
+  position: relative;
+  top: 100%;
+  width: 100%;
+  height: 1000px;
+  background: url(/images/home/transition.png) center no-repeat;
+  background-size: cover;
+}
+
+.home__loading-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: red;
+  span {
+    @include center-xy;
+  }
+}

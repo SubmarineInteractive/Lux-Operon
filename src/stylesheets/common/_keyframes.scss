@@ -1,0 +1,8 @@
+@keyframes draw-dash {
+ 0%,100% {
+   stroke-dashoffset: 0;
+ }
+ 50% {
+   stroke-dashoffset: 300;
+ }
+}
