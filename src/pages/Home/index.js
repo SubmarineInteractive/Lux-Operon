@@ -1,29 +1,29 @@
-import { Component } from 'react';
-import WebGLHomeBackground  from 'components/WebGLHomeBackground';
-import HomeSlider from 'components/HomeSlider';
-import SplitText from 'vendors/splitText.js';
-
 import './styles.scss';
 
+import { Component } from 'react';
+
+import WebGlHomeBackground  from 'components/WebGlHomeBackground';
+
+import HomeSlider from 'components/HomeSlider';
+
+import HomeTransitionCanvas from 'components/HomeTransitionCanvas';
+
+import SplitText from 'vendors/splitText.js';
+
 /*
- * WebGLHome class
+ * Home class
  */
-class WebGLHome extends Component {
+class Home extends Component {
 
   state = {
     progress: 0
   }
 
-  /**
-   * componentDidMount function
-   */
   componentDidMount() {
     this.introAnimation();
+    this.generateTimelineMax();
   }
 
-  /**
-   * introAnimation function
-   */
   introAnimation() {
 
     this.enterTitleTl = new TimelineMax();
@@ -33,13 +33,29 @@ class WebGLHome extends Component {
     });
 
     this.enterTitleTl
-      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config( 3 ), delay: 0.5 }, 0.1 );
+      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config(3), delay: 0.5 }, 0.1 );
   }
 
-  /**
-   * onProgress function
-   * @param {number} progress Progress value
-   */
+  generateTimelineMax() {
+
+    this.transitionTl = new TimelineMax({ paused: true });
+
+  }
+
+  onDragComplete() {
+    const tl = new TimelineMax({onComplete: ()=> {
+      // TODO Stop raf
+    } });
+
+    const wrapperBoundingBox = this.refs.wrapper.getBoundingClientRect();
+
+    tl
+      .to( this.refs.wrapper, 2, { y: "-50%", ease: Power2.easeIn }, 0)
+      .staggerTo( this.titleSplited.chars, 2, { opacity: 0, scale: 0.8, y: '-70%', ease: Back.easeOut.config(3) }, 0.1 , 0.5);
+
+    this.refs.transitionCanvas.play();
+  }
+
   onProgress( progress ) {
     this.setState({
       progress
@@ -51,15 +67,21 @@ class WebGLHome extends Component {
     return (
       <div className="page page--home">
 
-        <WebGLHomeBackground progress={this.state.progress} />
+        <div className="home__wrapper" ref="wrapper">
 
-        <h1 className="home-title" ref="title">Luxoperon</h1>
+          <WebGlHomeBackground progress={this.state.progress} />
 
-        <HomeSlider onProgress={::this.onProgress} />
+          <h1 className="home__title" ref="title">luxoperon</h1>
+
+          <HomeSlider onProgress={::this.onProgress} onDragComplete={::this.onDragComplete} title={this.refs.title}/>
+
+          <HomeTransitionCanvas ref="transitionCanvas" />
+
+        </div>
 
       </div>
     );
   }
 }
 
-export default WebGLHome;
+export default Home;

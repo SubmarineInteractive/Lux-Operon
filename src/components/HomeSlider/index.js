@@ -6,6 +6,7 @@ import { on, off } from 'dom-events';
 import debounce from 'lodash.debounce';
 import SplitText from 'vendors/splitText.js';
 
+
 /**
  * HomeSlider class
  */
@@ -16,7 +17,7 @@ class HomeSlider extends Component {
   }
 
   componentWillMount() {
-    this.debounceWindowResize = debounce( this.onWindowResize, 200 );
+    this.debounceWindowResize = debounce(this.onWindowResize, 200);
   }
 
   componentDidMount() {
@@ -26,9 +27,10 @@ class HomeSlider extends Component {
 
     this.svg = {
       offsetTop: this.refs.svg.getBoundingClientRect().top + 10,
-      height: this.refs.svg.getBoundingClientRect().height - 60,
-      dragProgression: 0
-    };
+      height: this.refs.svg.getBoundingClientRect().height,
+      dragProgression: 0,
+      dragComplete: false
+    }
 
     this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
   }
@@ -53,13 +55,10 @@ class HomeSlider extends Component {
 
     this.enterTl = new TimelineMax({
       onComplete: ()=> {
-        this.addListeners();
-
         this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
-
+        this.addListeners();
         this.innerCircleLoopTl.play();
         this.bigCircleLoopTl.play();
-
       }
     });
 
@@ -70,13 +69,13 @@ class HomeSlider extends Component {
     this.grabberDragTl.progress( 1 );
 
     this.enterTl
-      .from( this.refs.bigCircle, 1.5, { opacity: 0, y: '100%', scale: 0.8, ease: Expo.easeOut }, 1 )
-      .from( this.refs.innerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, '-=0.4' )
-      .from( this.refs.outerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, '-=0.3' )
-      .fromTo( enterTlConfig, 1, { progress: 1 }, { progress: 0, ease: Expo.easeOut, onUpdate: () => {
+      .from( this.refs.bigCircle, 1.5, { opacity: 0, y: '100%', scale: 0.8, ease: Expo.easeOut }, 1)
+      .from( this.refs.innerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.4")
+      .from( this.refs.outerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.3")
+      .fromTo( enterTlConfig, 1, {progress: 1}, { progress: 0, ease: Expo.easeOut, onUpdate: () => {
         this.grabberDragTl.progress( enterTlConfig.progress );
       } })
-      .staggerFrom( this.instructionsSplited.chars, 1, { opacity: 0, scale: 0.8, y: '60%', ease: Back.easeOut.config( 3 ) }, 0.1 );
+      .staggerFromTo( this.instructionsSplited.chars, 0.5, { opacity: 0, scale: 0.8, y: '60%'}, { opacity: 1, scale: 1, y: '0%', ease: Back.easeOut.config(3) }, 0.1, 0.5);
 
   }
 
@@ -96,7 +95,13 @@ class HomeSlider extends Component {
       type: 'chars'
     });
 
-    this.instructionsSplited.reverseChars = this.instructionsSplited.chars.slice( 0 ).reverse();
+    this.loadingSplited = new SplitText( this.refs.loadingMsg, {
+      type: 'chars'
+    });
+
+    this.instructionsSplited.reverseChars = this.instructionsSplited.chars.slice(0).reverse();
+
+    this.loadingAnimTl = new TimelineMax({ paused: true, repeat: -1});
 
     this.grabberPressTl = new TimelineMax({
       paused: true,
@@ -105,25 +110,44 @@ class HomeSlider extends Component {
       }
     });
 
-    this.grabberDragTl = new TimelineMax({
-      paused: true
-    });
+    this.grabberDragTl = new TimelineMax({ paused: true });
+
+    this.loadingAnimTl
+      .fromTo( this.refs.loadingMsg, 1.3, { opacity: 0}, { opacity: 1, ease: Expo.easeOut })
+      .staggerTo( this.loadingSplited.chars, 1, { opacity: 0, scale: 0.6, y: '-30%', ease: Back.easeOut.config(3) }, 0.1);
 
     this.exitDragAnimationTl = new TimelineMax({
-      paused: true
+      paused: true,
+      onComplete: ()=> {
+        this.svg.dragComplete = true;
+        this.grabberDragTl.progress( 1 );
+        this.props.onDragComplete();
+
+        TweenMax.to(this.refs.slider, 4, { top: '165vh', ease: Expo.easeOut, onComplete: ()=> {
+
+          this.grabberDragTl.progress( 1 );
+          this.removeListeners();
+
+          this.refs.instructions.style.display = 'none';
+          this.refs.loadingMsg.style.display= 'block';
+
+          this.loadingAnimTl.play();
+        } });
+
+      }
     });
 
     this.grabberPressTl
       .fromTo( this.refs.innerGrabberCircle, 0.2, { scale: 1, transformOrigin: "center center" }, { scale: 0.8, stroke: '#61DAFF', ease: Back.easeOut })
-      .to( this.refs.bigCircle, 0.2, { stroke: '#61DAFF', ease: Expo.easeOut }, 0 );
+      .to( this.refs.bigCircle, 0.2, {  stroke: '#61DAFF', ease: Expo.easeOut }, 0)
 
     this.grabberDragTl
-      .to( this.refs.grabber, 1, { y: '312%' }, 0 )
-      .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: 'bottom' }, { scaleY: 0 }, 0 )
-      .fromTo( this.refs.bigCircle, 0.4, { transformOrigin: 'center center' }, {  scale: 1.15, ease: Expo.easeOut }, 0.5 );
+      .to( this.refs.grabber, 1, { y: '312%' }, 0)
+      .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0)
+      .fromTo( this.refs.bigCircle, 0.4, {transformOrigin: "center center"}, { scale: 1.15, ease: Expo.easeOut }, 0.5);
 
     this.exitDragAnimationTl
-      .staggerTo( this.instructionsSplited.reverseChars, 1, { opacity: 0, scale: 0.6, y: '-60%', ease: Back.easeOut.config( 3 ) }, 0.1 );
+      .staggerTo( this.instructionsSplited.reverseChars, 1, { opacity: 0, scale: 0.6, y: '-60%', ease: Back.easeOut.config(3)}, 0.1 );
 
   }
 
@@ -143,12 +167,17 @@ class HomeSlider extends Component {
       });
     }
 
-    TweenMax.to( this.svg, 1, { dragProgression: 0, ease: Expo.easeOut, onUpdate: () => {
-      this.grabberDragTl.progress( this.svg.dragProgression );
-      this.props.onProgress( this.svg.dragProgression );
-    } });
+    if( !this.svg.dragComplete ) {
+      TweenMax.to( this.svg, 1, { dragProgression: 0, ease: Expo.easeOut, onUpdate: () => {
+        this.updateTimeline();
+      } });
 
-    this.grabberPressTl.reverse();
+      this.grabberPressTl.reverse();
+    } else {
+      this.svg.dragProgression = 1;
+      this.props.onProgress( this.svg.dragProgression );
+    }
+
   }
 
   onGrabberMouseDown() {
@@ -168,8 +197,11 @@ class HomeSlider extends Component {
       this.svg.dragProgression = clamp( 0, 1, val );
     }
 
-    this.props.onProgress( this.svg.dragProgression );
+    this.updateTimeline();
+  }
 
+  updateTimeline() {
+    this.props.onProgress( this.svg.dragProgression );
     this.grabberDragTl.progress( this.svg.dragProgression );
     this.exitDragAnimationTl.progress( this.svg.dragProgression );
   }
@@ -192,7 +224,10 @@ class HomeSlider extends Component {
 
     return (
 
-      <div className="home-slider">
+      <div
+        className="home-slider"
+        ref="slider"
+      >
 
         <svg
           className="home-slider__svg"
@@ -250,6 +285,12 @@ class HomeSlider extends Component {
           ref="instructions"
         >
           Glisser pour plonger
+        </p>
+        <p
+          className="home-slider__loading-message"
+          ref="loadingMsg"
+        >
+          Chargement
         </p>
 
       </div>

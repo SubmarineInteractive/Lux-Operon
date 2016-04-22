@@ -3,9 +3,15 @@
 @import '~stylesheets/common/keyframes';
 
 .home-slider {
-  @include center-x;
-  bottom: 6rem;
+  position: fixed;
+  left: 50%;
+  transform: translate3d(-50%, -140%, 0);
+  top: 100vh;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  backface-visibility: hidden;
   text-align: center;
+  z-index: 100;
 }
 
 .home-slider__svg {
@@ -64,11 +70,16 @@
 }
 
 // ::: Instructions
-.home-slider__instructions {
+.home-slider__instructions,
+.home-slider__loading-message {
   @include no-select;
   color: $color-white;
   font-size: 1.4rem;
   text-transform: uppercase;
   font-variant: small-caps;
   font-weight: 200;
+}
+
+.home-slider__loading-message {
+  display: none;  
 }

@@ -1,0 +1,10 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+@import '~stylesheets/common/keyframes';
+
+.transition-canvas {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  background: $color-almost-black;
+}
