@@ -12,17 +12,19 @@ class Player extends THREE.Object3D {
   /**
    * constructor function
    * @param {World}  World         World instance
-   * @param {Object} configuration Configuration
+   * @param {Object} playerConfig  Player Configuration
+   * @param {Object} cameraConfig  Camera Configuration
    */
-  constructor( World, configuration ) {
+  constructor( World, playerConfig, cameraConfig ) {
 
     super();
 
     this.world = World;
 
-    this.configuration = configuration.pointLights;
+    this.playerConfig = playerConfig.pointLights;
+    this.cameraConfig = cameraConfig;
     this.lights = [];
-    this.nbLights = this.configuration.number;
+    this.nbLights = this.playerConfig.number;
 
     this.createSphere();
     this.initLights();
@@ -39,9 +41,7 @@ class Player extends THREE.Object3D {
     this.sphereBody = new Cannon.Body({ mass: 300 });
     this.sphereBody.addShape( sphereShape );
     this.sphereBody.linearDamping = 0.9;
-    this.sphereBody.position.x = 500;
-    this.sphereBody.position.y = 1500;
-    this.sphereBody.position.z = -200;
+    this.sphereBody.position.copy( this.cameraConfig.position );
     this.world.add( this.sphereBody );
 
     const geometry = new THREE.SphereGeometry( 10, 10, 10 );
@@ -58,10 +58,10 @@ class Player extends THREE.Object3D {
     for ( let i = 0; i < this.nbLights; i++ ) {
 
       const plight = new PointLight({
-        hex: parseInt( this.configuration.colors[ randomInt( 0, this.configuration.colors.length - 1 ) ], 16 ),
-        intensity: this.configuration.intensity,
-        distance: this.configuration.distance,
-        decay: this.configuration.decay
+        hex: parseInt( this.playerConfig.colors[ randomInt( 0, this.playerConfig.colors.length - 1 ) ], 16 ),
+        intensity: this.playerConfig.intensity,
+        distance: this.playerConfig.distance,
+        decay: this.playerConfig.decay
       });
 
       plight.addSphere();

@@ -59,7 +59,7 @@ class Scene extends AbstractScene {
     this.world = new World();
 
     // Player
-    this.player = new Player( this.world, this.playerConfig );
+    this.player = new Player( this.world, this.playerConfig, this.cameraConfig );
 
     // Controls
     if( this.cameraConfig.firstPersonControls ) {
