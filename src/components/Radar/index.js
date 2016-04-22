@@ -21,8 +21,8 @@ class Radar extends Component {
 
     this.config = {
       refreshTime: 3,
-      radarSize: 260,
-      radarScannerSize: 3
+      radarSize: 200,
+      radarScannerSize: 2
     };
   }
 

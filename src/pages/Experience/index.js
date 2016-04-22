@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import Radar from 'components/Radar';
 import WebGLExperience from 'components/WebGLExperience';
 
 /**
@@ -12,14 +13,25 @@ class Experience extends Component {
 
     const { loading, resources } = this.props;
 
-    return (
-      <div className="page page--experience">
-        {
-          ! loading &&
+    if( loading ) {
+      console.log('No loaded yet');
+      return (
+        <div className="page page--experience"></div>
+      );
+
+    } else {
+
+      console.log('Has been Loaded');
+      return (
+        <div className="page page--experience">
+          <Radar />
           <WebGLExperience resources={resources} />
-        }
-      </div>
-    );
+        </div>
+      );
+
+    }
+
+
   }
 }
 

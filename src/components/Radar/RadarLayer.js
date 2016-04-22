@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import { degreeToRadian } from 'utils';
 /**
  * Radar class
  */
@@ -13,13 +13,19 @@ class Radar extends Component {
 
   componentDidMount() {
 
-    this.radarTexture = new Image();
-    this.radarTexture.src = "/images/experience/height-map-radar-1.png";
+    this.cursorTexture = new Image();
+    this.cursorTexture.src = "/images/experience/radar-cursor.png";
 
-    this.radarTexture.onload = ()=> {
+    this.cursorTexture.onload = ()=> {
       this.initCanvas();
     }
 
+    this.cursorConfig = {
+      width: 14,
+      height: 16
+    }
+
+    this.initCanvas();
   }
 
   componentWillUnmount() {
@@ -39,21 +45,43 @@ class Radar extends Component {
     this.canvas.width = this.width = this.props.size;
     this.canvas.height = this.height = this.props.size;
 
-    this.haldWidth = this.width / 2;
+    this.halfWidth = this.width / 2;
     this.halfHeight = this.height / 2;
 
-    const r = Math.floor(Math.random()* 256);
-    const g = Math.floor(Math.random()* 256);
-    const b = Math.floor(Math.random()* 256);
+    this.update();
+  }
+
+  drawBackground() {
+    this.ctx.beginPath();
+    this.ctx.arc( this.halfWidth , this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
+    this.ctx.clip();
+    this.ctx.drawImage( this.radarTexture, 0, 0, this.width, this.height );
+  }
+
+  drawCursor({ x, y, angle }) {
+
+    this.ctx.save();
 
     this.ctx.beginPath();
-    this.ctx.arc( this.haldWidth , this.haldWidth, this.haldWidth, 0, 2 * Math.PI, false);
+    this.ctx.arc( this.halfWidth , this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
     this.ctx.clip();
-    this.ctx.drawImage(this.radarTexture, 0, 0, this.width, this.height);
+
+    this.ctx.translate( x, y );
+    this.ctx.rotate( degreeToRadian( angle ) );
+
+    this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width/2, -this.cursorConfig.width/2, this.cursorConfig.width, this.cursorConfig.height );
+    this.ctx.restore();
   }
 
   update() {
-    console.log('update method');
+
+    this.ctx.clearRect( 0, 0, this.width, this.height );
+
+    this.drawCursor({
+      x: this.halfWidth,
+      y: this.halfHeight,
+      angle: 90
+    });
   }
 
   render() {

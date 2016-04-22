@@ -1,4 +1,5 @@
 export clamp              from './clamp';
+export degreeToRadian     from './degree-to-radian';
 export diagonal           from './diagonal';
 export distance           from './distance';
 export lerp               from './lerp';
