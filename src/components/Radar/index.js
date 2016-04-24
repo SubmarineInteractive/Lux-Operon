@@ -2,7 +2,15 @@ import './styles.scss';
 
 import { Component } from 'react';
 
+import Emitter from 'helpers/Emitter';
+
 import RadarLayer from './RadarLayer';
+
+import {
+  EXP_GET_CAMERA_POSITION,
+  EXP_CAMERA_POSITION_SENDED
+} from 'config/messages';
+
 
 // import debounce from 'lodash.debounce';
 
@@ -24,6 +32,9 @@ class Radar extends Component {
       radarSize: 200,
       radarScannerSize: 2
     };
+
+    this.bind();
+    this.addListeners();
   }
 
   componentDidMount() {
@@ -33,10 +44,23 @@ class Radar extends Component {
     this.generateTimelineMax();
 
     this.startInterval();
-
   }
 
   componentWillUnmount() {
+
+    this.removeListeners();
+  }
+
+  bind() {
+    this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
+  }
+
+  addListeners() {
+    Emitter.on( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
+  }
+
+  removeListeners() {
+
   }
 
   generateTimelineMax() {
@@ -47,23 +71,31 @@ class Radar extends Component {
 
   startInterval() {
 
-    this.interval = setInterval( ()=>{
-      const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
 
-      this.updateCanvas( index );
+    this.interval = setInterval( ()=>{
+      Emitter.emit( EXP_GET_CAMERA_POSITION );
+
+      // this.updateCanvas( index );
 
     }, this.config.refreshTime * 1000);
+
   }
 
-  updateCanvas( index ) {
+  onCameraPositionSended(position) {
 
-    console.log( 'update' + index );
+    const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
+
+    this.updateCanvas( position, index );
+
+  }
+
+  updateCanvas( position, index ) {
 
     this.setState({
       canvasOnTopIndex: index
     });
 
-    this.refs[ `canvas${index}` ].update();
+    this.refs[ `canvas${index}` ].update( position, index );
 
     TweenMax.killTweensOf( this.refs.scannerBar );
 
@@ -87,6 +119,7 @@ class Radar extends Component {
       width: this.config.radarSize,
       ease: Power2.easeOut
     });
+
   }
 
   render() {

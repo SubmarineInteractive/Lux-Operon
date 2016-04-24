@@ -1,14 +1,19 @@
+import Emitter from 'helpers/Emitter';
+
 import { Component } from 'react';
 import { degreeToRadian } from 'utils';
+
+
 /**
- * Radar class
+ * RadarLayer class
  */
-class Radar extends Component {
+class RadarLayer extends Component {
 
   state = {
   }
 
   componentWillMount() {
+    this.addListeners();
   }
 
   componentDidMount() {
@@ -32,6 +37,12 @@ class Radar extends Component {
     this.removeListeners();
   }
 
+  addListeners() {
+  }
+
+  removeListeners() {
+  }
+
   initCanvas() {
 
     console.log('initCanvas');
@@ -48,7 +59,7 @@ class Radar extends Component {
     this.halfWidth = this.width / 2;
     this.halfHeight = this.height / 2;
 
-    this.update();
+    // this.update();
   }
 
   drawBackground() {
@@ -73,7 +84,9 @@ class Radar extends Component {
     this.ctx.restore();
   }
 
-  update() {
+  update( position, index ) {
+
+    console.log( 'update canvas #' + index + ' camera position = ', position );
 
     this.ctx.clearRect( 0, 0, this.width, this.height );
 
@@ -82,7 +95,10 @@ class Radar extends Component {
       y: this.halfHeight,
       angle: 90
     });
+
   }
+
+
 
   render() {
 
@@ -96,4 +112,4 @@ class Radar extends Component {
   }
 }
 
-export default Radar;
+export default RadarLayer;
