@@ -107,8 +107,8 @@ class NicePersonControls {
     return this.yawObject;
   }
 
-  debugSetPosition( x, y, z) {
-    console.log(x,y, z);
+  debugSetPosition( x, y, z ) {
+    console.log( x, y, z );
     this.cannonBody.position.x = x;
     this.cannonBody.position.y = y;
     this.cannonBody.position.z = z;
@@ -117,9 +117,10 @@ class NicePersonControls {
 
   getPosition() {
 
-    Emitter.emit(EXP_CAMERA_POSITION_SENDED, this.cannonBody.position);
+    Emitter.emit( EXP_CAMERA_POSITION_SENDED, this.cannonBody.position );
 
     return this.cannonBody.position;
+
   }
 
   update( delta ) {
