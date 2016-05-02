@@ -1,4 +1,10 @@
 import { map } from 'utils';
+import Emitter from 'helpers/Emitter';
+
+import {
+  EXP_GET_CAMERA_POSITION,
+  EXP_CAMERA_POSITION_SENDED
+} from 'config/messages';
 
 /**
 * NicePersonControls class
@@ -35,12 +41,17 @@ class NicePersonControls {
     this.bind();
     this.addListeners();
 
+    //Expose debugger
+    window.debugSetPosition = this.debugSetPosition;
+
   }
 
   bind() {
     this.handleMouseMove = this.handleMouseMove.bind( this );
     this.handleMouseUp = this.handleMouseUp.bind( this );
     this.handleMouseDown = this.handleMouseDown.bind( this );
+    this.debugSetPosition = this.debugSetPosition.bind( this );
+    this.getPosition = this.getPosition.bind( this );
   }
 
   addListeners() {
@@ -48,6 +59,16 @@ class NicePersonControls {
     document.addEventListener( 'mousemove', this.handleMouseMove, false );
     document.addEventListener( 'mouseup', this.handleMouseUp, false );
     document.addEventListener( 'mousedown', this.handleMouseDown, false );
+
+    Emitter.on( EXP_GET_CAMERA_POSITION, this.getPosition );
+  }
+
+  removeListeners() {
+    document.removeEventListener( 'mousemove', this.handleMouseMove, false );
+    document.removeEventListener( 'mouseup', this.handleMouseUp, false );
+    document.removeEventListener( 'mousedown', this.handleMouseDown, false );
+
+    Emitter.off( EXP_GET_CAMERA_POSITION, this.getPosition );
   }
 
   handleMouseMove( event ) {
@@ -86,6 +107,21 @@ class NicePersonControls {
     return this.yawObject;
   }
 
+  debugSetPosition( x, y, z ) {
+    console.log( x, y, z );
+    this.cannonBody.position.x = x;
+    this.cannonBody.position.y = y;
+    this.cannonBody.position.z = z;
+    this.yawObject.position.copy( this.cannonBody.position );
+  }
+
+  getPosition() {
+
+    Emitter.emit( EXP_CAMERA_POSITION_SENDED, this.cannonBody.position );
+
+    return this.cannonBody.position;
+
+  }
 
   update( delta ) {
 
@@ -124,6 +160,8 @@ class NicePersonControls {
       }
 
       this.yawObject.position.copy( this.cannonBody.position );
+
+      // console.log(this.cannonBody.position.x, this.cannonBody.position.y, this.cannonBody.position.z)
 
     }
   }

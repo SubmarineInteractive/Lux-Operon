@@ -30,6 +30,10 @@ class Terrain extends THREE.Mesh {
 
     this.geometry.computeBoundingBox();
 
+    this.boundingBox = this.geometry.boundingBox.clone();
+
+    console.log('bounding box coordinates: ', this.boundingBox, this.position);
+
     this.body = new Cannon.Body({ mass: 0 });
     this.body.addShape( this.heightfieldShape );
     this.world.addBody( this.body );

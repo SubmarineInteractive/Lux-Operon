@@ -2,7 +2,20 @@ import './styles.scss';
 
 import { Component } from 'react';
 
+import Emitter from 'helpers/Emitter';
+
 import RadarLayer from './RadarLayer';
+
+import { normalize } from 'utils';
+
+import { terrain } from 'config/webgl/experience';
+
+import {
+  EXP_GET_CAMERA_POSITION,
+  EXP_CAMERA_POSITION_SENDED
+} from 'config/messages';
+
+// import debounce from 'lodash.debounce';
 
 /**
  * Radar component
@@ -22,6 +35,15 @@ class Radar extends Component {
       radarSize: 200,
       radarScannerSize: 2
     };
+
+    this.previousPosition = {
+      x: 0,
+      y: 0
+    };
+
+    this.bind();
+    this.addListeners();
+
   }
 
   componentDidMount() {
@@ -31,10 +53,23 @@ class Radar extends Component {
     this.generateTimelineMax();
 
     this.startInterval();
-
   }
 
   componentWillUnmount() {
+
+    this.removeListeners();
+  }
+
+  bind() {
+    this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
+  }
+
+  addListeners() {
+    Emitter.on( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
+  }
+
+  removeListeners() {
+
   }
 
   generateTimelineMax() {
@@ -46,20 +81,36 @@ class Radar extends Component {
   startInterval() {
 
     this.interval = setInterval( ()=>{
-      const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
 
-      this.updateCanvas( index );
+      Emitter.emit( EXP_GET_CAMERA_POSITION );
 
-    }, this.config.refreshTime * 1000 );
+    }, this.config.refreshTime * 1000);
+
   }
 
-  updateCanvas( index ) {
+  onCameraPositionSended( position ) {
+
+    const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
+
+    const normalizePos = {
+      x: normalize( 0, terrain.geometry.width, position.x),
+      y: normalize( 0, terrain.geometry.height, position.z) * -1
+    }
+
+    this.updateCanvas( normalizePos, index );
+
+  }
+
+  updateCanvas( position, index ) {
+
 
     this.setState({
       canvasOnTopIndex: index
     });
 
-    this.refs[ `canvas${index}` ].update();
+    this.refs[ `canvas${index}` ].update( this.previousPosition, position, index );
+
+    this.previousPosition = position;
 
     TweenMax.killTweensOf( this.refs.scannerBar );
 
@@ -83,6 +134,7 @@ class Radar extends Component {
       width: this.config.radarSize,
       ease: Power2.easeOut
     });
+
   }
 
   render() {
