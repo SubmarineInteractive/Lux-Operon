@@ -1,0 +1,34 @@
+.lux-bar {
+  width: 140px;
+  height: 15px;
+  position: absolute;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  border: 1px solid white;
+  border-right: none;
+
+  &:after {
+    content: 'LUX';
+    font-size: 1.5rem;
+    position: absolute;
+    color: white;
+    right: -50px;
+  }
+
+  &__progress {
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(white, 0.25);
+
+    &:after {
+      content: '';
+      height: 20px;
+      background-color: white;
+      width: 1px;
+      position: absolute;
+      right: 0;
+      bottom: -1px;
+    }
+  }
+}

@@ -4,11 +4,9 @@ import { Component } from 'react';
 
 import RadarLayer from './RadarLayer';
 
-// import debounce from 'lodash.debounce';
-
 /**
-* Radar class
-*/
+ * Radar component
+ */
 class Radar extends Component {
 
   state = {
@@ -52,12 +50,10 @@ class Radar extends Component {
 
       this.updateCanvas( index );
 
-    }, this.config.refreshTime * 1000);
+    }, this.config.refreshTime * 1000 );
   }
 
   updateCanvas( index ) {
-
-    console.log( 'update' + index );
 
     this.setState({
       canvasOnTopIndex: index

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import connect from 'decorators/connect';
 import Radar from 'components/Radar';
+import LuxBar from 'components/LuxBar';
 import WebGLExperience from 'components/WebGLExperience';
 
 /**
@@ -17,24 +18,19 @@ class Experience extends Component {
 
     const { loading, resources } = this.props;
 
-    if( loading ) {
+    const content = (
+      <div className="page__container">
+        <Radar />
+        <LuxBar />
+        <WebGLExperience resources={resources} />
+      </div>
+    );
 
-      return (
-        <div className="page page--experience"></div>
-      );
-
-    } else {
-
-      return (
-        <div className="page page--experience" ref="experience">
-          <Radar />
-          <WebGLExperience resources={resources} />
-        </div>
-      );
-
-    }
-
-
+    return (
+      <div className="page page--experience">
+        {! loading && content}
+      </div>
+    );
   }
 }
 

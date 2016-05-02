@@ -1,15 +1,10 @@
 import { Component } from 'react';
 import { degreeToRadian } from 'utils';
+
 /**
- * Radar class
+ * RadarLayer component
  */
-class Radar extends Component {
-
-  state = {
-  }
-
-  componentWillMount() {
-  }
+class RadarLayer extends Component {
 
   componentDidMount() {
 
@@ -18,12 +13,12 @@ class Radar extends Component {
 
     this.cursorTexture.onload = ()=> {
       this.initCanvas();
-    }
+    };
 
     this.cursorConfig = {
       width: 14,
       height: 16
-    }
+    };
 
     this.initCanvas();
   }
@@ -33,8 +28,6 @@ class Radar extends Component {
   }
 
   initCanvas() {
-
-    console.log('initCanvas');
 
     this.clientRect = this.refs.canvas.getBoundingClientRect();
 
@@ -96,4 +89,4 @@ class Radar extends Component {
   }
 }
 
-export default Radar;
+export default RadarLayer;
