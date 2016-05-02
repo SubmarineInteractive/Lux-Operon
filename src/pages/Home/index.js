@@ -2,6 +2,8 @@ import './styles.scss';
 
 import { Component } from 'react';
 
+import { findDOMNode } from 'react-dom';
+
 import WebGlHomeBackground  from 'components/WebGlHomeBackground';
 
 import HomeSlider from 'components/HomeSlider';
@@ -24,6 +26,10 @@ class Home extends Component {
     this.generateTimelineMax();
   }
 
+  componentWillLeave( callback ) {
+    TweenMax.to( this.refs.home, 2, { delay: 1, opacity: 0, ease: Expo.easeOut, onComplete: () => callback() });
+  }
+
   introAnimation() {
 
     this.enterTitleTl = new TimelineMax();
@@ -33,25 +39,28 @@ class Home extends Component {
     });
 
     this.enterTitleTl
-      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config(3), delay: 0.5 }, 0.1 );
+      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config( 3 ), delay: 0.5 }, 0.1 );
   }
 
   generateTimelineMax() {
 
     this.transitionTl = new TimelineMax({ paused: true });
-
   }
 
   onDragComplete() {
-    const tl = new TimelineMax({onComplete: ()=> {
-      // TODO Stop raf
+    const tl = new TimelineMax({ onComplete: () => {
+      this.refs.backgroundScene.scene.raf.stop();
+
+      setTimeout( () =>{
+        this.refs.wrapper.style.transform = 'none';
+        this.refs.home.style.position = 'absolute';
+        this.refs.home.style.top = 0;
+        findDOMNode( this.refs.backgroundScene ).style.display = 'none';
+      }, 1000 );
     } });
 
-    const wrapperBoundingBox = this.refs.wrapper.getBoundingClientRect();
-
-    tl
-      .to( this.refs.wrapper, 2, { y: "-50%", ease: Power2.easeIn }, 0)
-      .staggerTo( this.titleSplited.chars, 2, { opacity: 0, scale: 0.8, y: '-70%', ease: Back.easeOut.config(3) }, 0.1 , 0.5);
+    tl.to( this.refs.wrapper, 2, { y: "-50%", ease: Power2.easeIn }, 0 )
+      .staggerTo( this.titleSplited.chars, 2, { opacity: 0, scale: 0.8, y: '-70%', ease: Back.easeOut.config( 3 ) }, 0.1 , 0.5 );
 
     this.refs.transitionCanvas.play();
   }
@@ -65,11 +74,11 @@ class Home extends Component {
   render() {
 
     return (
-      <div className="page page--home">
+      <div className="page page--home" ref="home">
 
         <div className="home__wrapper" ref="wrapper">
 
-          <WebGlHomeBackground progress={this.state.progress} />
+          <WebGlHomeBackground progress={this.state.progress} ref="backgroundScene" />
 
           <h1 className="home__title" ref="title">luxoperon</h1>
 

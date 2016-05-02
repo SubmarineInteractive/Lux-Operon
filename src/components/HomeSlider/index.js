@@ -32,23 +32,28 @@ class HomeSlider extends Component {
       dragComplete: false
     }
 
+    this.onMouseUp = ::this.onMouseUp;
+    this.onMouseMove = ::this.onMouseMove;
+    this.debounceWindowResize = ::this.debounceWindowResize;
+
     this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
   }
 
   componentWillUnmount() {
     this.removeListeners();
+    this.loadingAnimTl.clear();
   }
 
   addListeners() {
-    on( document, 'mouseup', ::this.onMouseUp );
-    on( document, 'mousemove', ::this.onMouseMove );
-    on( window, 'resize', ::this.debounceWindowResize );
+    on( document, 'mouseup', this.onMouseUp );
+    on( document, 'mousemove', this.onMouseMove );
+    on( window, 'resize', this.debounceWindowResize );
   }
 
   removeListeners() {
-    off( document, 'mouseup', ::this.onMouseUp );
-    off( document, 'mousemove', ::this.onMouseMove );
-    off( window, 'resize', ::this.debounceWindowResize );
+    off( document, 'mouseup', this.onMouseUp );
+    off( document, 'mousemove', this.onMouseMove );
+    off( window, 'resize', this.debounceWindowResize );
   }
 
   enterAnimation() {

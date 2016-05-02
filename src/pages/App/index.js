@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Loader from 'helpers/Loader';
 import resources from 'resources';
 import { resize } from 'providers/ViewportProvider';
+import ReactTransitionGroup from 'react-addons-transition-group';
 import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
 
 /**
@@ -62,10 +63,18 @@ class App extends Component {
 
   render() {
 
+    const { location: { pathname } } = this.props;
+
+    const childrenWithProps = React.Children.map( this.props.children,
+      child => React.cloneElement( child, { key: pathname }) );
+
     return (
-      <div>
-        {this.props.children}
-      </div>
+      <ReactTransitionGroup
+        component="div"
+        className="route-transition"
+      >
+        {childrenWithProps}
+      </ReactTransitionGroup>
     );
   }
 }

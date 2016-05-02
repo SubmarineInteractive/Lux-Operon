@@ -35,6 +35,7 @@
     "TimelineMax": true,
     "Expo": true,
     "Back": true,
-    "Power2": true
+    "Power2": true,
+    "Power0": true
   }
 }

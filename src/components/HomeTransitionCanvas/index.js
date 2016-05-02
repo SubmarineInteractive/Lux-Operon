@@ -1,16 +1,13 @@
 import './styles.scss';
 
 import { Component } from 'react';
-
+import { history } from 'store';
 import raf from 'raf';
 
 /**
 * HomeTransitionCanvas class
 */
 class HomeTransitionCanvas extends Component {
-
-  state = {
-  }
 
   componentWillMount() {
 
@@ -55,24 +52,24 @@ class HomeTransitionCanvas extends Component {
 
     this.ctx.fillStyle = '#030607';
 
-    this.ctx.fillRect( 0, 0, this.width, this.height);
+    this.ctx.fillRect( 0, 0, this.width, this.height );
 
     this.imageConfig = {
       offsetY: 0,
-      ratio: 1024/1977,
+      ratio: 1024 / 1977,
       width: this.width,
-      height: this.width / (1024/1977),
+      height: this.width / ( 1024 / 1977 ),
       scrollSpeed: 1
-    }
+    };
 
     this.imageConfig.translateY =  - this.imageConfig.height;
 
     this.imageTransitionStart.onload = () => {
-      this.ctx.drawImage( this.imageTransitionStart, 0, 0, this.imageConfig.width, this.imageConfig.height);
+      this.ctx.drawImage( this.imageTransitionStart, 0, 0, this.imageConfig.width, this.imageConfig.height );
     };
 
-    this.loopTl = new TimelineMax({ paused: true, repeat: -1, onUpdate: ()=> {
-      this.drawLoop(this.imageConfig.offsetY);
+    this.loopTl = new TimelineMax({ paused: true, repeat: -1, onUpdate: () => {
+      this.drawLoop( this.imageConfig.offsetY );
     } });
 
     this.loopTl
@@ -101,8 +98,9 @@ class HomeTransitionCanvas extends Component {
       onComplete: () => {
 
         this.imageConfig.offsetY = 0;
-        this.loopTl.play(0);
-
+        this.loopTl.play( 0 );
+        
+        setTimeout( () => history.push( '/experience' ), 1000 );
       },
 
       ease: Power0.easeNone,
@@ -129,9 +127,7 @@ class HomeTransitionCanvas extends Component {
   render() {
 
     return (
-
-      <canvas className="transition-canvas" ref="canvas"></canvas>
-
+      <canvas className="transition-canvas" ref="canvas" />
     );
   }
 }

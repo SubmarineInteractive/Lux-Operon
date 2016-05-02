@@ -30,6 +30,11 @@ class WebGLHomeBackground extends Component {
     this.sceneDomEl = this.scene.renderer.domElement;
   }
 
+  componentWillUnmount() {
+    this.scene.raf.stop();
+    this.scene.remove();
+  }
+
   render() {
 
     return (

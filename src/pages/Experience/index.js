@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
+import connect from 'decorators/connect';
 import Radar from 'components/Radar';
 import WebGLExperience from 'components/WebGLExperience';
 
@@ -9,21 +9,24 @@ import WebGLExperience from 'components/WebGLExperience';
 @connect( state => ({ loading: state.resources.loading, resources: state.resources.resources }) )
 class Experience extends Component {
 
+  componentWillEnter( callback ) {
+    TweenMax.from( this.refs.experience, 2, { delay: 0.2, opacity: 0, ease: Expo.easeIn, onComplete: () => callback() });
+  }
+
   render() {
 
     const { loading, resources } = this.props;
 
     if( loading ) {
-      console.log('No loaded yet');
+
       return (
         <div className="page page--experience"></div>
       );
 
     } else {
 
-      console.log('Has been Loaded');
       return (
-        <div className="page page--experience">
+        <div className="page page--experience" ref="experience">
           <Radar />
           <WebGLExperience resources={resources} />
         </div>
