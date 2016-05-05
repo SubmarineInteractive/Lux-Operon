@@ -27,7 +27,7 @@ class Experience extends Component {
     );
 
     return (
-      <div className="page page--experience">
+      <div className="page page--experience" ref="experience">
         {! loading && content}
       </div>
     );
