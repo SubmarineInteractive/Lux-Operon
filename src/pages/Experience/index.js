@@ -5,7 +5,7 @@ import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
 import Timer from 'components/Timer';
 import WebGLExperience from 'components/WebGLExperience';
-
+import { mezaleConfig } from 'config/levels';
 /**
  * Experience class
  */
@@ -25,7 +25,7 @@ class Experience extends Component {
         <Radar />
         <Timer />
         <LuxBar />
-        <DepthBar />
+        <DepthBar config={mezaleConfig} />
         <WebGLExperience resources={resources} />
       </div>
     );
