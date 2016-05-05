@@ -11,7 +11,7 @@ import WebGLExperience from 'components/WebGLExperience';
 class Experience extends Component {
 
   componentWillEnter( callback ) {
-    TweenMax.from( this.refs.experience, 2, { delay: 0.2, opacity: 0, ease: Expo.easeIn, onComplete: () => callback() });
+    TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 0.2, onComplete: () => callback() });
   }
 
   render() {

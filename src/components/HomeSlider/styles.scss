@@ -11,7 +11,7 @@
   perspective: 1000;
   backface-visibility: hidden;
   text-align: center;
-  z-index: 100;
+  z-index: 100000;
 }
 
 .home-slider__svg {
@@ -81,5 +81,5 @@
 }
 
 .home-slider__loading-message {
-  display: none;  
+  display: none;
 }

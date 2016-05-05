@@ -27,7 +27,7 @@ class Home extends Component {
   }
 
   componentWillLeave( callback ) {
-    TweenMax.to( this.refs.home, 2, { delay: 1, opacity: 0, ease: Expo.easeOut, onComplete: () => callback() });
+    TweenMax.to( this.refs.home, 1, { opacity: 0, delay: 7, ease: Expo.easeOut, onComplete: () => callback() });
   }
 
   introAnimation() {

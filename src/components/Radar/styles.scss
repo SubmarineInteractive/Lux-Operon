@@ -13,6 +13,7 @@ $side-margin: 2.5rem;
   top: $side-margin;
   left: $side-margin;
   pointer-events: none;
+  z-index: 0;
 
   &:before,
   &:after  {

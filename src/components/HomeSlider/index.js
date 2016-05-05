@@ -118,8 +118,8 @@ class HomeSlider extends Component {
     this.grabberDragTl = new TimelineMax({ paused: true });
 
     this.loadingAnimTl
-      .fromTo( this.refs.loadingMsg, 1.3, { opacity: 0}, { opacity: 1, ease: Expo.easeOut })
-      .staggerTo( this.loadingSplited.chars, 1, { opacity: 0, scale: 0.6, y: '-30%', ease: Back.easeOut.config(3) }, 0.1);
+      .fromTo( this.refs.loadingMsg, 0.5, { opacity: 0}, { opacity: 1, ease: Expo.easeOut })
+      .staggerTo( this.loadingSplited.chars, 0.7, { opacity: 0, scale: 0.6, y: '-30%', ease: Back.easeOut.config(3) }, 0.1);
 
     this.exitDragAnimationTl = new TimelineMax({
       paused: true,
@@ -289,13 +289,13 @@ class HomeSlider extends Component {
           className="home-slider__instructions"
           ref="instructions"
         >
-          Glisser pour plonger
+          Drag to dive
         </p>
         <p
           className="home-slider__loading-message"
           ref="loadingMsg"
         >
-          Chargement
+          Loading
         </p>
 
       </div>
