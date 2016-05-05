@@ -3,6 +3,7 @@ import connect from 'decorators/connect';
 import Radar from 'components/Radar';
 import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
+import LevelInfos from 'components/LevelInfos';
 import Timer from 'components/Timer';
 import WebGLExperience from 'components/WebGLExperience';
 import { mezaleConfig } from 'config/levels';
@@ -23,6 +24,7 @@ class Experience extends Component {
     const content = (
       <div className="page__container">
         <Radar />
+        <LevelInfos config={mezaleConfig} />
         <Timer />
         <LuxBar />
         <DepthBar config={mezaleConfig} />

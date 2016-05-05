@@ -14,9 +14,15 @@ import {
 class LevelInfos extends Component {
 
   state = {
+    depth: 200,
+    temp: 200,
+    pressure: 200
   }
 
   componentWillMount() {
+
+    this.levelDepthOffset = this.props.config.levelDepthOffset;
+    this.tweenDepthIndicator = 700;
 
     this.bind();
   }
@@ -48,26 +54,53 @@ class LevelInfos extends Component {
     Emitter.off( EXP_DEPTH_VALUE_SENDED, this.depthUpdate );
   }
 
-
-  depthUpdate( value ) {
+  begin() {
 
   }
 
+  depthUpdate( value ) {
+
+    const newDepth = -( this.levelDepthOffset - value );
+    const newTemp = - (( this.levelDepthOffset - value ) / 150 ) + 14;
+    const newPressure = this.levelDepthOffset - value + 1;
+
+    TweenMax.to( this, this.refreshTime / 1000 ,
+      {
+
+        tweenDepthIndicator: newDepth,
+
+        onUpdate: ()=> {
+
+          this.setState({
+            depth: parseInt( this.tweenDepthIndicator ),
+            temp: parseInt(newTemp),
+            pressure: Math.round(newPressure * 10) / 10
+          });
+
+        }
+      });
+  }
+
   render() {
+
+    const title = `${this.props.config.name} zone`;
+    const depth = `${this.state.depth} meters`;
+    const temp = `${this.state.temp}°C/${this.state.temp + 32}°F`;
+    const pressure = `${this.state.pressure} bar`;
 
     return (
 
       <div className="level-infos">
 
-        <h1 className="level-infos__title">MEZAL ZONE</h1>
-        
-        <p className="level-infos__depth">{this.state.depth}</p>
+        <h1 className="level-infos__title">{title}</h1>
 
-        <p className="level-infos__temp">{this.state.temp}</p>
+        <p className="level-infos__depth">{depth}</p>
 
-        <p className="level-infos__pressure">{this.state.pressure}</p>
+        <p className="level-infos__temp">{temp}</p>
 
-        <button class="level-infos__helper-button">?</button>
+        <p className="level-infos__pressure">{pressure}</p>
+
+        <button className="level-infos__helper-button">?</button>
 
       </div>
 

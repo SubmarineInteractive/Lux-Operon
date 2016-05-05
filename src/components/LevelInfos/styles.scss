@@ -1,51 +1,34 @@
 @import '~stylesheets/common/variables';
-@import '~stylesheets/common/mixins';
 
-.depth-bar {
-  @include center-y;
-
-  width: 15px;
-  height: 40%;
+.level-infos {
   position: absolute;
-  right: 5rem;
-  border: 1px solid $color-white;
-  border-bottom: none;
-}
-
-.depth-bar__progress {
-  width: 100%;
-  height: 20%;
-  position: absolute;
-  background-color: rgba(white, 0.25);
-
-}
-
-.depth-bar__progress-indicator {
-  position: absolute;
-  right: 3rem;
-  bottom: -0.75rem;
-  font-size: 1.5rem;
-  font-weight: 200;
-  font-family: $font-tstar;
-  color: rgba(white, 0.25);
+  top: 2.5rem;
+  right: 2.5rem;
+  color : $color-white;
   text-align: right;
 
-  span:last-child {
-    margin-left: 0.5rem;
+  p {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
   }
+}
 
-  // &:before {
-  //   content: '-';
-  //   margin-right: 0.5rem;
-  // }
+.level-infos__title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
 
-  &:after {
-    content: '';
-    position: absolute;
-    right: -3rem;
-    bottom: 0.75rem;
-    width: 20px;
-    height: 1px;
-    background-color: $color-white;
+.level-infos__helper-button {
+  font-size: 2rem;
+  padding: 1rem;
+  color: $color-white;
+  transform: translateX(1rem);
+  cursor: pointer;
+  transition: transform 0.2s ease-out, color 0.2s ease-out;
+
+  &:hover {
+    color: $color-medium-grey;
+    transform: translateX(1rem);
   }
 }
