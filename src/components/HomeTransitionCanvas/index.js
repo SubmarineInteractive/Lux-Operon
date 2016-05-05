@@ -31,8 +31,9 @@ class HomeTransitionCanvas extends Component {
   }
 
   bind() {
-    this.update = this.update.bind( this );
-    this.onWindowResize = this.onWindowResize.bind( this );
+
+    [ 'update', 'onWindowResize' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addListeners() {
@@ -99,7 +100,7 @@ class HomeTransitionCanvas extends Component {
 
         this.imageConfig.offsetY = 0;
         this.loopTl.play( 0 );
-        
+
         setTimeout( () => history.push( '/experience' ), 1000 );
       },
 

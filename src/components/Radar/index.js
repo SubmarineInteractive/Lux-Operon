@@ -61,6 +61,7 @@ class Radar extends Component {
   }
 
   bind() {
+    
     this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
   }
 
