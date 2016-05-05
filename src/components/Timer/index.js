@@ -50,6 +50,7 @@ class LuxBar extends Component {
 
   removeEventListerners() {
 
+    Emitter.off( EXP_TIMER_START, this.startTimer );
   }
 
   startTimer( initialTime ) {
@@ -89,18 +90,18 @@ class LuxBar extends Component {
     let minutes = Math.floor( this.currentTime / 60 );
     let seconds = Math.floor( this.currentTime % 60 );
 
-    if(minutes < 10) {
+    if( minutes < 10 ) {
       minutes = '0' + minutes;
     }
 
-    if(seconds < 10) {
+    if( seconds < 10 ) {
       seconds = '0' + seconds;
     }
 
     this.setState({
       minutes,
       seconds
-    })
+    });
   }
 
   render() {
