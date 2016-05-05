@@ -2,6 +2,7 @@ import { Component } from 'react';
 import connect from 'decorators/connect';
 import Radar from 'components/Radar';
 import LuxBar from 'components/LuxBar';
+import DepthBar from 'components/DepthBar';
 import Timer from 'components/Timer';
 import WebGLExperience from 'components/WebGLExperience';
 
@@ -24,6 +25,7 @@ class Experience extends Component {
         <Radar />
         <Timer />
         <LuxBar />
+        <DepthBar />
         <WebGLExperience resources={resources} />
       </div>
     );

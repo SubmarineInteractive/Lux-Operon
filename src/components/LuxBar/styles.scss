@@ -1,17 +1,19 @@
+@import '~stylesheets/common/variables';
+
 .lux-bar {
   width: 140px;
   height: 15px;
   position: absolute;
   bottom: 2.5rem;
   left: 2.5rem;
-  border: 1px solid white;
+  border: 1px solid $color-white;
   border-right: none;
 
   &:after {
     content: 'LUX';
     font-size: 1.5rem;
     position: absolute;
-    color: white;
+    color: $color-white;
     right: -50px;
   }
 
@@ -24,7 +26,7 @@
     &:after {
       content: '';
       height: 20px;
-      background-color: white;
+      background-color: $color-white;
       width: 1px;
       position: absolute;
       right: 0;
