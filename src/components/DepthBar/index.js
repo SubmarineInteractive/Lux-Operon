@@ -70,23 +70,21 @@ class DepthBar extends Component {
     }, this.refreshTime );
   }
 
-  getDepthValue(start) {
+  getDepthValue() {
 
     Emitter.emit( EXP_GET_DEPTH_VALUE );
   }
 
   depthUpdate( value ) {
 
-    const newDepth = -(this.levelDepthOffset - value);
+    const newDepth = -( this.levelDepthOffset - value );
     const progressHeight = `${ (this.levelDepthOffset - value) / 30 }%`;
-
-    console.log(progressHeight);
 
     // Update text indicator
     TweenMax.to( this, this.refreshTime / 1000 , { tweenDepthIndicator: newDepth, onUpdate: ()=> {
 
       this.setState({
-        depthIndicator: parseInt(this.tweenDepthIndicator)
+        depthIndicator: parseInt( this.tweenDepthIndicator )
       });
 
     } });
