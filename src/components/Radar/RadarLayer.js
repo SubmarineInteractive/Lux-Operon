@@ -108,7 +108,7 @@ class RadarLayer extends Component {
 
   update( previousPosition, position, index ) {
 
-    console.log( 'update canvas #' + index + ' camera position = ', position );
+    // console.log( 'update canvas #' + index + ' camera position = ', position );
 
     TweenMax.killTweensOf( this );
 
