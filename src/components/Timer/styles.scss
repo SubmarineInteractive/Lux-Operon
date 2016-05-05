@@ -1,0 +1,10 @@
+@import '~stylesheets/common/variables';
+
+.timer {
+  position: absolute;
+  left: 2.5rem;
+  bottom: 5.5rem;
+  color: $color-white;
+  font-size: 1.8rem;
+  font-family: $font-tstar;
+}
