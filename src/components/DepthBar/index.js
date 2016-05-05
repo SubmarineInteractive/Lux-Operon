@@ -29,6 +29,8 @@ class DepthBar extends Component {
   componentDidMount() {
 
     this.addEventListeners();
+
+    this.getDepthValue();
   }
 
   componentWillUnmount() {
@@ -38,17 +40,17 @@ class DepthBar extends Component {
 
   bind() {
 
-    this.onDepthUpdate = this.onDepthUpdate.bind( this );
+    this.depthUpdate = this.depthUpdate.bind( this );
   }
 
   addEventListeners() {
 
-    Emitter.on( EXP_DEPTH_VALUE_SENDED, this.onDepthUpdate );
+    Emitter.on( EXP_DEPTH_VALUE_SENDED, this.depthUpdate );
   }
 
   removeEventListerners() {
 
-    Emitter.off( EXP_DEPTH_VALUE_SENDED, this.onDepthUpdate );
+    Emitter.off( EXP_DEPTH_VALUE_SENDED, this.depthUpdate );
   }
 
   getDepthValue() {
@@ -56,11 +58,13 @@ class DepthBar extends Component {
     Emitter.emit( EXP_GET_DEPTH_VALUE );
   }
 
-  onDepthUpdate( depthValue ) {
+  depthUpdate( depthValue ) {
 
     this.setState({
       depthIndicator: depthValue
     });
+
+    console.log('update', depthValue);
   }
 
   render() {
@@ -74,6 +78,7 @@ class DepthBar extends Component {
           <div className="depth-bar__progress-indicator">
 
             <span>{this.state.depthIndicator}</span>
+
             <span>M</span>
 
           </div>

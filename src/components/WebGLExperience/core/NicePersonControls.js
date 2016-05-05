@@ -3,7 +3,9 @@ import Emitter from 'helpers/Emitter';
 
 import {
   EXP_GET_CAMERA_POSITION,
-  EXP_CAMERA_POSITION_SENDED
+  EXP_CAMERA_POSITION_SENDED,
+  EXP_GET_DEPTH_VALUE,
+  EXP_DEPTH_VALUE_SENDED
 } from 'config/messages';
 
 /**
@@ -47,11 +49,10 @@ class NicePersonControls {
   }
 
   bind() {
-    this.handleMouseMove = this.handleMouseMove.bind( this );
-    this.handleMouseUp = this.handleMouseUp.bind( this );
-    this.handleMouseDown = this.handleMouseDown.bind( this );
-    this.debugSetPosition = this.debugSetPosition.bind( this );
-    this.getPosition = this.getPosition.bind( this );
+
+    [ 'handleMouseMove', 'handleMouseUp', 'handleMouseDown',
+      'debugSetPosition', 'getPosition', 'getDepthValue' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addListeners() {
@@ -61,6 +62,7 @@ class NicePersonControls {
     document.addEventListener( 'mousedown', this.handleMouseDown, false );
 
     Emitter.on( EXP_GET_CAMERA_POSITION, this.getPosition );
+    Emitter.on( EXP_GET_DEPTH_VALUE, this.getDepthValue );
   }
 
   removeListeners() {
@@ -69,6 +71,7 @@ class NicePersonControls {
     document.removeEventListener( 'mousedown', this.handleMouseDown, false );
 
     Emitter.off( EXP_GET_CAMERA_POSITION, this.getPosition );
+    Emitter.off( EXP_GET_DEPTH_VALUE, this.getDepthValue );
   }
 
   handleMouseMove( event ) {
@@ -120,6 +123,14 @@ class NicePersonControls {
     Emitter.emit( EXP_CAMERA_POSITION_SENDED, this.cannonBody.position );
 
     return this.cannonBody.position;
+
+  }
+
+  getDepthValue() {
+
+    Emitter.emit( EXP_DEPTH_VALUE_SENDED, this.cannonBody.position.y );
+
+    return this.cannonBody.position.y;
 
   }
 
