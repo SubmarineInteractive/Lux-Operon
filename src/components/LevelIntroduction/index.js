@@ -7,7 +7,8 @@ import { Component } from 'react';
 import SplitText from 'vendors/splitText.js';
 
 import {
-  EXP_TOGGLE_CAMERA
+  EXP_TOGGLE_CAMERA,
+  EXP_TIMER_START
 } from 'config/messages';
 
 /**
@@ -86,6 +87,8 @@ class LevelIntroduction extends Component {
 
     TweenMax.to( this.refs.container, 1.5, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
       Emitter.emit( EXP_TOGGLE_CAMERA, true );
+      Emitter.emit( EXP_TIMER_START, 180 );
+
     } });
 
   }

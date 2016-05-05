@@ -15,7 +15,7 @@ import {
 class Timer extends Component {
 
   state = {
-    minutes: '02',
+    minutes: '03',
     seconds: '00'
   }
 
@@ -30,7 +30,6 @@ class Timer extends Component {
   componentDidMount() {
 
     this.addEventListeners();
-    this.startTimer( 120 );
   }
 
   componentWillUnmount() {
@@ -53,9 +52,9 @@ class Timer extends Component {
     Emitter.off( EXP_TIMER_START, this.startTimer );
   }
 
-  startTimer( initialTime ) {
+  startTimer( initialTime = false ) {
 
-    this.currentTime = initialTime;
+    if( initialTime ) this.currentTime = initialTime;
 
     clearInterval( this.interval );
 
