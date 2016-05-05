@@ -10,9 +10,9 @@ import {
 } from 'config/messages';
 
 /**
- * LuxBar component
+ * Timer component
  */
-class LuxBar extends Component {
+class Timer extends Component {
 
   state = {
     minutes: '02',
@@ -120,4 +120,4 @@ class LuxBar extends Component {
   }
 }
 
-export default LuxBar;
+export default Timer;
