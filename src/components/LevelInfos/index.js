@@ -61,7 +61,7 @@ class LevelInfos extends Component {
   depthUpdate( value ) {
 
     const newDepth = -( this.levelDepthOffset - value );
-    const newTemp = - (( this.levelDepthOffset - value ) / 150 ) + 14;
+    const newTemp = - ( ( this.levelDepthOffset - value ) / 150 ) + 14;
     const newPressure = this.levelDepthOffset - value + 1;
 
     TweenMax.to( this, this.refreshTime / 1000 ,
@@ -73,8 +73,8 @@ class LevelInfos extends Component {
 
           this.setState({
             depth: parseInt( this.tweenDepthIndicator ),
-            temp: parseInt(newTemp),
-            pressure: Math.round(newPressure * 10) / 10
+            temp: parseInt( newTemp ),
+            pressure: Math.round( newPressure * 10 ) / 10
           });
 
         }
