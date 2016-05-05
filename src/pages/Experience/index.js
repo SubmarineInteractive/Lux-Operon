@@ -5,6 +5,7 @@ import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
 import LevelInfos from 'components/LevelInfos';
 import Timer from 'components/Timer';
+import LevelIntroduction from 'components/LevelIntroduction';
 import WebGLExperience from 'components/WebGLExperience';
 import { mezaleConfig } from 'config/levels';
 /**
@@ -14,7 +15,7 @@ import { mezaleConfig } from 'config/levels';
 class Experience extends Component {
 
   componentWillEnter( callback ) {
-    TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 0.2, onComplete: () => callback() });
+    TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 3, onComplete: () => callback() });
   }
 
   render() {
@@ -23,6 +24,7 @@ class Experience extends Component {
 
     const content = (
       <div className="page__container">
+        <LevelIntroduction config={mezaleConfig} />
         <Radar />
         <LevelInfos config={mezaleConfig} />
         <Timer />

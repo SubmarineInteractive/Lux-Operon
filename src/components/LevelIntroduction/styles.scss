@@ -1,0 +1,40 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.level-introduction {
+  @include full-absolute;
+  background: rgba(black, 0.5);
+  color: $color-white;
+  z-index: 100;
+}
+
+// ===== Title Step ======
+.level-introduction__title-step {
+  @include center-xy;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.level-introduction__title-dive {
+  display: inline-block;
+  font-family: $font-akkurat;
+  font-size: 1.8rem;
+  overflow: hidden;
+  
+  span {
+    display: inline-block;
+  }
+}
+
+.level-introduction__title-name {
+  font-family: $font-tstar;
+  font-size: 4.8rem;
+}
+
+.level-introduction__title-separator {
+  display: block;
+  width: 5rem;
+  height: 0.1rem;
+  background-color: $color-white;
+  margin: 0.5rem auto 2.5rem auto;
+}

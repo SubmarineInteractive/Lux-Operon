@@ -5,7 +5,8 @@ import {
   EXP_GET_CAMERA_POSITION,
   EXP_CAMERA_POSITION_SENDED,
   EXP_GET_DEPTH_VALUE,
-  EXP_DEPTH_VALUE_SENDED
+  EXP_DEPTH_VALUE_SENDED,
+  EXP_TOGGLE_CAMERA
 } from 'config/messages';
 
 /**
@@ -20,6 +21,8 @@ class NicePersonControls {
 
     this.enabled = false;
     this.enableDamping = false;
+
+    this.locked = true;
 
     this.dampingFactor = 0.25;
     this.dampingThreshold = 0.01;
@@ -51,7 +54,7 @@ class NicePersonControls {
   bind() {
 
     [ 'handleMouseMove', 'handleMouseUp', 'handleMouseDown',
-      'debugSetPosition', 'getPosition', 'getDepthValue' ]
+      'debugSetPosition', 'getPosition', 'getDepthValue', 'toggleCamera' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -63,6 +66,7 @@ class NicePersonControls {
 
     Emitter.on( EXP_GET_CAMERA_POSITION, this.getPosition );
     Emitter.on( EXP_GET_DEPTH_VALUE, this.getDepthValue );
+    Emitter.on( EXP_TOGGLE_CAMERA, this.toggleCamera );
   }
 
   removeListeners() {
@@ -72,6 +76,8 @@ class NicePersonControls {
 
     Emitter.off( EXP_GET_CAMERA_POSITION, this.getPosition );
     Emitter.off( EXP_GET_DEPTH_VALUE, this.getDepthValue );
+    Emitter.off( EXP_TOGGLE_CAMERA, this.toggleCamera );
+
   }
 
   handleMouseMove( event ) {
@@ -134,7 +140,19 @@ class NicePersonControls {
 
   }
 
+  toggleCamera( toggle ) {
+
+    if( toggle ) {
+      this.locked = false;
+    } else {
+      this.locked = true;
+    }
+
+  }
+
   update( delta ) {
+
+    if( this.locked ) return;
 
     if( this.enabled || this.enableDamping ) {
 
@@ -146,8 +164,6 @@ class NicePersonControls {
       // Movementy Y [-1, 1], indicate sinking direction
       this.cannonBodyVelocity.y = ( -this.movementY /  this.yawObject.position.y ) * 500000;
       this.euler.order = 'XYZ';
-
-      // console.log('this.enableDamping', this.enableDamping);
 
       if ( this.enableDamping ) {
 
