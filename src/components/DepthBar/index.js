@@ -24,16 +24,22 @@ class DepthBar extends Component {
 
     this.interval = null;
     this.currentTime = 0;
+    this.interval = null;
+    this.refreshTime = 500;
+    this.levelDepthOffset = 2200;
+    this.tweenDepthIndicator = 2200;
   }
 
   componentDidMount() {
 
     this.addEventListeners();
 
-    this.getDepthValue();
+    this.begin();
   }
 
   componentWillUnmount() {
+
+    clearInterval( this.interval );
 
     this.removeEventListeners();
   }
@@ -53,18 +59,41 @@ class DepthBar extends Component {
     Emitter.off( EXP_DEPTH_VALUE_SENDED, this.depthUpdate );
   }
 
-  getDepthValue() {
+  begin() {
+
+    this.getDepthValue();
+
+    this.interval = setInterval( ()=>{
+
+      this.getDepthValue();
+
+    }, this.refreshTime );
+  }
+
+  getDepthValue(start) {
 
     Emitter.emit( EXP_GET_DEPTH_VALUE );
   }
 
-  depthUpdate( depthValue ) {
+  depthUpdate( value ) {
 
-    this.setState({
-      depthIndicator: depthValue
-    });
+    const newDepth = -(this.levelDepthOffset - value);
+    const progressHeight = `${ (this.levelDepthOffset - value) / 30 }%`;
 
-    console.log('update', depthValue);
+    console.log(progressHeight);
+
+    // Update text indicator
+    TweenMax.to( this, this.refreshTime / 1000 , { tweenDepthIndicator: newDepth, onUpdate: ()=> {
+
+      this.setState({
+        depthIndicator: parseInt(this.tweenDepthIndicator)
+      });
+
+    } });
+
+    // Update bar style
+    TweenMax.to( this.refs.progress, this.refreshTime / 1000, { height: progressHeight });
+
   }
 
   render() {
@@ -73,7 +102,7 @@ class DepthBar extends Component {
 
       <div className="depth-bar">
 
-        <div className="depth-bar__progress">
+        <div className="depth-bar__progress" ref="progress">
 
           <div className="depth-bar__progress-indicator">
 
