@@ -54,9 +54,7 @@ class TitleIntroduction extends Component {
     });
 
     this.titleTl = new TimelineMax({ paused: true, onComplete: ()=> {
-      this.beginTutorial();
-
-      this.endIntroduction();
+      this.props.ended();
     } });
 
     this.titleTl

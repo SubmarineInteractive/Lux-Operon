@@ -1,0 +1,32 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.introduction-title {
+  @include center-xy;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.introduction-title__dive {
+  display: inline-block;
+  font-family: $font-akkurat;
+  font-size: 1.8rem;
+  overflow: hidden;
+
+  span {
+    display: inline-block;
+  }
+}
+
+.introduction-title__name {
+  font-family: $font-tstar;
+  font-size: 4.8rem;
+}
+
+.introduction-title__separator {
+  display: block;
+  width: 5rem;
+  height: 0.1rem;
+  background-color: $color-white;
+  margin: 0.5rem auto 2.5rem auto;
+}

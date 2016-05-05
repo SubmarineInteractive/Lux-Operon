@@ -4,7 +4,7 @@ import Emitter from 'helpers/Emitter';
 
 import { Component } from 'react';
 
-import TitleIntroduction from './TitleIntroduction';
+import IntroductionTitle from './IntroductionTitle';
 
 import {
   EXP_TOGGLE_CAMERA,
@@ -29,8 +29,6 @@ class LevelIntroduction extends Component {
     this.addEventListeners();
 
     this.generateTimelineMax();
-
-    this.beginTitle();
   }
 
   componentWillUnmount() {
@@ -39,6 +37,8 @@ class LevelIntroduction extends Component {
   }
 
   bind() {
+    [ 'beginTutorial' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addEventListeners() {
@@ -50,25 +50,19 @@ class LevelIntroduction extends Component {
   }
 
   generateTimelineMax() {
-  }
 
-  beginTitle() {
   }
 
   beginTutorial() {
 
   }
 
-  beginTooltips() {
-
-  }
-
   endIntroduction() {
 
     TweenMax.to( this.refs.container, 1.5, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
+
       Emitter.emit( EXP_TOGGLE_CAMERA, true );
       Emitter.emit( EXP_TIMER_START, 180 );
-
     } });
 
   }
@@ -79,7 +73,7 @@ class LevelIntroduction extends Component {
 
       <div className="level-introduction" ref="container">
 
-        <TitleIntroduction config={this.props.config} />
+        <IntroductionTitle config={this.props.config} ended={this.beginTutorial} />
 
       </div>
 
