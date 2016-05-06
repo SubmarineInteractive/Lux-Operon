@@ -6,6 +6,8 @@ import { Component } from 'react';
 
 import IntroductionTitle from './IntroductionTitle';
 
+import IntroductionTutorial from './IntroductionTutorial';
+
 import {
   EXP_TOGGLE_CAMERA,
   EXP_TIMER_START
@@ -37,7 +39,7 @@ class LevelIntroduction extends Component {
   }
 
   bind() {
-    [ 'beginTutorial' ]
+    [ 'beginTutorial', 'beginTooltips', 'endIntroduction' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -54,7 +56,11 @@ class LevelIntroduction extends Component {
   }
 
   beginTutorial() {
+    this.refs.tutorialStep.begin();
+  }
 
+  beginTooltips() {
+    // this.refs.tutorialStep.begin();
   }
 
   endIntroduction() {
@@ -73,7 +79,9 @@ class LevelIntroduction extends Component {
 
       <div className="level-introduction" ref="container">
 
-        <IntroductionTitle config={this.props.config} ended={this.beginTutorial} />
+        <IntroductionTitle config={this.props.config} ended={this.beginTutorial} ref="titleStep" />
+
+        <IntroductionTutorial config={this.props.config} ended={this.endIntroduction} ref="tutorialStep" />
 
       </div>
 

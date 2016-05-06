@@ -1,7 +1,5 @@
 import './styles.scss';
 
-import Emitter from 'helpers/Emitter';
-
 import { Component } from 'react';
 
 import SplitText from 'vendors/splitText.js';
@@ -55,13 +53,14 @@ class IntroductionTitle extends Component {
 
     this.titleTl = new TimelineMax({ paused: true, onComplete: ()=> {
       this.props.ended();
+      this.refs.container.style.display = 'none';
     } });
 
     this.titleTl
-      .from( this.refs.titleDive, 1, { y: '200%', ease: Expo.easeOut }, 4 )
+      .from( this.refs.titleDive, 1, { y: '200%', ease: Expo.easeOut }, 3 )
       .from( this.refs.titleSep, 0.6, { scale: 0, ease: Expo.easeOut }, '-=0.3' )
       .staggerFrom( this.titleSplited.chars, 1.8, { opacity: 0, ease: Expo.easeOut }, 0.05, '-=0.6' )
-      .to( this.refs.titleStep, 2, { opacity: 0, y: '-75%', ease: Expo.easeOut });
+      .to( this.refs.container, 1.4, { opacity: 0, y: '-75%', ease: Expo.easeOut }, '-=0.3');
 
   }
 
@@ -76,7 +75,7 @@ class IntroductionTitle extends Component {
 
     return (
 
-      <div className="introduction-title" ref='titleStep'>
+      <div className="introduction-title" ref='container'>
 
         <strong className="introduction-title__dive">
 
