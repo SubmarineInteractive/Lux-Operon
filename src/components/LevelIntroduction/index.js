@@ -65,7 +65,7 @@ class LevelIntroduction extends Component {
   }
 
   beginTooltips() {
-    this.refs.tutorialStep.begin();
+    this.refs.tooltipsStep.begin();
   }
 
   endIntroduction() {
@@ -87,7 +87,7 @@ class LevelIntroduction extends Component {
 
         <IntroductionTitle config={this.props.config} ended={this.beginTutorial} ref="titleStep" />
 
-        <IntroductionTutorial config={this.props.config} ended={this.endIntroduction} ref="tutorialStep" />
+        <IntroductionTutorial config={this.props.config} ended={this.beginTooltips} ref="tutorialStep" />
 
         <IntroductionTooltips config={this.props.config} ended={this.endIntroduction} ref="tooltipsStep" />
 

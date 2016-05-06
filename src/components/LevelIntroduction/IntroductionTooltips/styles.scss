@@ -3,8 +3,26 @@
 
 
 
-.introduction-tooltips {
+.tooltips-tutorial {
   display: none;
   text-transform: uppercase;
   text-align: center;
+}
+
+.tooltips-tutorial__skip {
+  display: block;
+  position: fixed;
+  text-align: right;
+  font-size: 1.4rem;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  color: $color-white;
+  text-transform: uppercase;
+  transition: color 0.3s ease-out;
+  font-family: $font-tstar;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-medium-grey;
+  }
 }

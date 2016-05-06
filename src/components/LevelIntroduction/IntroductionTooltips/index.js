@@ -44,7 +44,17 @@ class IntroductionTooltips extends Component {
   generateTimelineMax() {
 
     this.enterTl = new TimelineMax({ paused: true, onComplete: ()=> {
+
+      setTimeout( ()=>{
+
+        this.props.ended();
+      }, 1000 );
+
     } });
+
+    this.enterTl
+      .from( this.refs.skip, 2, { opacity: 0, x: 100, ease: Expo.easeOut }, 0 );
+
 
   }
 
@@ -55,6 +65,9 @@ class IntroductionTooltips extends Component {
   }
 
   skip() {
+
+    this.enterTl.stop();
+    this.props.ended();
   }
 
   render() {
@@ -63,6 +76,9 @@ class IntroductionTooltips extends Component {
 
       <div className="tooltips-tutorial" ref='container'>
 
+        <button className="tooltips-tutorial__skip" ref="skip" onClick={this.skip}>Skip tooltips</button>
+
+        Tooltips are fun
       </div>
     );
   }

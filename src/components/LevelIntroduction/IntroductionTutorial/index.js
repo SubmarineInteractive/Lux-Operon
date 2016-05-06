@@ -51,13 +51,13 @@ class TutorialIntroduction extends Component {
 
     this.revealTl = new TimelineMax({ paused: true, onComplete: ()=> {
       setTimeout( ()=>{
-
+        this.refs.container.style.display = 'none';
         this.props.ended();
-      }, 1400 );
+      }, 300 );
     } });
 
     this.holdTl
-      .from( this.refs.skip, 1, { opacity: 0, x: 100, ease: Expo.easeOut }, 0 )
+      .from( this.refs.skip, 2, { opacity: 0, x: 100, ease: Expo.easeOut }, 0 )
       .from( this.refs.holdCursor, 1, { transformOrigin: '50% 50%', opacity: 0, scale: 0.8, ease: Expo.easeOut }, 0 )
       .from( this.refs.holdHand, 1, { transformOrigin: '50% 50%', opacity: 0, scale: 0.8, ease: Expo.easeOut }, 0.3 )
       .from( this.refs.holdInstruction, 1, { opacity: 0, y: '100%', ease: Expo.easeOut }, 0.3 )
@@ -79,8 +79,9 @@ class TutorialIntroduction extends Component {
       .to( this.refs.revealCircle, 0.6, { opacity: 0, scale: 0.8, ease: Expo.easeOut })
       .to( this.refs.revealHand, 1, { scale: 0.8, ease: Back.easeOut })
       .to( this.refs.revealHand, 1, { scale: 1, ease: Expo.easeOut })
-      .to( this.refs.revealCircle, 1, { opacity: 1, scale: 1.1, ease: Back.easeOut })
-      .to( this.refs.revealCircle, 0.5, { opacity: 1, scale: 1, ease: Back.easeOut });
+      .to( this.refs.revealCircle, 1, { opacity: 1, scale: 1.05, ease: Expo.easeOut })
+      .to( this.refs.revealCircle, 0.5, { opacity: 1, scale: 1, ease: Expo.easeOut })
+      .to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut });
   }
 
   begin() {
@@ -92,8 +93,7 @@ class TutorialIntroduction extends Component {
   skip() {
     this.holdTl.stop();
     this.revealTl.stop();
-    this.refs.holdToMoveStep.style.display = 'none';
-    this.refs.revealStep.style.display = 'none';
+    this.refs.container.style.display = 'none';
     this.props.ended();
   }
 
