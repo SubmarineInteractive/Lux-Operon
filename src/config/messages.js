@@ -17,7 +17,10 @@ const messages = {
 
   // ==== Depth Value ====
   EXP_GET_DEPTH_VALUE : 'EXP_GET_DEPTH_VALUE',
-  EXP_DEPTH_VALUE_SENDED: 'EXP_DEPTH_VALUE_SENDED'
+  EXP_DEPTH_VALUE_SENDED: 'EXP_DEPTH_VALUE_SENDED',
+
+  // ==== Level Introduction ====
+  EXP_INTRO_ENDED: 'EXP_INTRO_ENDED'
 
 };
 

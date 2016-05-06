@@ -49,6 +49,7 @@ class NicePersonControls {
     //Expose debugger
     window.debugSetPosition = this.debugSetPosition;
 
+    this.startIntroCameraMovement();
   }
 
   bind() {
@@ -77,7 +78,19 @@ class NicePersonControls {
     Emitter.off( EXP_GET_CAMERA_POSITION, this.getPosition );
     Emitter.off( EXP_GET_DEPTH_VALUE, this.getDepthValue );
     Emitter.off( EXP_TOGGLE_CAMERA, this.toggleCamera );
+  }
 
+  startIntroCameraMovement() {
+    this.introCamMovementTl = new TimelineMax();
+    this.introTweenValue = 7;
+
+    this.introCamMovementTl
+      .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {
+        this.inputVelocity.z = - this.introTweenValue;
+        this.cannonBodyVelocity.z += this.inputVelocity.z;
+        this.cannonBodyVelocity.y -= this.inputVelocity.z / 6;
+        this.yawObject.position.copy( this.cannonBody.position );
+      } });
   }
 
   handleMouseMove( event ) {
@@ -88,7 +101,6 @@ class NicePersonControls {
     this.movementY = map( event.pageY, 0, window.innerHeight, -1, 1 ) || 0;
 
     this.pitchObject.rotation.x = Math.max( - Math.PI / 2 , Math.min( Math.PI / 2 , this.pitchObject.rotation.x ) );
-
   }
 
 
@@ -99,7 +111,6 @@ class NicePersonControls {
 
     TweenMax.to( this.yawObject.rotation, 1, { y: this.yawObject.rotation.y - (this.movementX / 5) });
     TweenMax.to( this.pitchObject.rotation, 1, { x: this.pitchObject.rotation.x - (this.movementY / 5)});
-
   }
 
   handleMouseDown() {
@@ -108,7 +119,6 @@ class NicePersonControls {
     TweenMax.killTweensOf( this.pitchObject.rotation, { x: true });
     this.enabled = true;
     this.enableDamping = false;
-
   }
 
   get object() {
@@ -144,6 +154,7 @@ class NicePersonControls {
 
     if( toggle ) {
       this.locked = false;
+      this.introCamMovementTl.stop();
     } else {
       this.locked = true;
     }
