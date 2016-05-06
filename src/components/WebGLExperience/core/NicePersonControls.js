@@ -6,6 +6,7 @@ import {
   EXP_CAMERA_POSITION_SENDED,
   EXP_GET_DEPTH_VALUE,
   EXP_DEPTH_VALUE_SENDED,
+  EXP_INTRO_START,
   EXP_TOGGLE_CAMERA
 } from 'config/messages';
 
@@ -48,14 +49,12 @@ class NicePersonControls {
 
     //Expose debugger
     window.debugSetPosition = this.debugSetPosition;
-
-    this.startIntroCameraMovement();
   }
 
   bind() {
 
     [ 'handleMouseMove', 'handleMouseUp', 'handleMouseDown',
-      'debugSetPosition', 'getPosition', 'getDepthValue', 'toggleCamera' ]
+      'debugSetPosition', 'getPosition', 'getDepthValue', 'toggleCamera', 'startIntroCameraMovement' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -68,6 +67,7 @@ class NicePersonControls {
     Emitter.on( EXP_GET_CAMERA_POSITION, this.getPosition );
     Emitter.on( EXP_GET_DEPTH_VALUE, this.getDepthValue );
     Emitter.on( EXP_TOGGLE_CAMERA, this.toggleCamera );
+    Emitter.on( EXP_INTRO_START, this.startIntroCameraMovement );
   }
 
   removeListeners() {
@@ -78,6 +78,7 @@ class NicePersonControls {
     Emitter.off( EXP_GET_CAMERA_POSITION, this.getPosition );
     Emitter.off( EXP_GET_DEPTH_VALUE, this.getDepthValue );
     Emitter.off( EXP_TOGGLE_CAMERA, this.toggleCamera );
+    Emitter.off( EXP_INTRO_START, this.startIntroCameraMovement );
   }
 
   startIntroCameraMovement() {

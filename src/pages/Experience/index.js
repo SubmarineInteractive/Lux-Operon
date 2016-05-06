@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import connect from 'decorators/connect';
+import Emitter from 'helpers/Emitter';
 import Radar from 'components/Radar';
 import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
@@ -8,6 +9,9 @@ import Timer from 'components/Timer';
 import LevelIntroduction from 'components/LevelIntroduction';
 import WebGLExperience from 'components/WebGLExperience';
 import { mezaleConfig } from 'config/levels';
+
+import { EXP_INTRO_START } from 'config/messages';
+
 /**
  * Experience class
  */
@@ -16,7 +20,7 @@ class Experience extends Component {
 
   componentWillEnter( callback ) {
 
-    this.startIntroduction( 6000 );
+    this.startIntroduction( 5000 );
     TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 3, onComplete: () => callback() });
 
   }
@@ -28,7 +32,7 @@ class Experience extends Component {
   startIntroduction( delay ) {
 
     setTimeout( ()=> {
-
+      Emitter.emit( EXP_INTRO_START );
       this.refs.levelIntro.beginTitle();
     }, delay );
   }
