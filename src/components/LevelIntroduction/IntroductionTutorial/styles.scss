@@ -4,10 +4,13 @@
 
 
 .introduction-tutorial {
-  @include center-xy;
   display: none;
   text-transform: uppercase;
   text-align: center;
+}
+
+.introduction-tutorial__container {
+  @include center-xy;
 }
 
 .introduction-tutorial__icon {
@@ -21,6 +24,24 @@
   display: none;
   &--hold-to-move {
     display: block;
+  }
+}
+
+.introduction-tutorial__skip {
+  display: block;
+  position: fixed;
+  text-align: right;
+  font-size: 1.4rem;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  color: $color-white;
+  text-transform: uppercase;
+  transition: color 0.3s ease-out;
+  font-family: $font-tstar;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-medium-grey;
   }
 }
 
@@ -42,6 +63,7 @@
 }
 
 .introduction-tutorial__icon--reveal {
+  transform: translateX(-5px);
   .st0{opacity:0.25;}
 	.st1{opacity:0.95;}
 	.st2{opacity:0.99;fill:#161A28;stroke:#FFFFFF;stroke-miterlimit:10;}
