@@ -5,8 +5,8 @@ import Emitter from 'helpers/Emitter';
 import { Component } from 'react';
 
 import IntroductionTitle from './IntroductionTitle';
-
 import IntroductionTutorial from './IntroductionTutorial';
+import IntroductionTooltips from './IntroductionTooltips';
 
 import {
   EXP_TOGGLE_CAMERA,
@@ -65,7 +65,7 @@ class LevelIntroduction extends Component {
   }
 
   beginTooltips() {
-    // this.refs.tutorialStep.begin();
+    this.refs.tutorialStep.begin();
   }
 
   endIntroduction() {
@@ -88,6 +88,8 @@ class LevelIntroduction extends Component {
         <IntroductionTitle config={this.props.config} ended={this.beginTutorial} ref="titleStep" />
 
         <IntroductionTutorial config={this.props.config} ended={this.endIntroduction} ref="tutorialStep" />
+
+        <IntroductionTooltips config={this.props.config} ended={this.endIntroduction} ref="tooltipsStep" />
 
       </div>
 
