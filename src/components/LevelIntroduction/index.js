@@ -48,12 +48,16 @@ class LevelIntroduction extends Component {
 
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
 
   }
 
   generateTimelineMax() {
 
+  }
+
+  beginTitle() {
+    this.refs.titleStep.begin();
   }
 
   beginTutorial() {

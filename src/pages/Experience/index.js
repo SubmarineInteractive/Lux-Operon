@@ -15,7 +15,22 @@ import { mezaleConfig } from 'config/levels';
 class Experience extends Component {
 
   componentWillEnter( callback ) {
+
+    this.startIntroduction( 6000 );
     TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 3, onComplete: () => callback() });
+
+  }
+
+  componentWillAppear( callback ) {
+    this.startIntroduction( 500 );
+  }
+
+  startIntroduction( delay ) {
+
+    setTimeout( ()=> {
+
+      this.refs.levelIntro.beginTitle();
+    }, delay );
   }
 
   render() {
@@ -24,7 +39,7 @@ class Experience extends Component {
 
     const content = (
       <div className="page__container">
-        <LevelIntroduction config={mezaleConfig} />
+        <LevelIntroduction config={mezaleConfig} ref="levelIntro"/>
         <Radar />
         <LevelInfos config={mezaleConfig} />
         <Timer />

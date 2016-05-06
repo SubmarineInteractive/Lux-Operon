@@ -26,8 +26,6 @@ class IntroductionTitle extends Component {
     this.addEventListeners();
 
     this.generateTimelineMax();
-
-    this.beginTitle();
   }
 
   componentWillUnmount() {
@@ -57,14 +55,14 @@ class IntroductionTitle extends Component {
     } });
 
     this.titleTl
-      .from( this.refs.titleDive, 1, { y: '200%', ease: Expo.easeOut }, 3 )
+      .from( this.refs.titleDive, 1, { y: '200%', ease: Expo.easeOut })
       .from( this.refs.titleSep, 0.6, { scale: 0, ease: Expo.easeOut }, '-=0.3' )
       .staggerFrom( this.titleSplited.chars, 1.8, { opacity: 0, ease: Expo.easeOut }, 0.05, '-=0.6' )
-      .to( this.refs.container, 1.4, { opacity: 0, y: '-75%', ease: Expo.easeOut }, '-=0.3');
+      .to( this.refs.container, 1.4, { opacity: 0, y: '-75%', ease: Expo.easeOut }, '-=0.3' );
 
   }
 
-  beginTitle() {
+  begin() {
 
     this.titleTl.play();
   }
