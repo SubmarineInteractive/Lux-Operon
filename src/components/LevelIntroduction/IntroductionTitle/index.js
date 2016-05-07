@@ -23,8 +23,6 @@ class IntroductionTitle extends Component {
 
   componentDidMount() {
 
-    this.addEventListeners();
-
     this.generateTimelineMax();
   }
 
@@ -34,12 +32,19 @@ class IntroductionTitle extends Component {
   }
 
   bind() {
+
+    [ 'skip', 'onKeyUp' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addEventListeners() {
+
+    document.addEventListener( 'keyup', this.onKeyUp, false );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
+
+    document.removeEventListener( 'keyup', this.onKeyUp, false );
   }
 
   generateTimelineMax() {
@@ -62,10 +67,31 @@ class IntroductionTitle extends Component {
 
   }
 
+  onKeyUp( ev ) {
+
+    if( ev.keyCode === 27 ) {
+      this.skip();
+    }
+  }
+
   begin() {
+
+    this.addEventListeners();
 
     this.titleTl.play();
   }
+
+  skip() {
+
+    this.refs.container.style.display = "none";
+    
+    this.titleTl.stop();
+
+    this.removeEventListeners();
+
+    this.props.ended();
+  }
+
 
   render() {
 
