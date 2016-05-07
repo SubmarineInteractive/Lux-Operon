@@ -71,13 +71,14 @@ class LevelIntroduction extends Component {
 
   endIntroduction() {
 
-    TweenMax.to( this.refs.container, 1.5, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
+    TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
 
       Emitter.emit( EXP_TOGGLE_CAMERA, true );
       Emitter.emit( EXP_TIMER_START, 180 );
       Emitter.emit( EXP_INTRO_ENDED );
 
       this.refs.container.classList.add('level-introduction--is-ended');
+      
     } });
 
   }

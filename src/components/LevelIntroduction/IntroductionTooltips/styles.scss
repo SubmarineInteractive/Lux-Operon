@@ -5,8 +5,6 @@
 
 .tooltips-tutorial {
   display: none;
-  text-transform: uppercase;
-  text-align: center;
 }
 
 .tooltips-tutorial__skip {
@@ -25,4 +23,75 @@
   &:hover {
     color: $color-medium-grey;
   }
+}
+
+.tooltips-tutorial__el {
+  position: absolute;
+
+  &--location {
+    top: 9rem;
+    left: 25rem;
+  }
+
+  &--timer {
+    bottom: 7rem;
+    left: 9.5rem;
+  }
+
+  &--luxbar {
+    bottom: 2.7rem;
+    left: 23rem;
+  }
+
+  &--depth {
+    top: 32.7rem;
+    left: 108rem;
+  }
+}
+
+.tooltips-tutorial__svg {
+  fill: $color-white;
+
+  .tooltips-tutorial__el--location & {
+    width: 9rem;
+  }
+  .tooltips-tutorial__el--timer & {
+    width: 8rem;
+  }
+  .tooltips-tutorial__el--luxbar & {
+    width: 17.5rem;
+  }
+  .tooltips-tutorial__el--depth & {
+    width: 9.7rem;
+  }
+}
+
+.tooltips-tutorial__indication {
+  position: absolute;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  line-height: 16.8rem;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 4px rgba(255, 255, 255, 1);
+
+  .tooltips-tutorial__el--location & {
+    top: -1rem;
+    left: 50%;
+  }
+
+  .tooltips-tutorial__el--timer & {
+    top: -10.4rem;
+    left: 6rem;
+  }
+
+  .tooltips-tutorial__el--luxbar & {
+    top: -10.4rem;
+    left: 6rem;
+  }
+
+  .tooltips-tutorial__el--depth & {
+    top: 0.4rem;
+    left: -4.2rem;
+  }
+
 }
