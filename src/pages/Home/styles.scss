@@ -13,17 +13,29 @@
   background-color: $color-sea-blue;
 }
 
-.home__title {
-  @include no-select;
+.home__intro-text {
   position: fixed;
   top: 50vh;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   text-align: center;
+  color: $color-white;
+}
+
+.home__title {
+  @include no-select;
   font-size: 5rem;
   letter-spacing: 0.3rem;
   font-family: $font-akkurat;
-  color: $color-white;
+}
+
+.home__catchphrase {
+  width: 34rem;
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+  font-family: $font-tstar;
+  font-weight: 200;
 }
 
 .home__transition-image {

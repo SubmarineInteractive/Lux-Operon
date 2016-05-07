@@ -38,8 +38,13 @@ class Home extends Component {
       type: 'chars'
     });
 
+    this.catchphraseSplited = new SplitText( this.refs.catchphrase, {
+      type: 'words'
+    });
+
     this.enterTitleTl
-      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config( 3 ), delay: 0.5 }, 0.1 );
+      .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config( 3 ), delay: 0.5 }, 0.1 )
+      .staggerFrom( this.catchphraseSplited.words, 1.5, { opacity: 0, ease: Expo.easeOut}, 0.1, "-=1");
   }
 
   generateTimelineMax() {
@@ -60,7 +65,8 @@ class Home extends Component {
     } });
 
     tl.to( this.refs.wrapper, 2, { y: "-50%", ease: Power2.easeIn }, 0 )
-      .staggerTo( this.titleSplited.chars, 2, { opacity: 0, scale: 0.8, y: '-70%', ease: Back.easeOut.config( 3 ) }, 0.1 , 0.5 );
+      .staggerTo( this.titleSplited.chars, 2, { opacity: 0, scale: 0.8, y: '-70%', ease: Back.easeOut.config( 3 ) }, 0.1 , 0.5 )
+      .to( this.refs.catchphrase, 1, { opacity: 0, ease: Expo.easeOut }, 0 );
 
     this.refs.transitionCanvas.play();
   }
@@ -80,7 +86,13 @@ class Home extends Component {
 
           <WebGlHomeBackground progress={this.state.progress} ref="backgroundScene" />
 
-          <h1 className="home__title" ref="title">luxoperon</h1>
+          <div className="home__intro-text">
+
+            <h1 className="home__title" ref="title">luxoperon</h1>
+
+            <p className="home__catchphrase" ref="catchphrase">Your mission is to go into deep seas and discover the biosphere mysteries.</p>
+
+          </div>
 
           <HomeSlider onProgress={::this.onProgress} onDragComplete={::this.onDragComplete} title={this.refs.title}/>
 
