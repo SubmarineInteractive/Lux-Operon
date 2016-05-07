@@ -5,6 +5,7 @@ import { Router } from 'react-router';
 import { store, history, DevTools } from './store';
 import routes from './routes';
 import 'gsap';
+import 'vendors/drawSvg';
 
 attachFastClick.attach( document.body );
 

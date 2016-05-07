@@ -59,6 +59,10 @@ export default {
       {
         test: /splitText\.js$/,
         loader: 'imports?define=>false!exports?SplitText'
+      },
+      {
+        test: /drawSvg\.js$/,
+        loader: 'imports?define=>false!exports?SplitText'
       }
     ]
   },
