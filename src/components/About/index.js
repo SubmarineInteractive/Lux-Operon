@@ -128,7 +128,10 @@ class About extends Component {
 
           <section className="about__section about__section--description">
 
-              <h2 className="about__title" ref="descTitle">About</h2>
+              <h2 className="about__title" ref="descTitle">
+                <span className="about__title-line" ref="descTitleLine"></span>
+                <span className="about__title-text" ref="descTitleText">About</span>
+              </h2>
 
               <p className="about__paragraph" ref="descParag">
                 Lorem ipsum dolor sit amet, consectetur adipisci  ng elit,
@@ -141,18 +144,26 @@ class About extends Component {
 
           <section className="about__section about__section--team">
 
-
-            <h2 className="about__title" ref="descTitle">Team</h2>
+            <h2 className="about__title" ref="teamTitle">
+              <span className="about__title-line" ref="teamTitleLine"></span>
+              <span className="about__title-text" ref="teamTitleText">Team</span>
+            </h2>
 
             <div className="about__team-block">
 
-              <strong class="about_team-name" ref="teamName">Developer</strong>
+              <strong className="about_team-name" ref="teamName">Developer</strong>
 
               <ul className="about__team-list" ref="teamList">
 
-                  <li className="about__team-list-el"><a href="http://fabienmotte.com" target="_blank">Fabien Motte</a></li>
+                  <li className="about__team-list-el">
+                    <span className="about__team-line"></span>
+                    <a href="http://fabienmotte.com" target="_blank">Fabien Motte</a>
+                  </li>
 
-                  <li className="about__team-list-el"><a href="http://hengpatrick.fr" target="_blank">Patrick Heng</a></li>
+                  <li className="about__team-list-el">
+                    <span className="about__team-line"></span>
+                    <a href="http://hengpatrick.fr" target="_blank">Patrick Heng</a>
+                  </li>
 
               </ul>
 
@@ -160,13 +171,19 @@ class About extends Component {
 
             <div className="about__team-block">
 
-              <strong class="about_team-name" ref="teamName">Designers</strong>
+              <strong className="about_team-name" ref="teamName">Designers</strong>
 
               <ul className="about__team-list" ref="teamList">
 
-                  <li className="about__team-list-el"><a href="http://jant.fr/" target="_blank">Jantana Hennard</a></li>
+                  <li className="about__team-list-el">
+                    <span className="about__team-line"></span>
+                    <a href="http://jant.fr/" target="_blank">Jantana Hennard</a>
+                  </li>
 
-                  <li className="about__team-list-el"><a href="http://alexandredelalleau.fr/" target="_blank">Alexandre Delalleau</a></li>
+                  <li className="about__team-list-el">
+                    <span className="about__team-line"></span>
+                    <a href="http://alexandredelalleau.fr/" target="_blank">Alexandre Delalleau</a>
+                  </li>
 
               </ul>
 
