@@ -7,4 +7,8 @@
   background: rgba($color-deep-blue, 0.75);
   color: $color-white;
   z-index: 98;
+
+  &--is-visible {
+    display: block;
+  }
 }

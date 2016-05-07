@@ -5,7 +5,8 @@ import Emitter from 'helpers/Emitter';
 import { Component } from 'react';
 
 import {
-  EXP_DEPTH_VALUE_SENDED
+  EXP_DEPTH_VALUE_SENDED,
+  ABOUT_OPEN
 } from 'config/messages';
 
 /**
@@ -31,7 +32,6 @@ class LevelInfos extends Component {
 
     this.addEventListeners();
 
-    this.begin();
   }
 
   componentWillUnmount() {
@@ -41,7 +41,9 @@ class LevelInfos extends Component {
 
   bind() {
 
-    this.depthUpdate = this.depthUpdate.bind( this );
+    [ 'depthUpdate', 'openAbout' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+
   }
 
   addEventListeners() {
@@ -54,8 +56,8 @@ class LevelInfos extends Component {
     Emitter.off( EXP_DEPTH_VALUE_SENDED, this.depthUpdate );
   }
 
-  begin() {
-
+  openAbout() {
+    Emitter.emit( ABOUT_OPEN );
   }
 
   depthUpdate( value ) {
@@ -100,7 +102,7 @@ class LevelInfos extends Component {
 
         <p className="level-infos__pressure">{pressure}</p>
 
-        <button className="level-infos__helper-button">?</button>
+        <button className="level-infos__helper-button" onClick={this.openAbout}>?</button>
 
       </div>
 

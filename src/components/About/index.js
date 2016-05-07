@@ -26,6 +26,8 @@ class About extends Component {
 
     this.addEventListeners();
 
+    this.generateTimelineMax();
+
     this.begin();
   }
 
@@ -36,12 +38,14 @@ class About extends Component {
 
   bind() {
 
-    [ 'openAboutPopin', 'closeAboutPopin' ]
+    [ 'openAboutPopin', 'closeAboutPopin', 'onKeyUp' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
 
   addEventListeners() {
+
+    document.addEventListener( 'keyup', this.onKeyUp, false );
 
     Emitter.on( ABOUT_OPEN, this.openAboutPopin );
     Emitter.on( ABOUT_CLOSE, this.closeAboutPopin );
@@ -49,29 +53,59 @@ class About extends Component {
 
   removeEventListerners() {
 
+    document.removeEventListener( 'keyup', this.onKeyUp, false );
+
     Emitter.off( ABOUT_OPEN, this.openAboutPopin );
     Emitter.off( ABOUT_CLOSE, this.closeAboutPopin );
+  }
+
+  generateTimelineMax() {
+    this.enterTl = new TimelineMax({ paused: true });
+
+    this.leaveTl = new TimelineMax({ paused: true, onComplete: ()=> {
+
+      this.refs.container.classList.remove( 'about--is-visible' );
+    } });
+
+    this.enterTl
+      .from( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut });
+
+    this.leaveTl
+      .to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut });
   }
 
   begin() {
 
   }
 
+  onKeyUp( ev ) {
+
+    if( ev.keyCode === 27 ) {
+      this.closeAboutPopin();
+    }
+  }
+
   openAboutPopin() {
 
+    this.refs.container.classList.add( 'about--is-visible' );
+
+    this.leaveTl.stop();
+    this.enterTl.play();
   }
 
   closeAboutPopin() {
 
+    this.enterTl.stop();
+    this.leaveTl.play();
   }
 
   render() {
 
     return (
 
-      <div className="about">
+      <div className="about" ref="container">
 
-        <div className="about__cross"> Close </div>
+        <div className="about__cross" onClick={this.closeAboutPopin}> Close </div>
 
         About us, about you and me luv
 
