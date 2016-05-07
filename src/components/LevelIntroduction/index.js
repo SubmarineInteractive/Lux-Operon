@@ -40,6 +40,7 @@ class LevelIntroduction extends Component {
   }
 
   bind() {
+
     [ 'beginTutorial', 'beginTooltips', 'endIntroduction' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }

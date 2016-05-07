@@ -21,8 +21,11 @@ const messages = {
 
   // ==== Level Introduction ====
   EXP_INTRO_START: 'EXP_INTRO_START',
-  EXP_INTRO_ENDED: 'EXP_INTRO_ENDED'
+  EXP_INTRO_ENDED: 'EXP_INTRO_ENDED',
 
+  // ==== About popin ====
+  ABOUT_OPEN: 'ABOUT_OPEN',
+  ABOUT_CLOSE: 'ABOUT_CLOSE'
 };
 
 module.exports = messages;
