@@ -70,10 +70,12 @@ class About extends Component {
     } });
 
     this.enterTl
-      .from( this.refs.wrapper, 1, { opacity: 0, ease: Expo.easeOut });
+      .fromTo( this.refs.container, 1, { scale: 1.1, y: '-50%' }, { scale: 1, y: '-50%', ease: Expo.easeOut }, 0 )
+      .fromTo( this.refs.wrapper, 1, { opacity: 0 }, { opacity: 1, ease: Expo.easeOut }, 0 );
 
     this.leaveTl
-      .to( this.refs.wrapper, 1, { opacity: 0, ease: Expo.easeOut });
+      .fromTo( this.refs.container, 1, { scale: 1, y: '-50%' }, { scale: 1.1, y: '-50%', ease: Expo.easeOut }, 0 )
+      .fromTo( this.refs.wrapper, 1, { opacity: 1 }, { opacity: 0, ease: Expo.easeOut }, 0 );
   }
 
   begin() {
@@ -95,7 +97,7 @@ class About extends Component {
     this.refs.wrapper.classList.add( 'about--is-visible' );
 
     this.leaveTl.stop();
-    this.enterTl.play();
+    this.enterTl.play( 0 );
   }
 
   closeAboutPopin() {
@@ -104,7 +106,7 @@ class About extends Component {
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
 
     this.enterTl.stop();
-    this.leaveTl.play();
+    this.leaveTl.play( 0 );
   }
 
   render() {
