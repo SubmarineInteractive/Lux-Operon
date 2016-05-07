@@ -66,14 +66,14 @@ class About extends Component {
 
     this.leaveTl = new TimelineMax({ paused: true, onComplete: ()=> {
 
-      this.refs.container.classList.remove( 'about--is-visible' );
+      this.refs.wrapper.classList.remove( 'about--is-visible' );
     } });
 
     this.enterTl
-      .from( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut });
+      .from( this.refs.wrapper, 1, { opacity: 0, ease: Expo.easeOut });
 
     this.leaveTl
-      .to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut });
+      .to( this.refs.wrapper, 1, { opacity: 0, ease: Expo.easeOut });
   }
 
   begin() {
@@ -92,7 +92,7 @@ class About extends Component {
     Emitter.emit( EXP_TOGGLE_CAMERA, false );
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
 
-    this.refs.container.classList.add( 'about--is-visible' );
+    this.refs.wrapper.classList.add( 'about--is-visible' );
 
     this.leaveTl.stop();
     this.enterTl.play();
@@ -111,11 +111,70 @@ class About extends Component {
 
     return (
 
-      <div className="about" ref="container">
+      <div className="about" ref="wrapper">
 
-        <div className="about__cross" onClick={this.closeAboutPopin}> Close </div>
+        <svg
+          className="about__cross"
+          x="0px" y="0px"
+          viewBox="0 0 224.512 224.512"
+          onClick={this.closeAboutPopin} >
 
-        About us, about you and me luv
+          <polygon points="224.507,6.997 217.521,0 112.256,105.258 6.998,0 0.005,6.997 105.263,112.254
+          0.005,217.512 6.998,224.512 112.256,119.24 217.521,224.512 224.507,217.512 119.249,112.254 	"/>
+
+        </svg>
+
+        <div className="about__container" ref="container">
+
+          <section className="about__section about__section--description">
+
+              <h2 className="about__title" ref="descTitle">About</h2>
+
+              <p className="about__paragraph" ref="descParag">
+                Lorem ipsum dolor sit amet, consectetur adipisci  ng elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              </p>
+
+          </section>
+
+          <section className="about__section about__section--team">
+
+
+            <h2 className="about__title" ref="descTitle">Team</h2>
+
+            <div className="about__team-block">
+
+              <strong class="about_team-name" ref="teamName">Developer</strong>
+
+              <ul className="about__team-list" ref="teamList">
+
+                  <li className="about__team-list-el"><a href="http://fabienmotte.com" target="_blank">Fabien Motte</a></li>
+
+                  <li className="about__team-list-el"><a href="http://hengpatrick.fr" target="_blank">Patrick Heng</a></li>
+
+              </ul>
+
+            </div>
+
+            <div className="about__team-block">
+
+              <strong class="about_team-name" ref="teamName">Designers</strong>
+
+              <ul className="about__team-list" ref="teamList">
+
+                  <li className="about__team-list-el"><a href="http://jant.fr/" target="_blank">Jantana Hennard</a></li>
+
+                  <li className="about__team-list-el"><a href="http://alexandredelalleau.fr/" target="_blank">Alexandre Delalleau</a></li>
+
+              </ul>
+
+            </div>
+
+          </section>
+
+        </div>
 
       </div>
 

@@ -12,3 +12,17 @@
     display: block;
   }
 }
+
+.about__cross {
+  @include center-x;
+  top: 5rem;
+  width: 2rem;
+  height: 2rem;
+  fill: $color-white;
+  cursor: pointer;
+  transition: fill .2s ease-out;
+
+  &:hover {
+    fill: $color-medium-grey;
+  }
+}
