@@ -21,8 +21,6 @@ class TutorialIntroduction extends Component {
 
   componentDidMount() {
 
-    this.addEventListeners();
-
     this.generateTimelineMax();
   }
 
@@ -32,13 +30,19 @@ class TutorialIntroduction extends Component {
   }
 
   bind() {
-    this.skip = this.skip.bind( this );
+
+    [ 'skip', 'onKeyUp' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addEventListeners() {
+
+    document.addEventListener( 'keyup', this.onKeyUp, false );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
+
+    document.removeEventListener( 'keyup', this.onKeyUp, false );
   }
 
   generateTimelineMax() {
@@ -84,16 +88,30 @@ class TutorialIntroduction extends Component {
       .to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut });
   }
 
-  begin() {
-    this.refs.container.style.display = 'block';
+  onKeyUp(ev) {
 
+    if(ev.keyCode === 27) {
+      this.skip();
+    }
+  }
+
+  begin() {
+
+    this.refs.container.style.display = 'block';
     this.holdTl.play();
+
+    this.addEventListeners();
   }
 
   skip() {
+
     this.holdTl.stop();
     this.revealTl.stop();
+
     this.refs.container.style.display = 'none';
+
+    this.removeEventListeners();
+
     this.props.ended();
   }
 

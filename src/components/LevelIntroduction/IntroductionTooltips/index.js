@@ -21,8 +21,6 @@ class IntroductionTooltips extends Component {
 
   componentDidMount() {
 
-    this.addEventListeners();
-
     this.generateTimelineMax();
   }
 
@@ -32,13 +30,19 @@ class IntroductionTooltips extends Component {
   }
 
   bind() {
-    this.skip = this.skip.bind( this );
+
+    [ 'skip', 'onKeyUp' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addEventListeners() {
+
+    document.addEventListener( 'keyup', this.onKeyUp, false );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
+
+    document.removeEventListener( 'keyup', this.onKeyUp, false );
   }
 
   generateTimelineMax() {
@@ -58,8 +62,17 @@ class IntroductionTooltips extends Component {
 
   }
 
+  onKeyUp( ev ) {
+
+    if( ev.keyCode === 27 ) {
+      this.skip();
+    }
+  }
+
   begin() {
     this.refs.container.style.display = 'block';
+
+    this.addEventListeners();
 
     this.enterTl.play();
   }
@@ -67,6 +80,9 @@ class IntroductionTooltips extends Component {
   skip() {
 
     this.enterTl.stop();
+
+    this.removeEventListeners();
+
     this.props.ended();
   }
 
