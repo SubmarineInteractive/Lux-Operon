@@ -88,9 +88,9 @@ class TutorialIntroduction extends Component {
       .to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut });
   }
 
-  onKeyUp(ev) {
+  onKeyUp( ev ) {
 
-    if(ev.keyCode === 27) {
+    if( ev.keyCode === 27 ) {
       this.skip();
     }
   }

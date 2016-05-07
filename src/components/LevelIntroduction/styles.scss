@@ -6,4 +6,8 @@
   background: rgba(black, 0.5);
   color: $color-white;
   z-index: 100;
+
+  &--is-ended {
+    display: none;
+  }
 }
