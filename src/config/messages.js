@@ -14,6 +14,7 @@ const messages = {
   // ==== Timer ====
   EXP_TIMER_START : 'EXP_TIMER_START',
   EXP_TIMER_ENDED: 'EXP_TIMER_ENDED',
+  EXP_TIMER_TOGGLE_PAUSE: 'EXP_TIMER_TOGGLE_PAUSE',
 
   // ==== Depth Value ====
   EXP_GET_DEPTH_VALUE : 'EXP_GET_DEPTH_VALUE',

@@ -6,7 +6,8 @@ import { Component } from 'react';
 
 import {
   EXP_TIMER_START,
-  EXP_TIMER_ENDED
+  EXP_TIMER_ENDED,
+  EXP_TIMER_TOGGLE_PAUSE
 } from 'config/messages';
 
 /**
@@ -25,6 +26,7 @@ class Timer extends Component {
 
     this.interval = null;
     this.currentTime = 0;
+    this.isPaused = false;
   }
 
   componentDidMount() {
@@ -39,17 +41,21 @@ class Timer extends Component {
 
   bind() {
 
-    this.startTimer = this.startTimer.bind( this );
+    [ 'startTimer', 'togglePause' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+
   }
 
   addEventListeners() {
 
     Emitter.on( EXP_TIMER_START, this.startTimer );
+    Emitter.on( EXP_TIMER_TOGGLE_PAUSE, this.togglePause );
   }
 
   removeEventListerners() {
 
     Emitter.off( EXP_TIMER_START, this.startTimer );
+    Emitter.off( EXP_TIMER_TOGGLE_PAUSE, this.togglePause );
   }
 
   startTimer( initialTime = false ) {
@@ -59,6 +65,8 @@ class Timer extends Component {
     clearInterval( this.interval );
 
     this.interval = setInterval( ()=>{
+
+      if( this.isPaused ) return;
 
       if( this.currentTime <= 0 ) {
 
@@ -71,6 +79,11 @@ class Timer extends Component {
 
     }, 1000 );
 
+  }
+
+  togglePause( toggle ) {
+    
+    this.isPaused = toggle;
   }
 
   timerEnds() {

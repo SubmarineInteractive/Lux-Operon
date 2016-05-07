@@ -6,7 +6,9 @@ import { Component } from 'react';
 
 import {
   ABOUT_OPEN,
-  ABOUT_CLOSE
+  ABOUT_CLOSE,
+  EXP_TOGGLE_CAMERA,
+  EXP_TIMER_TOGGLE_PAUSE
 } from 'config/messages';
 
 /**
@@ -87,6 +89,9 @@ class About extends Component {
 
   openAboutPopin() {
 
+    Emitter.emit( EXP_TOGGLE_CAMERA, false );
+    Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
+
     this.refs.container.classList.add( 'about--is-visible' );
 
     this.leaveTl.stop();
@@ -94,6 +99,9 @@ class About extends Component {
   }
 
   closeAboutPopin() {
+
+    Emitter.emit( EXP_TOGGLE_CAMERA, true );
+    Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
 
     this.enterTl.stop();
     this.leaveTl.play();

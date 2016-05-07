@@ -4,7 +4,7 @@
 .about {
   display: none;
   @include full-absolute;
-  background: rgba($color-deep-blue, 0.75);
+  background: rgba($color-deep-blue, 0.9);
   color: $color-white;
   z-index: 98;
 
