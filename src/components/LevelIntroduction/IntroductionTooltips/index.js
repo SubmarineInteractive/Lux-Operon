@@ -61,7 +61,7 @@ class IntroductionTooltips extends Component {
 
     this.enterTl
       .staggerFrom( arrows, 2, { opacity: 0, y: 30, scale: 0.8, ease: Expo.easeOut }, 0.3, 0 )
-      .staggerFrom( indications, 2, { opacity: 0, y: 10, ease: Expo.easeOut }, 0.3, 0.4 )
+      .staggerFrom( indications, 2, { opacity: 0, y: 10, ease: Expo.easeOut }, 0.3, 0.4 );
   }
 
   onKeyUp( ev ) {

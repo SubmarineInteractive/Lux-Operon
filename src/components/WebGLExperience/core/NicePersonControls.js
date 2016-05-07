@@ -110,8 +110,8 @@ class NicePersonControls {
     this.enabled = false;
     this.enableDamping = true;
 
-    TweenMax.to( this.yawObject.rotation, 1, { y: this.yawObject.rotation.y - (this.movementX / 5) });
-    TweenMax.to( this.pitchObject.rotation, 1, { x: this.pitchObject.rotation.x - (this.movementY / 5)});
+    TweenMax.to( this.yawObject.rotation, 1, { y: this.yawObject.rotation.y - ( this.movementX / 5 ) });
+    TweenMax.to( this.pitchObject.rotation, 1, { x: this.pitchObject.rotation.x - ( this.movementY / 5 ) });
   }
 
   handleMouseDown() {
@@ -128,7 +128,6 @@ class NicePersonControls {
   }
 
   debugSetPosition( x, y, z ) {
-    console.log( x, y, z );
     this.cannonBody.position.x = x;
     this.cannonBody.position.y = y;
     this.cannonBody.position.z = z;

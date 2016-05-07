@@ -77,8 +77,8 @@ class LevelIntroduction extends Component {
       Emitter.emit( EXP_TIMER_START, 180 );
       Emitter.emit( EXP_INTRO_ENDED );
 
-      this.refs.container.classList.add('level-introduction--is-ended');
-      
+      this.refs.container.classList.add( 'level-introduction--is-ended' );
+
     } });
 
   }

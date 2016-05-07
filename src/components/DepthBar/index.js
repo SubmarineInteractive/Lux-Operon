@@ -79,7 +79,7 @@ class DepthBar extends Component {
   depthUpdate( value ) {
 
     const newDepth = -( this.levelDepthOffset - value );
-    const progressHeight = `${ (this.levelDepthOffset - value) / this.innerBarCoef }%`;
+    const progressHeight = `${ ( this.levelDepthOffset - value ) / this.innerBarCoef }%`;
 
     // Update text indicator
     TweenMax.to( this, this.refreshTime / 1000 , { tweenDepthIndicator: newDepth, onUpdate: ()=> {
