@@ -1,35 +1,30 @@
 /**
- * Lighten or darken a color
+ * lightenDarkenColor a color
  *
- * @param  {string} col Color
- * @param  {number} amt Amount
+ * @param  {string} hex Color
+ * @param  {number} lum luminance
  * @return {string}     Computed hexadecimal
  */
-export default function lightenDarkenColor( col, amt ) {
+export default function lightenDarkenColor( hex, lum ) {
 
-  let usePound = false;
+  // validate hex string
+  hex = String( hex ).replace( /[^0-9a-f]/gi, '' );
 
-  if ( col[ 0 ] == '#' ) {
-    col = col.slice( 1 );
-    usePound = true;
+  if ( hex.length < 6 ) {
+    hex = hex[ 0 ] + hex[ 0 ] + hex[ 1 ] + hex[ 1 ] + hex[ 2 ] + hex[ 2 ];
   }
 
-  const num = parseInt( col, 16 );
+  lum = lum || 0;
 
-  let r = ( num >> 16 ) + amt;
+  // convert to decimal and change luminosity
+  let rgb = "#",
 
-  if ( r > 255 ) r = 255;
-  else if ( r < 0 ) r = 0;
+    c, i;
+  for ( i = 0; i < 3; i++ ) {
+    c = parseInt( hex.substr( i * 2, 2 ), 16 );
+    c = Math.round( Math.min( Math.max( 0, c + ( c * lum ) ), 255 ) ).toString( 16 );
+    rgb += ( "00" + c ).substr( c.length );
+  }
 
-  let b = ( ( num >> 8 ) & 0x00FF ) + amt;
-
-  if ( b > 255 ) b = 255;
-  else if  ( b < 0 ) b = 0;
-
-  let g = ( num & 0x0000FF ) + amt;
-
-  if ( g > 255 ) g = 255;
-  else if ( g < 0 ) g = 0;
-
-  return ( usePound ? '#' : '' ) + ( g | ( b << 8 ) | ( r << 16 ) ).toString( 16 );
+  return rgb;
 }

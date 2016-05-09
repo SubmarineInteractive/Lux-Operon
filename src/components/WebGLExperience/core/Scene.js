@@ -94,12 +94,13 @@ class Scene extends AbstractScene {
     this.world.update();
     this.player.update( this.clock.time, this.clock.delta );
 
-    this.fog.density = map( this.player.luxVal, 0, 1, 0.002, 0.001 );
-    this.fog.color = map( this.player.luxVal, 0, 1, this.fog.configuration.darkerColor, this.fog.initialColor );
+    const newBgColor = new THREE.Color( lightenDarkenColor( this.fog.initialColor.toString(16), - 1 + this.player.luxVal + 0.1 ) );
 
-    console.log(this.fog.configuration.darkerColor);
-    console.log(this.fog.initialColor);
+    // this.fog.density = map( this.player.luxVal, 0, 1, 0.002, 0.001 );
 
+    this.fog.color = newBgColor;
+
+    this.renderer.setClearColor( newBgColor );
 
     if( this.controls ) {
       this.controls.update( this.clock.delta );
