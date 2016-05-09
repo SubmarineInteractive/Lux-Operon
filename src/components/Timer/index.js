@@ -28,6 +28,8 @@ class Timer extends Component {
     this.interval = null;
     this.currentTime = 0;
     this.isPaused = false;
+
+    this.isInDanger = false;
   }
 
   componentDidMount() {
@@ -112,6 +114,13 @@ class Timer extends Component {
       seconds = '0' + seconds;
     }
 
+    if( !this.isInDanger && this.currentTime === 45 ) {
+
+      this.isInDanger = true;
+      this.refs.container.classList.add( 'timer--is-in-danger' );
+      Emitter.emit( EXP_FLASH_MSG, 'danger', 'It remains you less than 45 seconds, hurry up!' );
+    }
+
     this.setState({
       minutes,
       seconds
@@ -121,7 +130,7 @@ class Timer extends Component {
   render() {
 
     return (
-      <div className="timer">
+      <div className="timer" ref="container">
 
         <span className="timer__minutes">{this.state.minutes}</span>
 

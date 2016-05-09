@@ -153,6 +153,8 @@ class Player extends THREE.Object3D {
       this.isInDanger = true;
 
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, true );
+      Emitter.emit( EXP_FLASH_MSG, 'danger', "You better hurry up, you'll soon have more light !" );
+
     } else if ( this.previousluxVal < this.pluxVal && this.isInDanger ) {
 
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, false );
@@ -165,10 +167,10 @@ class Player extends THREE.Object3D {
       this.previousluxVal = this.luxVal;
       this.luxVal -= this.decreaseLuxVal;
     } else if( this.luxEnabled ) {
+
       this.luxEnabled = false;
       Emitter.emit( EXP_LUX_END_GAME );
       Emitter.emit( EXP_FLASH_MSG, 'danger', 'You have no light, you loose. Try again !' );
-
     }
   }
 

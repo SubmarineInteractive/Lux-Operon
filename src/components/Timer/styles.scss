@@ -8,4 +8,9 @@
   font-size: 1.8rem;
   font-family: $font-tstar;
   user-select: none;
+  transition: color .3s ease-out;
+
+  &--is-in-danger {
+    color: $color-red;
+  }
 }
