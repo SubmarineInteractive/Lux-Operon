@@ -82,7 +82,7 @@ class Timer extends Component {
   }
 
   togglePause( toggle ) {
-    
+
     this.isPaused = toggle;
   }
 

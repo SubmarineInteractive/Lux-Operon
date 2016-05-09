@@ -17,21 +17,27 @@
     color: $color-white;
     right: -50px;
   }
+}
 
-  &__progress {
-    width: 90%;
-    height: 100%;
+.lux-bar__progress {
+  width: 90%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(white, 0.25);
+  transition: background-color .1s ease-out;
+
+  &:after {
+    content: '';
+    height: 20px;
+    background-color: $color-white;
+    width: 1px;
     position: absolute;
-    background-color: rgba(white, 0.25);
+    right: 0;
+    bottom: -1px;
+  }
 
-    &:after {
-      content: '';
-      height: 20px;
-      background-color: $color-white;
-      width: 1px;
-      position: absolute;
-      right: 0;
-      bottom: -1px;
-    }
+  .lux-bar--is-in-danger & {
+    transition: background-color .4s ease-out;
+    background-color: red;
   }
 }

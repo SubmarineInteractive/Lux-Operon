@@ -6,7 +6,8 @@ import Emitter from 'helpers/Emitter';
 
 import {
   EXP_GET_LUX_VALUE,
-  EXP_LUX_VALUE_SENDED
+  EXP_LUX_VALUE_SENDED,
+  EXP_PLAYER_TOGGLE_IS_IN_DANGER
 } from 'config/messages';
 
 /**
@@ -22,6 +23,7 @@ class LuxBar extends Component {
     this.refreshTime = 500;
 
     this.luxVal = 0.9;
+
   }
 
   componentDidMount() {
@@ -42,7 +44,7 @@ class LuxBar extends Component {
 
   bind() {
 
-    [ 'luxUpdate', 'getLuxVal' ]
+    [ 'luxUpdate', 'getLuxVal', 'toggleDangerZone' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
@@ -50,11 +52,13 @@ class LuxBar extends Component {
   addEventListeners() {
 
     Emitter.on( EXP_LUX_VALUE_SENDED, this.getLuxVal );
+    Emitter.on( EXP_PLAYER_TOGGLE_IS_IN_DANGER, this.toggleDangerZone );
   }
 
   removeEventListerners() {
 
     Emitter.off( EXP_LUX_VALUE_SENDED, this.getLuxVal );
+    Emitter.off( EXP_PLAYER_TOGGLE_IS_IN_DANGER, this.toggleDangerZone );
   }
 
   begin() {
@@ -66,6 +70,18 @@ class LuxBar extends Component {
       this.luxUpdate();
 
     }, this.refreshTime );
+  }
+
+  toggleDangerZone( toggleVal ) {
+
+    if( toggleVal ) {
+
+      this.refs.container.classList.add('lux-bar--is-in-danger');
+    } else {
+
+      this.refs.container.classList.remove('lux-bar--is-in-danger');
+    }
+
   }
 
   getLuxVal( val ) {

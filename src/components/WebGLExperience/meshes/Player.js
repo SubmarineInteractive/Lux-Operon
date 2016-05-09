@@ -5,9 +5,12 @@ import { randomInt } from 'utils';
 import Emitter from 'helpers/Emitter';
 
 import {
+  EXP_LUX_TOGGLE,
+  EXP_LUX_END_GAME,
   EXP_GET_LUX_VALUE,
   EXP_LUX_VALUE_SENDED,
-  EXP_LUX_VALUE_UPDATE
+  EXP_LUX_VALUE_UPDATE,
+  EXP_PLAYER_TOGGLE_IS_IN_DANGER
 } from 'config/messages';
 
 /**
@@ -29,22 +32,45 @@ class Player extends THREE.Object3D {
 
     this.world = World;
 
+    this.luxEnabled = false;
+
     this.playerConfig = playerConfig.pointLights;
     this.cameraConfig = cameraConfig;
     this.lights = [];
+
     this.luxVal = 0.9;
+    this.previousluxVal = 0.2;
+    this.decreaseLuxVal = 1 / 1000;
+
     this.nbLights = this.playerConfig.number;
+
+    this.isInDanger = false;
+    this.dangerThreshold = 0.5;
 
     this.createSphere();
     this.initLights();
 
-    // Events
-    this.getLuxVal = this.getLuxVal.bind( this );
-    this.updateLuxVal = this.updateLuxVal.bind( this );
+    this.bind();
 
+    this.addListeners();
+  }
+
+  bind() {
+
+    [ 'toggleLux', 'getLuxVal', 'updateLuxVal', 'updateLuxVal', 'checkDangerState' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+  }
+
+  addListeners() {
+
+    Emitter.on( EXP_LUX_TOGGLE, this.toggleLux );
     Emitter.on( EXP_GET_LUX_VALUE, this.getLuxVal );
     Emitter.on( EXP_LUX_VALUE_UPDATE, this.updateLuxVal );
+  }
 
+  toggleLux( toggleVal ) {
+
+    this.luxEnabled = toggleVal;
   }
 
   /**
@@ -120,6 +146,30 @@ class Player extends THREE.Object3D {
 
   }
 
+  checkDangerState() {
+
+    if( this.luxVal < this.dangerThreshold && !this.isInDanger ) {
+
+      this.isInDanger = true;
+
+      Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, true );
+    } else if ( this.previousluxVal < this.pluxVal && this.isInDanger ) {
+
+      Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, false );
+    }
+  }
+
+  updateLuxVal() {
+
+    if( this.luxVal > 0 && this.luxEnabled ) {
+      this.previousluxVal = this.luxVal;
+      this.luxVal -= this.decreaseLuxVal;
+    } else if( this.luxEnabled ) {
+      this.luxEnabled = false;
+      Emitter.emit( EXP_LUX_END_GAME );
+    }
+  }
+
   /**
    * update function
    * @param {number} time  Elapsed time from three global clock
@@ -127,10 +177,9 @@ class Player extends THREE.Object3D {
    */
   update( time, delta ) {
 
-    if( this.luxVal > 0 ) {
+    this.checkLuxVal();
 
-      this.luxVal -= 1 / 1000;
-    }
+    this.checkDangerState();
 
     for ( let i = 0; i < this.nbLights; i++ ) {
       this.updateLight( this.lights[ i ], time, delta );

@@ -5,7 +5,10 @@ import { Component } from 'react';
 import Emitter from 'helpers/Emitter';
 
 import {
-  TOOLTIPS_SHOW
+  TOOLTIPS_SHOW,
+  EXP_TOGGLE_CAMERA,
+  EXP_LUX_TOGGLE,
+  EXP_TIMER_TOGGLE_PAUSE
 } from 'config/messages';
 
 /**
@@ -19,6 +22,8 @@ class IntroductionTooltips extends Component {
   componentWillMount() {
 
     this.bind();
+
+    this.firstTime = true;
   }
 
   componentDidMount() {
@@ -57,10 +62,11 @@ class IntroductionTooltips extends Component {
 
     this.enterTl = new TimelineMax({ paused: true, onComplete: ()=> {
 
-      setTimeout( ()=>{
-
-        this.props.ended();
-      }, 2000 );
+      if( this.firstTime ) {
+        setTimeout( ()=>{
+          this.end();
+        }, 3000 );
+      }
 
     } });
 
@@ -70,6 +76,10 @@ class IntroductionTooltips extends Component {
   }
 
   showTooltips() {
+
+    Emitter.emit( EXP_TOGGLE_CAMERA, false );
+    Emitter.emit( EXP_LUX_TOGGLE, false );
+    Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
 
     this.begin( true );
   }
@@ -97,7 +107,22 @@ class IntroductionTooltips extends Component {
 
   skip() {
 
+
     this.enterTl.stop();
+
+    this.end();
+  }
+
+  end() {
+
+
+    if( this.firstTime ) {
+      Emitter.emit( EXP_TOGGLE_CAMERA, true );
+      Emitter.emit( EXP_LUX_TOGGLE, true );
+      Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
+    }
+
+    this.firstTime = false;
 
     this.removeEventListeners();
 
