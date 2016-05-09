@@ -3,7 +3,7 @@
 
 .reward-popin {
   @include full-absolute;
-  // display: none;
+  display: none;
   background: rgba($color-deep-blue, 0.95);
   color: $color-white;
   z-index: 98;

@@ -1,5 +1,60 @@
 @import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
 
 .loose-popin {
+  @include full-absolute;
+  display: none;
+  background: rgba($color-deep-blue, 0.95);
+  color: $color-white;
+  z-index: 98;
+  overflow: hidden;
 
+  &--is-visible {
+    display: block;
+  }
+}
+
+.loose-popin__about {
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+  font-size: 1.6rem;
+  color: $color-white;
+  font-family: $font-tstar;
+  transition: color .3s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-medium-grey;
+  }
+}
+
+.loose-popin__container {
+  @include center-xy;
+  text-align: center;
+  text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.7);
+}
+
+.loose-popin__image {
+  display: block;
+  width: 300px;
+  margin: 8rem auto;
+}
+
+.loose-popin__title {
+  font-size: 1.8rem;
+  line-height: 3.3rem;
+}
+
+.loose-popin__link {
+  display: inline-block;
+  font-size: 1.4rem;
+  color: $color-white;
+  transition: color .3s ease-out;
+  text-transform: uppercase;
+  width: 400px;
+
+  &:hover {
+    color: $color_medium_grey;
+  }
 }
