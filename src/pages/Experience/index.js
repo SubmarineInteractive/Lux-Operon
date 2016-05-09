@@ -9,6 +9,10 @@ import LevelInfos from 'components/LevelInfos';
 import Timer from 'components/Timer';
 import ExperienceOverlay from 'components/ExperienceOverlay';
 import LevelIntroduction from 'components/LevelIntroduction';
+import RewardPopin from 'components/RewardPopin';
+import LoosePopin from 'components/LoosePopin';
+import FishName from 'components/FishName';
+import FlashMessages from 'components/FlashMessages';
 import WebGLExperience from 'components/WebGLExperience';
 import { mezaleConfig } from 'config/levels';
 
@@ -47,12 +51,16 @@ class Experience extends Component {
       <div className="page__container">
         <ExperienceOverlay />
         <LevelIntroduction config={mezaleConfig} ref="levelIntro"/>
+        <LoosePopin />
+        <RewardPopin />
         <About />
         <Radar />
         <LevelInfos config={mezaleConfig} />
         <Timer />
         <LuxBar />
         <DepthBar config={mezaleConfig} />
+        <FlashMessages />
+        <FishName />
         <WebGLExperience resources={resources} />
       </div>
     );
