@@ -7,7 +7,8 @@ import { Component } from 'react';
 import {
   EXP_TIMER_START,
   EXP_TIMER_ENDED,
-  EXP_TIMER_TOGGLE_PAUSE
+  EXP_TIMER_TOGGLE_PAUSE,
+  EXP_FLASH_MSG
 } from 'config/messages';
 
 /**
@@ -96,6 +97,7 @@ class Timer extends Component {
     });
 
     Emitter.emit( EXP_TIMER_ENDED );
+    Emitter.emit( EXP_FLASH_MSG, 'danger', 'Time is over, you loose. Try again !' );
 
   }
   updateTimer() {
