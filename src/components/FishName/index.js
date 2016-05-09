@@ -33,7 +33,7 @@ class FishName extends Component {
 
   componentWillUnmount() {
 
-    this.removeEventListerners();
+    this.removeEventListeners();
   }
 
   bind() {
@@ -46,7 +46,7 @@ class FishName extends Component {
     Emitter.on( EXP_SHOW_FISH_NAME, this.showFishName );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
 
     Emitter.off( EXP_SHOW_FISH_NAME, this.showFishName );
   }

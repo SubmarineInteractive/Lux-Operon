@@ -33,7 +33,7 @@ class LoosePopin extends Component {
 
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
   }
 
   render() {

@@ -55,7 +55,7 @@ class Timer extends Component {
     Emitter.on( EXP_TIMER_TOGGLE_PAUSE, this.togglePause );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
 
     Emitter.off( EXP_TIMER_START, this.startTimer );
     Emitter.off( EXP_TIMER_TOGGLE_PAUSE, this.togglePause );

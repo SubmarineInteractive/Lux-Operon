@@ -51,7 +51,7 @@ class ExperienceOverlay extends Component {
     Emitter.on( EXP_PLAYER_TOGGLE_IS_IN_DANGER, this.toggleDangerZone );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
 
     Emitter.off( EXP_LUX_VALUE_SENDED, this.getLuxVal );
     Emitter.off( EXP_PLAYER_TOGGLE_IS_IN_DANGER, this.toggleDangerZone );

@@ -33,7 +33,7 @@ class RewardPopin extends Component {
 
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
   }
 
   render() {

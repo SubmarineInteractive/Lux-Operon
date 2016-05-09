@@ -53,7 +53,7 @@ class About extends Component {
     Emitter.on( ABOUT_CLOSE, this.closeAboutPopin );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
 
     document.removeEventListener( 'keyup', this.onKeyUp, false );
 

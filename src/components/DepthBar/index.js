@@ -55,7 +55,7 @@ class DepthBar extends Component {
     Emitter.on( EXP_DEPTH_VALUE_SENDED, this.depthUpdate );
   }
 
-  removeEventListerners() {
+  removeEventListeners() {
 
     Emitter.off( EXP_DEPTH_VALUE_SENDED, this.depthUpdate );
   }
