@@ -8,6 +8,7 @@
   left: 2.5rem;
   border: 1px solid $color-white;
   border-right: none;
+  user-select: none;
 
   &:after {
     content: 'LUX';

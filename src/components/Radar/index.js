@@ -61,7 +61,7 @@ class Radar extends Component {
   }
 
   bind() {
-    
+
     this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
   }
 
@@ -85,7 +85,7 @@ class Radar extends Component {
 
       Emitter.emit( EXP_GET_CAMERA_POSITION );
 
-    }, this.config.refreshTime * 1000);
+    }, this.config.refreshTime * 1000 );
 
   }
 
@@ -94,9 +94,9 @@ class Radar extends Component {
     const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
 
     const normalizePos = {
-      x: normalize( 0, terrain.geometry.width, position.x),
-      y: normalize( 0, terrain.geometry.height, position.z) * -1
-    }
+      x: normalize( 0, terrain.geometry.width, position.x ),
+      y: normalize( 0, terrain.geometry.height, position.z ) * -1
+    };
 
     this.updateCanvas( normalizePos, index );
 
