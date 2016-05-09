@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import connect from 'decorators/connect';
 import Emitter from 'helpers/Emitter';
-import About from 'components/About';
 import Radar from 'components/Radar';
 import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
@@ -53,7 +52,6 @@ class Experience extends Component {
         <LevelIntroduction config={mezaleConfig} ref="levelIntro"/>
         <LoosePopin />
         <RewardPopin />
-        <About />
         <Radar />
         <LevelInfos config={mezaleConfig} />
         <Timer />

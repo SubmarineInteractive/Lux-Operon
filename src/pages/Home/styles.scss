@@ -13,6 +13,21 @@
   background-color: $color-sea-blue;
 }
 
+.home__about {
+  position: absolute;
+  top: 5rem;
+  right: 5rem;
+  font-size: 1.6rem;
+  color: $color-white;
+  font-family: $font-tstar;
+  transition: color .3s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-medium-grey;
+  }
+}
+
 .home__intro-text {
   position: fixed;
   top: 50vh;

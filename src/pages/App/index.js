@@ -7,6 +7,8 @@ import { resize } from 'providers/ViewportProvider';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
 
+import About from 'components/About';
+
 /**
  * App class
  */
@@ -69,11 +71,15 @@ class App extends Component {
       child => React.cloneElement( child, { key: pathname }) );
 
     return (
+
       <ReactTransitionGroup
         component="div"
         className="route-transition"
       >
+        <About />
+
         {childrenWithProps}
+
       </ReactTransitionGroup>
     );
   }
