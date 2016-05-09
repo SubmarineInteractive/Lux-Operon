@@ -2,10 +2,6 @@ import './styles.scss';
 
 import { Component } from 'react';
 
-import {
-  
-} from 'config/messages';
-
 /**
  * TutorialIntroduction component
  */
@@ -62,8 +58,8 @@ class TutorialIntroduction extends Component {
 
     this.holdTl
       .from( this.refs.skip, 2, { opacity: 0, x: 100, ease: Expo.easeOut }, 0 )
-      .from( this.refs.holdCursor, 1, { transformOrigin: '50% 50%', opacity: 0, scale: 0.8, ease: Expo.easeOut }, 0 )
-      .from( this.refs.holdHand, 1, { transformOrigin: '50% 50%', opacity: 0, scale: 0.8, ease: Expo.easeOut }, 0.3 )
+      .from( this.refs.holdCursor, 1, { opacity: 0, ease: Expo.easeOut }, 0 )
+      .from( this.refs.holdHand, 1, { opacity: 0, ease: Expo.easeOut }, 0.3 )
       .from( this.refs.holdInstruction, 1, { opacity: 0, y: '100%', ease: Expo.easeOut }, 0.3 )
       .to( this.refs.holdHand, 0.2, { x: 10, ease: Expo.easeOut })
       .to( this.refs.holdCursor, 0.1, { x: 5, ease: Expo.easeOut }, '-=0.1' )
@@ -77,10 +73,10 @@ class TutorialIntroduction extends Component {
 
     this.revealTl
       .from( this.refs.revealStep, 1.2, { y: 20, opacity: 0, ease: Expo.easeOut })
-      .from( this.refs.revealCircle, 1, { transformOrigin: '50% 50%', opacity: 0, ease: Expo.easeOut })
-      .from( this.refs.revealHand, 1, { transformOrigin: '50% 50%', opacity: 0, scale: 0.8, ease: Expo.easeOut }, 0.3 )
+      .from( this.refs.revealCircle, 1, { opacity: 0, ease: Expo.easeOut })
+      .from( this.refs.revealHand, 1, { opacity: 0, ease: Expo.easeOut }, 0.3 )
       .from( this.refs.revealInstruction, 1, { opacity: 0, y: '100%', ease: Expo.easeOut }, 0.3 )
-      .to( this.refs.revealCircle, 0.6, { opacity: 0, scale: 0.8, ease: Expo.easeOut })
+      .to( this.refs.revealCircle, 0.6, { opacity: 0, ease: Expo.easeOut })
       .to( this.refs.revealHand, 1, { scale: 0.8, ease: Back.easeOut })
       .to( this.refs.revealHand, 1, { scale: 1, ease: Expo.easeOut })
       .to( this.refs.revealCircle, 1, { opacity: 1, scale: 1.05, ease: Expo.easeOut })
