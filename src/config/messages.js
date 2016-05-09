@@ -38,6 +38,9 @@ const messages = {
   EXP_FLASH_MSG: 'EXP_FLASH_MSG',
   EXP_INTRO_FLASH_MSG: 'EXP_INTRO_FLASH_MSG',
 
+  // ==== Reward popin ====
+  EXP_SHOW_REWARD: 'EXP_SHOW_REWARD',
+
   // ==== Fish Name ====
   EXP_SHOW_FISH_NAME: 'EXP_SHOW_FISH_NAME',
 
@@ -45,6 +48,7 @@ const messages = {
   ABOUT_OPEN: 'ABOUT_OPEN',
   ABOUT_CLOSE: 'ABOUT_CLOSE',
   TOOLTIPS_SHOW: 'TOOLTIPS_SHOW'
+
 };
 
 module.exports = messages;
