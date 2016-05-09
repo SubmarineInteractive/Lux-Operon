@@ -177,7 +177,7 @@ class Player extends THREE.Object3D {
    */
   update( time, delta ) {
 
-    this.checkLuxVal();
+    this.updateLuxVal();
 
     this.checkDangerState();
 

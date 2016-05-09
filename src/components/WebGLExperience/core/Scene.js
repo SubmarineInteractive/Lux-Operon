@@ -94,10 +94,9 @@ class Scene extends AbstractScene {
     this.world.update();
     this.player.update( this.clock.time, this.clock.delta );
 
-    const newBgColor = new THREE.Color( lightenDarkenColor( this.fog.initialColor.toString( 16 ), - 1 + this.player.luxVal + 0.1 ) );
-
-    this.fog.color = newBgColor;
-    this.renderer.setClearColor( newBgColor );
+    // const newBgColor = new THREE.Color( lightenDarkenColor( this.fog.initialColor.toString( 16 ), - 1 + this.player.luxVal + 0.1 ) );
+    // this.fog.color = newBgColor;
+    // this.renderer.setClearColor( newBgColor );
 
     if( this.controls ) {
       this.controls.update( this.clock.delta );

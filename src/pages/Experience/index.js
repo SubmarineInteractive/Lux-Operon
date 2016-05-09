@@ -7,6 +7,7 @@ import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
 import LevelInfos from 'components/LevelInfos';
 import Timer from 'components/Timer';
+import ExperienceOverlay from 'components/ExperienceOverlay';
 import LevelIntroduction from 'components/LevelIntroduction';
 import WebGLExperience from 'components/WebGLExperience';
 import { mezaleConfig } from 'config/levels';
@@ -44,6 +45,7 @@ class Experience extends Component {
 
     const content = (
       <div className="page__container">
+        <ExperienceOverlay />
         <LevelIntroduction config={mezaleConfig} ref="levelIntro"/>
         <About />
         <Radar />

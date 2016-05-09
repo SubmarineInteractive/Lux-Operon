@@ -1,0 +1,40 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.experience-overlay {
+  @include full-absolute;
+  pointer-events: none;
+}
+
+.experience-overlay__layer {
+  @include full-absolute;
+  pointer-events: none;
+
+  &--darker {
+    // display: none;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  &--danger {
+    opacity: 0;
+    animation: flash 2s ease infinite;
+    background:radial-gradient(ellipse at center, transparent 30%, rgba(255,0,0,0.2) 100%);
+    display: none;
+  }
+
+  &--is-display {
+    display: block !important;
+  }
+}
+
+
+@keyframes flash {
+
+  from, to {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
