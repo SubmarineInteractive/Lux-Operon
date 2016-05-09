@@ -34,6 +34,10 @@ const messages = {
   EXP_INTRO_START: 'EXP_INTRO_START',
   EXP_INTRO_ENDED: 'EXP_INTRO_ENDED',
 
+  // ==== Flash Messages ====
+  EXP_FLASH_MSG: 'EXP_FLASH_MSG',
+  EXP_INTRO_FLASH_MSG: 'EXP_INTRO_FLASH_MSG',
+
   // ==== About popin ====
   ABOUT_OPEN: 'ABOUT_OPEN',
   ABOUT_CLOSE: 'ABOUT_CLOSE',

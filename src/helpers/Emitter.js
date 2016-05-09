@@ -1,2 +1,7 @@
 import EventEmitter from 'event-emitter';
-export default new EventEmitter();
+
+const Emitter = new EventEmitter;
+
+window.Emitter = Emitter;
+
+export default Emitter;

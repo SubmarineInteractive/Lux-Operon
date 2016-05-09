@@ -1,5 +1,36 @@
 @import '~stylesheets/common/variables';
 
 .flash-messages {
+  position: absolute;
+  width: 300px;
+  bottom: 5rem;
+  right: 5rem;
+  z-index: 2;
+  color: white;
+}
 
+.flash-messages__el {
+  display: block;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  color: $color-white;
+  margin-top: 0.5rem;
+
+  span {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    background: rgba(black, 0.2);
+  }
+
+  &--anecdotic {
+    font-style: italic;
+  }
+
+  &--good {
+    color: $color-green;
+  }
+  &--danger {
+    color: $color-red;
+  }
 }
