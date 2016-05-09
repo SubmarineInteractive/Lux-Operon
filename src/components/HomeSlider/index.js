@@ -133,6 +133,7 @@ class HomeSlider extends Component {
           this.grabberDragTl.progress( 1 );
           this.removeListeners();
 
+          this.refs.slider.style.top = '65vh';
           this.refs.instructions.style.display = 'none';
           this.refs.loadingMsg.style.display= 'block';
 
