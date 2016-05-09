@@ -19,6 +19,7 @@ class NicePersonControls {
 
     this.camera = camera;
     this.cannonBody = player.sphereBody;
+    this.introCamMovementTl = new TimelineMax();
 
     this.enabled = false;
     this.enableDamping = false;
@@ -82,7 +83,6 @@ class NicePersonControls {
   }
 
   startIntroCameraMovement() {
-    this.introCamMovementTl = new TimelineMax();
     this.introTweenValue = 15;
 
     this.introCamMovementTl
