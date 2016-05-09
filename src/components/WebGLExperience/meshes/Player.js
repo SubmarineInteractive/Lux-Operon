@@ -2,6 +2,14 @@ import Cannon from 'cannon';
 import PointLight from '../lights/PointLight';
 import { randomInt } from 'utils';
 
+import Emitter from 'helpers/Emitter';
+
+import {
+  EXP_GET_LUX_VALUE,
+  EXP_LUX_VALUE_SENDED,
+  EXP_LUX_VALUE_UPDATE
+} from 'config/messages';
+
 /**
  * Player class
  * @param {Configuration} Configuration Configuration
@@ -24,10 +32,18 @@ class Player extends THREE.Object3D {
     this.playerConfig = playerConfig.pointLights;
     this.cameraConfig = cameraConfig;
     this.lights = [];
+    this.luxVal = 0.9;
     this.nbLights = this.playerConfig.number;
 
     this.createSphere();
     this.initLights();
+
+    // Events
+    this.getLuxVal = this.getLuxVal.bind( this );
+    this.updateLuxVal = this.updateLuxVal.bind( this );
+
+    Emitter.on( EXP_GET_LUX_VALUE, this.getLuxVal );
+    Emitter.on( EXP_LUX_VALUE_UPDATE, this.updateLuxVal );
 
   }
 
@@ -92,12 +108,29 @@ class Player extends THREE.Object3D {
     this.sphere.quaternion.setFromEuler( newRotation );
   }
 
+
+  updateLuxVal( newVal ) {
+
+    this.luxVal = newVal;
+  }
+
+  getLuxVal() {
+
+    Emitter.emit( EXP_LUX_VALUE_SENDED , this.luxVal );
+
+  }
+
   /**
    * update function
    * @param {number} time  Elapsed time from three global clock
    * @param {number} delta Delta time from three global clock
    */
   update( time, delta ) {
+
+    if( this.luxVal > 0 ) {
+
+      this.luxVal -= 1 / 1000;
+    }
 
     for ( let i = 0; i < this.nbLights; i++ ) {
       this.updateLight( this.lights[ i ], time, delta );
@@ -115,6 +148,8 @@ class Player extends THREE.Object3D {
     light.position.x = Math.sin( gOption.x.velocity * time + gOption.x.offset ) * gOption.x.distance;
     light.position.y = Math.sin( gOption.y.velocity * time + gOption.y.offset ) * gOption.y.distance;
     light.position.z = Math.cos( gOption.z.velocity * time + gOption.z.offset ) * gOption.z.distance;
+
+    light.intensity = this.luxVal * this.playerConfig.intensity;
   }
 }
 

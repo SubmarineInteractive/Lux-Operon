@@ -15,6 +15,10 @@ class Fog extends THREE.FogExp2 {
 
     this.scene = Scene;
 
+    this.initialColor = configuration.color;
+
+    this.configuration = configuration;
+
     this.scene.fog = this;
 
     this.renderer = Renderer;

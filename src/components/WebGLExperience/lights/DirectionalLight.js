@@ -12,6 +12,8 @@ class DirectionalLight extends THREE.DirectionalLight {
     const { color, intensity } = configuration;
 
     super( color, intensity );
+
+    this.configuration = configuration;
   }
 
   /**

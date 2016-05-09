@@ -6,6 +6,7 @@ import Fog from '../misc/Fog';
 import Player from '../meshes/Player';
 import Level from '../meshes/Level';
 import Terrain from '../meshes/Terrain';
+import { map, lightenDarkenColor } from 'utils';
 
 /**
  * Scene class
@@ -92,6 +93,13 @@ class Scene extends AbstractScene {
 
     this.world.update();
     this.player.update( this.clock.time, this.clock.delta );
+
+    this.fog.density = map( this.player.luxVal, 0, 1, 0.002, 0.001 );
+    this.fog.color = map( this.player.luxVal, 0, 1, this.fog.configuration.darkerColor, this.fog.initialColor );
+
+    console.log(this.fog.configuration.darkerColor);
+    console.log(this.fog.initialColor);
+
 
     if( this.controls ) {
       this.controls.update( this.clock.delta );
