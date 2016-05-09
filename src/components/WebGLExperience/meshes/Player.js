@@ -7,6 +7,7 @@ import Emitter from 'helpers/Emitter';
 import {
   EXP_LUX_TOGGLE,
   EXP_LUX_END_GAME,
+  EXP_FLASH_MSG,
   EXP_GET_LUX_VALUE,
   EXP_LUX_VALUE_SENDED,
   EXP_LUX_VALUE_UPDATE,

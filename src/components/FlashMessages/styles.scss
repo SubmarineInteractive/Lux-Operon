@@ -3,10 +3,11 @@
 .flash-messages {
   position: absolute;
   width: 300px;
-  bottom: 5rem;
-  right: 5rem;
+  bottom: 8rem;
+  right: 6rem;
   z-index: 2;
   color: white;
+  user-select: none;
 }
 
 .flash-messages__el {
@@ -15,6 +16,7 @@
   line-height: 1.5rem;
   color: $color-white;
   margin-top: 0.5rem;
+  user-select: none;
 
   span {
     display: block;

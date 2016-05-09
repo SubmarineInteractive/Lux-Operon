@@ -1,5 +1,14 @@
 @import '~stylesheets/common/variables';
 
 .fish-name {
-  
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  text-align: right;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  color: $color-white;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
 }

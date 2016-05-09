@@ -38,6 +38,9 @@ const messages = {
   EXP_FLASH_MSG: 'EXP_FLASH_MSG',
   EXP_INTRO_FLASH_MSG: 'EXP_INTRO_FLASH_MSG',
 
+  // ==== Fish Name ====
+  EXP_SHOW_FISH_NAME: 'EXP_SHOW_FISH_NAME',
+
   // ==== About popin ====
   ABOUT_OPEN: 'ABOUT_OPEN',
   ABOUT_CLOSE: 'ABOUT_CLOSE',
