@@ -2,8 +2,10 @@ import './styles.scss';
 
 import { Component } from 'react';
 
-import {
+import Emitter from 'helpers/Emitter';
 
+import {
+  TOOLTIPS_SHOW
 } from 'config/messages';
 
 /**
@@ -31,13 +33,16 @@ class IntroductionTooltips extends Component {
 
   bind() {
 
-    [ 'skip', 'onKeyUp' ]
+    [ 'skip', 'onKeyUp', 'showTooltips' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addEventListeners() {
 
     document.addEventListener( 'keyup', this.onKeyUp, false );
+
+    Emitter.off( TOOLTIPS_SHOW, this.showTooltips );
+    Emitter.on( TOOLTIPS_SHOW, this.showTooltips );
   }
 
   removeEventListeners() {
@@ -64,19 +69,30 @@ class IntroductionTooltips extends Component {
       .staggerFrom( indications, 2, { opacity: 0, y: 10, ease: Expo.easeOut }, 0.3, 0.4 );
   }
 
+  showTooltips() {
+
+    this.begin( true );
+  }
+
   onKeyUp( ev ) {
 
     if( ev.keyCode === 27 ) {
+
       this.skip();
     }
   }
 
-  begin() {
+  begin( showIntro ) {
+
+    if( showIntro ) {
+      this.props.showIntro();
+    }
+
     this.refs.container.style.display = 'block';
 
     this.addEventListeners();
 
-    this.enterTl.play();
+    this.enterTl.play( 0 );
   }
 
   skip() {

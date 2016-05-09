@@ -26,7 +26,7 @@ class Experience extends Component {
 
   }
 
-  componentWillAppear( callback ) {
+  componentWillAppear() {
     this.startIntroduction( 500 );
   }
 

@@ -6,7 +6,8 @@ import { Component } from 'react';
 
 import {
   EXP_DEPTH_VALUE_SENDED,
-  ABOUT_OPEN
+  ABOUT_OPEN,
+  TOOLTIPS_SHOW
 } from 'config/messages';
 
 /**
@@ -41,7 +42,7 @@ class LevelInfos extends Component {
 
   bind() {
 
-    [ 'depthUpdate', 'openAbout' ]
+    [ 'depthUpdate', 'openAbout', 'showTooltips' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
@@ -58,6 +59,10 @@ class LevelInfos extends Component {
 
   openAbout() {
     Emitter.emit( ABOUT_OPEN );
+  }
+
+  showTooltips() {
+    Emitter.emit( TOOLTIPS_SHOW );
   }
 
   depthUpdate( value ) {
@@ -102,7 +107,7 @@ class LevelInfos extends Component {
 
         <p className="level-infos__pressure">{pressure}</p>
 
-        <button className="level-infos__helper-button" onClick={this.openAbout}>?</button>
+        <button className="level-infos__helper-button" onClick={this.showTooltips}>?</button>
 
       </div>
 

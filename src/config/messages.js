@@ -26,7 +26,8 @@ const messages = {
 
   // ==== About popin ====
   ABOUT_OPEN: 'ABOUT_OPEN',
-  ABOUT_CLOSE: 'ABOUT_CLOSE'
+  ABOUT_CLOSE: 'ABOUT_CLOSE',
+  TOOLTIPS_SHOW: 'TOOLTIPS_SHOW'
 };
 
 module.exports = messages;

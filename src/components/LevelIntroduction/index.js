@@ -41,7 +41,7 @@ class LevelIntroduction extends Component {
 
   bind() {
 
-    [ 'beginTutorial', 'beginTooltips', 'endIntroduction' ]
+    [ 'beginTutorial', 'beginTooltips', 'endIntroduction', 'showIntroduction' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -69,6 +69,13 @@ class LevelIntroduction extends Component {
     this.refs.tooltipsStep.begin();
   }
 
+  showIntroduction() {
+
+    this.refs.container.classList.remove( 'level-introduction--is-ended' );
+
+    TweenMax.to( this.refs.container, 1, { opacity: 1, ease: Expo.easeOut });
+  }
+
   endIntroduction() {
 
     TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
@@ -93,7 +100,7 @@ class LevelIntroduction extends Component {
 
         <IntroductionTutorial config={this.props.config} ended={this.beginTooltips} ref="tutorialStep" />
 
-        <IntroductionTooltips config={this.props.config} ended={this.endIntroduction} ref="tooltipsStep" />
+        <IntroductionTooltips config={this.props.config} showIntro={ this.showIntroduction } ended={this.endIntroduction} ref="tooltipsStep" />
 
       </div>
 
