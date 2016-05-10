@@ -93,6 +93,7 @@ class Scene extends AbstractScene {
 
     this.world.update();
     this.player.update( this.clock.time, this.clock.delta );
+    this.level.update( this.clock.time );
 
     if( this.controls ) {
       this.controls.update( this.clock.delta );

@@ -10,10 +10,10 @@ class Fish extends THREE.Object3D {
   constructor( model, texture ) {
     super();
 
-    model.scale.set( 1, 1, 1 );
+    model.scale.set( 0.4, 0.4, 0.4 );
+
     model.traverse( child => {
       if( child instanceof THREE.Mesh ) {
-
         child.material = new FresnelMaterial({}, texture );
         child.material.uniforms.random.value = randomFloat( 0, 1 );
       }

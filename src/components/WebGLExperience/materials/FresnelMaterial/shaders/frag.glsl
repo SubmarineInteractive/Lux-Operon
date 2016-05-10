@@ -1,4 +1,4 @@
-uniform sampler2D normalMap;
+uniform sampler2D gradientTexture;
 uniform float alpha;
 
 varying vec3 vNormal;
@@ -16,10 +16,10 @@ void main() {
   // Compute fresnel reflection factor
   float reflectionFactor = abs( dot( normalize( vI ), worldNormal ) );
 
-  vec4 gradientColor = texture2D( normalMap, vec2( reflectionFactor, 1.0 ) );
+  vec4 gradientColor = texture2D( gradientTexture, vec2( reflectionFactor, 1.0 ) );
   float gradientAlpha = clamp( alpha + ( 1.0 - reflectionFactor ), 0.0, 1.0 );
 
   gl_FragColor = vec4( gradientColor.rgb, gradientAlpha );
-  
+
   // chunk(fog_fragment);
 }

@@ -32,11 +32,9 @@ class FishGroup extends THREE.Group {
       this.add( fish );
     }
 
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener( 'keydown', ( event ) => {
 
-      console.log(event.keyCode);
-
-      switch (event.keyCode) {
+      switch ( event.keyCode ) {
         case 38:
           this.position.x += 10;
           break;
@@ -44,10 +42,10 @@ class FishGroup extends THREE.Group {
           this.position.x -= 10;
           break;
         case 37:
-          this.position.y += 10;
+          this.position.z += 10;
           break;
         case 39:
-          this.position.y -= 10;
+          this.position.z -= 10;
           break;
       }
     });
@@ -70,6 +68,15 @@ class FishGroup extends THREE.Group {
     return this.position;
 
   }
+
+  update( time ) {
+    this.traverse( child => {
+      if( child instanceof THREE.Mesh ) {
+        child.material.update( time );
+      }
+    });
+  }
+
 }
 
 export default FishGroup;
