@@ -65,15 +65,15 @@ class RadarLayer extends Component {
     this.ctx.drawImage( this.radarTexture, 0, 0, this.width, this.height );
   }
 
-  drawCursor( previousPosition, position, fromTween ) {
+  drawIndicators( previousCamPosition, camPosition, fishesPosition ) {
 
-    const x = this.width * position.x;
-    const y = this.height * position.y;
+    const camX = this.width * camPosition.x;
+    const camY = this.height * camPosition.y;
     const offsetAngle = Math.PI / 2;
 
     const directionVector = {
-      x: position.x - previousPosition.x,
-      y: position.y - previousPosition.y
+      x: camPosition.x - previousCamPosition.x,
+      y: camPosition.y - previousCamPosition.y
     };
 
     const yAxis = {
@@ -94,7 +94,7 @@ class RadarLayer extends Component {
     this.ctx.arc( this.halfWidth , this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
     this.ctx.clip();
 
-    this.ctx.translate( x, y );
+    this.ctx.translate( camX, camY );
     this.ctx.rotate( - angle + offsetAngle );
 
 
@@ -104,25 +104,41 @@ class RadarLayer extends Component {
 
     this.ctx.restore();
 
+    for ( let i = 0; i < fishesPosition.length; i++ ) {
+      this.ctx.save();
+
+      this.ctx.globalAlpha = this.indicatorsAlpha;
+
+      this.ctx.beginPath();
+      this.ctx.arc( fishesPosition[i].x * this.width, fishesPosition[i].y * this.height, 7, 0, 2 * Math.PI, false );
+      this.ctx.fillStyle = 'red';
+      this.ctx.fill();
+
+      this.ctx.restore();
+    }
+
+
   }
 
-  update( previousPosition, position, index ) {
+  update({ previousCamPosition, camPosition, fishesPosition }) {
 
-    // console.log( 'update canvas #' + index + ' camera position = ', position );
+    // console.log( 'update canvas #' + index + ' camera camPosition = ', camPosition );
 
+    console.log('camPos', camPosition);
+    console.log('fishesPosition', fishesPosition);
     TweenMax.killTweensOf( this );
 
     this.indicatorsAlpha = 1;
 
     this.ctx.clearRect( 0, 0, this.width, this.height );
 
-    this.drawCursor( previousPosition, position, false);
+    this.drawIndicators( previousCamPosition, camPosition, fishesPosition );
 
     TweenMax.to( this, 4, { indicatorsAlpha: 0, ease: Expo.easeOut, delay: 1, onUpdate: ()=> {
 
       this.ctx.clearRect( 0, 0, this.width, this.height );
 
-      this.drawCursor( previousPosition, position, true );
+      this.drawIndicators( previousCamPosition, camPosition, fishesPosition );
 
     } });
   }
