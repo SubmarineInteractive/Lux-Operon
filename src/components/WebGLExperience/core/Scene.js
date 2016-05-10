@@ -91,7 +91,7 @@ class Scene extends AbstractScene {
 
     this.preRender();
 
-    this.world.update();
+    this.world.update( this.clock.delta );
     this.player.update( this.clock.time, this.clock.delta );
     this.level.update( this.clock.time );
 
