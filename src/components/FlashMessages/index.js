@@ -37,7 +37,7 @@ class FlashMessages extends Component {
   addListeners() {
 
     Emitter.on( EXP_FLASH_MSG, this.addFlashMessage );
-    Emitter.on( EXP_INTRO_FLASH_MSG, this.introFlashMessage );
+    Emitter.once( EXP_INTRO_FLASH_MSG, this.introFlashMessage );
   }
 
   removeListeners() {
