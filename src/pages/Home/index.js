@@ -78,9 +78,7 @@ class Home extends Component {
       this.refs.backgroundScene.scene.raf.stop();
 
       setTimeout( () =>{
-        this.refs.wrapper.style.transform = 'none';
-        this.refs.home.style.position = 'absolute';
-        this.refs.home.style.top = 0;
+        this.refs.home.classList.add( 'home--drag-complete' );
         findDOMNode( this.refs.backgroundScene ).style.display = 'none';
       }, 1000 );
     } });
@@ -102,7 +100,7 @@ class Home extends Component {
   render() {
 
     return (
-      <div className="page page--home" ref="home">
+      <div className="page home" ref="home">
 
         <div className="home__wrapper" ref="wrapper">
 

@@ -6,11 +6,20 @@
   width: 100%;
   height: 100%;
   z-index: 15;
+
+  &--drag-complete {
+    position: absolute !important;
+    top: 0!important;
+  }
 }
 
 .home__wrapper {
   width: 100%;
   background-color: $color-sea-blue;
+
+  .home--drag-complete & {
+    transform: none!important;
+  }
 }
 
 .home__about {
