@@ -29,9 +29,9 @@ class FishGroup extends THREE.Group {
       const model = resources[ species ].clone();
       const fish = new Fish( model, resources.fishGradientTexture );
 
-      fish.position.x += Math.random() * 1000;
-      fish.position.y += Math.random() * 1000;
-      fish.position.z += Math.random() * 1000;
+      fish.position.x += Math.random() * 3000;
+      fish.position.y += Math.random() * 3000;
+      fish.position.z += Math.random() * 3000;
 
       this.add( fish );
     }

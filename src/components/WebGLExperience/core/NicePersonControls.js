@@ -34,7 +34,7 @@ class NicePersonControls {
 
     this.inputVelocity = new THREE.Vector3();
     this.cannonBodyVelocity = this.cannonBody.velocity;
-    this.velocityFactor = 1200;
+    this.velocityFactor = 10000;
 
     this.euler = new THREE.Euler();
     this.quaternion = new THREE.Quaternion();
@@ -162,7 +162,6 @@ class NicePersonControls {
   }
 
   update( delta ) {
-
     if( this.locked ) return;
 
     if( this.enabled || this.enableDamping ) {
@@ -170,7 +169,7 @@ class NicePersonControls {
       this.inputVelocity.set( 0, 0, 0 );
 
       // Move forward
-      this.inputVelocity.z = - this.velocityFactor * delta * 800;
+      this.inputVelocity.z = - this.velocityFactor * delta;
 
       // Movementy Y [-1, 1], indicate sinking direction
       this.cannonBodyVelocity.y = ( -this.movementY /  this.yawObject.position.y ) * 500000;

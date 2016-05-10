@@ -10,7 +10,7 @@ class Fish extends THREE.Object3D {
   constructor( model, texture ) {
     super();
 
-    model.scale.set( 0.4, 0.4, 0.4 );
+    model.scale.set( 0.3, 0.3, 0.3 );
 
     model.traverse( child => {
       if( child instanceof THREE.Mesh ) {
