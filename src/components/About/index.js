@@ -73,7 +73,7 @@ class About extends Component {
       // .fromTo( this.refs.container, 1, { scale: 1.1, y: '-50%' }, { scale: 1, y: '-50%', ease: Expo.easeOut }, 0 )
       .fromTo( this.refs.wrapper, 1, { opacity: 0 }, { opacity: 1, ease: Expo.easeOut }, 0 )
       .fromTo( this.refs.descSection, 1, { scale: 1.1, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, ease: Expo.easeOut }, 0 )
-      .fromTo( this.refs.teamSection, 1, { scale: 1.1, opacity: 0, y: 30}, { scale: 1, opacity: 1, y: 0, ease: Expo.easeOut }, 0.2 );
+      .fromTo( this.refs.teamSection, 1, { scale: 1.1, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, ease: Expo.easeOut }, 0.2 );
 
     this.leaveTl
       .fromTo( this.refs.container, 1, { scale: 1, y: '-50%' }, { scale: 1.1, y: '-50%', ease: Expo.easeOut }, 0 )
