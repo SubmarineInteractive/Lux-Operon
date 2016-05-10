@@ -6,7 +6,6 @@ import Fog from '../misc/Fog';
 import Player from '../meshes/Player';
 import Level from '../meshes/Level';
 import Terrain from '../meshes/Terrain';
-import { map, lightenDarkenColor } from 'utils';
 
 /**
  * Scene class
@@ -16,7 +15,7 @@ class Scene extends AbstractScene {
   /**
    * constructor function
    */
-  constructor({ camera, renderer, postProcessing, lights, fog, player, terrain, boundingBox }, resources ) {
+  constructor({ camera, renderer, postProcessing, lights, fog, player, terrain, boundingBox, fishGroup }, resources ) {
     super({ camera, renderer, postProcessing });
 
     this.fogConfig = fog;
@@ -25,6 +24,7 @@ class Scene extends AbstractScene {
     this.playerConfig = player;
     this.terrainConfig = terrain;
     this.boundingBoxConfig = boundingBox;
+    this.fishGroupConfig = fishGroup;
 
     this.resources = resources;
 
@@ -80,7 +80,7 @@ class Scene extends AbstractScene {
     this.add( this.directionalLight );
 
     // Level
-    this.level = new Level( this.terrain, this.player, this.boundingBoxConfig );
+    this.level = new Level( this.terrain, this.player, this.boundingBoxConfig, this.fishGroupConfig, this.resources );
     this.add( this.level );
   }
 
@@ -93,10 +93,6 @@ class Scene extends AbstractScene {
 
     this.world.update();
     this.player.update( this.clock.time, this.clock.delta );
-
-    // const newBgColor = new THREE.Color( lightenDarkenColor( this.fog.initialColor.toString( 16 ), - 1 + this.player.luxVal + 0.1 ) );
-    // this.fog.color = newBgColor;
-    // this.renderer.setClearColor( newBgColor );
 
     if( this.controls ) {
       this.controls.update( this.clock.delta );

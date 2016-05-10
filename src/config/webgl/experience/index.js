@@ -6,3 +6,4 @@ export boundingBox from './boundingBox';
 export lights from './lights';
 export player from './player';
 export terrain from './terrain';
+export fishGroup from './fishGroup';
