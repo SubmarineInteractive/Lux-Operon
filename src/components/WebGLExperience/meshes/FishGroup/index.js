@@ -13,7 +13,7 @@ class FishGroup extends THREE.Group {
   constructor({ count, species, luxAmount }, resources ) {
     super();
 
-    this.position.copy( new THREE.Vector3( 600, 1500, -200 ) );
+    this.position.copy( new THREE.Vector3( 500, 1500, -2000 ) );
 
     for ( let i = 0; i < count; i++ ) {
       const model = resources[ species ].clone();
@@ -34,11 +34,19 @@ class FishGroup extends THREE.Group {
           this.position.x -= 10;
           break;
         case 37:
-          this.position.y += 10;
+          this.position.z += 10;
           break;
         case 39:
-          this.position.y -= 10;
+          this.position.z -= 10;
           break;
+      }
+    });
+  }
+
+  update( time ) {
+    this.traverse( child => {
+      if( child instanceof THREE.Mesh ) {
+        child.material.update( time );
       }
     });
   }

@@ -38,6 +38,10 @@ class Level extends THREE.Object3D {
     // this.add( this.boundingBox );
 
   }
+
+  update( time ) {
+    this.fishGroups.map( group => group.update( time ) );
+  }
 }
 
 export default Level;

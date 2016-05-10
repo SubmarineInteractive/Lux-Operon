@@ -18,41 +18,31 @@ class FresnelMaterial extends THREE.ShaderMaterial {
     this.vertexShader = shaderParse( vertexShader );
     this.fragmentShader = shaderParse( fragmentShader );
 
-    this.gradientMap = texture;
-    this.gradientMap.magFilter = this.gradientMap.minFilter = THREE.LinearFilter;
+    this.gradientTexture = texture;
+    this.gradientTexture.magFilter = this.gradientTexture.minFilter = THREE.LinearFilter;
 
     this.transparent = true;
     this.fog = true;
 
-    this.uniforms = THREE.UniformsUtils.merge( [
-      THREE.UniformsLib[ 'fog' ],
-      {
-        'time': {
-          type: 'f',
-          value: 0.0
-        },
-        'gradientMap': {
-          type: 't',
-          value: this.gradientMap
-        },
-        'normalMapScale': {
-          type: 'f',
-          value: 1.0
-        },
-        'normapMapPower': {
-          type: 'f',
-          value: 1.0
-        },
-        'alpha': {
-          type: 'f',
-          value: 0.4
-        },
-        'random': {
-          type: 'f',
-          value: 0.0
-        }
+    this.uniforms = {
+      ...THREE.UniformsLib[ 'fog' ],
+      'time': {
+        type: 'f',
+        value: 0.0
+      },
+      'gradientTexture': {
+        type: 't',
+        value: this.gradientTexture
+      },
+      'alpha': {
+        type: 'f',
+        value: 0.5
+      },
+      'random': {
+        type: 'f',
+        value: 0.0
       }
-    ] );
+    };
   }
 
   /**
