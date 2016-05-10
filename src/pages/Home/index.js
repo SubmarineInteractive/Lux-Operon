@@ -87,7 +87,8 @@ class Home extends Component {
 
     tl.to( this.refs.wrapper, 2, { y: "-50%", ease: Power2.easeIn }, 0 )
       .staggerTo( this.titleSplited.chars, 2, { opacity: 0, scale: 0.8, y: '-70%', ease: Back.easeOut.config( 3 ) }, 0.1 , 0.5 )
-      .to( this.refs.catchphrase, 1, { opacity: 0, ease: Expo.easeOut }, 0 );
+      .to( this.refs.catchphrase, 1, { opacity: 0, ease: Expo.easeOut }, 0 )
+      .to( this.refs.aboutBtn, 1, { opacity: 0, y: '-100%', ease: Expo.easeOut }, 0 );
 
     this.refs.transitionCanvas.play();
   }
@@ -105,7 +106,7 @@ class Home extends Component {
 
         <div className="home__wrapper" ref="wrapper">
 
-          <button className="home__about" onClick={this.showAbout}>about</button>
+          <button className="home__about" onClick={this.showAbout} ref="aboutBtn">about</button>
 
           <WebGlHomeBackground progress={this.state.progress} ref="backgroundScene" />
 
