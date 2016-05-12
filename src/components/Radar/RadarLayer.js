@@ -5,19 +5,12 @@ import { Component } from 'react';
  */
 class RadarLayer extends Component {
 
-  state = {
-  }
-
-  componentWillMount() {
-    this.addListeners();
-  }
-
   componentDidMount() {
 
     this.cursorTexture = new Image();
-    this.cursorTexture.src = "/images/experience/radar-cursor.png";
+    this.cursorTexture.src = '/images/experience/radar-cursor.png';
 
-    this.cursorTexture.onload = ()=> {
+    this.cursorTexture.onload = () => {
       this.initCanvas();
     };
 
@@ -29,16 +22,6 @@ class RadarLayer extends Component {
     this.indicatorsAlpha = 1;
 
     this.initCanvas();
-  }
-
-  componentWillUnmount() {
-    this.removeListeners();
-  }
-
-  addListeners() {
-  }
-
-  removeListeners() {
   }
 
   initCanvas() {
@@ -54,8 +37,6 @@ class RadarLayer extends Component {
 
     this.halfWidth = this.width / 2;
     this.halfHeight = this.height / 2;
-
-    // this.update();
   }
 
   drawBackground() {
@@ -65,7 +46,7 @@ class RadarLayer extends Component {
     this.ctx.drawImage( this.radarTexture, 0, 0, this.width, this.height );
   }
 
-  drawIndicators( previousCamPosition, camPosition, fishesPosition ) {
+  drawIndicators( previousCamPosition = {}, camPosition, fishesPosition ) {
 
     const camX = this.width * camPosition.x;
     const camY = this.height * camPosition.y;
@@ -91,16 +72,15 @@ class RadarLayer extends Component {
     this.ctx.save();
 
     this.ctx.beginPath();
-    this.ctx.arc( this.halfWidth , this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
+    this.ctx.arc( this.halfWidth, this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
     this.ctx.clip();
 
     this.ctx.translate( camX, camY );
     this.ctx.rotate( - angle + offsetAngle );
 
-
     this.ctx.globalAlpha = this.indicatorsAlpha;
 
-    this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width/2, -this.cursorConfig.width/2, this.cursorConfig.width, this.cursorConfig.height );
+    this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width / 2, -this.cursorConfig.width / 2, this.cursorConfig.width, this.cursorConfig.height );
 
     this.ctx.restore();
 
@@ -110,22 +90,16 @@ class RadarLayer extends Component {
       this.ctx.globalAlpha = this.indicatorsAlpha;
 
       this.ctx.beginPath();
-      this.ctx.arc( fishesPosition[i].x * this.width, fishesPosition[i].y * this.height, 7, 0, 2 * Math.PI, false );
+      this.ctx.arc( fishesPosition[ i ].x * this.width, fishesPosition[ i ].y * this.height, 7, 0, 2 * Math.PI, false );
       this.ctx.fillStyle = 'red';
       this.ctx.fill();
 
       this.ctx.restore();
     }
-
-
   }
 
   update({ previousCamPosition, camPosition, fishesPosition }) {
 
-    // console.log( 'update canvas #' + index + ' camera camPosition = ', camPosition );
-
-    console.log('camPos', camPosition);
-    console.log('fishesPosition', fishesPosition);
     TweenMax.killTweensOf( this );
 
     this.indicatorsAlpha = 1;
@@ -134,7 +108,7 @@ class RadarLayer extends Component {
 
     this.drawIndicators( previousCamPosition, camPosition, fishesPosition );
 
-    TweenMax.to( this, 4, { indicatorsAlpha: 0, ease: Expo.easeOut, delay: 1, onUpdate: ()=> {
+    TweenMax.to( this, 4, { indicatorsAlpha: 0, ease: Expo.easeOut, delay: 1, onUpdate: () => {
 
       this.ctx.clearRect( 0, 0, this.width, this.height );
 

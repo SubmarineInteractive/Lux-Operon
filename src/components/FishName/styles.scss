@@ -1,6 +1,8 @@
 @import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
 
 .fish-name {
+  @include no-select;
   position: absolute;
   bottom: 2.5rem;
   right: 2.5rem;
@@ -9,6 +11,5 @@
   text-transform: uppercase;
   color: $color-white;
   pointer-events: none;
-  user-select: none;
   opacity: 0;
 }

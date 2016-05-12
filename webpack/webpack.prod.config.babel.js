@@ -66,6 +66,11 @@ export default {
       {
         test: /drawSvg\.js$/,
         loader: 'imports?define=>false!exports?SplitText'
+      },
+      {
+        test: /\.dae$/,
+        exclude: /node_modules/,
+        loader: path.join( __dirname, 'loaders', 'spline-loader' )
       }
     ]
   },

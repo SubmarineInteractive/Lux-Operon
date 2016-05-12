@@ -1,6 +1,6 @@
 export default [
   {
-    count: 1000,
+    count: 1,
     species: 'lanternFish',
     luxAmount: 1 / 100
   }

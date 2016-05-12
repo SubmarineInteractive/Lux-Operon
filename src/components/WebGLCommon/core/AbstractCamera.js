@@ -10,11 +10,12 @@ class AbstractCamera extends THREE.PerspectiveCamera {
   /**
    * Constructor function
    */
-  constructor({ fov, aspect, near, far, orbitControls }) {
+  constructor({ fov, aspect, near, far, position, orbitControls }) {
 
     super( fov, aspect, near, far );
 
     if( orbitControls ) {
+      this.position.copy( position );
       this.controls = new OrbitControls( this );
     }
   }

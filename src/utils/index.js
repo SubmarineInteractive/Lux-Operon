@@ -1,4 +1,5 @@
 export clamp              from './clamp';
+export createSpline       from './create-spline';
 export degreeToRadian     from './degree-to-radian';
 export diagonal           from './diagonal';
 export distance           from './distance';
@@ -8,6 +9,7 @@ export loopIndex          from './loop-index';
 export map                from './map';
 export normalize          from './normalize';
 export parabola           from './parabola';
+export parseVec3          from './parse-vector-3';
 export randomFloat        from './random-float';
 export randomHexColor     from './random-hex-color';
 export randomInt          from './random-int';
