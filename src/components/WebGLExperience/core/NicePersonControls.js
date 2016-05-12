@@ -83,15 +83,15 @@ class NicePersonControls {
   }
 
   startIntroCameraMovement() {
-    // this.introTweenValue = 15;
-    //
-    // this.introCamMovementTl
-    //   .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {
-    //     this.inputVelocity.z = - this.introTweenValue;
-    //     this.cannonBodyVelocity.z += this.inputVelocity.z;
-    //     this.cannonBodyVelocity.y -= this.inputVelocity.z / 6;
-    //     this.yawObject.position.copy( this.cannonBody.position );
-    //   } });
+    this.introTweenValue = 15;
+
+    this.introCamMovementTl
+      .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {
+        this.inputVelocity.z = - this.introTweenValue;
+        this.cannonBodyVelocity.z += this.inputVelocity.z;
+        this.cannonBodyVelocity.y -= this.inputVelocity.z / 6;
+        this.yawObject.position.copy( this.cannonBody.position );
+      } });
   }
 
   handleMouseMove( event ) {

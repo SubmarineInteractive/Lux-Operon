@@ -16,6 +16,7 @@ class BackgroundScene extends AbstractScene {
     this.progress = 0;
     this.cameraConfig = camera;
 
+    this.camera.position.copy( this.cameraConfig.position );
     this.camera.lookAt( this.cameraConfig.target );
 
     // Point light
