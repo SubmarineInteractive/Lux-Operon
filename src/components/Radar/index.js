@@ -113,8 +113,6 @@ class Radar extends Component {
       x: normalize( 0, terrain.geometry.width, position.x ) + 0.5,
       y: normalize( 0, terrain.geometry.height, position.z ) * -1 + 0.5,
     };
-
-    console.log( this.camNormalizePosition );
   }
 
   onFishGroupPositionSended( position ) {

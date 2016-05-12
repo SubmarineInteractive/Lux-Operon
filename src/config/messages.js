@@ -33,7 +33,7 @@ const messages = {
   // ==== Fish ====
   EXP_FISH_GET_POSITION: 'EXP_FISH_GET_POSITION',
   EXP_FISH_GROUP_POSITION_SENDED: 'EXP_FISH_GROUP_POSITION_SENDED',
-  
+
   // ==== Level Introduction ====
   EXP_INTRO_START: 'EXP_INTRO_START',
   EXP_INTRO_ENDED: 'EXP_INTRO_ENDED',
@@ -44,6 +44,9 @@ const messages = {
 
   // ==== Reward popin ====
   EXP_SHOW_REWARD: 'EXP_SHOW_REWARD',
+
+  // ==== Video popin ====
+  EXP_SHOW_VIDEO: 'EXP_SHOW_VIDEO',
 
   // ==== Fish Name ====
   EXP_SHOW_FISH_NAME: 'EXP_SHOW_FISH_NAME',

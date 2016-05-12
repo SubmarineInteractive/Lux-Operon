@@ -1,0 +1,45 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.video-popin {
+  @include full-absolute;
+  display: none;
+  background: $color-black;
+  color: $color-white;
+  z-index: 98;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 2s ease-out;
+
+  &--is-visible {
+    display: block;
+    opacity: 1;
+  }
+}
+
+.video-popin__skip {
+  display: block;
+  position: fixed;
+  text-align: right;
+  font-size: 1.4rem;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  color: $color-white;
+  text-transform: uppercase;
+  transition: color 0.3s ease-out;
+  font-family: $font-tstar;
+  cursor: pointer;
+  z-index: 10;
+  
+  &:hover {
+    color: $color-medium-grey;
+  }
+}
+
+
+.video-popin__video-el {
+
+  @include center-xy;
+  width: 100%;
+  height: auto;
+}
