@@ -130,14 +130,14 @@ class NicePersonControls {
   debugSetPosition( x, y, z ) {
     this.cannonBody.position.x = x;
     this.cannonBody.position.y = y;
-    this.cannonBody.position.z = z;
+    this.cannonBody.position.z = 4000;
     this.yawObject.position.copy( this.cannonBody.position );
   }
 
   getPosition() {
 
     Emitter.emit( EXP_CAMERA_POSITION_SENDED, this.cannonBody.position );
-
+    
     return this.cannonBody.position;
 
   }

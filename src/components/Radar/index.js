@@ -32,7 +32,7 @@ class Radar extends Component {
 
     this.config = {
       refreshTime: 3,
-      radarSize: 200,
+      radarSize: 150,
       radarScannerSize: 2
     };
 
@@ -110,16 +110,18 @@ class Radar extends Component {
     this.prevCamNormalizePosition = this.camNormalizePosition;
 
     this.camNormalizePosition  = {
-      x: normalize( 0, terrain.geometry.width, position.x ),
-      y: normalize( 0, terrain.geometry.height, position.z ) * -1
+      x: normalize( 0, terrain.geometry.width, position.x ) + 0.5,
+      y: normalize( 0, terrain.geometry.height, position.z ) * -1 + 0.5,
     };
+
+    console.log( this.camNormalizePosition );
   }
 
   onFishGroupPositionSended( position ) {
 
     const normalizePos = {
-      x: normalize( 0, terrain.geometry.width, position.x ),
-      y: normalize( 0, terrain.geometry.height, position.z ) * -1
+      x: normalize( 0, terrain.geometry.width, position.x ) + 0.5,
+      y: normalize( 0, terrain.geometry.height, position.z ) * -1 + 0.5
     };
 
     this.fishesPosition.push( normalizePos );
