@@ -1,5 +1,5 @@
 {
-  "name": "Abyss",
+  "name": "luxoperon",
   "version": "0.0.1",
   "description": "Gobelins school project",
   "keywords": [
@@ -19,7 +19,7 @@
   "author": "Submarine Interactive (Gobelins <3)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SubmarineInteractive/Abyss.git"
+    "url": "https://github.com/SubmarineInteractive/Lux-Operon.git"
   },
   "contributors": [
     {
