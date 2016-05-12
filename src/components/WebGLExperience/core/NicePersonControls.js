@@ -83,7 +83,7 @@ class NicePersonControls {
   }
 
   startIntroCameraMovement() {
-    this.introTweenValue = 15;
+    this.introTweenValue = 10;
 
     this.introCamMovementTl
       .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {

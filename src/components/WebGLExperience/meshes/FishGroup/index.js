@@ -1,5 +1,4 @@
 import Emitter from 'helpers/Emitter';
-
 import Fish from './Fish';
 
 import {
@@ -17,23 +16,22 @@ class FishGroup extends THREE.Group {
    * @param {Object} configuration Configuration
    * @param {Object} resources     Resources
    */
-  constructor({ count, species, luxAmount }, resources ) {
+  constructor({ count, species, position, luxAmount }, resources, curve ) {
     super();
 
     this.bind();
 
     this.addListeners();
 
-    this.position.copy( new THREE.Vector3( 500, 1500, -2000 ) );
+    this.fishes = [];
+
+    this.curve = curve;
 
     for ( let i = 0; i < count; i++ ) {
       const model = resources[ species ].clone();
-      const fish = new Fish( model, resources.fishGradientTexture );
+      const fish = new Fish( model, resources.fishGradientTexture, curve );
 
-      fish.position.x += Math.random() * 3000;
-      fish.position.y += Math.random() * 3000;
-      fish.position.z += Math.random() * 3000;
-
+      this.fishes.push( fish );
       this.add( fish );
     }
   }
@@ -57,13 +55,10 @@ class FishGroup extends THREE.Group {
   }
 
   update( time ) {
-    this.traverse( child => {
-      if( child instanceof THREE.Mesh ) {
-        child.material.update( time );
-      }
-    });
+    for ( let i = 0; i < this.fishes.length; i++ ) {
+      this.fishes[ i ].update( time );
+    }
   }
-
 }
 
 export default FishGroup;
