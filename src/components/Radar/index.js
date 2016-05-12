@@ -31,7 +31,7 @@ class Radar extends Component {
     this.interval = null;
 
     this.config = {
-      refreshTime: 3,
+      refreshTime: 2,
       radarSize: 150,
       radarScannerSize: 2
     };
@@ -66,18 +66,18 @@ class Radar extends Component {
   bind() {
 
     this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
-    this.onFishGroupPositionSended = this.onFishGroupPositionSended.bind( this );
+    this.onFishesPositionSended = this.onFishesPositionSended.bind( this );
   }
 
   addListeners() {
     Emitter.on( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
-    Emitter.on( EXP_FISH_GROUP_POSITION_SENDED, this.onFishGroupPositionSended );
+    Emitter.on( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
   }
 
   removeListeners() {
 
     Emitter.off( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
-    Emitter.off( EXP_FISH_GROUP_POSITION_SENDED, this.onFishGroupPositionSended );
+    Emitter.off( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
   }
 
   generateTimelineMax() {
@@ -111,18 +111,23 @@ class Radar extends Component {
 
     this.camNormalizePosition  = {
       x: normalize( 0, terrain.geometry.width, position.x ) + 0.5,
-      y: normalize( 0, terrain.geometry.height, position.z ) * -1 + 0.5,
+      y: normalize( 0, terrain.geometry.height, position.z ) * -1 + 0.5
     };
   }
 
-  onFishGroupPositionSended( position ) {
+  onFishesPositionSended( positions ) {
 
-    const normalizePos = {
-      x: normalize( 0, terrain.geometry.width, position.x ) + 0.5,
-      y: normalize( 0, terrain.geometry.height, position.z ) * -1 + 0.5
-    };
+    for ( let i = 0; i < positions.length; i++ ) {
 
-    this.fishesPosition.push( normalizePos );
+      const pos = {
+        x: normalize( 0, terrain.geometry.width, positions[ i ].x ) + 0.5,
+        y: normalize( 0, terrain.geometry.height, positions[ i ].z ) * -1 + 0.5,
+      };
+
+      this.fishesPosition.push( pos );
+
+    }
+
   }
 
   updateCanvas( index ) {

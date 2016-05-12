@@ -90,7 +90,7 @@ class RadarLayer extends Component {
       this.ctx.globalAlpha = this.indicatorsAlpha;
 
       this.ctx.beginPath();
-      this.ctx.arc( fishesPosition[ i ].x * this.width, fishesPosition[ i ].y * this.height, 4, 0, 2 * Math.PI, false );
+      this.ctx.arc( fishesPosition[ i ].x * this.width, fishesPosition[ i ].y * this.height, 3, 0, 2 * Math.PI, false );
       this.ctx.fillStyle = '#D4145A';
       this.ctx.fill();
 

@@ -27,6 +27,8 @@ class FishGroup extends THREE.Group {
 
     this.curve = curve;
 
+    this.pathPosition = position;
+
     for ( let i = 0; i < count; i++ ) {
       const model = resources[ species ].clone();
       const fish = new Fish( model, resources.fishGradientTexture, curve );
@@ -48,9 +50,17 @@ class FishGroup extends THREE.Group {
 
   getPosition() {
 
-    Emitter.emit( EXP_FISH_GROUP_POSITION_SENDED, this.position );
+    const positions = [];
 
-    return this.position;
+    for ( let i = 0; i < this.fishes.length; i++ ) {
+
+      positions.push( this.fishes[ i ].position.clone().add( this.pathPosition ) );
+
+    }
+
+    Emitter.emit( EXP_FISH_GROUP_POSITION_SENDED, positions );
+
+    return positions;
 
   }
 
