@@ -16,7 +16,6 @@ class BackgroundScene extends AbstractScene {
     this.progress = 0;
     this.cameraConfig = camera;
 
-    this.camera.position.copy( this.cameraConfig.position );
     this.camera.lookAt( this.cameraConfig.target );
 
     // Point light
@@ -24,9 +23,6 @@ class BackgroundScene extends AbstractScene {
     const pointLight = new THREE.PointLight( color, intensity, distance, decay );
     pointLight.position.copy( position );
     this.add( pointLight );
-
-    // const sphere = new THREE.SphereGeometry( 10, 20, 20 );
-    // pointLight.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial({ color: 0xffffff }) ) );
 
     // Waves
     this.waves = new Waves( waves );

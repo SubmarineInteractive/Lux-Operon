@@ -6,6 +6,7 @@ import {
   EXP_FISH_GET_POSITION,
   EXP_FISH_GROUP_POSITION_SENDED
 } from 'config/messages';
+
 /**
  * FishGroup class
  */
@@ -35,24 +36,6 @@ class FishGroup extends THREE.Group {
 
       this.add( fish );
     }
-
-    document.addEventListener( 'keydown', ( event ) => {
-
-      switch ( event.keyCode ) {
-        case 38:
-          this.position.x += 10;
-          break;
-        case 40:
-          this.position.x -= 10;
-          break;
-        case 37:
-          this.position.z += 10;
-          break;
-        case 39:
-          this.position.z -= 10;
-          break;
-      }
-    });
   }
 
   bind() {

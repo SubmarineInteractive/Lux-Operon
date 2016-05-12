@@ -17,25 +17,26 @@ class Terrain extends THREE.Mesh {
 
     this.world = World;
 
+    // Shadows
     this.receiveShadow = true;
     this.castShadow = true;
 
-    this.position.set( 0, 0, 0 );
-    this.rotation.x = -Math.PI / 2;
+    this.geometry.computeBoundingBox();
+
+    // Position
+    this.position.set( - ( this.geometry.boundingBox.max.x - this.geometry.boundingBox.min.x ) / 2, 0, ( this.geometry.boundingBox.max.z - this.geometry.boundingBox.min.z ) );
+    this.rotation.x = - Math.PI / 2;
 
     // Create the heightfield shape
     this.heightfieldShape = new Cannon.Heightfield( this.geometry.matrix, {
       elementSize: 200
     });
 
-    this.geometry.computeBoundingBox();
-
-    this.boundingBox = this.geometry.boundingBox.clone();
-
-    // console.log('bounding box coordinates: ', this.boundingBox, this.position);
-
+    // Physics
     this.body = new Cannon.Body({ mass: 0 });
+    this.body.position.copy( this.position );
     this.body.addShape( this.heightfieldShape );
+
     this.world.addBody( this.body );
 
     this.body.quaternion.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), - Math.PI / 2 );
@@ -71,18 +72,6 @@ class Terrain extends THREE.Mesh {
     //
     // const meshTerrain = new THREE.Mesh( geometryTerrain, new THREE.MeshPhongMaterial({ color: 0xff000 }) );
     // this.add( meshTerrain );
-
-    const groundShape = new Cannon.Box( new Cannon.Vec3( 100, 100, 100 ) );
-    const groundBody = new Cannon.Body({ mass: 0 });
-    groundBody.addShape( groundShape );
-    this.world.addBody( groundBody );
-
-    const debugGeometry = new THREE.BoxGeometry( 100 * 2, 100 * 2, 100 * 2 );
-    const debugMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
-
-    const mesh = new THREE.Mesh( debugGeometry, debugMaterial );
-    mesh.position.copy( groundBody.position );
-    this.add( mesh );
   }
 }
 

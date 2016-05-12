@@ -14,10 +14,10 @@ class AbstractScene extends THREE.Scene {
 
     super();
 
-    const { fov, aspect, near, far, orbitControls } = camera;
+    const { fov, aspect, near, far, position, orbitControls } = camera;
 
     // Abstract camera
-    this.camera = new AbstractCamera({ fov, aspect, near, far, orbitControls });
+    this.camera = new AbstractCamera({ fov, aspect, near, far, position, orbitControls });
 
     const { antialias, alpha, clearColor, clearColorAlpha, pixelRatio } = renderer;
 
@@ -31,10 +31,30 @@ class AbstractScene extends THREE.Scene {
     // Misc
     this.clock = new Clock();
     this.raf = raf( ::this.render ).start();
+
+    // Debug helpers
+    if( __DEV__ ) {
+      this.debug();
+    }
   }
 
   /**
-   * render function
+   * Debug function
+   * @todo Create a separate class
+   */
+  debug() {
+
+    // Axis helper
+    const axis = new THREE.AxisHelper( 1000 );
+    this.add( axis );
+
+    // Grid helper
+    const gridHelper = new THREE.GridHelper( 2000, 100 );
+    this.add( gridHelper );
+  }
+
+  /**
+   * preRender function
    */
   preRender() {
     this.postProcessing.update();

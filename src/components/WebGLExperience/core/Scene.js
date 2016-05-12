@@ -29,26 +29,6 @@ class Scene extends AbstractScene {
     this.resources = resources;
 
     this.createScene();
-
-    // Debug helpers
-    if( __DEV__ ) {
-      // this.debug();
-    }
-  }
-
-  /**
-   * Debug function
-   * @todo Create a separate class
-   */
-  debug() {
-
-    // Axis helper
-    const axis = new THREE.AxisHelper( 5 );
-    this.add( axis );
-
-    // Grid helper
-    const gridHelper = new THREE.GridHelper( 50, 1 );
-    this.add( gridHelper );
   }
 
   /**

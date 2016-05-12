@@ -87,9 +87,9 @@ class Player extends THREE.Object3D {
     this.sphereBody.position.copy( this.cameraConfig.position );
     this.world.add( this.sphereBody );
 
-    const geometry = new THREE.SphereGeometry( 10, 10, 10 );
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
-    this.sphere = new THREE.Mesh( geometry, material );
+    // const geometry = new THREE.SphereGeometry( 10, 10, 10 );
+    // const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
+    // this.sphere = new THREE.Mesh( geometry, material );
     // this.add( this.sphere );
   }
 
@@ -132,7 +132,7 @@ class Player extends THREE.Object3D {
    */
   rotate( newRotation ) {
 
-    this.sphere.quaternion.setFromEuler( newRotation );
+    // this.sphereBody.quaternion.setFromEuler( newRotation );
   }
 
 
@@ -144,7 +144,6 @@ class Player extends THREE.Object3D {
   getLuxVal() {
 
     Emitter.emit( EXP_LUX_VALUE_SENDED , this.luxVal );
-
   }
 
   checkDangerState() {

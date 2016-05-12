@@ -17,8 +17,6 @@ import {
   EXP_FISH_GROUP_POSITION_SENDED
 } from 'config/messages';
 
-// import debounce from 'lodash.debounce';
-
 /**
  * Radar component
  */
@@ -100,7 +98,6 @@ class Radar extends Component {
       Emitter.emit( EXP_GET_CAMERA_POSITION );
 
       setTimeout( ()=> {
-
         this.updateCanvas( index );
       }, 300 );
 

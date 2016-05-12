@@ -34,7 +34,7 @@ class NicePersonControls {
 
     this.inputVelocity = new THREE.Vector3();
     this.cannonBodyVelocity = this.cannonBody.velocity;
-    this.velocityFactor = 10000;
+    this.velocityFactor = 10;
 
     this.euler = new THREE.Euler();
     this.quaternion = new THREE.Quaternion();
@@ -83,15 +83,15 @@ class NicePersonControls {
   }
 
   startIntroCameraMovement() {
-    this.introTweenValue = 15;
-
-    this.introCamMovementTl
-      .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {
-        this.inputVelocity.z = - this.introTweenValue;
-        this.cannonBodyVelocity.z += this.inputVelocity.z;
-        this.cannonBodyVelocity.y -= this.inputVelocity.z / 6;
-        this.yawObject.position.copy( this.cannonBody.position );
-      } });
+    // this.introTweenValue = 15;
+    //
+    // this.introCamMovementTl
+    //   .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {
+    //     this.inputVelocity.z = - this.introTweenValue;
+    //     this.cannonBodyVelocity.z += this.inputVelocity.z;
+    //     this.cannonBodyVelocity.y -= this.inputVelocity.z / 6;
+    //     this.yawObject.position.copy( this.cannonBody.position );
+    //   } });
   }
 
   handleMouseMove( event ) {
@@ -161,7 +161,7 @@ class NicePersonControls {
 
   }
 
-  update( delta ) {
+  update() {
     if( this.locked ) return;
 
     if( this.enabled || this.enableDamping ) {
@@ -169,7 +169,7 @@ class NicePersonControls {
       this.inputVelocity.set( 0, 0, 0 );
 
       // Move forward
-      this.inputVelocity.z = - this.velocityFactor * delta;
+      this.inputVelocity.z = - this.velocityFactor;
 
       // Movementy Y [-1, 1], indicate sinking direction
       this.cannonBodyVelocity.y = ( -this.movementY /  this.yawObject.position.y ) * 500000;
@@ -197,9 +197,6 @@ class NicePersonControls {
       }
 
       this.yawObject.position.copy( this.cannonBody.position );
-
-      // console.log(this.cannonBody.position.x, this.cannonBody.position.y, this.cannonBody.position.z)
-
     }
   }
 }

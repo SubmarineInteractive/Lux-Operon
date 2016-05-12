@@ -6,6 +6,7 @@ $indicator-bottom-pos: -0.7rem;
 
 .depth-bar {
   @include center-y;
+  @include no-select;
 
   width: 15px;
   height: 40%;
@@ -13,7 +14,6 @@ $indicator-bottom-pos: -0.7rem;
   right: 2.5rem;
   border: 1px solid $color-white;
   border-bottom: none;
-  user-select: none;
 }
 
 .depth-bar__progress {

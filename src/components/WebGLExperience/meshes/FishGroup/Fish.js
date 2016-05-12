@@ -6,7 +6,6 @@ import randomFloat from 'utils/random-float';
  */
 class Fish extends THREE.Object3D {
 
-
   constructor( model, texture ) {
     super();
 
