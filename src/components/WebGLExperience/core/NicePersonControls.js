@@ -48,8 +48,8 @@ class NicePersonControls {
     this.bind();
     this.addListeners();
 
-    //Expose debugger
-    window.debugSetPosition = this.debugSetPosition;
+    this.debug();
+
   }
 
   bind() {
@@ -80,6 +80,24 @@ class NicePersonControls {
     Emitter.off( EXP_GET_DEPTH_VALUE, this.getDepthValue );
     Emitter.off( EXP_TOGGLE_CAMERA, this.toggleCamera );
     Emitter.off( EXP_INTRO_START, this.startIntroCameraMovement );
+  }
+
+  debug() {
+
+    //Expose debugger
+    window.cameraPosition = this.debugSetPosition;
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 80 ) { // l
+
+        this.debugSetPosition( 0, 1500, -600 );
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
+
   }
 
   startIntroCameraMovement() {
@@ -130,14 +148,14 @@ class NicePersonControls {
   debugSetPosition( x, y, z ) {
     this.cannonBody.position.x = x;
     this.cannonBody.position.y = y;
-    this.cannonBody.position.z = 4000;
+    this.cannonBody.position.z = z;
     this.yawObject.position.copy( this.cannonBody.position );
   }
 
   getPosition() {
 
     Emitter.emit( EXP_CAMERA_POSITION_SENDED, this.cannonBody.position );
-    
+
     return this.cannonBody.position;
 
   }
