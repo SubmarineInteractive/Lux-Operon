@@ -39,6 +39,6 @@
 
   .lux-bar--is-in-danger & {
     transition: background-color .4s ease-out;
-    background-color: red;
+    background-color: $color-red;
   }
 }

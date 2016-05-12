@@ -25,12 +25,23 @@ class VideoPopin extends Component {
 
     this.generateTimelineMax();
 
+    this.debug();
+
     this.refs.video.pause();
   }
 
   componentWillUnmount() {
 
     this.removeEventListeners();
+  }
+
+  debug() {
+
+    window.debug.showVideoPopin = () => {
+
+      this.showPopin();
+    };
+
   }
 
   bind() {

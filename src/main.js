@@ -9,6 +9,8 @@ import 'gsap';
 
 attachFastClick.attach( document.body );
 
+window.debug = {};
+
 ReactDOM.render(
   <Provider store={store}>
     <div>

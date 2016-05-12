@@ -29,11 +29,22 @@ class FishName extends Component {
 
     this.generateTimelineMax();
     this.addEventListeners();
+
+    this.debug();
   }
 
   componentWillUnmount() {
 
     this.removeEventListeners();
+  }
+
+  debug() {
+
+    window.debug.showFishName = ( fishName = 'JOE LE POISSON' ) => {
+
+      this.showFishName( fishName );
+    };
+
   }
 
   bind() {

@@ -54,12 +54,32 @@ class Player extends THREE.Object3D {
     this.bind();
 
     this.addListeners();
+
+    this.debug();
   }
 
   bind() {
 
     [ 'toggleLux', 'getLuxVal', 'updateLuxVal', 'updateLuxVal', 'checkDangerState' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+  }
+
+  debug() {
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 76 ) { // l
+
+        this.luxVal += 0.05;
+
+      } else if ( ev.keyCode === 75 ) { // k
+
+        this.luxVal -= 0.05;
+      }
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
+
   }
 
   addListeners() {

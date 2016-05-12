@@ -20,11 +20,29 @@ class FlashMessages extends Component {
   }
 
   componentDidMount() {
+
     this.addListeners();
+
+    this.debug();
   }
 
   componentWillUnmount() {
-    this.removeListeners()
+
+    this.removeListeners();
+  }
+
+  debug() {
+    window.debug.flashMessage = this.addFlashMessage;
+
+    window.debug.goodFlashMessage = () => {
+
+      this.addFlashMessage( 'good', 'Bonne nouvelle +3 lux', 3 );
+    };
+
+    window.debug.badFlashMessage = () => {
+
+      this.addFlashMessage( 'danger', 'Mauvaise nouvelle :(', 3 );
+    };
   }
 
   bind() {

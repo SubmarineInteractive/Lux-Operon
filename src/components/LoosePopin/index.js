@@ -29,6 +29,8 @@ class LoosePopin extends Component {
     this.addEventListeners();
 
     this.generateTimelineMax();
+
+    this.debug();
   }
 
   componentWillUnmount() {
@@ -39,6 +41,25 @@ class LoosePopin extends Component {
 
     [ 'timerEnded', 'luxEnded' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+
+  }
+
+  debug() {
+
+    window.debug.showLoosePopin = () => {
+
+      this.showPopin();
+    };
+
+    window.debug.luxEnded = () => {
+
+      this.luxEnded();
+    };
+    
+    window.debug.timerEnded = () => {
+
+      this.timerEnded();
+    };
 
   }
 
