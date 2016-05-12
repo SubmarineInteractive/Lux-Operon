@@ -138,10 +138,10 @@ class About extends Component {
               </h2>
 
               <p className="about__paragraph" ref="descParag">
-                Lorem ipsum dolor sit amet, consectetur adipisci  ng elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+                Lux Operon is an interactive experience about nature’s deepest secrets. Your mission is to visit the unexplored seas. In this ecosystem where the visible swims alongside the invisible, you will be prompted to meet its mysterious inhabitants and discover the mysteries of the biosphere.
+                This game is the result of many months of work at Gobelins in order to complete our diploma project. It’s also meant to raise awareness and allow access to the parts of the ocean we can’t see. <br/>
+                Hope you’ll enjoy it !
               </p>
 
           </section>

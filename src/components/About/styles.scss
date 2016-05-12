@@ -6,7 +6,7 @@
   @include full-absolute;
   background: rgba($color-deep-blue, 0.9);
   color: $color-white;
-  z-index: 200;
+  z-index: 100001;
   overflow: hidden;
 
   &--is-visible {
@@ -60,7 +60,7 @@
 }
 
 .about__paragraph {
-  max-width: 500px;
+  max-width: 550px;
   font-size: 1.4rem;
   line-height: 1.88rem;
 }
