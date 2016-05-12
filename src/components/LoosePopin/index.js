@@ -55,7 +55,7 @@ class LoosePopin extends Component {
 
       this.luxEnded();
     };
-    
+
     window.debug.timerEnded = () => {
 
       this.timerEnded();
@@ -92,7 +92,7 @@ class LoosePopin extends Component {
   timerEnded() {
 
     this.setState({
-      title: 'You was not quick enough ! You loose !'
+      title: ' Oh no ! You’ve lost track of time, you loose !'
     });
 
     this.showPopin();
@@ -101,7 +101,7 @@ class LoosePopin extends Component {
   luxEnded() {
 
     this.setState({
-      title: 'You did not collect enough lux ! You loose !'
+      title: 'You don’t have enough light anymore ! You loose !'
     });
 
     this.showPopin();

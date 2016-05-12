@@ -173,7 +173,7 @@ class Player extends THREE.Object3D {
       this.isInDanger = true;
 
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, true );
-      Emitter.emit( EXP_FLASH_MSG, 'danger', "You better hurry up, you'll soon have more light !" );
+      Emitter.emit( EXP_FLASH_MSG, 'danger', "Uh oh, your light gauge is going down ! Catch the lux to keep swimming." );
 
     } else if ( this.previousluxVal < this.pluxVal && this.isInDanger ) {
 
