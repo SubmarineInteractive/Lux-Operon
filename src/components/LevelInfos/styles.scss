@@ -21,6 +21,14 @@
   margin-bottom: 1rem;
 }
 
+.level-infos__depth {
+  color: $color-yellow;
+}
+
+.level-infos__temp,
+.level-infos__pressure {
+  color: $color-blue-2;
+}
 .level-infos__helper-button {
   font-size: 2rem;
   padding: 1rem;

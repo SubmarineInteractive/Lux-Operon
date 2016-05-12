@@ -1,18 +1,18 @@
 @import '~stylesheets/common/variables';
 @import '~stylesheets/common/mixins';
 
-$indicator-right-pos: 2.5rem;
+$indicator-right-pos: 2rem;
 $indicator-bottom-pos: -0.7rem;
 
 .depth-bar {
   @include center-y;
   @include no-select;
 
-  width: 15px;
+  width: 6px;
   height: 40%;
   position: absolute;
   right: 2.5rem;
-  border: 1px solid $color-white;
+  border: 1px solid rgba($color-yellow, 0.3);
   border-bottom: none;
 }
 
@@ -20,7 +20,7 @@ $indicator-bottom-pos: -0.7rem;
   width: 100%;
   height: 20%;
   position: absolute;
-  background-color: rgba(white, 0.25);
+  background-color: $color-yellow;
 }
 
 .depth-bar__progress-indicator {
@@ -30,20 +30,20 @@ $indicator-bottom-pos: -0.7rem;
   font-size: 1.2rem;
   font-weight: 200;
   font-family: $font-tstar;
-  color: rgba(white, 0.25);
+  color: $color-yellow;
   text-align: right;
 
   span:last-child {
     margin-left: 0.5rem;
   }
-
-  &:after {
-    content: '';
-    position: absolute;
-    right: -$indicator-right-pos;
-    bottom: -$indicator-bottom-pos;
-    width: 2rem;
-    height: 0.1rem;
-    background-color: $color-white;
-  }
+  //
+  // &:after {
+  //   content: '';
+  //   position: absolute;
+  //   right: -$indicator-right-pos;
+  //   bottom: -$indicator-bottom-pos;
+  //   width: 2rem;
+  //   height: 0.1rem;
+  //   background-color: $color-yellow;
+  // }
 }

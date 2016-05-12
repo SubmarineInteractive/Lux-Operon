@@ -24,6 +24,8 @@ class VideoPopin extends Component {
     this.addEventListeners();
 
     this.generateTimelineMax();
+
+    this.refs.video.pause();
   }
 
   componentWillUnmount() {
@@ -58,7 +60,6 @@ class VideoPopin extends Component {
     this.enterTl = new TimelineMax({ paused: true });
     this.leaveTl =  new TimelineMax({ paused: true, onComplete: ()=> {
 
-      Emitter.emit( EXP_SHOW_REWARD );
       this.refs.video.pause();
       this.refs.popin.classList.remove( 'video-popin--is-visible' );
     } });
