@@ -5,19 +5,12 @@ import { Component } from 'react';
  */
 class RadarLayer extends Component {
 
-  state = {
-  }
-
-  componentWillMount() {
-    this.addListeners();
-  }
-
   componentDidMount() {
 
     this.cursorTexture = new Image();
-    this.cursorTexture.src = "/images/experience/radar-cursor.png";
+    this.cursorTexture.src = '/images/experience/radar-cursor.png';
 
-    this.cursorTexture.onload = ()=> {
+    this.cursorTexture.onload = () => {
       this.initCanvas();
     };
 
@@ -29,16 +22,6 @@ class RadarLayer extends Component {
     this.indicatorsAlpha = 1;
 
     this.initCanvas();
-  }
-
-  componentWillUnmount() {
-    this.removeListeners();
-  }
-
-  addListeners() {
-  }
-
-  removeListeners() {
   }
 
   initCanvas() {
@@ -54,8 +37,6 @@ class RadarLayer extends Component {
 
     this.halfWidth = this.width / 2;
     this.halfHeight = this.height / 2;
-
-    // this.update();
   }
 
   drawBackground() {
@@ -65,15 +46,15 @@ class RadarLayer extends Component {
     this.ctx.drawImage( this.radarTexture, 0, 0, this.width, this.height );
   }
 
-  drawCursor( previousPosition, position, fromTween ) {
+  drawIndicators( previousCamPosition = {}, camPosition, fishesPosition ) {
 
-    const x = this.width * position.x;
-    const y = this.height * position.y;
+    const camX = this.width * camPosition.x;
+    const camY = this.height * camPosition.y;
     const offsetAngle = Math.PI / 2;
 
     const directionVector = {
-      x: position.x - previousPosition.x,
-      y: position.y - previousPosition.y
+      x: camPosition.x - previousCamPosition.x,
+      y: camPosition.y - previousCamPosition.y
     };
 
     const yAxis = {
@@ -91,24 +72,33 @@ class RadarLayer extends Component {
     this.ctx.save();
 
     this.ctx.beginPath();
-    this.ctx.arc( this.halfWidth , this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
+    this.ctx.arc( this.halfWidth, this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
     this.ctx.clip();
 
-    this.ctx.translate( x, y );
+    this.ctx.translate( camX, camY );
     this.ctx.rotate( - angle + offsetAngle );
-
 
     this.ctx.globalAlpha = this.indicatorsAlpha;
 
-    this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width/2, -this.cursorConfig.width/2, this.cursorConfig.width, this.cursorConfig.height );
+    this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width / 2, -this.cursorConfig.width / 2, this.cursorConfig.width, this.cursorConfig.height );
 
     this.ctx.restore();
 
+    for ( let i = 0; i < fishesPosition.length; i++ ) {
+      this.ctx.save();
+
+      this.ctx.globalAlpha = this.indicatorsAlpha;
+
+      this.ctx.beginPath();
+      this.ctx.arc( fishesPosition[ i ].x * this.width, fishesPosition[ i ].y * this.height, 3, 0, 2 * Math.PI, false );
+      this.ctx.fillStyle = '#D4145A';
+      this.ctx.fill();
+
+      this.ctx.restore();
+    }
   }
 
-  update( previousPosition, position, index ) {
-
-    // console.log( 'update canvas #' + index + ' camera position = ', position );
+  update({ previousCamPosition, camPosition, fishesPosition }) {
 
     TweenMax.killTweensOf( this );
 
@@ -116,13 +106,13 @@ class RadarLayer extends Component {
 
     this.ctx.clearRect( 0, 0, this.width, this.height );
 
-    this.drawCursor( previousPosition, position, false);
+    this.drawIndicators( previousCamPosition, camPosition, fishesPosition );
 
-    TweenMax.to( this, 4, { indicatorsAlpha: 0, ease: Expo.easeOut, delay: 1, onUpdate: ()=> {
+    TweenMax.to( this, 4, { indicatorsAlpha: 0, ease: Expo.easeOut, delay: 1, onUpdate: () => {
 
       this.ctx.clearRect( 0, 0, this.width, this.height );
 
-      this.drawCursor( previousPosition, position, true );
+      this.drawIndicators( previousCamPosition, camPosition, fishesPosition );
 
     } });
   }

@@ -12,10 +12,10 @@ import { terrain } from 'config/webgl/experience';
 
 import {
   EXP_GET_CAMERA_POSITION,
-  EXP_CAMERA_POSITION_SENDED
+  EXP_CAMERA_POSITION_SENDED,
+  EXP_FISH_GET_POSITION,
+  EXP_FISH_GROUP_POSITION_SENDED
 } from 'config/messages';
-
-// import debounce from 'lodash.debounce';
 
 /**
  * Radar component
@@ -31,8 +31,8 @@ class Radar extends Component {
     this.interval = null;
 
     this.config = {
-      refreshTime: 3,
-      radarSize: 200,
+      refreshTime: 2,
+      radarSize: 150,
       radarScannerSize: 2
     };
 
@@ -40,6 +40,9 @@ class Radar extends Component {
       x: 0,
       y: 0
     };
+
+    this.fishesNormalizePosition = [];
+    this.camNormalizePosition = [];
 
     this.bind();
     this.addListeners();
@@ -63,27 +66,40 @@ class Radar extends Component {
   bind() {
 
     this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
+    this.onFishesPositionSended = this.onFishesPositionSended.bind( this );
   }
 
   addListeners() {
     Emitter.on( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
+    Emitter.on( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
   }
 
   removeListeners() {
 
+    Emitter.off( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
+    Emitter.off( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
   }
 
   generateTimelineMax() {
 
     this.radarTl = new TimelineMax({ repeat: -1 });
-    //
   }
 
   startInterval() {
 
     this.interval = setInterval( ()=>{
 
+      const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
+
+      this.fishesPosition = [];
+
+      Emitter.emit( EXP_FISH_GET_POSITION );
+
       Emitter.emit( EXP_GET_CAMERA_POSITION );
+
+      setTimeout( ()=> {
+        this.updateCanvas( index );
+      }, 300 );
 
     }, this.config.refreshTime * 1000 );
 
@@ -91,27 +107,41 @@ class Radar extends Component {
 
   onCameraPositionSended( position ) {
 
-    const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
+    this.prevCamNormalizePosition = this.camNormalizePosition;
 
-    const normalizePos = {
-      x: normalize( 0, terrain.geometry.width, position.x ),
-      y: normalize( 0, terrain.geometry.height, position.z ) * -1
+    this.camNormalizePosition  = {
+      x: normalize( 0, terrain.geometry.width, position.x ) + 0.5,
+      y: normalize( 0, terrain.geometry.height, position.z ) * -1 + 0.5
     };
+  }
 
-    this.updateCanvas( normalizePos, index );
+  onFishesPositionSended( positions ) {
+
+    for ( let i = 0; i < positions.length; i++ ) {
+
+      const pos = {
+        x: normalize( 0, terrain.geometry.width, positions[ i ].x ) + 0.5,
+        y: normalize( 0, terrain.geometry.height, positions[ i ].z ) * -1 + 0.5,
+      };
+
+      this.fishesPosition.push( pos );
+
+    }
 
   }
 
-  updateCanvas( position, index ) {
-
+  updateCanvas( index ) {
 
     this.setState({
       canvasOnTopIndex: index
     });
 
-    this.refs[ `canvas${index}` ].update( this.previousPosition, position, index );
-
-    this.previousPosition = position;
+    this.refs[ `canvas${index}` ].update({
+      previousCamPosition: this.prevCamNormalizePosition,
+      camPosition: this.camNormalizePosition,
+      fishesPosition: this.fishesPosition,
+      index
+    });
 
     TweenMax.killTweensOf( this.refs.scannerBar );
 

@@ -15,7 +15,7 @@ export default {
       time: { type: 'f', value: 0.0 },
       speed: { type: 'f', value: 0.2 },
       amplitude: { type: 'f', value: 150.0 },
-      diffuse: { type: 'c', value: new THREE.Color( 0x2b687e ) },
+      diffuse: { type: 'c', value: new THREE.Color( 0x243465 ) },
       specular: { type: 'c', value: new THREE.Color( 0x000000 ) },
       shininess: { type: 'f', value: 1000 },
       opacity: { type: 'f', value: 1 }

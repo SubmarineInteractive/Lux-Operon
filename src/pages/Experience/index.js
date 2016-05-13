@@ -9,6 +9,7 @@ import Timer from 'components/Timer';
 import ExperienceOverlay from 'components/ExperienceOverlay';
 import LevelIntroduction from 'components/LevelIntroduction';
 import RewardPopin from 'components/RewardPopin';
+import VideoPopin from 'components/VideoPopin';
 import LoosePopin from 'components/LoosePopin';
 import FishName from 'components/FishName';
 import FlashMessages from 'components/FlashMessages';
@@ -52,6 +53,7 @@ class Experience extends Component {
         <LevelIntroduction config={mezaleConfig} ref="levelIntro"/>
         <LoosePopin />
         <RewardPopin />
+        <VideoPopin />
         <Radar />
         <LevelInfos config={mezaleConfig} />
         <Timer />

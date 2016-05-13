@@ -12,7 +12,7 @@ class TerrainGeometry extends THREE.PlaneGeometry {
 
     super( configuration.width, configuration.height, configuration.segments.width, configuration.segments.height );
 
-    this.matrix = this.getMatrix( heightMapTexture.image, 21, 21, 0, 2000 );
+    this.matrix = this.getMatrix( heightMapTexture.image, configuration.segments.width + 1, configuration.segments.height + 1, configuration.minHeight, configuration.maxHeight );
 
     const sizeX = this.matrix[ 0 ].length;
 

@@ -1,12 +1,13 @@
 @import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
 
 .level-infos {
+  @include no-select;
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
   color : $color-white;
   text-align: right;
-  user-select: none;
 
   p {
     font-size: 1.4rem;
@@ -20,6 +21,14 @@
   margin-bottom: 1rem;
 }
 
+.level-infos__depth {
+  color: $color-yellow;
+}
+
+.level-infos__temp,
+.level-infos__pressure {
+  color: $color-blue-2;
+}
 .level-infos__helper-button {
   font-size: 2rem;
   padding: 1rem;

@@ -35,6 +35,8 @@ class Timer extends Component {
   componentDidMount() {
 
     this.addEventListeners();
+
+    this.debug();
   }
 
   componentWillUnmount() {
@@ -46,6 +48,27 @@ class Timer extends Component {
 
     [ 'startTimer', 'togglePause' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+
+  }
+
+  debug() {
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 82 ) { // r
+
+        this.currentTime -= 10;
+        this.updateTimer();
+
+      } else if ( ev.keyCode === 84 ) { // t
+
+        this.currentTime += 10;
+        this.updateTimer();
+
+      }
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
 
   }
 

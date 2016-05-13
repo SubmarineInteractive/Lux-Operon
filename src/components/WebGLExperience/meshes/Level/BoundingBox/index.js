@@ -15,6 +15,9 @@ class BoundingBox extends THREE.Mesh {
   constructor({ geometry, material }, Terrain ) {
 
     super( new BoundingBoxGeometry( geometry, Terrain ), new BoundingBoxMaterial( material ) );
+
+    // Position
+    this.position.y = ( Terrain.geometry.boundingBox.max.z - Terrain.geometry.boundingBox.min.z ) / 2 + geometry.offset.height;
   }
 }
 

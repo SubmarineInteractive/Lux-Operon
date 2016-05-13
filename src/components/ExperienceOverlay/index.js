@@ -29,6 +29,7 @@ class ExperienceOverlay extends Component {
 
     this.addEventListeners();
     this.begin();
+    this.debug();
   }
 
   componentWillUnmount() {
@@ -36,6 +37,16 @@ class ExperienceOverlay extends Component {
     clearInterval( this.interval );
 
     this.removeEventListeners();
+
+  }
+
+  debug() {
+
+    window.debug.toggleDangerZone = () => {
+
+      this.toggleDangerZone();
+    };
+
   }
 
   bind() {
@@ -85,7 +96,6 @@ class ExperienceOverlay extends Component {
     this.luxVal = val;
 
   }
-
 
   luxUpdate() {    // Update bar style
 

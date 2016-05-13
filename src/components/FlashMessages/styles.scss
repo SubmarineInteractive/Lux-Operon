@@ -1,22 +1,23 @@
 @import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
 
 .flash-messages {
+  @include no-select;
   position: absolute;
   width: 300px;
   bottom: 8rem;
   right: 6rem;
   z-index: 2;
   color: white;
-  user-select: none;
 }
 
 .flash-messages__el {
+  @include no-select;
   display: block;
   font-size: 1.2rem;
   line-height: 1.5rem;
   color: $color-white;
   margin-top: 0.5rem;
-  user-select: none;
 
   span {
     display: block;

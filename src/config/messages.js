@@ -30,6 +30,10 @@ const messages = {
   EXP_LUX_VALUE_UPDATE: 'EXP_LUX_VALUE_UPDATE',
   EXP_LUX_END_GAME: 'EXP_LUX_END_GAME',
 
+  // ==== Fish ====
+  EXP_FISH_GET_POSITION: 'EXP_FISH_GET_POSITION',
+  EXP_FISH_GROUP_POSITION_SENDED: 'EXP_FISH_GROUP_POSITION_SENDED',
+
   // ==== Level Introduction ====
   EXP_INTRO_START: 'EXP_INTRO_START',
   EXP_INTRO_ENDED: 'EXP_INTRO_ENDED',
@@ -41,6 +45,9 @@ const messages = {
   // ==== Reward popin ====
   EXP_SHOW_REWARD: 'EXP_SHOW_REWARD',
 
+  // ==== Video popin ====
+  EXP_SHOW_VIDEO: 'EXP_SHOW_VIDEO',
+
   // ==== Fish Name ====
   EXP_SHOW_FISH_NAME: 'EXP_SHOW_FISH_NAME',
 
@@ -48,6 +55,7 @@ const messages = {
   ABOUT_OPEN: 'ABOUT_OPEN',
   ABOUT_CLOSE: 'ABOUT_CLOSE',
   TOOLTIPS_SHOW: 'TOOLTIPS_SHOW'
+
 
 };
 

@@ -25,9 +25,6 @@ class BackgroundScene extends AbstractScene {
     pointLight.position.copy( position );
     this.add( pointLight );
 
-    // const sphere = new THREE.SphereGeometry( 10, 20, 20 );
-    // pointLight.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial({ color: 0xffffff }) ) );
-
     // Waves
     this.waves = new Waves( waves );
     this.add( this.waves );

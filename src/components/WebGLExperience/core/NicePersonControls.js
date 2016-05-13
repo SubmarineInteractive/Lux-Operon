@@ -34,7 +34,7 @@ class NicePersonControls {
 
     this.inputVelocity = new THREE.Vector3();
     this.cannonBodyVelocity = this.cannonBody.velocity;
-    this.velocityFactor = 1200;
+    this.velocityFactor = 10;
 
     this.euler = new THREE.Euler();
     this.quaternion = new THREE.Quaternion();
@@ -48,8 +48,8 @@ class NicePersonControls {
     this.bind();
     this.addListeners();
 
-    //Expose debugger
-    window.debugSetPosition = this.debugSetPosition;
+    this.debug();
+
   }
 
   bind() {
@@ -82,8 +82,26 @@ class NicePersonControls {
     Emitter.off( EXP_INTRO_START, this.startIntroCameraMovement );
   }
 
+  debug() {
+
+    //Expose debugger
+    window.cameraPosition = this.debugSetPosition;
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 80 ) { // l
+
+        this.debugSetPosition( 0, 1500, -600 );
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
+
+  }
+
   startIntroCameraMovement() {
-    this.introTweenValue = 15;
+    this.introTweenValue = 10;
 
     this.introCamMovementTl
       .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {
@@ -161,8 +179,7 @@ class NicePersonControls {
 
   }
 
-  update( delta ) {
-
+  update() {
     if( this.locked ) return;
 
     if( this.enabled || this.enableDamping ) {
@@ -170,7 +187,7 @@ class NicePersonControls {
       this.inputVelocity.set( 0, 0, 0 );
 
       // Move forward
-      this.inputVelocity.z = - this.velocityFactor * delta * 800;
+      this.inputVelocity.z = - this.velocityFactor;
 
       // Movementy Y [-1, 1], indicate sinking direction
       this.cannonBodyVelocity.y = ( -this.movementY /  this.yawObject.position.y ) * 500000;
@@ -198,9 +215,6 @@ class NicePersonControls {
       }
 
       this.yawObject.position.copy( this.cannonBody.position );
-
-      // console.log(this.cannonBody.position.x, this.cannonBody.position.y, this.cannonBody.position.z)
-
     }
   }
 }

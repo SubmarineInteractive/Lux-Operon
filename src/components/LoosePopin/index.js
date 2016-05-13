@@ -29,6 +29,8 @@ class LoosePopin extends Component {
     this.addEventListeners();
 
     this.generateTimelineMax();
+
+    this.debug();
   }
 
   componentWillUnmount() {
@@ -39,6 +41,25 @@ class LoosePopin extends Component {
 
     [ 'timerEnded', 'luxEnded' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+
+  }
+
+  debug() {
+
+    window.debug.showLoosePopin = () => {
+
+      this.showPopin();
+    };
+
+    window.debug.luxEnded = () => {
+
+      this.luxEnded();
+    };
+
+    window.debug.timerEnded = () => {
+
+      this.timerEnded();
+    };
 
   }
 
@@ -71,7 +92,7 @@ class LoosePopin extends Component {
   timerEnded() {
 
     this.setState({
-      title: 'You was not quick enough ! You loose !'
+      title: ' Oh no ! You’ve lost track of time, you loose !'
     });
 
     this.showPopin();
@@ -80,7 +101,7 @@ class LoosePopin extends Component {
   luxEnded() {
 
     this.setState({
-      title: 'You did not collect enough lux ! You loose !'
+      title: 'You don’t have enough light anymore ! You loose !'
     });
 
     this.showPopin();

@@ -1,6 +1,8 @@
 @import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
 
 .lux-bar {
+  @include no-select;
   width: 140px;
   height: 15px;
   position: absolute;
@@ -8,7 +10,6 @@
   left: 2.5rem;
   border: 1px solid $color-white;
   border-right: none;
-  user-select: none;
 
   &:after {
     content: 'LUX';
@@ -38,6 +39,6 @@
 
   .lux-bar--is-in-danger & {
     transition: background-color .4s ease-out;
-    background-color: red;
+    background-color: $color-pink;
   }
 }

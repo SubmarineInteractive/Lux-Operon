@@ -41,7 +41,7 @@ class Player extends THREE.Object3D {
 
     this.luxVal = 0.9;
     this.previousluxVal = 0.2;
-    this.decreaseLuxVal = 1 / 100000000;
+    this.decreaseLuxVal = 1 / 10000;
 
     this.nbLights = this.playerConfig.number;
 
@@ -54,12 +54,32 @@ class Player extends THREE.Object3D {
     this.bind();
 
     this.addListeners();
+
+    this.debug();
   }
 
   bind() {
 
     [ 'toggleLux', 'getLuxVal', 'updateLuxVal', 'updateLuxVal', 'checkDangerState' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+  }
+
+  debug() {
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 76 ) { // l
+
+        this.luxVal += 0.05;
+
+      } else if ( ev.keyCode === 75 ) { // k
+
+        this.luxVal -= 0.05;
+      }
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
+
   }
 
   addListeners() {
@@ -87,9 +107,9 @@ class Player extends THREE.Object3D {
     this.sphereBody.position.copy( this.cameraConfig.position );
     this.world.add( this.sphereBody );
 
-    const geometry = new THREE.SphereGeometry( 10, 10, 10 );
-    const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
-    this.sphere = new THREE.Mesh( geometry, material );
+    // const geometry = new THREE.SphereGeometry( 10, 10, 10 );
+    // const material = new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.DoubleSide, wireframe: true });
+    // this.sphere = new THREE.Mesh( geometry, material );
     // this.add( this.sphere );
   }
 
@@ -132,7 +152,7 @@ class Player extends THREE.Object3D {
    */
   rotate( newRotation ) {
 
-    this.sphere.quaternion.setFromEuler( newRotation );
+    // this.sphereBody.quaternion.setFromEuler( newRotation );
   }
 
 
@@ -144,7 +164,6 @@ class Player extends THREE.Object3D {
   getLuxVal() {
 
     Emitter.emit( EXP_LUX_VALUE_SENDED , this.luxVal );
-
   }
 
   checkDangerState() {
@@ -154,7 +173,7 @@ class Player extends THREE.Object3D {
       this.isInDanger = true;
 
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, true );
-      Emitter.emit( EXP_FLASH_MSG, 'danger', "You better hurry up, you'll soon have more light !" );
+      Emitter.emit( EXP_FLASH_MSG, 'danger', "Uh oh, your light gauge is going down ! Catch the lux to keep swimming." );
 
     } else if ( this.previousluxVal < this.pluxVal && this.isInDanger ) {
 

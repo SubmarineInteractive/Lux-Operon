@@ -24,6 +24,8 @@ class RewardPopin extends Component {
     this.addEventListeners();
 
     this.generateTimelineMax();
+
+    this.debug();
   }
 
   componentWillUnmount() {
@@ -34,6 +36,27 @@ class RewardPopin extends Component {
 
     [ 'showPopin' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+
+  }
+
+  debug() {
+
+    window.debug.showRewardPopin = () => {
+
+      this.showPopin();
+    };
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 70 ) { // f
+
+        this.showPopin();
+
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
 
   }
 

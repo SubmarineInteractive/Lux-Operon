@@ -43,9 +43,9 @@ class World extends Cannon.World {
   /**
    * update function
    */
-  update() {
+  update( dt ) {
 
-    this.step( 1 / 60 );
+    this.step( dt );
   }
 }
 

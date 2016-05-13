@@ -6,7 +6,6 @@ import Fog from '../misc/Fog';
 import Player from '../meshes/Player';
 import Level from '../meshes/Level';
 import Terrain from '../meshes/Terrain';
-import { map, lightenDarkenColor } from 'utils';
 
 /**
  * Scene class
@@ -16,7 +15,7 @@ class Scene extends AbstractScene {
   /**
    * constructor function
    */
-  constructor({ camera, renderer, postProcessing, lights, fog, player, terrain, boundingBox }, resources ) {
+  constructor({ camera, renderer, postProcessing, lights, fog, player, terrain, boundingBox, fishGroup }, resources ) {
     super({ camera, renderer, postProcessing });
 
     this.fogConfig = fog;
@@ -25,30 +24,11 @@ class Scene extends AbstractScene {
     this.playerConfig = player;
     this.terrainConfig = terrain;
     this.boundingBoxConfig = boundingBox;
+    this.fishGroupConfig = fishGroup;
 
     this.resources = resources;
 
     this.createScene();
-
-    // Debug helpers
-    if( __DEV__ ) {
-      // this.debug();
-    }
-  }
-
-  /**
-   * Debug function
-   * @todo Create a separate class
-   */
-  debug() {
-
-    // Axis helper
-    const axis = new THREE.AxisHelper( 5 );
-    this.add( axis );
-
-    // Grid helper
-    const gridHelper = new THREE.GridHelper( 50, 1 );
-    this.add( gridHelper );
   }
 
   /**
@@ -80,7 +60,7 @@ class Scene extends AbstractScene {
     this.add( this.directionalLight );
 
     // Level
-    this.level = new Level( this.terrain, this.player, this.boundingBoxConfig );
+    this.level = new Level( this.terrain, this.player, this.boundingBoxConfig, this.fishGroupConfig, this.resources );
     this.add( this.level );
   }
 
@@ -91,12 +71,9 @@ class Scene extends AbstractScene {
 
     this.preRender();
 
-    this.world.update();
+    this.world.update( this.clock.delta );
     this.player.update( this.clock.time, this.clock.delta );
-
-    // const newBgColor = new THREE.Color( lightenDarkenColor( this.fog.initialColor.toString( 16 ), - 1 + this.player.luxVal + 0.1 ) );
-    // this.fog.color = newBgColor;
-    // this.renderer.setClearColor( newBgColor );
+    this.level.update( this.clock.time );
 
     if( this.controls ) {
       this.controls.update( this.clock.delta );

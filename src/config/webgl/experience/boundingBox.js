@@ -2,12 +2,12 @@ export default {
   geometry: {
     offset: {
       width: - 500,
-      height: 200,
+      height: 500,
       depth: - 500
     }
   },
   material: {
-    wireframe: true,
+    wireframe: false,
     fog: true
   }
 };

@@ -1,13 +1,14 @@
 @import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
 
 .timer {
+  @include no-select;
   position: absolute;
   left: 2.5rem;
   bottom: 5.5rem;
-  color: $color-white;
+  color: $color-blue-2;
   font-size: 1.8rem;
   font-family: $font-tstar;
-  user-select: none;
   transition: color .3s ease-out;
 
   &--is-in-danger {

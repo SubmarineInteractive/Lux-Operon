@@ -4,6 +4,6 @@ const mezaleConfig = {
   depthBar: {
     innerBarCoef: 30
   }
-}
+};
 
 export default { mezaleConfig };

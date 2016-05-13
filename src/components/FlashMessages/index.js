@@ -20,11 +20,44 @@ class FlashMessages extends Component {
   }
 
   componentDidMount() {
+
     this.addListeners();
+
+    this.debug();
   }
 
   componentWillUnmount() {
-    this.removeListeners()
+
+    this.removeListeners();
+  }
+
+  debug() {
+    window.debug.flashMessage = this.addFlashMessage;
+
+    window.debug.goodFlashMessage = () => {
+
+      this.addFlashMessage( 'good', 'Bonne nouvelle +3 lux', 3 );
+    };
+
+    window.debug.badFlashMessage = () => {
+
+      this.addFlashMessage( 'danger', 'Mauvaise nouvelle :(', 3 );
+    };
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 66 ) { // b
+
+        this.addFlashMessage( 'danger', 'Mauvaise nouvelle :(', 3 );
+
+      } else if( ev.keyCode === 71 ) { //g
+
+        this.addFlashMessage( 'good', 'Bonne nouvelle +3 lux', 3 );
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
   }
 
   bind() {
@@ -48,7 +81,7 @@ class FlashMessages extends Component {
 
   introFlashMessage() {
 
-    this.addFlashMessage( 'anecdotic', 'Hello, bienvenue dans le jeu, il est trop bien, fait par des gens trop cool et tout et tout', 5 );
+    this.addFlashMessage( 'anecdotic', 'Oh hi there ! You’ve reached the first abyssal area, called mesopelagic zone. Find and click on the fishes to get some light and dive deeper', 5 );
   }
 
   addFlashMessage( type = 'normal', msg = '', duration = 3 ) {

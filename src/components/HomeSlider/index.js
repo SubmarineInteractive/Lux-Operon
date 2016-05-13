@@ -128,7 +128,7 @@ class HomeSlider extends Component {
         this.grabberDragTl.progress( 1 );
         this.props.onDragComplete();
 
-        TweenMax.to( this.refs.slider, 4, { top: '165vh', ease: Expo.easeOut, onComplete: ()=> {
+        TweenMax.to( this.refs.slider, 4, { top: '165vh', ease: Expo.easeOut, onComplete: () => {
 
           this.grabberDragTl.progress( 1 );
           this.removeListeners();
@@ -144,8 +144,8 @@ class HomeSlider extends Component {
     });
 
     this.grabberPressTl
-      .fromTo( this.refs.innerGrabberCircle, 0.2, { scale: 1, transformOrigin: "center center" }, { scale: 0.8, stroke: '#61DAFF', ease: Back.easeOut })
-      .to( this.refs.bigCircle, 0.2, { stroke: '#61DAFF', ease: Expo.easeOut }, 0 );
+      .fromTo( this.refs.innerGrabberCircle, 0.2, { scale: 1, transformOrigin: "center center" }, { scale: 0.8, stroke: '#6892e3', ease: Back.easeOut })
+      .to( this.refs.bigCircle, 0.2, { stroke: '#6892e3', ease: Expo.easeOut }, 0 );
 
     this.grabberDragTl
       .to( this.refs.grabber, 1, { y: '312%' }, 0 )
