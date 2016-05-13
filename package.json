@@ -61,6 +61,7 @@
     "fastclick": "^1.0.6",
     "global": "^4.3.0",
     "gsap": "^1.18.2",
+    "howler": "^1.1.29",
     "is-dom": "^1.0.5",
     "keyfinder": "^1.0.0",
     "lodash.chunk": "^4.0.5",
