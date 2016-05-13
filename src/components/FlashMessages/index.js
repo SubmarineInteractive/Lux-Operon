@@ -43,6 +43,21 @@ class FlashMessages extends Component {
 
       this.addFlashMessage( 'danger', 'Mauvaise nouvelle :(', 3 );
     };
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 66 ) { // b
+
+        this.addFlashMessage( 'danger', 'Mauvaise nouvelle :(', 3 );
+
+      } else if( ev.keyCode === 71 ) { //g
+
+        this.addFlashMessage( 'good', 'Bonne nouvelle +3 lux', 3 );
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
   }
 
   bind() {

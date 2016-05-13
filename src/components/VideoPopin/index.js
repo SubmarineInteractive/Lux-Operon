@@ -42,6 +42,19 @@ class VideoPopin extends Component {
       this.showPopin();
     };
 
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 86 ) { // v
+
+        this.showPopin();
+
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
+
+
   }
 
   bind() {

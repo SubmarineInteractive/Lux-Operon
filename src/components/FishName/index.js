@@ -45,6 +45,18 @@ class FishName extends Component {
       this.showFishName( fishName );
     };
 
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 78 ) { // n
+
+        this.showFishName( 'JOE LE POISSON' );
+
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
+
   }
 
   bind() {
