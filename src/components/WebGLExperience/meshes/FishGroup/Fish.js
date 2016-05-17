@@ -9,7 +9,7 @@ class Fish extends THREE.Object3D {
   constructor( model, texture, curve ) {
     super();
 
-    this.randomScale = randomFloat( 0.05, 0.15 );
+    this.randomScale = randomFloat( 0.07, 0.09 );
 
     model.scale.set( this.randomScale , this.randomScale , this.randomScale  );
 
