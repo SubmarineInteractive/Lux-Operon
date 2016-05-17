@@ -64,7 +64,7 @@ class Level extends THREE.Object3D {
 
       for ( let i = 0; i < fishGroup.fishes.length; i++ ) {
 
-        this.fishModels.push( fishGroup.fishes[ i ].children[ 0 ].children[ 0 ] );
+        this.fishModels.push( fishGroup.fishes[ i ].modelObject );
       }
 
       this.add( path );
@@ -128,6 +128,18 @@ class Level extends THREE.Object3D {
 
   }
 
+  updateWindowCursor() {
+
+    if( this.isIntersecting ) {
+
+      document.body.classList.add( 'is-intersecting' );
+    } else {
+
+      document.body.classList.remove( 'is-intersecting' );
+    }
+
+  }
+
   debug() {
 
     // document.addEventListener( 'keydown', ( event ) => {
@@ -172,6 +184,7 @@ class Level extends THREE.Object3D {
         if( this.wasIntersecting !== this.isIntersecting ) {
 
           Emitter.emit( EXP_INTERSECTING_FISH, intersects[ 0 ] );
+          Emitter.emit( EXP_SHOW_FISH_NAME, intersects[ 0 ].object.name );
 
           console.log(intersects[ 0 ]);
         }
@@ -185,6 +198,9 @@ class Level extends THREE.Object3D {
           Emitter.emit( EXP_NOT_INTERSECTING_FISH );
         }
       }
+
+      this.updateWindowCursor();
+
     }
   }
 

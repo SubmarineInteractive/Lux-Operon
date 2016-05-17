@@ -16,7 +16,7 @@ class FishGroup extends THREE.Group {
    * @param {Object} configuration Configuration
    * @param {Object} resources     Resources
    */
-  constructor({ count, species, position, luxAmount }, resources, curve ) {
+  constructor({ count, species, name, position, luxAmount }, resources, curve ) {
     super();
 
     this.bind();
@@ -31,7 +31,7 @@ class FishGroup extends THREE.Group {
 
     for ( let i = 0; i < count; i++ ) {
       const model = resources[ species ].clone();
-      const fish = new Fish( model, resources.fishGradientTexture, curve );
+      const fish = new Fish( model, name, resources.fishGradientTexture, curve );
 
       this.fishes.push( fish );
       this.add( fish );
