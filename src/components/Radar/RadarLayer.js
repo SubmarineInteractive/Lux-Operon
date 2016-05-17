@@ -76,11 +76,17 @@ class RadarLayer extends Component {
     this.ctx.clip();
 
     this.ctx.translate( camX, camY );
-    this.ctx.rotate( - angle + offsetAngle );
+    // this.ctx.rotate( - angle + offsetAngle );
 
     this.ctx.globalAlpha = this.indicatorsAlpha;
 
-    this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width / 2, -this.cursorConfig.width / 2, this.cursorConfig.width, this.cursorConfig.height );
+    // this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width / 2, -this.cursorConfig.width / 2, this.cursorConfig.width, this.cursorConfig.height );
+
+    this.ctx.beginPath();
+    this.ctx.arc( -this.cursorConfig.width / 2, -this.cursorConfig.width / 2, 5, 0, 2 * Math.PI, false );
+    this.ctx.fillStyle = '#FFFFFF';
+    this.ctx.fill();
+
 
     this.ctx.restore();
 
