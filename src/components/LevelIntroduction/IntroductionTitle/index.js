@@ -79,7 +79,7 @@ class IntroductionTitle extends Component {
 
     this.titleTl.play();
 
-    SoundManager.play( 'ding' );
+    SoundManager.play( 'level-1-intro' );
   }
 
   skip() {

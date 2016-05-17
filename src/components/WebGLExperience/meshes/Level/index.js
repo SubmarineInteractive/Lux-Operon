@@ -175,16 +175,22 @@ class Level extends THREE.Object3D {
 
       this.wasIntersecting = this.isIntersecting;
 
+
       if( intersects.length > 0 ) {
+        console.log( intersects[ 0 ].distance )
+        
+        if( intersects[ 0 ].distance < 2000 ) {
 
-        this.isIntersecting = true;
+          this.isIntersecting = true;
 
-        if( this.wasIntersecting !== this.isIntersecting ) {
+          if( this.wasIntersecting !== this.isIntersecting ) {
 
-          Emitter.emit( EXP_INTERSECTING_FISH, intersects[ 0 ] );
-          Emitter.emit( EXP_SHOW_FISH_NAME, intersects[ 0 ].object.name );
+            Emitter.emit( EXP_INTERSECTING_FISH, intersects[ 0 ] );
+            Emitter.emit( EXP_SHOW_FISH_NAME, intersects[ 0 ].object.name );
 
-          SoundManager.play( 'fish-hover' );
+            SoundManager.play( 'fish-hover' );
+          }
+
         }
 
       } else {
