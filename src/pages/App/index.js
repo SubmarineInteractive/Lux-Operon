@@ -6,9 +6,9 @@ import resources from 'resources';
 import { resize } from 'providers/ViewportProvider';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
+import SoundManager from 'helpers/SoundManager';
 
 import About from 'components/About';
-
 /**
  * App class
  */
@@ -33,7 +33,18 @@ class App extends Component {
      .load()
      .then( resources => {
        let tmpResources = {};
-       resources.forEach( ({ id, resource }) => tmpResources[ id ] = resource );
+       const sounds = [];
+
+       resources.forEach( ({ id, resource }) => {
+
+         tmpResources[ id ] = resource;
+
+        //  if( ressource instance of   ) {
+        //
+        //    sounds.push( ressource );
+        //  }
+
+       });
        this.props.loadResources( tmpResources );
      });
   }

@@ -4,9 +4,8 @@ import { Component } from 'react';
 
 import SplitText from 'vendors/splitText.js';
 
-import {
+import SoundManager from 'helpers/SoundManager';
 
-} from 'config/messages';
 
 /**
  * IntroductionTitle component
@@ -33,7 +32,7 @@ class IntroductionTitle extends Component {
 
   bind() {
 
-    [ 'skip', 'onKeyUp' ]
+    [ 'skip', 'onKeyUp', 'begin' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -79,12 +78,14 @@ class IntroductionTitle extends Component {
     this.addEventListeners();
 
     this.titleTl.play();
+
+    SoundManager.play( 'ding' );
   }
 
   skip() {
 
     this.refs.container.style.display = "none";
-    
+
     this.titleTl.stop();
 
     this.removeEventListeners();

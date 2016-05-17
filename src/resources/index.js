@@ -1,4 +1,5 @@
 export default [
+  // Textures
   {
     type: 'texture',
     id: 'heightMapTexture',
@@ -9,6 +10,8 @@ export default [
     id: 'fishGradientTexture',
     url: './textures/fish_gradient.png'
   },
+
+  // Models
   {
     type: 'model',
     id: 'hachetteFish',
@@ -18,5 +21,13 @@ export default [
     type: 'model',
     id: 'lanternFish',
     url: './models/lantern_fish.awd'
+  },
+
+  // Sounds
+  {
+    type: 'audio',
+    id: 'ding',
+    url: './audios/ding.mp3'
   }
+
 ];
