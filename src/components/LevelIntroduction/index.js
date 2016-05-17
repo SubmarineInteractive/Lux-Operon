@@ -1,7 +1,6 @@
 import './styles.scss';
 
 import Emitter from 'helpers/Emitter';
-import SoundManager from 'helpers/SoundManager';
 
 import { Component } from 'react';
 
@@ -68,13 +67,11 @@ class LevelIntroduction extends Component {
   beginTutorial() {
 
     this.refs.tutorialStep.begin();
-    SoundManager.play( 'woosh' );
   }
 
   beginTooltips() {
 
     this.refs.tooltipsStep.begin();
-    SoundManager.play( 'woosh' );
   }
 
   showIntroduction() {
@@ -95,8 +92,6 @@ class LevelIntroduction extends Component {
       Emitter.emit( EXP_INTRO_ENDED );
 
       this.refs.container.classList.add( 'level-introduction--is-ended' );
-
-      SoundManager.play( 'woosh' );
 
     } });
 

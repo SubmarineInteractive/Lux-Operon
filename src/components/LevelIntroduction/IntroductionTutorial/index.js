@@ -1,6 +1,7 @@
 import './styles.scss';
 
 import { Component } from 'react';
+import SoundManager from 'helpers/SoundManager';
 
 /**
  * TutorialIntroduction component
@@ -92,6 +93,8 @@ class TutorialIntroduction extends Component {
   }
 
   begin() {
+
+    SoundManager.play( 'woosh' );
 
     this.refs.container.style.display = 'block';
     this.holdTl.play();

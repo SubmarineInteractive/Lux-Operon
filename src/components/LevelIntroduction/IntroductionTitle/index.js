@@ -83,7 +83,7 @@ class IntroductionTitle extends Component {
   }
 
   skip() {
-
+    
     this.refs.container.style.display = "none";
 
     this.titleTl.stop();
