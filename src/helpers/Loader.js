@@ -1,4 +1,5 @@
 import AWDLoader from 'common/utils/AWDLoader';
+import SoundManager from 'helpers/SoundManager';
 
 /**
  * Loader class
@@ -20,12 +21,15 @@ class Loader {
       switch( type ) {
         case 'model': return new AWDLoader();
         case 'texture': return new THREE.TextureLoader();
+        case 'audio': return SoundManager;
       }
     };
 
     files.map( file => {
 
       const { type, id, url } = file;
+
+
 
       const promise = new Promise( ( resolve, reject ) => {
 
@@ -37,7 +41,8 @@ class Loader {
             onResourceLoaded( this.currentProgress / this.totalProgress * 100 );
           },
           () => null,
-          () => reject
+          () => reject,
+          id
         );
       });
 
@@ -53,6 +58,12 @@ class Loader {
   load() {
 
     return Promise.all( this.promises );
+  }
+
+  loadAudio( url ) {
+
+    return SoundManager.loadAudio( url );
+
   }
 }
 

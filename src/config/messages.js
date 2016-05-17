@@ -56,7 +56,6 @@ const messages = {
   ABOUT_CLOSE: 'ABOUT_CLOSE',
   TOOLTIPS_SHOW: 'TOOLTIPS_SHOW'
 
-
 };
 
 module.exports = messages;
