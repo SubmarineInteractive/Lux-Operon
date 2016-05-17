@@ -48,7 +48,9 @@ const messages = {
   // ==== Video popin ====
   EXP_SHOW_VIDEO: 'EXP_SHOW_VIDEO',
 
-  // ==== Fish Name ====
+  // ==== Fishes ====
+  EXP_INTERSECTING_FISH: 'EXP_INTERSECTING_FISH',
+  EXP_NOT_INTERSECTING_FISH: 'EXP_NOT_INTERSECTING_FISH',
   EXP_SHOW_FISH_NAME: 'EXP_SHOW_FISH_NAME',
 
   // ==== About popin ====

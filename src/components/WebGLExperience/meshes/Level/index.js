@@ -1,8 +1,17 @@
+import Emitter from 'helpers/Emitter'
+
 import FishGroup from '../FishGroup';
 
 import points from '../Path/paths/path_1.dae';
 import createSpline from 'utils/create-spline';
 import { loopIndex, degreeToRadian } from 'utils';
+
+import {
+  EXP_INTRO_ENDED,
+  EXP_INTERSECTING_FISH,
+  EXP_NOT_INTERSECTING_FISH,
+  EXP_SHOW_FISH_NAME
+} from 'config/messages';
 
 /**
  * Level class
@@ -12,22 +21,33 @@ class Level extends THREE.Object3D {
   /**
    * Constructor function
    * @param {Terrain} Terrain           Terrain instance
+   * @param {Camera}  Camera            Camera instance
    * @param {Player}  Player            Player instance
    * @param {Object}  boundingBoxConfig Bounding box configuration
    * @param {Object}  fishGroupConfig   Fish group configuration
    * @param {Object}  resources         Resources
    */
-  constructor( Terrain, Player, boundingBoxConfig, fishGroupConfig, resources ) {
+  constructor( Terrain, Camera, Player, boundingBoxConfig, fishGroupConfig, resources ) {
 
     super();
 
     this.terrain = Terrain;
+    this.camera = Camera;
     this.player = Player;
     this.resources = resources;
     this.fishGroups = [];
+    this.fishes = [];
+    this.intersects = [];
 
     this.curve = createSpline( points );
     this.points = this.curve.getSpacedPoints( 100 );
+
+    this.raycastEnabled = false;
+    this.wasIntersecting = false;
+    this.isIntersecting = false;
+
+    this.raycaster = new THREE.Raycaster();
+    this.mouse = new THREE.Vector2();
 
     fishGroupConfig.map( config => {
       const fishGroup = new FishGroup( config, this.resources, this.curve );
@@ -42,12 +62,76 @@ class Level extends THREE.Object3D {
       path.position.copy( config.position );
       path.rotation.y = degreeToRadian( 90 );
 
+      for ( let i = 0; i < fishGroup.fishes.length; i++ ) {
+
+        // console.log( fishGroup.fishes[ i ] )
+        this.fishes.push( fishGroup.fishes[ i ] );
+      }
+
       this.add( path );
       path.add( fishGroup );
     });
 
-    // window.position = path.position;
-    //
+    this.add( this.terrain );
+    this.add( this.player );
+
+    this.norm = 0;
+
+    this.bind();
+
+    Emitter.once( EXP_INTRO_ENDED , this.onIntroEnded );
+
+    //this.debug();
+  }
+
+  bind() {
+
+    [ 'update', 'onIntroEnded', 'onClick', 'onMouseMove', 'raycast' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+  }
+
+  addEventListeners() {
+
+    // this.canvasContainer = document.getElementsByClassName( 'container' )[ 0 ];
+
+    document.addEventListener( 'click', this.onClick, false );
+    document.addEventListener( 'mousemove', this.onMouseMove, false );
+  }
+
+  removeEventListeners() {
+
+    document.removeEventListener( 'click', this.onClick, false );
+    document.removeEventListener( 'mousemove', this.onMouseMove, false );
+  }
+
+  onIntroEnded() {
+
+    this.raycastEnabled = true;
+
+    this.addEventListeners();
+  }
+
+  onEnableRaycast() {
+    this.raycastEnabled = true;
+  }
+
+  onDisableRaycast() {
+    this.raycastEnabled = false;
+  }
+
+  onMouseMove( ev ) {
+
+    this.mouse.x = ( ev.clientX / window.innerWidth ) * 2 - 1;
+    this.mouse.y = - ( ev.clientY / window.innerHeight ) * 2 + 1;
+
+  }
+
+  onClick() {
+
+  }
+
+  debug() {
+
     // document.addEventListener( 'keydown', ( event ) => {
     //
     //   switch ( event.keyCode ) {
@@ -71,15 +155,45 @@ class Level extends THREE.Object3D {
     //       break;
     //   }
     // });
+  }
 
-    this.add( this.terrain );
-    this.add( this.player );
+  raycast() {
 
-    this.norm = 0;
+    if( this.raycastEnabled ) {
+      this.raycaster.setFromCamera( this.mouse, this.camera );
+
+      // calculate objects intersecting the picking ray
+      const intersects = this.raycaster.intersectObjects( this.fishes );
+
+      this.wasIntersecting = this.isIntersecting;
+
+      console.log(intersects);
+
+      if( intersects.length > 0 ) {
+
+        this.isIntersecting = true;
+
+        if( this.wasIntersecting !== this.isIntersecting ) {
+          Emitter.emit( EXP_INTERSECTING_FISH, intersects[ 0 ] );
+        }
+
+      } else {
+
+        this.isIntersecting = false;
+
+        if( this.wasIntersecting !== this.isIntersecting ) {
+          Emitter.emit( EXP_NOT_INTERSECTING_FISH );
+        }
+      }
+    }
   }
 
   update( time ) {
+
+    this.raycast();
+
     this.norm = loopIndex( this.norm + 0.001, 1 );
+
     this.fishGroups.map( group => {
       group.update( time );
     });
