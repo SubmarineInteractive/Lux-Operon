@@ -1,5 +1,5 @@
-import Emitter from 'helpers/Emitter'
-
+import Emitter from 'helpers/Emitter';
+import SoundManager from 'helpers/SoundManager';
 import FishGroup from '../FishGroup';
 
 import points from '../Path/paths/path_1.dae';
@@ -184,7 +184,7 @@ class Level extends THREE.Object3D {
           Emitter.emit( EXP_INTERSECTING_FISH, intersects[ 0 ] );
           Emitter.emit( EXP_SHOW_FISH_NAME, intersects[ 0 ].object.name );
 
-          console.log(intersects[ 0 ]);
+          SoundManager.play( 'fish-hover' );
         }
 
       } else {

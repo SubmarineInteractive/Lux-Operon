@@ -28,6 +28,11 @@ export default [
     type: 'audio',
     id: 'ding',
     url: './audios/ding.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'fish-hover',
+    url: './audios/fish-hover.mp3'
   }
 
 ];
