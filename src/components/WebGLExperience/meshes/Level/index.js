@@ -36,7 +36,7 @@ class Level extends THREE.Object3D {
     this.player = Player;
     this.resources = resources;
     this.fishGroups = [];
-    this.fishes = [];
+    this.fishModels = [];
     this.intersects = [];
 
     this.curve = createSpline( points );
@@ -64,8 +64,7 @@ class Level extends THREE.Object3D {
 
       for ( let i = 0; i < fishGroup.fishes.length; i++ ) {
 
-        // console.log( fishGroup.fishes[ i ] )
-        this.fishes.push( fishGroup.fishes[ i ] );
+        this.fishModels.push( fishGroup.fishes[ i ].children[ 0 ].children[ 0 ] );
       }
 
       this.add( path );
@@ -81,7 +80,6 @@ class Level extends THREE.Object3D {
 
     Emitter.once( EXP_INTRO_ENDED , this.onIntroEnded );
 
-    //this.debug();
   }
 
   bind() {
@@ -163,18 +161,19 @@ class Level extends THREE.Object3D {
       this.raycaster.setFromCamera( this.mouse, this.camera );
 
       // calculate objects intersecting the picking ray
-      const intersects = this.raycaster.intersectObjects( this.fishes );
+      const intersects = this.raycaster.intersectObjects( this.fishModels );
 
       this.wasIntersecting = this.isIntersecting;
-
-      console.log(intersects);
 
       if( intersects.length > 0 ) {
 
         this.isIntersecting = true;
 
         if( this.wasIntersecting !== this.isIntersecting ) {
+
           Emitter.emit( EXP_INTERSECTING_FISH, intersects[ 0 ] );
+
+          console.log(intersects[ 0 ]);
         }
 
       } else {
@@ -182,6 +181,7 @@ class Level extends THREE.Object3D {
         this.isIntersecting = false;
 
         if( this.wasIntersecting !== this.isIntersecting ) {
+
           Emitter.emit( EXP_NOT_INTERSECTING_FISH );
         }
       }
