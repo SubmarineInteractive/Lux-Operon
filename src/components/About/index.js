@@ -8,6 +8,7 @@ import {
   ABOUT_OPEN,
   ABOUT_CLOSE,
   EXP_TOGGLE_CAMERA,
+  EXP_RAYCAST_TOGGLE,
   EXP_TIMER_TOGGLE_PAUSE
 } from 'config/messages';
 
@@ -95,6 +96,7 @@ class About extends Component {
 
     Emitter.emit( EXP_TOGGLE_CAMERA, false );
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
+    Emitter.emit( EXP_RAYCAST_TOGGLE, false );
 
     this.refs.wrapper.classList.add( 'about--is-visible' );
 
@@ -106,6 +108,7 @@ class About extends Component {
 
     Emitter.emit( EXP_TOGGLE_CAMERA, true );
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
+    Emitter.emit( EXP_RAYCAST_TOGGLE, true );
 
     this.enterTl.stop();
     this.leaveTl.play( 0 );

@@ -8,6 +8,7 @@ import { loopIndex, degreeToRadian } from 'utils';
 
 import {
   EXP_INTRO_ENDED,
+  EXP_RAYCAST_TOGGLE,
   EXP_INTERSECTING_FISH,
   EXP_NOT_INTERSECTING_FISH,
   EXP_SHOW_FISH_NAME
@@ -79,12 +80,13 @@ class Level extends THREE.Object3D {
     this.bind();
 
     Emitter.once( EXP_INTRO_ENDED , this.onIntroEnded );
+    Emitter.once( EXP_RAYCAST_TOGGLE , this.toggleRaycast );
 
   }
 
   bind() {
 
-    [ 'update', 'onIntroEnded', 'onClick', 'onMouseMove', 'raycast' ]
+    [ 'update', 'onIntroEnded', 'onClick', 'onMouseMove', 'raycast', 'toggleRaycast' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -109,12 +111,8 @@ class Level extends THREE.Object3D {
     this.addEventListeners();
   }
 
-  onEnableRaycast() {
-    this.raycastEnabled = true;
-  }
-
-  onDisableRaycast() {
-    this.raycastEnabled = false;
+  toggleRaycast( toggle ) {
+    this.raycastEnabled = toggle;
   }
 
   onMouseMove( ev ) {

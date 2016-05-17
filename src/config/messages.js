@@ -53,6 +53,9 @@ const messages = {
   EXP_NOT_INTERSECTING_FISH: 'EXP_NOT_INTERSECTING_FISH',
   EXP_SHOW_FISH_NAME: 'EXP_SHOW_FISH_NAME',
 
+  // ==== Raycast ====
+  EXP_RAYCAST_TOGGLE: 'EXP_RAYCAST_TOGGLE',
+  
   // ==== About popin ====
   ABOUT_OPEN: 'ABOUT_OPEN',
   ABOUT_CLOSE: 'ABOUT_CLOSE',
