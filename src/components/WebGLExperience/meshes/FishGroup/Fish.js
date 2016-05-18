@@ -23,6 +23,10 @@ class Fish extends THREE.Object3D {
         child.material = new FresnelMaterial({}, texture );
         child.material.uniforms.random.value = randomFloat( 0, 1 );
         child.material.uniforms.id.value = id;
+
+        if( species === 'lanternFish' ) {
+          child.material.uniforms.useLights.value = true;
+        }
       }
     });
 
