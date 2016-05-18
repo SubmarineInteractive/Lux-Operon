@@ -2,6 +2,13 @@
 
 const messages = {
 
+
+  /*
+   * RESOURCES
+   */
+
+  RESOURCES_READY : 'RESOURCES_READY',
+
   /*
    * EXPERIENCE
    */
@@ -55,7 +62,7 @@ const messages = {
 
   // ==== Raycast ====
   EXP_RAYCAST_TOGGLE: 'EXP_RAYCAST_TOGGLE',
-  
+
   // ==== About popin ====
   ABOUT_OPEN: 'ABOUT_OPEN',
   ABOUT_CLOSE: 'ABOUT_CLOSE',

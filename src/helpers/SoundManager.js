@@ -24,6 +24,13 @@ class SoundManager {
 
   }
 
+  get( id ) {
+    
+    if( typeof this.sounds[ id ] === 'undefined' ) return false;
+
+    return this.sounds[ id ];
+  }
+
   play( id ) {
 
     if( typeof this.sounds[ id ] === 'undefined' ) return;

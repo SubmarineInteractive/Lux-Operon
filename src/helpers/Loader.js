@@ -1,5 +1,9 @@
 import AWDLoader from 'common/utils/AWDLoader';
+import Emitter from 'helpers/Emitter';
 import SoundManager from 'helpers/SoundManager';
+import files from 'resources';
+
+import { RESOURCES_READY } from 'config/messages';
 
 /**
  * Loader class
@@ -11,7 +15,7 @@ class Loader {
    * @param {array} files Files to load
    * @param {function} onResourceLoaded Called everytime a resource is loaded
    */
-  constructor( files, onResourceLoaded ) {
+  constructor() {
 
     this.promises = [];
     this.totalProgress = files.length;
@@ -38,7 +42,7 @@ class Loader {
           resource => {
             resolve({ id, resource });
             this.currentProgress++;
-            onResourceLoaded( this.currentProgress / this.totalProgress * 100 );
+            // onResourceLoaded( this.currentProgress / this.totalProgress * 100 );
           },
           () => null,
           () => reject,
@@ -56,15 +60,13 @@ class Loader {
    * @return {promise} Promise
    */
   load() {
+    console.log('resources are load');
+
+    Emitter.emit( RESOURCES_READY );
 
     return Promise.all( this.promises );
   }
 
-  loadAudio( url ) {
-
-    return SoundManager.loadAudio( url );
-
-  }
 }
 
-export default Loader;
+export default new Loader;

@@ -2,6 +2,10 @@ import './styles.scss';
 
 import Emitter from 'helpers/Emitter';
 
+import Loader from 'helpers/Loader';
+
+import SoundManager from 'helpers/SoundManager';
+
 import { Component } from 'react';
 
 import { findDOMNode } from 'react-dom';
@@ -14,7 +18,7 @@ import HomeTransitionCanvas from 'components/HomeTransitionCanvas';
 
 import SplitText from 'vendors/splitText.js';
 
-import { ABOUT_OPEN } from 'config/messages';
+import { ABOUT_OPEN, RESOURCES_READY } from 'config/messages';
 
 /*
  * Home class
@@ -27,23 +31,51 @@ class Home extends Component {
 
   componentWillMount() {
 
+    this.loader = Loader;
+
+    Emitter.once( RESOURCES_READY, this.startAmbiantSound );
+
     this.bind();
   }
 
   componentDidMount() {
     this.introAnimation();
     this.generateTimelineMax();
+
   }
 
   componentWillLeave( callback ) {
+
+    // Animation
     TweenMax.to( this.refs.home, 1, { opacity: 0, delay: 3, ease: Expo.easeOut, onComplete: () => callback() });
+
+    // Fadeout Sound
+    this.ambiantSound.fadeOut( 0, 1000, ()=> {
+      this.ambiantSound.stop();
+    });
+
   }
 
   bind() {
 
-    [ 'showAbout', 'onDragComplete', 'onProgress' ]
+    [ 'showAbout', 'onDragComplete', 'onProgress','startAmbiantSound' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
+  }
+
+  startAmbiantSound() {
+
+    console.log('home ambiant sound started');
+
+    this.ambiantSound = SoundManager.get( 'landing-ambiant' );
+
+    this.ambiantSound.loop = true;
+
+    this.ambiantSound.volume = 0;
+
+    this.ambiantSound.play();
+
+    this.ambiantSound.fadeIn( 1, 1000 );
   }
 
   introAnimation() {

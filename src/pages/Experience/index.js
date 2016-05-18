@@ -22,6 +22,7 @@ import { EXP_INTRO_START } from 'config/messages';
  * Experience class
  */
 @connect( state => ({ loading: state.resources.loading, resources: state.resources.resources }) )
+
 class Experience extends Component {
 
   componentWillEnter( callback ) {

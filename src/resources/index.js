@@ -31,6 +31,21 @@ export default [
   },
   {
     type: 'audio',
+    id: 'landing-ambiant',
+    url: './audios/landing-ambiant.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'level-1-ambiant',
+    url: './audios/level-1-ambiant.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'level-1-danger-ambiant',
+    url: './audios/level-1-danger-ambiant.mp3'
+  },
+  {
+    type: 'audio',
     id: 'fish-hover',
     url: './audios/fish-hover.mp3'
   },

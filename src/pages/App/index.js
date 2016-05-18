@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { on, off } from 'dom-events';
 import { connect } from 'react-redux';
 import Loader from 'helpers/Loader';
-import resources from 'resources';
 import { resize } from 'providers/ViewportProvider';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
@@ -27,7 +26,7 @@ class App extends Component {
   componentWillMount() {
     this.handleResize = ::this.handleResize;
 
-    this.loader = new Loader( resources, progress => this.props.updateLoadingProgress( progress ) );
+    this.loader = Loader;
 
     this.loader
      .load()
