@@ -73,7 +73,10 @@ class FishGroup extends THREE.Group {
 
       if( index > -1 ) {
         this.fishes.splice( index, 1 );
-        this.remove( fish );
+        fish.pointLightTl.kill();
+        fish.pointLight.intensity = 0;
+
+        this.remove( fish.modelObject );
       }
     }
   }

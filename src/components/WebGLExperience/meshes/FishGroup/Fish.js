@@ -51,12 +51,12 @@ class Fish extends THREE.Object3D {
 
   createLight() {
 
-    const light = new THREE.PointLight( new THREE.Color( '#435eb0' ), 0, 80, 2 );
-    light.position.set( 0, 445, -125 );
-    this.children[ 0 ].children[ 0 ].add( light );
+    this.pointLight = new THREE.PointLight( new THREE.Color( '#435eb0' ), 0, 80, 2 );
+    this.pointLight.position.set( 0, 445, -125 );
+    this.children[ 0 ].children[ 0 ].add( this.pointLight );
 
     this.pointLightTl
-      .to( light, randomFloat( 1.5, 2 ), { intensity: randomInt( 10, 18 ), ease: Power2.easeIntOut, yoyo: true, repeat: -1 });
+      .to( this.pointLight, randomFloat( 1.5, 2 ), { intensity: randomInt( 10, 18 ), ease: Power2.easeIntOut, yoyo: true, repeat: -1 });
 
     this.pointLightTl.play();
   }
