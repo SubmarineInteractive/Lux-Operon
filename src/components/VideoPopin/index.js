@@ -21,6 +21,8 @@ class VideoPopin extends Component {
 
   componentDidMount() {
 
+    this.isOpen = false;
+
     this.addEventListeners();
 
     this.generateTimelineMax();
@@ -28,6 +30,7 @@ class VideoPopin extends Component {
     this.debug();
 
     this.refs.video.pause();
+
   }
 
   componentWillUnmount() {
@@ -86,17 +89,19 @@ class VideoPopin extends Component {
 
       this.refs.video.pause();
       this.refs.popin.classList.remove( 'video-popin--is-visible' );
+      Emitter.emit( EXP_SHOW_REWARD );
     } });
 
     this.enterTl
       .from( this.refs.skip, 2, { opacity: 0, x: 100, ease: Expo.easeOut }, 0 );
 
     this.leaveTl
-      .to( this.refs.skip, 2, { opacity: 0, x: 100, ease: Expo.easeOut }, 0 );
+      .to( this.refs.popin, 1, { opacity: 0, ease: Expo.easeOut }, 0 );
   }
 
   showPopin() {
 
+    this.isOpen = true;
     this.refs.popin.classList.add( 'video-popin--is-visible' );
     this.leaveTl.stop();
     this.enterTl.play( 0 );
@@ -105,8 +110,12 @@ class VideoPopin extends Component {
 
   closePopin() {
 
-    this.enterTl.stop();
-    this.leaveTl.play( 0 );
+    if( this.isOpen ) {
+      this.refs.video.pause();
+      this.enterTl.stop();
+      this.leaveTl.play( 0 );
+    }
+
   }
 
   onKeyUp( ev ) {
