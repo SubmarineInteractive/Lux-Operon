@@ -49,6 +49,9 @@ class Level extends THREE.Object3D {
     this.wasIntersecting = false;
     this.isIntersecting = false;
 
+    this.intersectingTimeout = null;
+    this.intersectingDebounce = false;
+
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
 
@@ -164,16 +167,32 @@ class Level extends THREE.Object3D {
 
       if( this.intersects.length > 0 ) {
 
+        // Check distance
         if( this.intersects[ 0 ].distance < 2000 ) {
 
           this.isIntersecting = true;
 
           if( this.wasIntersecting !== this.isIntersecting ) {
 
-            Emitter.emit( EXP_INTERSECTING_FISH, this.intersects[ 0 ] );
-            Emitter.emit( EXP_SHOW_FISH_NAME, this.intersects[ 0 ].object.name );
+            // Debounce later system
+            clearTimeout( this.intersectingTimeout );
 
-            SoundManager.play( 'fish-hover' );
+            this.intersectingTimeout = setTimeout( ()=> {
+              this.intersectingDebounce = false;
+            }, 300 );
+
+            // Debounce trigger only once per 300ms
+            if( !this.intersectingDebounce ) {
+
+              this.intersectingDebounce = true;
+
+              Emitter.emit( EXP_INTERSECTING_FISH, this.intersects[ 0 ] );
+              Emitter.emit( EXP_SHOW_FISH_NAME, this.intersects[ 0 ].object.name );
+
+              // Play sound
+              SoundManager.play( 'fish-hover' );
+            }
+
           }
 
         }
