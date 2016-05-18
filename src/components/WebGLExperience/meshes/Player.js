@@ -175,15 +175,16 @@ class Player extends THREE.Object3D {
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, true );
       Emitter.emit( EXP_FLASH_MSG, 'danger', "Uh oh, your light gauge is going down ! Catch the lux to keep swimming." );
 
-    } else if ( this.previousluxVal < this.pluxVal && this.isInDanger ) {
-
+    } else if ( this.luxVal > this.dangerThreshold && this.isInDanger ) {
+      this.isInDanger = false;
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, false );
     }
+
+    console.log(this.previousluxVal, this.luxVal)
   }
 
   updateLuxVal() {
 
-    console.info(this.luxVal);
     if( this.luxVal > 0 && this.luxEnabled ) {
       this.previousluxVal = this.luxVal;
       this.luxVal -= this.decreaseLuxVal;
