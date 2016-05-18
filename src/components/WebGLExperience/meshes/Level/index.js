@@ -1,9 +1,9 @@
 import Emitter from 'helpers/Emitter';
 import SoundManager from 'helpers/SoundManager';
 import FishGroup from '../FishGroup';
+import Path from '../Path';
+import paths from '../Path/paths';
 
-import points from '../Path/paths/path_1.dae';
-import createSpline from 'utils/create-spline';
 import { loopIndex, degreeToRadian, randomFloat } from 'utils';
 
 import {
@@ -47,9 +47,6 @@ class Level extends THREE.Object3D {
     this.fishGoal = 8;
     this.fishCounter = 0;
 
-    this.curve = createSpline( points );
-    this.points = this.curve.getSpacedPoints( 100 );
-
     this.raycastEnabled = false;
     this.wasIntersecting = false;
     this.isIntersecting = false;
@@ -61,16 +58,13 @@ class Level extends THREE.Object3D {
     this.mouse = new THREE.Vector2();
 
     fishGroupConfig.map( config => {
-      const fishGroup = new FishGroup( config, this.resources, this.curve );
-      this.fishGroups.push( fishGroup );
 
-      const geometry = new THREE.Geometry();
-      geometry.vertices = this.points;
-
-      const material = new THREE.LineBasicMaterial({ color: false, transparent: true, opacity: 0 });
-      const path = new THREE.Line( geometry, material );
+      const path = new Path( paths[ `path_${config.pathId}` ] );
       path.position.copy( config.position );
       path.rotation.y = degreeToRadian( 90 );
+
+      const fishGroup = new FishGroup( config, this.resources, path.curve );
+      this.fishGroups.push( fishGroup );
 
       for ( let i = 0; i < fishGroup.fishes.length; i++ ) {
         this.fishModels.push( fishGroup.fishes[ i ].modelObject );
@@ -146,7 +140,7 @@ class Level extends THREE.Object3D {
 
       this.fishCounter++;
 
-      // Win :tada: 
+      // Win :tada:
       if( this.fishCounter >= this.fishGoal ) {
 
         Emitter.emit( EXP_SHOW_VIDEO );
