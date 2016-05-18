@@ -59,7 +59,7 @@ class Level extends THREE.Object3D {
       const geometry = new THREE.Geometry();
       geometry.vertices = this.points;
 
-      const material = new THREE.LineBasicMaterial({ color: false, transparent: true, opacity: 0, linewidth: 0 });
+      const material = new THREE.LineBasicMaterial({ color: false, transparent: true, opacity: 0 });
       const path = new THREE.Line( geometry, material );
       path.position.copy( config.position );
       path.rotation.y = degreeToRadian( 90 );
