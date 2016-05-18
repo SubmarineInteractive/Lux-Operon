@@ -157,7 +157,6 @@ class Player extends THREE.Object3D {
 
   incrementLux( increment ) {
 
-    console.log('========== increment', increment)
     this.luxVal = clamp( 0, 1, this.luxVal + increment );
   }
 

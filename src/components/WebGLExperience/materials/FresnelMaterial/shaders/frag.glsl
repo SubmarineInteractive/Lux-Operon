@@ -1,4 +1,6 @@
 uniform int id;
+uniform int useLights;
+
 uniform sampler2D gradientTexture;
 uniform float gradientProgress;
 uniform float opacity;
@@ -35,13 +37,13 @@ void main() {
 
   vec3 viewPosition = normalize( vViewPosition );
 
-  vec3 totalDiffuseLight = vec3( 0.0 );
+  vec3 totalDiffuseLight = vec3( 1.0 );
 
   #if NUM_POINT_LIGHTS > 0
 
     for ( int i = 0; i < NUM_POINT_LIGHTS; i ++ ) {
 
-      if( i == id ) {
+      if( i == id && useLights == 1 ) {
 
         vec3 lVector = pointLights[ i ].position + vViewPosition.xyz;
 
@@ -62,7 +64,7 @@ void main() {
 
   #endif
 
-  outgoingLight += diffuseColor.xyz * ( totalDiffuseLight + ambientLightColor );
+  outgoingLight += diffuseColor.xyz * totalDiffuseLight;
 
   gl_FragColor = vec4( outgoingLight.rgb, gradientOpacity );
 
