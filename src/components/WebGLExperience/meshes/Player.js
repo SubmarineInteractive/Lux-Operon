@@ -1,6 +1,6 @@
 import Cannon from 'cannon';
 import PointLight from '../lights/PointLight';
-import { randomInt } from 'utils';
+import { randomInt, clamp } from 'utils';
 
 import Emitter from 'helpers/Emitter';
 
@@ -60,7 +60,7 @@ class Player extends THREE.Object3D {
 
   bind() {
 
-    [ 'toggleLux', 'getLuxVal', 'updateLuxVal', 'updateLuxVal', 'checkDangerState' ]
+    [ 'toggleLux', 'getLuxVal', 'updateLuxVal', 'updateLuxVal', 'incrementLux', 'checkDangerState' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -86,7 +86,7 @@ class Player extends THREE.Object3D {
 
     Emitter.on( EXP_LUX_TOGGLE, this.toggleLux );
     Emitter.on( EXP_GET_LUX_VALUE, this.getLuxVal );
-    Emitter.on( EXP_LUX_VALUE_UPDATE, this.updateLuxVal );
+    Emitter.on( EXP_LUX_VALUE_UPDATE, this.incrementLux );
   }
 
   toggleLux( toggleVal ) {
@@ -155,10 +155,9 @@ class Player extends THREE.Object3D {
     // this.sphereBody.quaternion.setFromEuler( newRotation );
   }
 
+  incrementLux( increment ) {
 
-  updateLuxVal( newVal ) {
-
-    this.luxVal = newVal;
+    this.luxVal = clamp( 0, 1, this.luxVal + increment );
   }
 
   getLuxVal() {
@@ -175,10 +174,12 @@ class Player extends THREE.Object3D {
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, true );
       Emitter.emit( EXP_FLASH_MSG, 'danger', "Uh oh, your light gauge is going down ! Catch the lux to keep swimming." );
 
-    } else if ( this.previousluxVal < this.pluxVal && this.isInDanger ) {
-
+    } else if ( this.luxVal > this.dangerThreshold && this.isInDanger ) {
+      this.isInDanger = false;
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, false );
     }
+
+    console.log(this.previousluxVal, this.luxVal)
   }
 
   updateLuxVal() {

@@ -60,14 +60,17 @@ class LevelIntroduction extends Component {
   }
 
   beginTitle() {
+
     this.refs.titleStep.begin();
   }
 
   beginTutorial() {
+
     this.refs.tutorialStep.begin();
   }
 
   beginTooltips() {
+
     this.refs.tooltipsStep.begin();
   }
 

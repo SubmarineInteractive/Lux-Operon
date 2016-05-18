@@ -3,6 +3,7 @@ import './styles.scss';
 import { Component } from 'react';
 
 import Emitter from 'helpers/Emitter';
+import SoundManager from 'helpers/SoundManager';
 
 import {
   TOOLTIPS_SHOW,
@@ -93,6 +94,8 @@ class IntroductionTooltips extends Component {
   }
 
   begin( showIntro ) {
+
+    SoundManager.play( 'woosh' );
 
     if( showIntro ) {
       this.props.showIntro();

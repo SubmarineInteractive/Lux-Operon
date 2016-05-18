@@ -1,6 +1,7 @@
 import './styles.scss';
 
 import Emitter from 'helpers/Emitter';
+import SoundManager from 'helpers/SoundManager';
 
 import { Component } from 'react';
 
@@ -93,6 +94,14 @@ class FlashMessages extends Component {
         <span>${msg}</span>
       </li>
     `;
+
+    if( type === 'good' ) {
+
+      SoundManager.play( 'good-message' );
+    } else if ( type === 'danger' ) {
+
+      SoundManager.play( 'bad-message' );
+    }
 
     const msgEls = this.refs.container.querySelectorAll( '.flash-messages__el' );
     const currentMsgEl = msgEls[ msgEls.length - 1 ];

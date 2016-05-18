@@ -26,8 +26,42 @@ export default [
   // Sounds
   {
     type: 'audio',
-    id: 'ding',
-    url: './audios/ding.mp3'
+    id: 'level-1-intro',
+    url: './audios/level-1-intro.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'fish-hover',
+    url: './audios/fish-hover.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'good-message',
+    url: './audios/good-message.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'bad-message',
+    url: './audios/bad-message.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'click',
+    url: './audios/click.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'loose',
+    url: './audios/loose.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'woosh',
+    url: './audios/woosh.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'woosh',
+    url: './audios/woosh.mp3'
   }
-
 ];

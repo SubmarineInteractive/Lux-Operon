@@ -6,7 +6,6 @@ import SplitText from 'vendors/splitText.js';
 
 import SoundManager from 'helpers/SoundManager';
 
-
 /**
  * IntroductionTitle component
  */
@@ -79,7 +78,7 @@ class IntroductionTitle extends Component {
 
     this.titleTl.play();
 
-    SoundManager.play( 'ding' );
+    SoundManager.play( 'level-1-intro' );
   }
 
   skip() {

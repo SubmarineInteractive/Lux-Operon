@@ -8,3 +8,10 @@
   height: 100vh;
   overflow: hidden;
 }
+
+
+body {
+  &.is-intersecting {
+    cursor: pointer;
+  }
+}
