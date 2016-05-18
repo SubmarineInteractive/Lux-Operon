@@ -13,6 +13,7 @@ import {
   EXP_NOT_INTERSECTING_FISH,
   EXP_SHOW_FISH_NAME,
   EXP_LUX_VALUE_UPDATE,
+  EXP_SHOW_VIDEO,
   EXP_FLASH_MSG
 } from 'config/messages';
 
@@ -44,6 +45,7 @@ class Level extends THREE.Object3D {
     this.intersects = [];
 
     this.fishGoal = 8;
+    this.fishCounter = 0;
 
     this.curve = createSpline( points );
     this.points = this.curve.getSpacedPoints( 100 );
@@ -92,19 +94,19 @@ class Level extends THREE.Object3D {
 
   bind() {
 
-    [ 'update', 'onIntroEnded', 'onClick', 'onMouseMove', 'raycast', 'toggleRaycast' ]
+    [ 'update', 'onIntroEnded', 'handleClickOnFish', 'onMouseMove', 'raycast', 'toggleRaycast' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addEventListeners() {
 
-    document.addEventListener( 'click', this.onClick, false );
+    document.addEventListener( 'click', this.handleClickOnFish, false );
     document.addEventListener( 'mousemove', this.onMouseMove, false );
   }
 
   removeEventListeners() {
 
-    document.removeEventListener( 'click', this.onClick, false );
+    document.removeEventListener( 'click', this.handleClickOnFish, false );
     document.removeEventListener( 'mousemove', this.onMouseMove, false );
   }
 
@@ -123,10 +125,9 @@ class Level extends THREE.Object3D {
 
     this.mouse.x = ( ev.clientX / window.innerWidth ) * 2 - 1;
     this.mouse.y = - ( ev.clientY / window.innerHeight ) * 2 + 1;
-
   }
 
-  onClick() {
+  handleClickOnFish() {
 
     if( this.intersects.length <= 0 ) return;
 
@@ -142,6 +143,15 @@ class Level extends THREE.Object3D {
       Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
 
       model.removeFish( fish );
+
+      this.fishCounter++;
+
+      // Win :tada: 
+      if( this.fishCounter >= this.fishGoal ) {
+
+        Emitter.emit( EXP_SHOW_VIDEO );
+      }
+
     } });
   }
 
