@@ -23,9 +23,16 @@ class FresnelMaterial extends THREE.ShaderMaterial {
 
     this.transparent = true;
     this.fog = true;
+    this.lights = true;
+    this.side = THREE.DoubleSide;
 
     this.uniforms = {
       ...THREE.UniformsLib[ 'fog' ],
+      ...THREE.UniformsLib[ 'lights' ],
+      'id': {
+        type: 'i',
+        value: 0
+      },
       'time': {
         type: 'f',
         value: 0.0
@@ -34,13 +41,17 @@ class FresnelMaterial extends THREE.ShaderMaterial {
         type: 't',
         value: this.gradientTexture
       },
-      'alpha': {
+      'gradientProgress': {
         type: 'f',
-        value: 0.5
+        value: 0.0
       },
       'random': {
         type: 'f',
         value: 0.0
+      },
+      'opacity': {
+        type: 'f',
+        value: 1
       }
     };
   }

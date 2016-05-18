@@ -1,12 +1,12 @@
 import FresnelMaterial from '../../materials/FresnelMaterial';
-import { randomFloat, degreeToRadian, loopIndex, setRotationFromSpline } from 'utils';
+import { randomInt, randomFloat, degreeToRadian, loopIndex, setRotationFromSpline } from 'utils';
 
 /**
  * Fish class
  */
 class Fish extends THREE.Object3D {
 
-  constructor( parent, model, name, texture, curve ) {
+  constructor( id, parent, model, name, species, texture, curve ) {
     super();
 
     this.randomScale = randomFloat( 0.07, 0.09 );
@@ -22,21 +22,18 @@ class Fish extends THREE.Object3D {
       if( child instanceof THREE.Mesh ) {
         child.material = new FresnelMaterial({}, texture );
         child.material.uniforms.random.value = randomFloat( 0, 1 );
+        child.material.uniforms.id.value = id;
       }
     });
 
     this.curve = curve;
+    this.pointLightTl = new TimelineMax();
 
     this.progress = randomFloat( - 0.1, 0.1 );
 
     model.rotation.x = degreeToRadian( 90 );
     model.rotation.y = degreeToRadian( 90 );
     model.rotation.z = degreeToRadian( -90 );
-
-    // this.initialPosition = {};
-    // this.initialPosition.x = this.position.x = randomInt( -10, 10 );
-    // this.initialPosition.y = this.position.y = randomInt( -10, 10 );
-    // this.initialPosition.z = this.position.z = randomInt( -10, 10 );
 
     this.randomOffset = {
       x: randomFloat( - 1.1, 1.1 ),
@@ -46,9 +43,26 @@ class Fish extends THREE.Object3D {
     };
 
     this.add( model );
+
+    if( species === 'lanternFish' ) {
+      this.createLight();
+    }
+  }
+
+  createLight() {
+
+    const light = new THREE.PointLight( new THREE.Color( '#435eb0' ), 0, 80, 2 );
+    light.position.set( 0, 445, -125 );
+    this.children[ 0 ].children[ 0 ].add( light );
+
+    this.pointLightTl
+      .to( light, randomFloat( 1.5, 2 ), { intensity: randomInt( 10, 18 ), ease: Power2.easeIntOut, yoyo: true, repeat: -1 });
+
+    this.pointLightTl.play();
   }
 
   update( time ) {
+
     this.children[ 0 ].children[ 0 ].material.update( time );
 
     this.progress = loopIndex( this.progress + 0.001, 1 );

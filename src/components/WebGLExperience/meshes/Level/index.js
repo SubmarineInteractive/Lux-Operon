@@ -66,7 +66,6 @@ class Level extends THREE.Object3D {
       path.rotation.y = degreeToRadian( 90 );
 
       for ( let i = 0; i < fishGroup.fishes.length; i++ ) {
-
         this.fishModels.push( fishGroup.fishes[ i ].modelObject );
       }
 
@@ -139,13 +138,8 @@ class Level extends THREE.Object3D {
 
       Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
 
-      model.removeFish( fish );
-      // this.intersects[ 0 ].object.parent.parent.remove();
-
-
+      fish.removeFish( fish );
     } });
-
-
   }
 
   updateWindowCursor() {
@@ -170,7 +164,6 @@ class Level extends THREE.Object3D {
       this.intersects = this.raycaster.intersectObjects( this.fishModels );
 
       this.wasIntersecting = this.isIntersecting;
-
 
       if( this.intersects.length > 0 ) {
 

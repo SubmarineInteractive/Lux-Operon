@@ -31,7 +31,7 @@ class FishGroup extends THREE.Group {
 
     for ( let i = 0; i < count; i++ ) {
       const model = resources[ species ].clone();
-      const fish = new Fish( this, model, name, resources.fishGradientTexture, curve );
+      const fish = new Fish( i, parent, model, name, species, resources.fishGradientTexture, curve );
 
       this.fishes.push( fish );
       this.add( fish );
@@ -75,8 +75,6 @@ class FishGroup extends THREE.Group {
         this.fishes.splice( index, 1 );
         this.remove( fish );
       }
-
-
     }
   }
 
