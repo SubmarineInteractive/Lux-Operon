@@ -4,7 +4,7 @@
   "plugins": [
     { "name": "esdoc-es7-plugin" }
   ],
-  "title": "Abyss Project",
+  "title": "Luxoperon",
   "undocumentIdentifier": false,
   "access":	["public", "protected", "private"]
 }
