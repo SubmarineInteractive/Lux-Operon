@@ -121,7 +121,7 @@ class Player extends THREE.Object3D {
     for ( let i = 0; i < this.nbLights; i++ ) {
 
       const plight = new PointLight({
-        hex: parseInt( this.playerConfig.colors[ randomInt( 0, this.playerConfig.colors.length - 1 ) ], 16 ),
+        color: this.playerConfig.colors[ randomInt( 0, this.playerConfig.colors.length - 1 ) ],
         intensity: this.playerConfig.intensity,
         distance: this.playerConfig.distance,
         decay: this.playerConfig.decay

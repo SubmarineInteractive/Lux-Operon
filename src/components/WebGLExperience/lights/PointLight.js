@@ -10,11 +10,11 @@ class PointLight extends THREE.PointLight {
    * Constructor function
    * @param {Configuration} configuration Configuration instance
    */
-  constructor({ hex = 0xffffff, intensity = 1, distance = 0, decay = 1 }) {
+  constructor({ color = 0xffffff, intensity = 1, distance = 0, decay = 1 }) {
 
-    super( parseInt( hex, 16 ), intensity, distance, decay );
+    super( color, intensity, distance, decay );
 
-    this.hex = parseInt( hex, 16 );
+    this.color = color;
 
     this.gravitationOptions = {
       x: {
@@ -39,7 +39,7 @@ class PointLight extends THREE.PointLight {
 
     const geom = new THREE.SphereGeometry( 1, 5, 5 );
     const mat = new THREE.MeshBasicMaterial({
-      color: this.hex,
+      color: this.color,
       wireframe: true
     });
 

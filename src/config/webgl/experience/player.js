@@ -1,9 +1,14 @@
 export default {
   pointLights: {
     number: 10,
-    colors: [ 0x3498db, 0x34495e, 0x9b59b6, 0xe74c3c ],
-    intensity: 2,
-    distance: 200,
-    decay: 1
+    colors: [
+      new THREE.Color( '#8498d5' ),
+      new THREE.Color( '#34495e' ),
+      new THREE.Color( '#4542af' ),
+      new THREE.Color( '#4862b1' )
+    ],
+    intensity: 1.8,
+    distance: 180,
+    decay: 2
   }
 };
