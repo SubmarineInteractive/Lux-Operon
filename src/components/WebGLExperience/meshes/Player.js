@@ -178,8 +178,6 @@ class Player extends THREE.Object3D {
       this.isInDanger = false;
       Emitter.emit( EXP_PLAYER_TOGGLE_IS_IN_DANGER, false );
     }
-
-    console.log(this.previousluxVal, this.luxVal)
   }
 
   updateLuxVal() {
