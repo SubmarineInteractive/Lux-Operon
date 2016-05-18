@@ -42,6 +42,8 @@ class Level extends THREE.Object3D {
     this.fishModels = [];
     this.intersects = [];
 
+    this.fishGoal = 8;
+
     this.curve = createSpline( points );
     this.points = this.curve.getSpacedPoints( 100 );
 
@@ -142,7 +144,7 @@ class Level extends THREE.Object3D {
     } });
   }
 
-  updateWindowCursor() {
+  updateWindowCursorPointer() {
 
     if( this.isIntersecting ) {
 
@@ -207,7 +209,7 @@ class Level extends THREE.Object3D {
         }
       }
 
-      this.updateWindowCursor();
+      this.updateWindowCursorPointer();
 
     }
   }
