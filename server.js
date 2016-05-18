@@ -1,5 +1,4 @@
 /*eslint-env node*/
-import path from 'path';
 import express from 'express';
 import webpack from 'webpack';
 import history from 'connect-history-api-fallback';
@@ -36,13 +35,13 @@ if( isDeveloping ) {
 
   app.use( webpackHotMiddleware( compiler ) );
 
+  // Serve pure static assets
+  app.use( express.static( './static' ) );
+
 } else {
 
   app.use( express.static( __dirname + '/dist' ) );
 }
-
-const index = path.join( __dirname, isDeveloping ? 'index.html' : 'dist/index.html' );
-app.get( '*', ( req, res ) => res.sendFile( index ) );
 
 app.listen( port, ip, error => {
   if ( error ) throw error;

@@ -1,7 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export default {
   context: path.resolve( __dirname, '..' ),
@@ -87,10 +86,6 @@ export default {
     new webpack.ProvidePlugin({
       'THREE': 'three',
       'React': 'react'
-    }),
-    new CopyWebpackPlugin( [
-      { from: 'static' }
-    ],
-    { ignore: [ '.DS_Store', '.keep' ] })
+    })
   ]
 };
