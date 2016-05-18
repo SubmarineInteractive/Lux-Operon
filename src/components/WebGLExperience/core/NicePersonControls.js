@@ -7,7 +7,9 @@ import {
   EXP_GET_DEPTH_VALUE,
   EXP_DEPTH_VALUE_SENDED,
   EXP_INTRO_START,
-  EXP_TOGGLE_CAMERA
+  EXP_TOGGLE_CAMERA,
+  EXP_INTERSECTING_FISH,
+  EXP_NOT_INTERSECTING_FISH
 } from 'config/messages';
 
 /**
@@ -23,6 +25,9 @@ class NicePersonControls {
 
     this.enabled = false;
     this.enableDamping = false;
+    this.enableMouseDown = true;
+
+    this.mousedownTimeout = null;
 
     this.locked = true;
 
@@ -54,8 +59,8 @@ class NicePersonControls {
 
   bind() {
 
-    [ 'handleMouseMove', 'handleMouseUp', 'handleMouseDown',
-      'debugSetPosition', 'getPosition', 'getDepthValue', 'toggleCamera', 'startIntroCameraMovement' ]
+    [ 'handleMouseMove', 'handleMouseUp', 'handleMouseDown', 'debugSetPosition', 'getPosition',
+      'getDepthValue', 'toggleCamera', 'startIntroCameraMovement', 'onIntersectingFish', 'onNotIntersectingFish' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -69,6 +74,8 @@ class NicePersonControls {
     Emitter.on( EXP_GET_DEPTH_VALUE, this.getDepthValue );
     Emitter.on( EXP_TOGGLE_CAMERA, this.toggleCamera );
     Emitter.on( EXP_INTRO_START, this.startIntroCameraMovement );
+    Emitter.on( EXP_INTERSECTING_FISH, this.onIntersectingFish );
+    Emitter.on( EXP_NOT_INTERSECTING_FISH, this.onNotIntersectingFish );
   }
 
   removeListeners() {
@@ -80,6 +87,8 @@ class NicePersonControls {
     Emitter.off( EXP_GET_DEPTH_VALUE, this.getDepthValue );
     Emitter.off( EXP_TOGGLE_CAMERA, this.toggleCamera );
     Emitter.off( EXP_INTRO_START, this.startIntroCameraMovement );
+    Emitter.off( EXP_INTERSECTING_FISH, this.onIntersectingFish );
+    Emitter.off( EXP_NOT_INTERSECTING_FISH, this.onNotIntersectingFish );
   }
 
   debug() {
@@ -125,6 +134,10 @@ class NicePersonControls {
 
   handleMouseUp() {
 
+    if( !this.enableMouseDown ) return;
+
+    clearTimeout( this.mousedownTimeout );
+
     this.enabled = false;
     this.enableDamping = true;
 
@@ -134,10 +147,19 @@ class NicePersonControls {
 
   handleMouseDown() {
 
-    TweenMax.killTweensOf( this.yawObject.rotation, { y: true });
-    TweenMax.killTweensOf( this.pitchObject.rotation, { x: true });
-    this.enabled = true;
-    this.enableDamping = false;
+    if( !this.enableMouseDown ) return;
+
+    clearTimeout( this.mousedownTimeout );
+
+    this.mousedownTimeout = setTimeout( ()=> {
+
+      TweenMax.killTweensOf( this.yawObject.rotation, { y: true });
+      TweenMax.killTweensOf( this.pitchObject.rotation, { x: true });
+      this.enabled = true;
+      this.enableDamping = false;
+
+    }, 100 );
+
   }
 
   get object() {
@@ -157,7 +179,6 @@ class NicePersonControls {
     Emitter.emit( EXP_CAMERA_POSITION_SENDED, this.cannonBody.position );
 
     return this.cannonBody.position;
-
   }
 
   getDepthValue() {
@@ -165,7 +186,6 @@ class NicePersonControls {
     Emitter.emit( EXP_DEPTH_VALUE_SENDED, this.cannonBody.position.y );
 
     return this.cannonBody.position.y;
-
   }
 
   toggleCamera( toggle ) {
@@ -179,7 +199,18 @@ class NicePersonControls {
 
   }
 
+  onIntersectingFish() {
+
+    this.enableMouseDown = false;
+  }
+
+  onNotIntersectingFish() {
+
+    this.enableMouseDown = true;
+  }
+
   update() {
+
     if( this.locked ) return;
 
     if( this.enabled || this.enableDamping ) {

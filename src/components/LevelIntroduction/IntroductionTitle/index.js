@@ -6,7 +6,6 @@ import SplitText from 'vendors/splitText.js';
 
 import SoundManager from 'helpers/SoundManager';
 
-
 /**
  * IntroductionTitle component
  */
@@ -83,7 +82,7 @@ class IntroductionTitle extends Component {
   }
 
   skip() {
-    
+
     this.refs.container.style.display = "none";
 
     this.titleTl.stop();
