@@ -33,7 +33,7 @@ class Experience extends Component {
   }
 
   componentWillAppear() {
-    this.startIntroduction( 500 );
+    this.startIntroduction( 1000 );
   }
 
   startIntroduction( delay ) {
