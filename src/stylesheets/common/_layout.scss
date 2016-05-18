@@ -12,6 +12,9 @@
 
 body {
   &.is-intersecting {
-    cursor: pointer;
+    cursor: pointer !important;
+  }
+  &.is-moving {
+    cursor: move !important;
   }
 }

@@ -123,7 +123,7 @@ class NicePersonControls {
 
   handleMouseMove( event ) {
 
-    if( ! this.enabled ) return;
+    if( !this.enabled ) return;
 
     this.movementX = map( event.pageX, 0, window.innerWidth, -1, 1 ) || 0;
     this.movementY = map( event.pageY, 0, window.innerHeight, -1, 1 ) || 0;
@@ -134,15 +134,19 @@ class NicePersonControls {
 
   handleMouseUp() {
 
+    document.body.classList.remove('is-moving');
+
     if( !this.enableMouseDown ) return;
 
     clearTimeout( this.mousedownTimeout );
 
-    this.enabled = false;
-    this.enableDamping = true;
+    if( this.enabled ) {
+      this.enabled = false;
+      this.enableDamping = true;
 
-    TweenMax.to( this.yawObject.rotation, 1, { y: this.yawObject.rotation.y - ( this.movementX / 5 ) });
-    TweenMax.to( this.pitchObject.rotation, 1, { x: this.pitchObject.rotation.x - ( this.movementY / 5 ) });
+      TweenMax.to( this.yawObject.rotation, 1, { y: this.yawObject.rotation.y - ( this.movementX / 5 ) });
+      TweenMax.to( this.pitchObject.rotation, 1, { x: this.pitchObject.rotation.x - ( this.movementY / 5 ) });
+    }
   }
 
   handleMouseDown() {
@@ -158,7 +162,9 @@ class NicePersonControls {
       this.enabled = true;
       this.enableDamping = false;
 
-    }, 100 );
+      document.body.classList.add('is-moving');
+
+    }, 200 );
 
   }
 
