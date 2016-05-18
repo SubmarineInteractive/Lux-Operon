@@ -60,7 +60,7 @@ class Player extends THREE.Object3D {
 
   bind() {
 
-    [ 'toggleLux', 'getLuxVal', 'updateLuxVal', 'updateLuxVal', 'checkDangerState' ]
+    [ 'toggleLux', 'getLuxVal', 'updateLuxVal', 'updateLuxVal', 'incrementLux', 'checkDangerState' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -86,7 +86,7 @@ class Player extends THREE.Object3D {
 
     Emitter.on( EXP_LUX_TOGGLE, this.toggleLux );
     Emitter.on( EXP_GET_LUX_VALUE, this.getLuxVal );
-    Emitter.on( EXP_LUX_VALUE_UPDATE, this.updateLuxVal );
+    Emitter.on( EXP_LUX_VALUE_UPDATE, this.incrementLux );
   }
 
   toggleLux( toggleVal ) {
@@ -155,9 +155,10 @@ class Player extends THREE.Object3D {
     // this.sphereBody.quaternion.setFromEuler( newRotation );
   }
 
-  updateLuxVal( increment ) {
+  incrementLux( increment ) {
 
-    this.luxVal += clamp( 0, 1, this.luxVal + increment );
+    console.log('========== increment', increment)
+    this.luxVal = clamp( 0, 1, this.luxVal + increment );
   }
 
   getLuxVal() {
@@ -182,6 +183,7 @@ class Player extends THREE.Object3D {
 
   updateLuxVal() {
 
+    console.info(this.luxVal);
     if( this.luxVal > 0 && this.luxEnabled ) {
       this.previousluxVal = this.luxVal;
       this.luxVal -= this.decreaseLuxVal;

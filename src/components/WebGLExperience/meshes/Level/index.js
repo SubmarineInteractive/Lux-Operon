@@ -130,7 +130,7 @@ class Level extends THREE.Object3D {
     const model = this.intersects[ 0 ].object;
     const fish = model.parent.parent;
 
-    const luxGain = randomFloat( 0.2, 1 );
+    const luxGain = randomFloat( 0.05, 0.1 );
 
     TweenMax.to( model.scale, 1, { x: 0.001, y: 0.001, z: 0.001, ease: Expo.easeOut, onComplete: () => {
 
