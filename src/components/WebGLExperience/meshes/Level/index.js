@@ -11,7 +11,8 @@ import {
   EXP_RAYCAST_TOGGLE,
   EXP_INTERSECTING_FISH,
   EXP_NOT_INTERSECTING_FISH,
-  EXP_SHOW_FISH_NAME
+  EXP_SHOW_FISH_NAME,
+  EXP_FLASH_MSG
 } from 'config/messages';
 
 /**
@@ -124,6 +125,23 @@ class Level extends THREE.Object3D {
 
   onClick() {
 
+    if( this.intersects.length <= 0 ) return;
+
+    const model = this.intersects[ 0 ].object;
+    const fish = model.parent.parent;
+
+
+    TweenMax.to( model.scale, 1, { x: 0.001, y: 0.001, z: 0.001, ease: Expo.easeOut, onComplete: () => {
+
+      Emitter.emit( EXP_FLASH_MSG, 'good', `You win + lux` );
+
+      model.removeFish( fish );
+      // this.intersects[ 0 ].object.parent.parent.remove();
+
+
+    } });
+
+
   }
 
   updateWindowCursor() {
@@ -138,55 +156,28 @@ class Level extends THREE.Object3D {
 
   }
 
-  debug() {
-
-    // document.addEventListener( 'keydown', ( event ) => {
-    //
-    //   switch ( event.keyCode ) {
-    //     case 90:
-    //       path.position.x += 10;
-    //       break;
-    //     case 65:
-    //       path.position.x -= 10;
-    //       break;
-    //     case 83:
-    //       path.position.y += 10;
-    //       break;
-    //     case 81:
-    //       path.position.y -= 10;
-    //       break;
-    //     case 88:
-    //       path.position.z += 10;
-    //       break;
-    //     case 87:
-    //       path.position.z -= 10;
-    //       break;
-    //   }
-    // });
-  }
-
   raycast() {
 
     if( this.raycastEnabled ) {
+
       this.raycaster.setFromCamera( this.mouse, this.camera );
 
       // calculate objects intersecting the picking ray
-      const intersects = this.raycaster.intersectObjects( this.fishModels );
+      this.intersects = this.raycaster.intersectObjects( this.fishModels );
 
       this.wasIntersecting = this.isIntersecting;
 
 
-      if( intersects.length > 0 ) {
-        console.log( intersects[ 0 ].distance )
-        
-        if( intersects[ 0 ].distance < 2000 ) {
+      if( this.intersects.length > 0 ) {
+
+        if( this.intersects[ 0 ].distance < 2000 ) {
 
           this.isIntersecting = true;
 
           if( this.wasIntersecting !== this.isIntersecting ) {
 
-            Emitter.emit( EXP_INTERSECTING_FISH, intersects[ 0 ] );
-            Emitter.emit( EXP_SHOW_FISH_NAME, intersects[ 0 ].object.name );
+            Emitter.emit( EXP_INTERSECTING_FISH, this.intersects[ 0 ] );
+            Emitter.emit( EXP_SHOW_FISH_NAME, this.intersects[ 0 ].object.name );
 
             SoundManager.play( 'fish-hover' );
           }

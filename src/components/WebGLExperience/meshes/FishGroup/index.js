@@ -1,6 +1,6 @@
 import Emitter from 'helpers/Emitter';
 import Fish from './Fish';
-
+import findIndex from 'lodash.findindex';
 import {
   EXP_FISH_GET_POSITION,
   EXP_FISH_GROUP_POSITION_SENDED
@@ -31,7 +31,7 @@ class FishGroup extends THREE.Group {
 
     for ( let i = 0; i < count; i++ ) {
       const model = resources[ species ].clone();
-      const fish = new Fish( model, name, resources.fishGradientTexture, curve );
+      const fish = new Fish( this, model, name, resources.fishGradientTexture, curve );
 
       this.fishes.push( fish );
       this.add( fish );
@@ -41,6 +41,7 @@ class FishGroup extends THREE.Group {
   bind() {
 
     this.getPosition = this.getPosition.bind( this );
+    this.removeFish = this.removeFish.bind( this );
   }
 
   addListeners() {
@@ -62,6 +63,31 @@ class FishGroup extends THREE.Group {
 
     return positions;
 
+  }
+
+  removeFish( fish ) {
+
+    console.log('group', this);
+    console.log('fishes', this.fishes);
+
+    if( this.children.length > 0 ) {
+
+      console.log( 'fish.id', fish.id );
+
+      const index = findIndex( this.fishes, { id: fish.id });
+
+      console.log('index', index )
+
+
+      if( index > -1 ) {
+        this.fishes.splice( index, 1 );
+
+        console.log('======', 'index', '====', this.fishes);
+        this.remove( fish );
+      }
+
+
+    }
   }
 
   update( time ) {

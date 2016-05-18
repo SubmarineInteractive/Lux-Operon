@@ -6,14 +6,15 @@ import { randomFloat, degreeToRadian, loopIndex, setRotationFromSpline } from 'u
  */
 class Fish extends THREE.Object3D {
 
-  constructor( model, name, texture, curve ) {
+  constructor( parent, model, name, texture, curve ) {
     super();
 
     this.randomScale = randomFloat( 0.07, 0.09 );
 
     this.modelObject = model.children[ 0 ];
-
     this.modelObject.name = name;
+    this.modelObject.removeFish = parent.removeFish;
+    this.modelObject.parentClass = this;
 
     model.scale.set( this.randomScale , this.randomScale , this.randomScale  );
 
