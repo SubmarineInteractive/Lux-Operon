@@ -4,7 +4,7 @@ import FishGroup from '../FishGroup';
 
 import points from '../Path/paths/path_1.dae';
 import createSpline from 'utils/create-spline';
-import { loopIndex, degreeToRadian } from 'utils';
+import { loopIndex, degreeToRadian, randomFloat, randomInt } from 'utils';
 
 import {
   EXP_INTRO_ENDED,
@@ -65,7 +65,6 @@ class Level extends THREE.Object3D {
       path.rotation.y = degreeToRadian( 90 );
 
       for ( let i = 0; i < fishGroup.fishes.length; i++ ) {
-
         this.fishModels.push( fishGroup.fishes[ i ].modelObject );
       }
 
@@ -135,13 +134,8 @@ class Level extends THREE.Object3D {
 
       Emitter.emit( EXP_FLASH_MSG, 'good', `You win + lux` );
 
-      model.removeFish( fish );
-      // this.intersects[ 0 ].object.parent.parent.remove();
-
-
+      fish.removeFish( fish );
     } });
-
-
   }
 
   updateWindowCursor() {
@@ -166,7 +160,6 @@ class Level extends THREE.Object3D {
       this.intersects = this.raycaster.intersectObjects( this.fishModels );
 
       this.wasIntersecting = this.isIntersecting;
-
 
       if( this.intersects.length > 0 ) {
 
