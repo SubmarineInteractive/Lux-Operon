@@ -138,7 +138,7 @@ class Level extends THREE.Object3D {
 
       Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
 
-      fish.removeFish( fish );
+      model.removeFish( fish );
     } });
   }
 
