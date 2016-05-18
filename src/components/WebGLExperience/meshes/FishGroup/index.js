@@ -67,22 +67,12 @@ class FishGroup extends THREE.Group {
 
   removeFish( fish ) {
 
-    console.log('group', this);
-    console.log('fishes', this.fishes);
-
     if( this.children.length > 0 ) {
-
-      console.log( 'fish.id', fish.id );
 
       const index = findIndex( this.fishes, { id: fish.id });
 
-      console.log('index', index )
-
-
       if( index > -1 ) {
         this.fishes.splice( index, 1 );
-
-        console.log('======', 'index', '====', this.fishes);
         this.remove( fish );
       }
 

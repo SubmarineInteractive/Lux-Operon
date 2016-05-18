@@ -1,6 +1,6 @@
 import Cannon from 'cannon';
 import PointLight from '../lights/PointLight';
-import { randomInt } from 'utils';
+import { randomInt, clamp } from 'utils';
 
 import Emitter from 'helpers/Emitter';
 
@@ -155,10 +155,9 @@ class Player extends THREE.Object3D {
     // this.sphereBody.quaternion.setFromEuler( newRotation );
   }
 
+  updateLuxVal( increment ) {
 
-  updateLuxVal( newVal ) {
-
-    this.luxVal = newVal;
+    this.luxVal += clamp( 0, 1, this.luxVal + increment );
   }
 
   getLuxVal() {

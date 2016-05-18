@@ -4,7 +4,7 @@ import FishGroup from '../FishGroup';
 
 import points from '../Path/paths/path_1.dae';
 import createSpline from 'utils/create-spline';
-import { loopIndex, degreeToRadian } from 'utils';
+import { loopIndex, degreeToRadian, randomFloat } from 'utils';
 
 import {
   EXP_INTRO_ENDED,
@@ -12,6 +12,7 @@ import {
   EXP_INTERSECTING_FISH,
   EXP_NOT_INTERSECTING_FISH,
   EXP_SHOW_FISH_NAME,
+  EXP_LUX_VALUE_UPDATE,
   EXP_FLASH_MSG
 } from 'config/messages';
 
@@ -130,10 +131,13 @@ class Level extends THREE.Object3D {
     const model = this.intersects[ 0 ].object;
     const fish = model.parent.parent;
 
+    const luxGain = randomFloat( 0.2, 1 );
 
     TweenMax.to( model.scale, 1, { x: 0.001, y: 0.001, z: 0.001, ease: Expo.easeOut, onComplete: () => {
 
-      Emitter.emit( EXP_FLASH_MSG, 'good', `You win + lux` );
+      Emitter.emit( EXP_LUX_VALUE_UPDATE, luxGain );
+
+      Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
 
       model.removeFish( fish );
       // this.intersects[ 0 ].object.parent.parent.remove();
