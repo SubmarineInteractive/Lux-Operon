@@ -2,7 +2,7 @@ uniform int id;
 uniform int useLights;
 
 uniform sampler2D gradientTexture;
-uniform float gradientProgress;
+uniform float gradientHover;
 uniform float opacity;
 
 varying vec3 vNormal;
@@ -28,7 +28,7 @@ void main() {
   vec4 gradientColor2 = texture2D( gradientTexture, vec2( reflectionFactor, 0.99 ) );
 
   // Final gradient color and alpha
-  vec4 gradientColor = mix( gradientColor1, gradientColor2, gradientProgress );
+  vec4 gradientColor = mix( gradientColor1, gradientColor2, gradientHover );
   float gradientOpacity = clamp( opacity + ( 1.0 - reflectionFactor ), 0.0, 1.0 );
 
   // Point lights

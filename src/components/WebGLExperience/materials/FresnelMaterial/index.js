@@ -41,7 +41,7 @@ class FresnelMaterial extends THREE.ShaderMaterial {
         type: 't',
         value: this.gradientTexture
       },
-      'gradientProgress': {
+      'gradientHover': {
         type: 'f',
         value: 0.0
       },

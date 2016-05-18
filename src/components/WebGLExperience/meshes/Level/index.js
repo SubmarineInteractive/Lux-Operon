@@ -38,6 +38,7 @@ class Level extends THREE.Object3D {
     this.camera = Camera;
     this.player = Player;
     this.resources = resources;
+    this.hoveredFish = null;
     this.fishGroups = [];
     this.fishModels = [];
     this.intersects = [];
@@ -177,7 +178,7 @@ class Level extends THREE.Object3D {
             // Debounce later system
             clearTimeout( this.intersectingTimeout );
 
-            this.intersectingTimeout = setTimeout( ()=> {
+            this.intersectingTimeout = setTimeout( () => {
               this.intersectingDebounce = false;
             }, 300 );
 
@@ -191,6 +192,9 @@ class Level extends THREE.Object3D {
 
               // Play sound
               SoundManager.play( 'fish-hover' );
+
+              this.hoveredFish = this.intersects[ 0 ].object.parentClass;
+              this.hoveredFish.hover();
             }
 
           }
@@ -204,6 +208,8 @@ class Level extends THREE.Object3D {
         if( this.wasIntersecting !== this.isIntersecting ) {
 
           Emitter.emit( EXP_NOT_INTERSECTING_FISH );
+
+          this.hoveredFish.unhover();
         }
       }
 

@@ -31,7 +31,8 @@ class Fish extends THREE.Object3D {
     });
 
     this.curve = curve;
-    this.pointLightTl = new TimelineMax();
+    this.pointLightTl = new TimelineMax({ paused: true, yoyo: true, repeat: -1 });
+    this.hoverTl = new TimelineMax({ paused: true });
 
     this.progress = randomFloat( - 0.1, 0.1 );
 
@@ -53,21 +54,34 @@ class Fish extends THREE.Object3D {
     }
   }
 
+  hover() {
+
+    this.hoverTl
+      .to( this.modelObject.material.uniforms.gradientHover, 0.3, { value: 1.0 });
+
+    this.hoverTl.restart();
+  }
+
+  unhover() {
+    
+    this.hoverTl.reverse();
+  }
+
   createLight() {
 
     this.pointLight = new THREE.PointLight( new THREE.Color( '#435eb0' ), 0, 80, 2 );
     this.pointLight.position.set( 0, 445, -125 );
-    this.children[ 0 ].children[ 0 ].add( this.pointLight );
+    this.modelObject.add( this.pointLight );
 
     this.pointLightTl
-      .to( this.pointLight, randomFloat( 1.5, 2 ), { intensity: randomInt( 10, 18 ), ease: Power2.easeIntOut, yoyo: true, repeat: -1 });
+      .to( this.pointLight, randomFloat( 1.5, 2 ), { intensity: randomInt( 10, 18 ), ease: Power2.easeIntOut });
 
     this.pointLightTl.play();
   }
 
   update( time ) {
 
-    this.children[ 0 ].children[ 0 ].material.update( time );
+    this.modelObject.material.update( time );
 
     this.progress = loopIndex( this.progress + 0.001, 1 );
 
