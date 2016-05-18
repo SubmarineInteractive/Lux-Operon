@@ -21,6 +21,21 @@ class PostProcessing {
     this.configuration = Configuration;
     this.passes = this.configuration.passes.filter( pass => pass.active );
     this.usePostProcessing = this.configuration.active;
+
+    this.debug();
+  }
+
+  debug() {
+
+    const onKeyUp = ( ev ) => {
+
+      if( ev.keyCode === 87 ) { // w
+
+        this.usePostProcessing = this.usePostProcessing ? false : true;
+      }
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
   }
 
   /**
