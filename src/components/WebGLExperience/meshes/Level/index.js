@@ -59,8 +59,7 @@ class Level extends THREE.Object3D {
       const geometry = new THREE.Geometry();
       geometry.vertices = this.points;
 
-      const material = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 1, transparent: true, opacity: 0 });
-
+      const material = new THREE.LineBasicMaterial({ color: false, transparent: true, opacity: 0, linewidth: 0 });
       const path = new THREE.Line( geometry, material );
       path.position.copy( config.position );
       path.rotation.y = degreeToRadian( 90 );
@@ -92,8 +91,6 @@ class Level extends THREE.Object3D {
   }
 
   addEventListeners() {
-
-    // this.canvasContainer = document.getElementsByClassName( 'container' )[ 0 ];
 
     document.addEventListener( 'click', this.onClick, false );
     document.addEventListener( 'mousemove', this.onMouseMove, false );
