@@ -31,11 +31,6 @@ export default [
   },
   {
     type: 'audio',
-    id: 'landing-ambiant',
-    url: './audios/landing-ambiant.mp3'
-  },
-  {
-    type: 'audio',
     id: 'level-1-ambiant',
     url: './audios/level-1-ambiant.mp3'
   },
@@ -68,11 +63,6 @@ export default [
     type: 'audio',
     id: 'loose',
     url: './audios/loose.mp3'
-  },
-  {
-    type: 'audio',
-    id: 'woosh',
-    url: './audios/woosh.mp3'
   },
   {
     type: 'audio',

@@ -3,7 +3,7 @@ import SoundManager from 'helpers/SoundManager';
 import FishGroup from '../FishGroup';
 import Path from '../Path';
 import paths from '../Path/paths';
-
+import { levels } from 'config/webgl/experience';
 import { loopIndex, degreeToRadian, randomFloat } from 'utils';
 
 import {
@@ -44,7 +44,7 @@ class Level extends THREE.Object3D {
     this.fishModels = [];
     this.intersects = [];
 
-    this.fishGoal = 8;
+    this.fishGoal = levels.level1Config.goal;
     this.fishCounter = 0;
 
     this.raycastEnabled = false;

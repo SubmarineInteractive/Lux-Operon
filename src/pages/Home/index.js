@@ -75,7 +75,7 @@ class Home extends Component {
 
   startAmbiantSound() {
 
-    this.ambiantSound = SoundManager.get( 'landing-ambiant' );
+    this.ambiantSound = SoundManager.get( 'level-1-ambiant' );
 
     this.ambiantSound.loop( true );
 
