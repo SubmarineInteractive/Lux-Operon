@@ -31,7 +31,7 @@ class WebGLExperience extends Component {
 
   componentDidMount() {
 
-    this.prepareAmbiantSound();
+    this.prepareambientSound();
 
     this.onDangerModeChange = this.onDangerModeChange.bind( this );
     this.onPauseToggle = this.onPauseToggle.bind( this );
@@ -40,40 +40,40 @@ class WebGLExperience extends Component {
     Emitter.on( EXP_TOGGLE_PAUSE_GAME, this.onPauseToggle );
   }
 
-  prepareAmbiantSound() {
+  prepareambientSound() {
 
-    this.goodAmbiantSound = SoundManager.get( 'level-1-ambiant' );
-    this.badAmbiantSound = SoundManager.get( 'level-1-danger-ambiant' );
+    this.goodambientSound = SoundManager.get( 'level-1-ambient' );
+    this.badambientSound = SoundManager.get( 'level-1-danger-ambient' );
 
-    this.goodAmbiantSound.loop( true );
-    this.badAmbiantSound.loop( true );
-    this.goodAmbiantSound.volume( 1 );
-    this.badAmbiantSound.volume( 0 );
+    this.goodambientSound.loop( true );
+    this.badambientSound.loop( true );
+    this.goodambientSound.volume( 1 );
+    this.badambientSound.volume( 0 );
 
-    this.startGoodAmbiantSound();
-    this.badAmbiantSound.play();
-
-  }
-
-  startGoodAmbiantSound() {
-
-    this.goodAmbiantSound.play();
-
-    this.goodAmbiantSound.fadeIn( 1, 1000 );
-
-    this.badAmbiantSound.fadeOut( 0, 1000 );
+    this.startGoodambientSound();
+    this.badambientSound.play();
 
   }
 
-  startBadAmbiantSound() {
+  startGoodambientSound() {
+
+    this.goodambientSound.play();
+
+    this.goodambientSound.fadeIn( 1, 1000 );
+
+    this.badambientSound.fadeOut( 0, 1000 );
+
+  }
+
+  startBadambientSound() {
 
     console.log('bad');
 
-    this.badAmbiantSound.play();
+    this.badambientSound.play();
 
-    this.badAmbiantSound.fadeIn( 1, 1000 );
+    this.badambientSound.fadeIn( 1, 1000 );
 
-    this.goodAmbiantSound.fadeOut( 0, 1000);
+    this.goodambientSound.fadeOut( 0, 1000);
 
   }
 
@@ -81,10 +81,10 @@ class WebGLExperience extends Component {
 
     if( dangerMode ){
 
-      this.startBadAmbiantSound();
+      this.startBadambientSound();
     } else {
 
-      this.startGoodAmbiantSound();
+      this.startGoodambientSound();
     }
   }
 

@@ -50,7 +50,7 @@ class Home extends Component {
 
     if( nextProps.loading === false ) {
 
-      this.startAmbiantSound();
+      this.startambientSound();
     }
   }
 
@@ -60,30 +60,30 @@ class Home extends Component {
     TweenMax.to( this.refs.home, 1, { opacity: 0, delay: 3, ease: Expo.easeOut, onComplete: () => callback() });
 
     // Fadeout Sound
-    this.ambiantSound.fadeOut( 0, 1000, ()=> {
-      this.ambiantSound.stop();
+    this.ambientSound.fadeOut( 0, 1000, ()=> {
+      this.ambientSound.stop();
     });
 
   }
 
   bind() {
 
-    [ 'showAbout', 'onDragComplete', 'onProgress','startAmbiantSound' ]
+    [ 'showAbout', 'onDragComplete', 'onProgress','startambientSound' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
 
-  startAmbiantSound() {
+  startambientSound() {
 
-    this.ambiantSound = SoundManager.get( 'level-1-ambiant' );
+    this.ambientSound = SoundManager.get( 'level-1-ambient' );
 
-    this.ambiantSound.loop( true );
+    this.ambientSound.loop( true );
 
-    this.ambiantSound.volume( 0 );
+    this.ambientSound.volume( 0 );
 
-    this.ambiantSound.play();
+    this.ambientSound.play();
 
-    this.ambiantSound.fadeIn( 1, 1000 );
+    this.ambientSound.fadeIn( 1, 1000 );
   }
 
   introAnimation() {

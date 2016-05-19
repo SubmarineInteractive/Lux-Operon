@@ -31,13 +31,13 @@ export default [
   },
   {
     type: 'audio',
-    id: 'level-1-ambiant',
-    url: './audios/level-1-ambiant.mp3'
+    id: 'level-1-ambient',
+    url: './audios/level-1-ambient.mp3'
   },
   {
     type: 'audio',
-    id: 'level-1-danger-ambiant',
-    url: './audios/level-1-danger-ambiant.mp3'
+    id: 'level-1-danger-ambient',
+    url: './audios/level-1-danger-ambient.mp3'
   },
   {
     type: 'audio',
