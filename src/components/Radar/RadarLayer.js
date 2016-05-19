@@ -40,9 +40,7 @@ class RadarLayer extends Component {
   }
 
   drawBackground() {
-    this.ctx.beginPath();
-    this.ctx.arc( this.halfWidth , this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
-    this.ctx.clip();
+    this.setMask( this.halfWidth );
     this.ctx.drawImage( this.radarTexture, 0, 0, this.width, this.height );
   }
 
@@ -71,9 +69,7 @@ class RadarLayer extends Component {
 
     this.ctx.save();
 
-    this.ctx.beginPath();
-    this.ctx.arc( this.halfWidth, this.halfWidth, this.halfWidth, 0, 2 * Math.PI, false );
-    this.ctx.clip();
+    this.setMask( this.halfWidth - 5 );
 
     this.ctx.translate( camX, camY );
     // this.ctx.rotate( - angle + offsetAngle );
@@ -93,6 +89,8 @@ class RadarLayer extends Component {
     for ( let i = 0; i < fishesPosition.length; i++ ) {
       this.ctx.save();
 
+      this.setMask( this.halfWidth - 5 );
+
       this.ctx.globalAlpha = this.indicatorsAlpha;
 
       this.ctx.beginPath();
@@ -102,6 +100,13 @@ class RadarLayer extends Component {
 
       this.ctx.restore();
     }
+  }
+
+  setMask( radius ) {
+
+    this.ctx.beginPath();
+    this.ctx.arc( this.halfWidth , this.halfWidth , radius , 0, 2 * Math.PI, false );
+    this.ctx.clip();
   }
 
   update({ previousCamPosition, camPosition, fishesPosition }) {
