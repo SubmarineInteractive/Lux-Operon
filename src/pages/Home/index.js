@@ -10,6 +10,8 @@ import { Component } from 'react';
 
 import { findDOMNode } from 'react-dom';
 
+import { connect } from 'react-redux';
+
 import WebGlHomeBackground  from 'components/WebGlHomeBackground';
 
 import HomeSlider from 'components/HomeSlider';
@@ -23,6 +25,8 @@ import { ABOUT_OPEN, RESOURCES_READY } from 'config/messages';
 /*
  * Home class
  */
+
+@connect( state => ({ loading: state.resources.loading }) )
 class Home extends Component {
 
   state = {
@@ -33,8 +37,6 @@ class Home extends Component {
 
     this.loader = Loader;
 
-    Emitter.once( RESOURCES_READY, this.startAmbiantSound );
-
     this.bind();
   }
 
@@ -42,6 +44,14 @@ class Home extends Component {
     this.introAnimation();
     this.generateTimelineMax();
 
+  }
+
+  componentWillReceiveProps( nextProps ) {
+
+    if( nextProps.loading === false ) {
+
+      this.startAmbiantSound();
+    }
   }
 
   componentWillLeave( callback ) {
@@ -65,13 +75,11 @@ class Home extends Component {
 
   startAmbiantSound() {
 
-    console.log('home ambiant sound started');
-
     this.ambiantSound = SoundManager.get( 'landing-ambiant' );
 
-    this.ambiantSound.loop = true;
+    this.ambiantSound.loop( true );
 
-    this.ambiantSound.volume = 0;
+    this.ambiantSound.volume( 0 );
 
     this.ambiantSound.play();
 

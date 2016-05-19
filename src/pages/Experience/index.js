@@ -32,8 +32,12 @@ class Experience extends Component {
 
   }
 
-  componentWillAppear() {
-    this.startIntroduction( 1000 );
+  componentWillReceiveProps( nextProps ) {
+
+    if( nextProps.loading === false ) {
+
+      this.startIntroduction( 500 );
+    }
   }
 
   startIntroduction( delay ) {
