@@ -176,7 +176,7 @@ class TutorialIntroduction extends Component {
 
             </svg>
 
-            <p className="introduction-tutorial__instruction" ref="revealInstruction">Click to reveal<br/>hidden species</p>
+            <p className="introduction-tutorial__instruction" ref="revealInstruction">Click at least on 10 <br/> fishes to gain light</p>
 
           </div>
 
