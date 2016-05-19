@@ -57,14 +57,15 @@ class Fish extends THREE.Object3D {
   hover() {
 
     this.hoverTl
-      .to( this.modelObject.material.uniforms.gradientHover, 0.3, { value: 1.0 });
+      .to( this.modelObject.material.uniforms.gradientHover, 1, { value: 1.0, ease: Expo.easeOut }, 'start' )
+      .to( this.modelObject.material.uniforms.opacity, 1, { value: 1.0, ease: Expo.easeOut }, 'start' )
+      .to( this.modelObject.material.uniforms.opacity, 1, { value: 0, ease: Expo.easeOut })
+      .to( this.modelObject.material.uniforms.opacity, 1, { value: 0, ease: Expo.easeOut });
 
     this.hoverTl.restart();
   }
 
   unhover() {
-    
-    this.hoverTl.reverse();
   }
 
   createLight() {

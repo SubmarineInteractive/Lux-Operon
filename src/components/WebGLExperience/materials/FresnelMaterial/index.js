@@ -51,7 +51,7 @@ class FresnelMaterial extends THREE.ShaderMaterial {
       },
       'opacity': {
         type: 'f',
-        value: 0.5
+        value: 0
       },
       'useLights': {
         type: 'i',

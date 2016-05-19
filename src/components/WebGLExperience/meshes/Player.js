@@ -41,8 +41,7 @@ class Player extends THREE.Object3D {
 
     this.luxVal = 0.9;
     this.previousluxVal = 0.2;
-    this.decreaseLuxVal = 1 / 10000;
-
+    this.decreaseLuxVal = 1 / 2000;
     this.nbLights = this.playerConfig.number;
 
     this.isInDanger = false;
