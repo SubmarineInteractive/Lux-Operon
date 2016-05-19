@@ -56,6 +56,26 @@ class FresnelMaterial extends THREE.ShaderMaterial {
       'useLights': {
         type: 'i',
         value: false
+      },
+      'fishLength': {
+        type: 'f',
+        value: 0.0
+      },
+      'fishWaveLength': {
+        type: 'f',
+        value: 2.0
+      },
+      'fishWaveSpeed': {
+        type: 'f',
+        value: 3.0
+      },
+      'fishBendAmount': {
+        type: 'f',
+        value: 8.0
+      },
+      'fishOffset': {
+        type: 'f',
+        value: 1.5
       }
     };
   }

@@ -6,23 +6,25 @@ import { randomInt, randomFloat, degreeToRadian, loopIndex, setRotationFromSplin
  */
 class Fish extends THREE.Object3D {
 
-  constructor( id, parent, model, name, species, texture, curve ) {
+  constructor( id, parent, model, name, species, texture, curve, fishLength ) {
     super();
-
-    this.randomScale = randomFloat( 0.07, 0.09 );
 
     this.modelObject = model.children[ 0 ];
     this.modelObject.name = name;
     this.modelObject.removeFish = parent.removeFish;
     this.modelObject.parentClass = this;
 
-    model.scale.set( this.randomScale , this.randomScale , this.randomScale  );
+    this.randomScale = randomFloat( 0.07, 0.09 );
+    model.scale.set( this.randomScale, this.randomScale, this.randomScale );
 
     model.traverse( child => {
       if( child instanceof THREE.Mesh ) {
         child.material = new FresnelMaterial({}, texture );
+
         child.material.uniforms.random.value = randomFloat( 0, 1 );
         child.material.uniforms.id.value = id;
+
+        child.material.uniforms.fishLength.value = fishLength;
 
         if( species === 'lanternFish' ) {
           child.material.uniforms.useLights.value = true;
