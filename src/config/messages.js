@@ -13,6 +13,8 @@ const messages = {
    * EXPERIENCE
    */
 
+  EXP_TOGGLE_PAUSE_GAME: 'EXP_TOGGLE_PAUSE_GAME',
+
   // ==== Player ====
   EXP_PLAYER_TOGGLE_IS_IN_DANGER: 'EXP_PLAYER_TOGGLE_IS_IN_DANGER',
 
@@ -50,6 +52,7 @@ const messages = {
   EXP_INTRO_FLASH_MSG: 'EXP_INTRO_FLASH_MSG',
 
   // ==== Reward popin ====
+  EXP_GOAL_ACHIEVE: 'EXP_GOAL_ACHIEVE',
   EXP_SHOW_REWARD: 'EXP_SHOW_REWARD',
 
   // ==== Video popin ====

@@ -7,7 +7,10 @@ import { Component } from 'react';
 
 import {
   EXP_FLASH_MSG,
-  EXP_INTRO_FLASH_MSG
+  EXP_INTRO_FLASH_MSG,
+  EXP_SHOW_VIDEO,
+  EXP_GOAL_ACHIEVE,
+  EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
 /**
@@ -18,6 +21,9 @@ class FlashMessages extends Component {
   componentWillMount() {
 
     this.bind();
+
+
+    this.enable = true;
   }
 
   componentDidMount() {
@@ -53,7 +59,14 @@ class FlashMessages extends Component {
 
       } else if( ev.keyCode === 71 ) { //g
 
-        this.addFlashMessage( 'good', 'Bonne nouvelle +3 lux', 3 );
+        this.addFlashMessage( 'win', "Congratulations ! You've caught enough Lux to go on. Before going any deeper, here’s an explanation about what you’ve been through", 3 );
+
+        setTimeout( () => { this.addFlashMessage( 'good', 'A video will start in ...', 3 ); }, 1000 );
+        setTimeout( () => { this.addFlashMessage( 'good', '3', 3 ); }, 2000 );
+        setTimeout( () => { this.addFlashMessage( 'good', '2', 3 ); }, 3000 );
+        setTimeout( () => { this.addFlashMessage( 'good', '1', 3 ); }, 4000 );
+        setTimeout( () => { Emitter.emit( EXP_SHOW_VIDEO ) }, 6000 );
+
       }
 
     };
@@ -63,7 +76,7 @@ class FlashMessages extends Component {
 
   bind() {
 
-    [ 'addFlashMessage', 'introFlashMessage' ]
+    [ 'addFlashMessage', 'introFlashMessage', 'endFlashMessage' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
@@ -72,10 +85,12 @@ class FlashMessages extends Component {
 
     Emitter.on( EXP_FLASH_MSG, this.addFlashMessage );
     Emitter.once( EXP_INTRO_FLASH_MSG, this.introFlashMessage );
+    Emitter.once( EXP_GOAL_ACHIEVE, this.endFlashMessage );
   }
 
   removeListeners() {
 
+    Emitter.off( EXP_GOAL_ACHIEVE, this.endFlashMessage );
     Emitter.off( EXP_FLASH_MSG, this.addFlashMessage );
     Emitter.off( EXP_INTRO_FLASH_MSG, this.introFlashMessage );
   }
@@ -83,6 +98,21 @@ class FlashMessages extends Component {
   introFlashMessage() {
 
     this.addFlashMessage( 'anecdotic', 'Oh hi there ! You’ve reached the first abyssal area, called mesopelagic zone. Find and click on the fishes to get some light and dive deeper', 5 );
+  }
+
+  endFlashMessage() {
+
+    Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
+    this.enable = false;
+
+    this.addFlashMessage( 'win', "Congratulations ! You've caught enough Lux to go on. Before going any deeper, here’s an explanation about what you’ve been through", 3 );
+
+    setTimeout( () => { this.addFlashMessage( 'good', 'A video will start in ...', 3 ); }, 1000 );
+    setTimeout( () => { this.addFlashMessage( 'good', '3', 3 ); }, 2000 );
+    setTimeout( () => { this.addFlashMessage( 'good', '2', 3 ); }, 3000 );
+    setTimeout( () => { this.addFlashMessage( 'good', '1', 3 ); }, 4000 );
+    setTimeout( () => { Emitter.emit( EXP_SHOW_VIDEO ) }, 6000 );
+
   }
 
   addFlashMessage( type = 'normal', msg = '', duration = 3 ) {
@@ -110,7 +140,7 @@ class FlashMessages extends Component {
     const tl = new TimelineMax({ onComplete: ()=> {
       setTimeout( ()=>{
         const msgEls = this.refs.container.querySelectorAll( '.flash-messages__el' );
-        this.refs.container.removeChild( msgEls[ msgEls.length - 1 ] );
+        this.refs.container.removeChild( msgEls[ 0 ] );
       }, 300 );
     } });
 
@@ -119,6 +149,8 @@ class FlashMessages extends Component {
       .to( currentMsgTxt, 1, { opacity: 0, x: 20, ease: Expo.easeOut }, '+=' + duration );
 
   }
+
+
 
   render() {
 

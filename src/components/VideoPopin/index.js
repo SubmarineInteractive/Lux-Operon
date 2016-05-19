@@ -6,7 +6,8 @@ import { Component } from 'react';
 
 import {
   EXP_SHOW_VIDEO,
-  EXP_SHOW_REWARD
+  EXP_SHOW_REWARD,
+  EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
 /**
@@ -106,6 +107,8 @@ class VideoPopin extends Component {
     this.leaveTl.stop();
     this.enterTl.play( 0 );
     this.refs.video.play( 0 );
+
+    Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
   }
 
   closePopin() {

@@ -13,7 +13,7 @@ import {
   EXP_NOT_INTERSECTING_FISH,
   EXP_SHOW_FISH_NAME,
   EXP_LUX_VALUE_UPDATE,
-  EXP_SHOW_VIDEO,
+  EXP_GOAL_ACHIEVE,
   EXP_FLASH_MSG
 } from 'config/messages';
 
@@ -143,7 +143,7 @@ class Level extends THREE.Object3D {
       // Win :tada:
       if( this.fishCounter >= this.fishGoal ) {
 
-        Emitter.emit( EXP_SHOW_VIDEO );
+        Emitter.emit( EXP_GOAL_ACHIEVE );
       }
 
     } });

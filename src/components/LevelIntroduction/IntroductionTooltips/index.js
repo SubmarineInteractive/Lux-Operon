@@ -9,7 +9,8 @@ import {
   TOOLTIPS_SHOW,
   EXP_TOGGLE_CAMERA,
   EXP_LUX_TOGGLE,
-  EXP_TIMER_TOGGLE_PAUSE
+  EXP_TIMER_TOGGLE_PAUSE,
+  EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
 /**
@@ -120,9 +121,8 @@ class IntroductionTooltips extends Component {
 
 
     if( this.firstTime ) {
-      Emitter.emit( EXP_TOGGLE_CAMERA, true );
-      Emitter.emit( EXP_LUX_TOGGLE, true );
-      Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
+
+      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
     }
 
     this.firstTime = false;
