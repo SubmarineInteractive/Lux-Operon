@@ -1,5 +1,6 @@
 import './styles.scss';
 
+import SoundManager from 'helpers/SoundManager';
 import { clamp } from 'utils';
 import { Component } from 'react';
 import { on, off } from 'dom-events';
@@ -139,6 +140,10 @@ class HomeSlider extends Component {
 
           this.loadingAnimTl.play();
         } });
+
+        const diveSound = SoundManager.get( 'dive' );
+
+        diveSound.play();
 
       }
     });

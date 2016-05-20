@@ -68,5 +68,10 @@ export default [
     type: 'audio',
     id: 'woosh',
     url: './audios/woosh.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'dive',
+    url: './audios/dive.mp3'
   }
 ];
