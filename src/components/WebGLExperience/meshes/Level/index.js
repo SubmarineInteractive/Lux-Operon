@@ -14,7 +14,8 @@ import {
   EXP_SHOW_FISH_NAME,
   EXP_LUX_VALUE_UPDATE,
   EXP_GOAL_ACHIEVE,
-  EXP_FLASH_MSG
+  EXP_FLASH_MSG,
+  EXP_FISH_COUNT_UPDATE
 } from 'config/messages';
 
 /**
@@ -139,6 +140,8 @@ class Level extends THREE.Object3D {
       model.removeFish( fish );
 
       this.fishCounter++;
+
+      Emitter.emit( EXP_FISH_COUNT_UPDATE, this.fishCounter );
 
       // Win :tada:
       if( this.fishCounter >= this.fishGoal ) {

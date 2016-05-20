@@ -1,6 +1,40 @@
 @import '~stylesheets/common/variables';
-@import '~stylesheets/common/mixins';
 
 .fish-counter {
 
+  font-size: 1.4rem;
+  position: absolute;
+  bottom: 9.5rem;
+  left: 2.5rem;
+  color: $color-white;
+}
+
+.fish-counter__text {
+
+  display: inline-block;
+}
+
+.fish-counter__current {
+
+  color: $color-blue;
+
+  &:after {
+
+    content: ' / ';
+    color: $color-blue;
+  }
+}
+
+.fish-counter__icon {
+  display: inline-block;
+  width: 2.6rem;
+  margin-left: 1rem;
+  overflow: visible;
+}
+
+.fish-counter__icon-path {
+  display: inline-block;
+  fill: none;
+  stroke: $color-white;
+  stroke-width: 4px;
 }

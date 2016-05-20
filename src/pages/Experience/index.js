@@ -6,6 +6,7 @@ import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
 import LevelInfos from 'components/LevelInfos';
 import Timer from 'components/Timer';
+import FishCounter from 'components/FishCounter';
 import ExperienceOverlay from 'components/ExperienceOverlay';
 import LevelIntroduction from 'components/LevelIntroduction';
 import RewardPopin from 'components/RewardPopin';
@@ -61,6 +62,7 @@ class Experience extends Component {
         <VideoPopin />
         <Radar />
         <LevelInfos config={mezaleConfig} />
+        <FishCounter />
         <Timer />
         <LuxBar />
         <DepthBar config={mezaleConfig} />
