@@ -1,7 +1,7 @@
 import { BlendMode } from '@superguigui/wagner';
 import MultiPassBloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass';
-import VignettePass from '@superguigui/wagner/src/passes/vignette/VignettePass';
-import TiltshiftPass from '@superguigui/wagner/src/passes/tiltshift/tiltshiftPass';
+import RGBSplitPass from 'components/WebGLCommon/postProcessing/passes/RGBSplit';
+import TiltShiftPass from '@superguigui/wagner/src/passes/tiltShift/tiltShiftPass';
 import NoisePass from '@superguigui/wagner/src/passes/noise/noise';
 import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
 
@@ -14,33 +14,32 @@ export default {
       constructor: new MultiPassBloomPass({
         blurAmount: 0.1,
         applyZoomBlur: true,
-        zoomBlurStrength: 0.1,
+        zoomBlurStrength: 0.05,
         blendMode: BlendMode.Darken
       })
     },
     {
-      name: 'vignettePass',
+      name: 'RGBSplitPass',
       active: true,
-      constructor: new VignettePass({
-        boost: 1,
-        reduction: 0.6
-      })
-    },
-    {
-      name: 'tiltshiftPass',
-      active: true,
-      constructor: new TiltshiftPass({
-        bluramount: 0.8,
-        center: 1,
-        stepSize: 0.004
+      constructor: new RGBSplitPass({
+        delta: new THREE.Vector2( 10, 10 )
       })
     },
     {
       name: 'noisePass',
       active: true,
       constructor: new NoisePass({
-        amount: 0.02,
+        amount: 0.01,
         speed: 0.1
+      })
+    },
+    {
+      name: 'tiltshiftPass',
+      active: true,
+      constructor: new TiltShiftPass({
+        bluramount: 0.6,
+        center: 1,
+        stepSize: 0.005
       })
     },
     {
