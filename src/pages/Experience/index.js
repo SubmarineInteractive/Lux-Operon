@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import connect from 'decorators/connect';
 import Emitter from 'helpers/Emitter';
+import SoundManager from 'helpers/SoundManager';
 import Radar from 'components/Radar';
 import LuxBar from 'components/LuxBar';
 import DepthBar from 'components/DepthBar';
@@ -46,6 +47,13 @@ class Experience extends Component {
     setTimeout( ()=> {
       Emitter.emit( EXP_INTRO_START );
       this.refs.levelIntro.beginTitle();
+
+      const diveSound = SoundManager.get( 'dive' );
+
+      diveSound.fadeOut( 0, 1000, ()=> {
+        diveSound.stop();
+      });
+
     }, delay );
   }
 
