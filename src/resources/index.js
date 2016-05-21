@@ -10,6 +10,16 @@ export default [
     id: 'fishGradientTexture',
     url: './textures/fish_gradient.png'
   },
+  {
+    type: 'texture',
+    id: 'fishParticleTexture',
+    url: './textures/fish_particle.png'
+  },
+  {
+    type: 'texture',
+    id: 'bubbleTexture',
+    url: './textures/bubble.png'
+  },
 
   // Models
   {
