@@ -15,6 +15,7 @@ class FishGroup extends THREE.Group {
    * constructor function
    * @param {Object} configuration Configuration
    * @param {Object} resources     Resources
+   * @param {Object} curve         Curve
    */
   constructor({ count, species, name, position, luxAmount, fishLength }, resources, curve ) {
     super();

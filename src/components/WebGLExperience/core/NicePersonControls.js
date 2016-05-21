@@ -113,7 +113,7 @@ class NicePersonControls {
     this.introTweenValue = 10;
 
     this.introCamMovementTl
-      .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut,onUpdate: ()=> {
+      .to( this, 30, { introTweenValue: 0, ease: Expo.easeOut, onUpdate: () => {
         this.inputVelocity.z = - this.introTweenValue;
         this.cannonBodyVelocity.z += this.inputVelocity.z;
         this.cannonBodyVelocity.y -= this.inputVelocity.z / 6;
@@ -134,7 +134,7 @@ class NicePersonControls {
 
   handleMouseUp() {
 
-    document.body.classList.remove('is-moving');
+    document.body.classList.remove( 'is-moving' );
 
     if( !this.enableMouseDown ) return;
 

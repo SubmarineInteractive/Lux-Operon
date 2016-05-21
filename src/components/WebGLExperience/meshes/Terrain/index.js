@@ -69,7 +69,7 @@ class Terrain extends THREE.Mesh {
     // geometryTerrain.computeBoundingSphere();
     // geometryTerrain.computeBoundingBox();
     // geometryTerrain.computeFaceNormals();
-    //
+
     // const meshTerrain = new THREE.Mesh( geometryTerrain, new THREE.MeshPhongMaterial({ color: 0xff000 }) );
     // this.add( meshTerrain );
   }
