@@ -1,13 +1,19 @@
 import { Component } from 'react';
 import { on, off } from 'dom-events';
 import { connect } from 'react-redux';
+import Emitter from 'helpers/Emitter';
 import Loader from 'helpers/Loader';
 import { resize } from 'providers/ViewportProvider';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
-import SoundManager from 'helpers/SoundManager';
 
 import About from 'components/About';
+
+import {
+  WINDOW_ON_FOCUS,
+  WINDOW_ON_BLUR
+} from 'config/messages';
+
 /**
  * App class
  */
@@ -32,16 +38,10 @@ class App extends Component {
      .load()
      .then( resources => {
        let tmpResources = {};
-       const sounds = [];
 
        resources.forEach( ({ id, resource }) => {
 
          tmpResources[ id ] = resource;
-
-        //  if( ressource instance of   ) {
-        //
-        //    sounds.push( ressource );
-        //  }
 
        });
        this.props.loadResources( tmpResources );
@@ -55,6 +55,8 @@ class App extends Component {
 
     // Resize
     on( window, 'resize', this.handleResize );
+    on( window, 'blur', this.handleBlur );
+    on( window, 'focus', this.handleFocus );
   }
 
   /**
@@ -64,6 +66,8 @@ class App extends Component {
 
     // Resize
     off( window, 'resize', this.handleResize );
+    off( window, 'blur', this.handleBlur );
+    off( window, 'focus', this.handleFocus );
   }
 
   /**
@@ -71,6 +75,20 @@ class App extends Component {
    */
   handleResize() {
     this.props.resize( window.innerWidth, window.innerHeight );
+  }
+
+  /**
+   * handleFocus function
+   */
+  handleFocus() {
+    Emitter.emit( WINDOW_ON_FOCUS );
+  }
+
+  /**
+   * handleBlur function
+   */
+  handleBlur() {
+    Emitter.emit( WINDOW_ON_BLUR );
   }
 
   render() {

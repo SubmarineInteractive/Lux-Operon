@@ -1,10 +1,19 @@
-import { Howl } from 'howler';
+import { Howl, Howler } from 'howler';
+import Emitter from 'helpers/Emitter';
+
+import {
+  WINDOW_ON_FOCUS,
+  WINDOW_ON_BLUR
+} from 'config/messages';
+
 
 class SoundManager {
 
   constructor() {
 
     this.sounds = [];
+
+    this.cachedVolume = [];
 
     this.bind();
 
@@ -15,17 +24,19 @@ class SoundManager {
 
   bind() {
 
-    [ ]
+    [ 'onWindowBlur', 'onWindowFocus' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
 
   addListeners() {
 
+    Emitter.on( WINDOW_ON_FOCUS, this.onWindowFocus );
+    Emitter.on( WINDOW_ON_BLUR, this.onWindowBlur );
   }
 
   get( id ) {
-    
+
     if( typeof this.sounds[ id ] === 'undefined' ) return false;
 
     return this.sounds[ id ];
@@ -37,6 +48,15 @@ class SoundManager {
 
     this.sounds[ id ].play();
 
+  }
+
+  onWindowFocus() {
+    Howler.unmute();
+  }
+
+  onWindowBlur() {
+
+    Howler.mute();
   }
 
   load( url, onLoad, onSucess, onReject, id ) {
