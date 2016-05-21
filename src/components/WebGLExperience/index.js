@@ -18,7 +18,6 @@ import {
   EXP_TIMER_ENDED,
   EXP_LUX_END_GAME,
   ABOUT_OPEN,
-  ABOUT_CLOSE,
   WINDOW_ON_BLUR
 } from 'config/messages';
 
