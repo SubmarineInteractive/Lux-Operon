@@ -1,6 +1,6 @@
 import { BlendMode } from '@superguigui/wagner';
 import MultiPassBloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass';
-import HorizontalTiltShiftPass from 'common/postProcessing/passes/HorizontalTiltShift';
+import TiltShiftPass from '@superguigui/wagner/src/passes/tiltShift/tiltShiftPass';
 import VignettePass from '@superguigui/wagner/src/passes/vignette/VignettePass';
 import NoisePass from '@superguigui/wagner/src/passes/noise/noise';
 import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
@@ -22,11 +22,12 @@ export default {
       })
     },
     {
-      name: 'horizontalTiltShiftPass',
+      name: 'tiltShiftPass',
       active: true,
-      constructor: new HorizontalTiltShiftPass({
-        h: 1 / 256,
-        r: 0.5
+      constructor: new TiltShiftPass({
+        bluramount: 1,
+        center: 1,
+        stepSize: 0.05
       })
     },
     {
