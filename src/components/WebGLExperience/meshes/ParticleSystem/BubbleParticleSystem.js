@@ -34,7 +34,7 @@ class BubbleParticleSystem extends ParticleSystem {
       this.emitters[ i ].position.value.y = - vertex.z;
       this.emitters[ i ].position.value.z = vertex.y;
 
-      const spread = randomInt( -100, -15 );
+      const spread = randomInt( -50, -15 );
       this.emitters[ i ].acceleration.spread.copy( new THREE.Vector3( spread, spread, spread ) );
 
       this.group.addEmitter( this.emitters[ i ] );
