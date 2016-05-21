@@ -12,6 +12,7 @@ varying vec3 vI;
 
 // chunk(common);
 // chunk(bsdfs);
+// chunk(ambient_pars);
 // chunk(lights_pars);
 // chunk(fog_pars_fragment);
 
@@ -47,7 +48,7 @@ void main() {
 
         vec3 lVector = pointLights[ i ].position + vViewPosition.xyz;
 
-        float attenuation = punctualLightIntensityToIrradianceFactor( length( lVector ), pointLights[ i ].distance, pointLights[ i ].decay );
+        float attenuation = calcLightAttenuation( length( lVector ), pointLights[ i ].distance, pointLights[ i ].decay );
 
         lVector = normalize( lVector );
 
@@ -66,8 +67,8 @@ void main() {
 
   outgoingLight += diffuseColor.xyz * totalDiffuseLight;
 
-  gl_FragColor = vec4( outgoingLight.rgb, gradientOpacity );
-
   // chunk(fog_fragment);
+
+  gl_FragColor = vec4( outgoingLight.rgb, gradientOpacity );
 
 }

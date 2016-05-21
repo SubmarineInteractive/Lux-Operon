@@ -29,6 +29,7 @@ class FresnelMaterial extends THREE.ShaderMaterial {
     this.uniforms = {
       ...THREE.UniformsLib[ 'fog' ],
       ...THREE.UniformsLib[ 'lights' ],
+      ...THREE.UniformsLib[ 'ambient' ],
       'id': {
         type: 'i',
         value: 0
