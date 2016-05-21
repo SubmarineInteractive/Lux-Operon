@@ -10,3 +10,4 @@ export levels from './levels';
 export fishGroup from './fishGroup';
 export particleSystemGroup from './particleSystem/group';
 export particleSystemEmitter from './particleSystem/emitter';
+export fishParticleSystemEmitter from './particleSystem/fishEmitter';
