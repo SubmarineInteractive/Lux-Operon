@@ -30,9 +30,10 @@ class App extends Component {
    * componentWillMount function
    */
   componentWillMount() {
-    this.handleResize = ::this.handleResize;
+    this.bind();
 
     this.loader = Loader;
+
 
     this.loader
      .load()
@@ -68,6 +69,10 @@ class App extends Component {
     off( window, 'resize', this.handleResize );
     off( window, 'blur', this.handleBlur );
     off( window, 'focus', this.handleFocus );
+  }
+
+  bind() {
+    this.handleResize = ::this.handleResize;
   }
 
   /**

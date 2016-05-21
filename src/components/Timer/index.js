@@ -8,6 +8,7 @@ import {
   EXP_TIMER_START,
   EXP_TIMER_ENDED,
   EXP_TIMER_TOGGLE_PAUSE,
+  EXP_TOGGLE_PAUSE_GAME,
   EXP_FLASH_MSG
 } from 'config/messages';
 
@@ -17,7 +18,7 @@ import {
 class Timer extends Component {
 
   state = {
-    minutes: '03',
+    minutes: '02',
     seconds: '00'
   }
 
@@ -122,6 +123,7 @@ class Timer extends Component {
     });
 
     Emitter.emit( EXP_TIMER_ENDED );
+    Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
     Emitter.emit( EXP_FLASH_MSG, 'danger', 'Time is over, you loose. Try again !' );
 
   }

@@ -79,9 +79,7 @@ class IntroductionTooltips extends Component {
 
   showTooltips() {
 
-    Emitter.emit( EXP_TOGGLE_CAMERA, false );
-    Emitter.emit( EXP_LUX_TOGGLE, false );
-    Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
+    Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
 
     this.begin( true );
   }
@@ -122,7 +120,7 @@ class IntroductionTooltips extends Component {
 
     if( this.firstTime ) {
 
-      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
+      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, false );
     }
 
     this.firstTime = false;

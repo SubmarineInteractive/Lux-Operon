@@ -13,8 +13,6 @@ class SoundManager {
 
     this.sounds = [];
 
-    this.cachedVolume = [];
-
     this.bind();
 
     this.addListeners();

@@ -11,7 +11,15 @@ import {
   EXP_TOGGLE_PAUSE_GAME,
   EXP_TOGGLE_CAMERA,
   EXP_LUX_TOGGLE,
-  EXP_TIMER_TOGGLE_PAUSE
+  EXP_TIMER_TOGGLE_PAUSE,
+  WINDOW_ON_FOCUS,
+  EXP_SHOW_VIDEO,
+  EXP_SHOW_REWARD,
+  EXP_TIMER_ENDED,
+  EXP_LUX_END_GAME,
+  ABOUT_OPEN,
+  ABOUT_CLOSE,
+  WINDOW_ON_BLUR
 } from 'config/messages';
 
 
@@ -27,6 +35,11 @@ class WebGLExperience extends Component {
 
     this.scene = new Scene( configuration, this.props.resources );
     this.sceneDomEl = this.scene.renderer.domElement;
+
+    this.isPaused = false;
+    this.isPausedLocked = false;
+
+    this.bind();
   }
 
   componentDidMount() {
@@ -38,8 +51,27 @@ class WebGLExperience extends Component {
 
     Emitter.on( EXP_PLAYER_TOGGLE_IS_IN_DANGER, this.onDangerModeChange );
     Emitter.on( EXP_TOGGLE_PAUSE_GAME, this.onPauseToggle );
+
+    Emitter.on( EXP_SHOW_VIDEO, this.lockedPause );
+    Emitter.on( EXP_SHOW_REWARD, this.lockedPause );
+    Emitter.on( EXP_TIMER_ENDED, this.lockedPause );
+    Emitter.on( EXP_LUX_END_GAME, this.lockedPause );
+    Emitter.on( ABOUT_OPEN, this.lockedPause );
+    Emitter.on( ABOUT_OPEN, this.unLockedPause );
+
+    Emitter.on( WINDOW_ON_FOCUS, this.onWindowFocus );
+    Emitter.on( WINDOW_ON_BLUR, this.onWindowBlur );
   }
 
+  componentWillUnmount() {
+  }
+
+  bind() {
+
+    [ 'onDangerModeChange', 'onPauseToggle', 'onWindowBlur', 'onWindowFocus', 'lockedPause', 'unLockedPause' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+
+  }
   prepareambientSound() {
 
     this.goodambientSound = SoundManager.get( 'level-1-ambient' );
@@ -67,14 +99,22 @@ class WebGLExperience extends Component {
 
   startBadambientSound() {
 
-    console.log('bad');
-
     this.badambientSound.play();
 
     this.badambientSound.fadeIn( 1, 1000 );
 
     this.goodambientSound.fadeOut( 0, 1000);
 
+  }
+
+  lockedPause() {
+
+    this.isPausedLocked = true;
+  }
+
+  unLockedPause() {
+
+    this.isPausedLocked = false;
   }
 
   onDangerModeChange( dangerMode ) {
@@ -92,14 +132,38 @@ class WebGLExperience extends Component {
 
     if( toggle ) {
 
-      Emitter.emit( EXP_TOGGLE_CAMERA, true );
-      Emitter.emit( EXP_LUX_TOGGLE, true );
-      Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
-    } else {
-
+      console.log('paused');
       Emitter.emit( EXP_TOGGLE_CAMERA, false );
       Emitter.emit( EXP_LUX_TOGGLE, false );
       Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
+
+      this.isPaused = true;
+    } else {
+
+      console.log('unpaused');
+      Emitter.emit( EXP_TOGGLE_CAMERA, true );
+      Emitter.emit( EXP_LUX_TOGGLE, true );
+      Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
+
+      this.isPaused = false;
+    }
+
+  }
+
+  onWindowBlur() {
+
+    if( !this.isPaused && !this.isPausedLocked ) {
+
+      this.onPauseToggle( true );
+    }
+
+  }
+
+  onWindowFocus() {
+
+    if( this.isPaused && !this.isPausedLocked ) {
+
+      this.onPauseToggle( false );
     }
 
   }

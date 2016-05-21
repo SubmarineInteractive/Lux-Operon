@@ -188,6 +188,7 @@ class Player extends THREE.Object3D {
 
       this.luxEnabled = false;
       Emitter.emit( EXP_LUX_END_GAME );
+      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
       Emitter.emit( EXP_FLASH_MSG, 'danger', 'You have no light, you loose. Try again !' );
     }
   }

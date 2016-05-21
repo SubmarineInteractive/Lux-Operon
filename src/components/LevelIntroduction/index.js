@@ -26,6 +26,8 @@ class LevelIntroduction extends Component {
 
   componentWillMount() {
 
+    this.firstTime = true;
+
     this.bind();
   }
 
@@ -85,9 +87,15 @@ class LevelIntroduction extends Component {
 
     TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
 
-      Emitter.emit( EXP_TOGGLE_CAMERA, true );
-      Emitter.emit( EXP_TIMER_START, 180 );
-      Emitter.emit( EXP_LUX_TOGGLE, true );
+      if( this.firstTime ) {
+
+        Emitter.emit( EXP_TOGGLE_CAMERA, true );
+        Emitter.emit( EXP_TIMER_START, 120 );
+        Emitter.emit( EXP_LUX_TOGGLE, true );
+
+        this.firstTime = false;
+      }
+
       Emitter.emit( EXP_INTRO_FLASH_MSG );
       Emitter.emit( EXP_INTRO_ENDED );
 

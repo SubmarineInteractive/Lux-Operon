@@ -17,7 +17,8 @@ import {
   EXP_LUX_VALUE_UPDATE,
   EXP_GOAL_ACHIEVE,
   EXP_FLASH_MSG,
-  EXP_FISH_COUNT_UPDATE
+  EXP_FISH_COUNT_UPDATE,
+  EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
 /**
@@ -154,6 +155,7 @@ class Level extends THREE.Object3D {
         if( this.fishCounter >= this.fishGoal ) {
 
           Emitter.emit( EXP_GOAL_ACHIEVE );
+          Emitter.emit( EXP_TOGGLE_PAUSE_GAME );
         }
       }
     });
