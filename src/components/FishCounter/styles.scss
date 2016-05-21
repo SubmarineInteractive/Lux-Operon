@@ -1,7 +1,9 @@
 @import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
 
 .fish-counter {
 
+  @include no-select;
   font-size: 1.4rem;
   position: absolute;
   bottom: 9.5rem;
