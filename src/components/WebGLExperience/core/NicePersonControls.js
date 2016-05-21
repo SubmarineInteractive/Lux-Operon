@@ -98,9 +98,9 @@ class NicePersonControls {
 
     const onKeyUp = ( ev )=> {
 
-      if( ev.keyCode === 80 ) { // l
+      if( ev.keyCode === 80 ) { // p
 
-        this.debugSetPosition( 0, 1500, -600 );
+        this.debugSetPosition( 0, 1500, 0 );
       }
 
     };
