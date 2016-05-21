@@ -4,6 +4,8 @@ import FishGroup from '../FishGroup';
 import Path from '../Path';
 import paths from '../Path/paths';
 import { levels } from 'config/webgl/experience';
+import BubbleParticleSystem from '../ParticleSystem/BubbleParticleSystem';
+
 import { loopIndex, degreeToRadian, randomFloat } from 'utils';
 
 import {
@@ -57,6 +59,9 @@ class Level extends THREE.Object3D {
 
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
+
+    this.bubbleParticleSystem = new BubbleParticleSystem( Terrain, this.resources );
+    this.terrain.add( this.bubbleParticleSystem.group.mesh );
 
     fishGroupConfig.map( config => {
 
@@ -131,25 +136,32 @@ class Level extends THREE.Object3D {
 
     const luxGain = randomFloat( 0.05, 0.1 );
 
-    TweenMax.to( model.scale, 1, { x: 0.001, y: 0.001, z: 0.001, ease: Expo.easeOut, onComplete: () => {
+    const tl = new TimelineMax({
+      paused: true,
+      onComplete: ()=> {
 
-      Emitter.emit( EXP_LUX_VALUE_UPDATE, luxGain );
+        Emitter.emit( EXP_LUX_VALUE_UPDATE, luxGain );
 
-      Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
+        Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
 
-      model.removeFish( fish );
+        model.removeFish( fish );
 
-      this.fishCounter++;
+        this.fishCounter++;
 
-      Emitter.emit( EXP_FISH_COUNT_UPDATE, this.fishCounter );
+        Emitter.emit( EXP_FISH_COUNT_UPDATE, this.fishCounter );
 
-      // Win :tada:
-      if( this.fishCounter >= this.fishGoal ) {
+        // Win :tada:
+        if( this.fishCounter >= this.fishGoal ) {
 
-        Emitter.emit( EXP_GOAL_ACHIEVE );
+          Emitter.emit( EXP_GOAL_ACHIEVE );
+        }
       }
+    });
 
-    } });
+    tl.to( fish.scale, 1, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, 'start' );
+
+    tl.play();
+
   }
 
   updateWindowCursorPointer() {
@@ -170,7 +182,7 @@ class Level extends THREE.Object3D {
 
       this.raycaster.setFromCamera( this.mouse, this.camera );
 
-      // calculate objects intersecting the picking ray
+      // Calculate objects intersecting the picking ray
       this.intersects = this.raycaster.intersectObjects( this.fishModels );
 
       this.wasIntersecting = this.isIntersecting;
@@ -227,7 +239,9 @@ class Level extends THREE.Object3D {
     }
   }
 
-  update( time ) {
+  update( time, delta ) {
+
+    this.bubbleParticleSystem.group.tick( delta );
 
     this.raycast();
 
