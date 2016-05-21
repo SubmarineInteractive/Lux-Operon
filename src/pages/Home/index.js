@@ -20,7 +20,7 @@ import HomeTransitionCanvas from 'components/HomeTransitionCanvas';
 
 import SplitText from 'vendors/splitText.js';
 
-import { ABOUT_OPEN, RESOURCES_READY } from 'config/messages';
+import { ABOUT_OPEN } from 'config/messages';
 
 /*
  * Home class
@@ -115,12 +115,10 @@ class Home extends Component {
 
   onDragComplete() {
     const tl = new TimelineMax({ onComplete: () => {
-
       this.refs.backgroundScene.scene.raf.stop();
-      setTimeout( () =>{
-        this.refs.home.classList.add( 'home--drag-complete' );
-        findDOMNode( this.refs.backgroundScene ).style.display = 'none';
-      }, 1000 );
+
+      findDOMNode( this.refs.backgroundScene ).style.display = 'none';
+      this.refs.home.classList.add( 'home--drag-complete' );
     } });
 
     tl.to( this.refs.wrapper, 2, { y: "-50%", ease: Power2.easeIn }, 0 )
