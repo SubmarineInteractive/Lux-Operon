@@ -21,6 +21,7 @@ class WavesMaterial extends THREE.ShaderMaterial {
     this.uniforms = THREE.UniformsUtils.merge( [
       THREE.UniformsLib[ 'fog' ],
       THREE.UniformsLib[ 'lights' ],
+      THREE.UniformsLib[ 'ambient' ],
       uniforms
     ] );
   }

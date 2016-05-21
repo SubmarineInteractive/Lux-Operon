@@ -10,6 +10,7 @@ varying vec3 vNormal;
 
 // chunk(common);
 // chunk(bsdfs);
+// chunk(ambient_pars);
 // chunk(lights_pars);
 
 void main() {
@@ -28,7 +29,7 @@ void main() {
 
       vec3 lVector = pointLights[ i ].position + vViewPosition.xyz;
 
-      float attenuation = punctualLightIntensityToIrradianceFactor( length( lVector ), pointLights[ i ].distance, pointLights[ i ].decay );
+      float attenuation = calcLightAttenuation( length( lVector ), pointLights[ i ].distance, pointLights[ i ].decay );
 
       lVector = normalize( lVector );
 
