@@ -35,6 +35,8 @@ class BackgroundScene extends AbstractScene {
    */
   render() {
 
+    if( !this.enabled ) return;
+
     this.preRender();
 
     this.waves.update( this.clock.time );

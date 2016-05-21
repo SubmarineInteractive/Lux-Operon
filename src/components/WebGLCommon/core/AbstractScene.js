@@ -5,6 +5,14 @@ import EffectComposer from 'common/postProcessing/EffectComposer';
 import PostProcessing from 'common/postProcessing/PostProcessing';
 import Clock from 'common/utils/Clock';
 
+import Emitter from 'helpers/Emitter';
+
+import {
+  WINDOW_ON_BLUR,
+  WINDOW_ON_FOCUS
+} from 'config/messages';
+
+
 /**
  * AbstractScene class
  */
@@ -21,6 +29,8 @@ class AbstractScene extends THREE.Scene {
 
     const { antialias, alpha, clearColor, clearColorAlpha, pixelRatio } = renderer;
 
+    this.enabled = true;
+
     // Abstract renderer
     this.renderer = new AbstractRenderer({ antialias, alpha, clearColor, clearColorAlpha, pixelRatio });
 
@@ -36,6 +46,13 @@ class AbstractScene extends THREE.Scene {
     if( __DEV__ ) {
       // this.debug();
     }
+
+    // Events
+    this.onWindowFocus = this.onWindowFocus.bind( this );
+    this.onWindowBlur = this.onWindowBlur.bind( this );
+
+    Emitter.on( WINDOW_ON_FOCUS, this.onWindowFocus );
+    Emitter.on( WINDOW_ON_BLUR, this.onWindowBlur );
   }
 
   /**
@@ -53,6 +70,14 @@ class AbstractScene extends THREE.Scene {
     this.add( gridHelper );
   }
 
+  onWindowFocus() {
+    this.enabled = true;
+  }
+
+  onWindowBlur() {
+    this.enabled = false;
+  }
+  
   /**
    * preRender function
    */

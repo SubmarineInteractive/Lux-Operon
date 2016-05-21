@@ -7,12 +7,6 @@ import Player from '../meshes/Player';
 import Level from '../meshes/Level';
 import Terrain from '../meshes/Terrain';
 
-import Emitter from 'helpers/Emitter';
-
-import {
-  WINDOW_ON_BLUR,
-  WINDOW_ON_FOCUS
-} from 'config/messages';
 /**
  * Scene class
  */
@@ -23,8 +17,6 @@ class Scene extends AbstractScene {
    */
   constructor({ camera, renderer, postProcessing, lights, fog, player, terrain, boundingBox, fishGroup }, resources ) {
     super({ camera, renderer, postProcessing });
-
-    this.enabled = true;
 
     this.fogConfig = fog;
     this.cameraConfig = camera;
@@ -38,12 +30,6 @@ class Scene extends AbstractScene {
 
     this.createScene();
 
-    // Events
-    this.onWindowFocus = this.onWindowFocus.bind( this );
-    this.onWindowBlur = this.onWindowBlur.bind( this );
-
-    Emitter.on( WINDOW_ON_FOCUS, this.onWindowFocus );
-    Emitter.on( WINDOW_ON_BLUR, this.onWindowBlur );
   }
 
   /**
@@ -77,14 +63,6 @@ class Scene extends AbstractScene {
     // Level
     this.level = new Level( this.terrain, this.camera, this.player, this.boundingBoxConfig, this.fishGroupConfig, this.resources );
     this.add( this.level );
-  }
-
-  onWindowFocus() {
-    this.enabled = true;
-  }
-
-  onWindowBlur() {
-    this.enabled = false;
   }
 
   /**
