@@ -10,7 +10,7 @@ class PointLight extends THREE.PointLight {
    * Constructor function
    * @param {Configuration} configuration Configuration instance
    */
-  constructor({ color = 0xffffff, intensity = 1, distance = 0, decay = 1 }) {
+  constructor({ color = new THREE.Color( '#ffffff' ), intensity = 1, distance = 0, decay = 1 }) {
 
     super( color, intensity, distance, decay );
 
@@ -40,7 +40,9 @@ class PointLight extends THREE.PointLight {
     const geom = new THREE.SphereGeometry( 1, 5, 5 );
     const mat = new THREE.MeshBasicMaterial({
       color: this.color,
-      wireframe: true
+      wireframe: true,
+      transparent: true,
+      opacity: 0.2
     });
 
     this.add( new THREE.Mesh( geom, mat ) );
