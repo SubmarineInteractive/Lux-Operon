@@ -95,10 +95,11 @@ class VideoPopin extends Component {
     } });
 
     this.enterTl
-      .from( this.refs.skip, 2, { opacity: 0, x: 100, ease: Expo.easeOut }, 0 );
+      .fromTo( this.refs.skip, 2, { opacity: 0 }, { opacity: 1, ease: Expo.easeOut }, 0 );
 
     this.leaveTl
-      .to( this.refs.popin, 1, { opacity: 0, ease: Expo.easeOut }, 0 );
+      .to( this.refs.skip, 2, { opacity: 0, ease: Expo.easeOut }, 0 );
+
   }
 
   showPopin() {

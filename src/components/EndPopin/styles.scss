@@ -130,3 +130,20 @@
     display: none;
   }
 }
+
+.end-popin__video-btn {
+  position: fixed;
+  font-size: 1.4rem;
+  left: 2.5rem;
+  bottom: 2.5rem;
+  color: $color-white;
+  text-transform: uppercase;
+  transition: color 0.3s ease-out;
+  font-family: $font-tstar;
+  cursor: pointer;
+  z-index: 10;
+
+  &:hover {
+    color: $color-medium-grey;
+  }
+}

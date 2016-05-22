@@ -52,7 +52,7 @@ class EndPopin extends Component {
 
   bind() {
 
-    [ 'timerEnded', 'luxEnded', 'gameWon', 'getFishCount', 'getTimer', 'getLuxVal' ]
+    [ 'timerEnded', 'luxEnded', 'gameWon', 'getFishCount', 'getTimer', 'getLuxVal', 'replayVideo' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
@@ -185,11 +185,17 @@ class EndPopin extends Component {
     }
   }
 
+  replayVideo() {
+    
+    this.refs.popin.classList.remove( 'end-popin--is-visible' );
+    Emitter.emit( 'EXP_SHOW_VIDEO' );
+  }
+
   render() {
 
     const title = ( this.state.type === 'win' ) ? 'Congratulations !' : 'Game Over !';
     const badgeSrc = ( this.state.type === 'win' ) ? '/images/experience/reward-badge.svg' : '/images/experience/loose-badge.svg';
-
+    const videoBtn = ( this.state.type === 'win' ) ? <span className="end-popin__video-btn" onClick={this.replayVideo}>Watch the video again</span>: '';
     let linksContent = '';
 
     if( this.state.type === 'win' ) {
@@ -262,6 +268,8 @@ class EndPopin extends Component {
           { linksContent }
 
         </div>
+
+        { videoBtn }
 
       </div>
 
