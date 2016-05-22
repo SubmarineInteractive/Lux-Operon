@@ -7,6 +7,7 @@ import { Component } from 'react';
 import {
   EXP_TIMER_ENDED,
   EXP_LUX_END_GAME,
+  EXP_FISH_GET_COUNT,
   ABOUT_OPEN
 } from 'config/messages';
 
@@ -128,9 +129,33 @@ class LoosePopin extends Component {
 
         <div className="loose-popin__container" ref="container">
 
-          <h3 className="loose-popin__title" ref="title">{ this.state.title }</h3>
+          <h3 className="loose-popin__title" ref="title"><strong>Game Over !</strong>{ this.state.title }</h3>
 
-          <img className="loose-popin__image" ref="image" src="/images/experience/reward-hide-and-seek.svg" />
+
+          <div className="loose-popin__recap">
+
+            <img className="loose-popin__image" ref="image" src="/images/experience/reward-hide-and-seek.svg" />
+
+            <ul className="loose-popin-recap_info-list">
+              <li className="loose-popin-recap_info-el">
+                <h3 className="loose-popin-recap_info-title">Fish catched</h3>
+                <span className="loose-popin-recap_info-description">1</span>
+              </li>
+              <li className="loose-popin-recap_info-el">
+                <h3 className="loose-popin-recap_info-title">Time</h3>
+                <span className="loose-popin-recap_info-description">2:00</span>
+              </li>
+              <li className="loose-popin-recap_info-el">
+                <h3 className="loose-popin-recap_info-title">Lux remainded</h3>
+                <div className="lux-bar">
+
+                  <div className="lux-bar__progress" ref="progress"></div>
+
+                </div>
+              </li>
+            </ul>
+
+          </div>
 
           <a className="loose-popin__link loose-popin__link--surface" ref="linkSurface" href='/'>Back to the surface</a>
 

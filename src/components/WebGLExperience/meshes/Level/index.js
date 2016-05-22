@@ -14,6 +14,7 @@ import {
   EXP_INTERSECTING_FISH,
   EXP_NOT_INTERSECTING_FISH,
   EXP_SHOW_FISH_NAME,
+  EXP_FISH_GET_COUNT,
   EXP_LUX_VALUE_UPDATE,
   EXP_GOAL_ACHIEVE,
   EXP_FLASH_MSG,
@@ -176,6 +177,11 @@ class Level extends THREE.Object3D {
       document.body.classList.remove( 'is-intersecting' );
     }
 
+  }
+
+  getFishCount() {
+
+    Emitter.emit( EXP_FISH_GET_COUNT, this.fishCounter );
   }
 
   raycast() {
