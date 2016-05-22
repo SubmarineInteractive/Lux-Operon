@@ -13,15 +13,17 @@ import {
   EXP_TIMER_TIME_SENDED,
   EXP_GET_LUX_VALUE,
   EXP_LUX_VALUE_SENDED,
+  EXP_SHOW_REWARD,
   ABOUT_OPEN
 } from 'config/messages';
 
 /**
- * LoosePopin component
+ * EndPopin component
  */
-class LoosePopin extends Component {
+class EndPopin extends Component {
 
   state = {
+    type: 'loose',
     title: 'You loose !',
     fishCount: 0,
     timerMinutes: '00',
@@ -49,14 +51,14 @@ class LoosePopin extends Component {
 
   bind() {
 
-    [ 'timerEnded', 'luxEnded', 'getFishCount', 'getTimer', 'getLuxVal' ]
+    [ 'timerEnded', 'luxEnded', 'gameWon', 'getFishCount', 'getTimer', 'getLuxVal' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
 
   debug() {
 
-    window.debug.showLoosePopin = () => {
+    window.debug.showEndPopin = () => {
 
       this.showPopin();
     };
@@ -77,6 +79,7 @@ class LoosePopin extends Component {
 
     Emitter.on( EXP_TIMER_ENDED, this.timerEnded );
     Emitter.on( EXP_LUX_END_GAME, this.luxEnded );
+    Emitter.on( EXP_SHOW_REWARD, this.gameWon );
     Emitter.on( EXP_FISH_COUNT_SENDED, this.getFishCount );
     Emitter.on( EXP_TIMER_TIME_SENDED, this.getTimer );
     Emitter.on( EXP_LUX_VALUE_SENDED, this.getLuxVal );
@@ -97,7 +100,8 @@ class LoosePopin extends Component {
 
     this.enterTl = new TimelineMax({ paused: true });
 
-    const recapEls = this.refs.popin.querySelectorAll( '.loose-popin-recap_info-el' );
+    const recapEls = this.refs.popin.querySelectorAll( '.end-popin-recap_info-el' );
+    const links = this.refs.popin.querySelectorAll( '.end-popin__link' );
 
     this.enterTl
       .fromTo( this.refs.popin, 0.5, { opacity: 0 }, { opacity: 1, ease: Expo.easeOut })
@@ -105,14 +109,24 @@ class LoosePopin extends Component {
       .fromTo( this.refs.title, 1, { opacity: 0, y: 15 }, { opacity: 1, y: 0, ease: Expo.easeOut }, 0 )
       .staggerFromTo( recapEls, 1, { opacity: 0, y: 15, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, ease: Expo.easeOut }, 0.1, 0.2 )
       .fromTo( this.refs.image, 1.5, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, ease: Expo.easeOut }, 0.3 )
-      .fromTo( this.refs.linkSurface, 1, { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', ease: Expo.easeOut }, 0.6 )
-      .fromTo( this.refs.linkTry, 1, { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', ease: Expo.easeOut }, 0.7 );
+      .staggerFromTo( links, 1, { opacity: 0,  y: '100%' }, { opacity: 1, y: 0, ease: Expo.easeOut }, 0.1, 0.6 );
 
+  }
+
+  gameWon() {
+
+    this.setState({
+      type: 'win',
+      title: 'You have won enough lux to dive deeper !'
+    });
+
+    this.showPopin();
   }
 
   timerEnded() {
 
     this.setState({
+      type: 'loose',
       title: ' Oh no ! You’ve lost track of time, you loose !'
     });
 
@@ -122,6 +136,7 @@ class LoosePopin extends Component {
   luxEnded() {
 
     this.setState({
+      type: 'loose',
       title: 'You don’t have enough light anymore ! You loose !'
     });
 
@@ -133,7 +148,7 @@ class LoosePopin extends Component {
     Emitter.emit( EXP_FISH_GET_COUNT );
     Emitter.emit( EXP_TIMER_GET_TIME );
     Emitter.emit( EXP_GET_LUX_VALUE );
-    this.refs.popin.classList.add( 'loose-popin--is-visible' );
+    this.refs.popin.classList.add( 'end-popin--is-visible' );
 
     this.enterTl.play();
   }
@@ -170,42 +185,65 @@ class LoosePopin extends Component {
 
   render() {
 
+    const title = ( this.state.type === 'win' ) ? 'Congratulations !' : 'Game Over !';
+    const badgeSrc = ( this.state.type === 'win' ) ? '/images/experience/reward-badge.svg' : '/images/experience/loose-badge.svg';
+
+    let linksContent = '';
+
+    if( this.state.type === 'win' ) {
+
+      linksContent = (
+        <div className="end-popin__links">
+          <a className="end-popin__link end-popin__link--surface" href='/'>Back to the surface</a>
+          <a className="end-popin__link end-popin__link--exploration" href='/'>Continue your exploration</a>
+        </div>
+      );
+    } else {
+
+      linksContent = (
+        <div className="reward-popin__links">
+          <a className="end-popin__link" href='/'>Back to the surface</a>
+          <a className="end-popin__link" href='/experience'>Try Again</a>
+        </div>
+      );
+    }
+
     return (
 
-      <div className="loose-popin" ref="popin">
+      <div className="end-popin" ref="popin">
 
-        <button className="loose-popin__about" onClick={ this.showAbout } ref="about">about</button>
+        <button className="end-popin__about" onClick={ this.showAbout } ref="about">about</button>
 
-        <div className="loose-popin__container" ref="container">
+        <div className="end-popin__container" ref="container">
 
-          <h3 className="loose-popin__title" ref="title"><strong>Game Over !</strong>{ this.state.title }</h3>
+          <h3 className="end-popin__title" ref="title"><strong>{ title }</strong>{ this.state.title }</h3>
 
 
-          <div className="loose-popin__recap">
+          <div className="end-popin__recap">
 
-            <img className="loose-popin__image" ref="image" src="/images/experience/loose-badgebb.svg" />
+            <img className="end-popin__image" ref="image" src={ badgeSrc } />
 
-            <ul className="loose-popin-recap_info-list">
+            <ul className="end-popin-recap_info-list">
 
-              <li className="loose-popin-recap_info-el">
+              <li className="end-popin-recap_info-el">
 
-                <h3 className="loose-popin-recap_info-title">Fish catched</h3>
+                <h3 className="end-popin-recap_info-title">Fish catched</h3>
 
-                <span className="loose-popin-recap_info-description">{this.state.fishCount}</span>
-
-              </li>
-
-              <li className="loose-popin-recap_info-el">
-
-                <h3 className="loose-popin-recap_info-title">Time</h3>
-
-                <span className="loose-popin-recap_info-description">{this.state.timerMinutes}:{this.state.timerSeconds}</span>
+                <span className="end-popin-recap_info-description">{ this.state.fishCount }</span>
 
               </li>
 
-              <li className="loose-popin-recap_info-el">
+              <li className="end-popin-recap_info-el">
 
-                <h3 className="loose-popin-recap_info-title">Lux remainded</h3>
+                <h3 className="end-popin-recap_info-title">Time</h3>
+
+                <span className="end-popin-recap_info-description">{ this.state.timerMinutes }:{ this.state.timerSeconds }</span>
+
+              </li>
+
+              <li className="end-popin-recap_info-el">
+
+                <h3 className="end-popin-recap_info-title">Lux remainded</h3>
 
                 <div className="lux-bar" ref="luxBar">
 
@@ -219,9 +257,7 @@ class LoosePopin extends Component {
 
           </div>
 
-          <a className="loose-popin__link loose-popin__link--surface" ref="linkSurface" href='/'>Back to the surface</a>
-
-          <a className="loose-popin__link loose-popin__link--surface" ref="linkTry" href='/experience'>Try Again</a>
+          { linksContent }
 
         </div>
 
@@ -231,4 +267,4 @@ class LoosePopin extends Component {
   }
 }
 
-export default LoosePopin;
+export default EndPopin;

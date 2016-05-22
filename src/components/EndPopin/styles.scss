@@ -1,7 +1,7 @@
 @import '~stylesheets/common/variables';
 @import '~stylesheets/common/mixins';
 
-.loose-popin {
+.end-popin {
 
   z-index: 98;
   display: none;
@@ -15,7 +15,7 @@
   }
 }
 
-.loose-popin__about {
+.end-popin__about {
   font-family: $font-tstar;
   font-size: 1.6rem;
   position: absolute;
@@ -30,7 +30,7 @@
   }
 }
 
-.loose-popin__title {
+.end-popin__title {
   font-size: 1.8rem;
   line-height: 3.3rem;
 
@@ -41,7 +41,7 @@
 
 }
 
-.loose-popin__link {
+.end-popin__link {
   font-size: 1.4rem;
   display: inline-block;
   padding: 5px 4px;
@@ -61,31 +61,31 @@
 
 }
 
-.loose-popin__container {
+.end-popin__container {
   width: 100%;
   text-align: center;
   text-shadow: 0 0 4px rgba(255, 255, 255, .7);
   @include center-xy;
 }
 
-.loose-popin__image {
+.end-popin__image {
   display: inline-block;
   width: 200px;
   margin-right: 4rem;
 }
 
-.loose-popin__recap {
+.end-popin__recap {
   display: flex;
   margin: 9rem auto;
   align-items: center;
   justify-content: center;
 }
 
-.loose-popin-recap_info-list {
+.end-popin-recap_info-list {
   display: flex;
 }
 
-.loose-popin-recap_info-el {
+.end-popin-recap_info-el {
   position: relative;
   display: inline-block;
   margin: 0 4rem;
@@ -109,23 +109,23 @@
   }
 }
 
-.loose-popin-recap_info-title {
+.end-popin-recap_info-title {
   font-size: 2.1rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
 
-.loose-popin-recap_info-description {
+.end-popin-recap_info-description {
   font-size: 2.4rem;
   color: $color-blue-2;
 }
 
-.loose-popin .lux-bar {
+.end-popin .lux-bar {
   top: 3.5rem;
   left: 2px;
 }
 
-.loose-popin .lux-bar__progress {
+.end-popin .lux-bar__progress {
   &:after {
     display: none;
   }

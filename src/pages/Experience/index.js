@@ -10,9 +10,8 @@ import Timer from 'components/Timer';
 import FishCounter from 'components/FishCounter';
 import ExperienceOverlay from 'components/ExperienceOverlay';
 import LevelIntroduction from 'components/LevelIntroduction';
-import RewardPopin from 'components/RewardPopin';
+import EndPopin from 'components/EndPopin';
 import VideoPopin from 'components/VideoPopin';
-import LoosePopin from 'components/LoosePopin';
 import FishName from 'components/FishName';
 import FlashMessages from 'components/FlashMessages';
 import WebGLExperience from 'components/WebGLExperience';
@@ -65,8 +64,7 @@ class Experience extends Component {
       <div className="page__container">
         <ExperienceOverlay />
         <LevelIntroduction config={mezaleConfig} ref="levelIntro"/>
-        <LoosePopin />
-        <RewardPopin />
+        <EndPopin />
         <VideoPopin />
         <Radar />
         <LevelInfos config={mezaleConfig} />

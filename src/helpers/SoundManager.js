@@ -49,12 +49,19 @@ class SoundManager {
   }
 
   onWindowFocus() {
-    Howler.unmute();
+    this.unmute();
   }
 
   onWindowBlur() {
+    this.mute();
+  }
 
+  mute() {
     Howler.mute();
+  }
+
+  unmute() {
+    Howler.unmute();
   }
 
   load( url, onLoad, onSucess, onReject, id ) {

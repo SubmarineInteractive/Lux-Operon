@@ -1,6 +1,7 @@
 import './styles.scss';
 
 import Emitter from 'helpers/Emitter';
+import SoundManager from 'helpers/SoundManager';
 
 import { Component } from 'react';
 
@@ -102,6 +103,8 @@ class VideoPopin extends Component {
 
   showPopin() {
 
+    SoundManager.mute();
+
     this.isOpen = true;
     this.refs.popin.classList.add( 'video-popin--is-visible' );
     this.leaveTl.stop();
@@ -114,6 +117,7 @@ class VideoPopin extends Component {
   closePopin() {
 
     if( this.isOpen ) {
+      SoundManager.unmute();
       this.refs.video.pause();
       this.enterTl.stop();
       this.leaveTl.play( 0 );
