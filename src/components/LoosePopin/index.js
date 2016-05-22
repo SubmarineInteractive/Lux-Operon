@@ -97,10 +97,13 @@ class LoosePopin extends Component {
 
     this.enterTl = new TimelineMax({ paused: true });
 
+    const recapEls = this.refs.popin.querySelectorAll( '.loose-popin-recap_info-el' );
+
     this.enterTl
       .fromTo( this.refs.popin, 0.5, { opacity: 0 }, { opacity: 1, ease: Expo.easeOut })
       .fromTo( this.refs.about, 1, { opacity: 0, x: 20 }, { opacity: 1, x: 0, ease: Expo.easeOut })
       .fromTo( this.refs.title, 1, { opacity: 0, y: 15 }, { opacity: 1, y: 0, ease: Expo.easeOut }, 0 )
+      .staggerFromTo( recapEls, 1, { opacity: 0, y: 15, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, ease: Expo.easeOut }, 0.1, 0.2 )
       .fromTo( this.refs.image, 1.5, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, ease: Expo.easeOut }, 0.3 )
       .fromTo( this.refs.linkSurface, 1, { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', ease: Expo.easeOut }, 0.6 )
       .fromTo( this.refs.linkTry, 1, { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', ease: Expo.easeOut }, 0.7 );
@@ -161,7 +164,7 @@ class LoosePopin extends Component {
 
     if( luxVal < 0.5 ) {
 
-      this.refs.container.classList.add('lux-bar--is-in-danger');
+      this.refs.container.classList.add( 'lux-bar--is-in-danger' );
     }
   }
 
@@ -180,7 +183,7 @@ class LoosePopin extends Component {
 
           <div className="loose-popin__recap">
 
-            <img className="loose-popin__image" ref="image" src="/images/experience/reward-hide-and-seek.svg" />
+            <img className="loose-popin__image" ref="image" src="/images/experience/loose-badgebb.svg" />
 
             <ul className="loose-popin-recap_info-list">
 
