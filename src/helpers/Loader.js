@@ -60,7 +60,6 @@ class Loader {
    * @return {promise} Promise
    */
   load() {
-    console.log('resources are load');
 
     Emitter.emit( RESOURCES_READY );
 

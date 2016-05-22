@@ -102,7 +102,7 @@ class WebGLExperience extends Component {
 
     this.badambientSound.fadeIn( 1, 1000 );
 
-    this.goodambientSound.fadeOut( 0, 1000);
+    this.goodambientSound.fadeOut( 0, 1000 );
 
   }
 
@@ -131,15 +131,14 @@ class WebGLExperience extends Component {
 
     if( toggle ) {
 
-      console.log('paused');
       Emitter.emit( EXP_TOGGLE_CAMERA, false );
       Emitter.emit( EXP_LUX_TOGGLE, false );
       Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
 
       this.isPaused = true;
+
     } else {
 
-      console.log('unpaused');
       Emitter.emit( EXP_TOGGLE_CAMERA, true );
       Emitter.emit( EXP_LUX_TOGGLE, true );
       Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );

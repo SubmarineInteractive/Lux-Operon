@@ -65,7 +65,7 @@ class FlashMessages extends Component {
         setTimeout( () => { this.addFlashMessage( 'good', '3', 3 ); }, 2000 );
         setTimeout( () => { this.addFlashMessage( 'good', '2', 3 ); }, 3000 );
         setTimeout( () => { this.addFlashMessage( 'good', '1', 3 ); }, 4000 );
-        setTimeout( () => { Emitter.emit( EXP_SHOW_VIDEO ) }, 6000 );
+        setTimeout( () => { Emitter.emit( EXP_SHOW_VIDEO ); }, 6000 );
 
       }
 
@@ -111,7 +111,7 @@ class FlashMessages extends Component {
     setTimeout( () => { this.addFlashMessage( 'good', '3', 3 ); }, 2000 );
     setTimeout( () => { this.addFlashMessage( 'good', '2', 3 ); }, 3000 );
     setTimeout( () => { this.addFlashMessage( 'good', '1', 3 ); }, 4000 );
-    setTimeout( () => { Emitter.emit( EXP_SHOW_VIDEO ) }, 6000 );
+    setTimeout( () => { Emitter.emit( EXP_SHOW_VIDEO ); }, 6000 );
 
   }
 
@@ -149,8 +149,6 @@ class FlashMessages extends Component {
       .to( currentMsgTxt, 1, { opacity: 0, x: 20, ease: Expo.easeOut }, '+=' + duration );
 
   }
-
-
 
   render() {
 
