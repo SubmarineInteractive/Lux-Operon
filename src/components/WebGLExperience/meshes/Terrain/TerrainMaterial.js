@@ -14,7 +14,7 @@ class TerrainMaterial extends THREE.MeshPhongMaterial {
     // Set properties
     this.color = color;
 
-    this.shading = THREE.FlatShading;
+    this.shading = THREE.SmoothShading;
 
     this.shininess = shininess;
 
