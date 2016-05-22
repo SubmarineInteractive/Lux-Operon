@@ -14,6 +14,7 @@ import {
   EXP_GET_LUX_VALUE,
   EXP_LUX_VALUE_SENDED,
   EXP_SHOW_REWARD,
+  EXP_TOGGLE_PAUSE_GAME,
   ABOUT_OPEN
 } from 'config/messages';
 
@@ -145,6 +146,7 @@ class EndPopin extends Component {
 
   showPopin() {
 
+    Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
     Emitter.emit( EXP_FISH_GET_COUNT );
     Emitter.emit( EXP_TIMER_GET_TIME );
     Emitter.emit( EXP_GET_LUX_VALUE );
