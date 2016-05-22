@@ -8,6 +8,11 @@ import {
   EXP_TIMER_ENDED,
   EXP_LUX_END_GAME,
   EXP_FISH_GET_COUNT,
+  EXP_FISH_COUNT_SENDED,
+  EXP_TIMER_GET_TIME,
+  EXP_TIMER_TIME_SENDED,
+  EXP_GET_LUX_VALUE,
+  EXP_LUX_VALUE_SENDED,
   ABOUT_OPEN
 } from 'config/messages';
 
@@ -17,7 +22,11 @@ import {
 class LoosePopin extends Component {
 
   state = {
-    title: 'You loose !'
+    title: 'You loose !',
+    fishCount: 0,
+    timerMinutes: '00',
+    timerSeconds: '00',
+    luxVal: 0
   }
 
   componentWillMount() {
@@ -40,7 +49,7 @@ class LoosePopin extends Component {
 
   bind() {
 
-    [ 'timerEnded', 'luxEnded' ]
+    [ 'timerEnded', 'luxEnded', 'getFishCount', 'getTimer', 'getLuxVal' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
@@ -68,12 +77,20 @@ class LoosePopin extends Component {
 
     Emitter.on( EXP_TIMER_ENDED, this.timerEnded );
     Emitter.on( EXP_LUX_END_GAME, this.luxEnded );
+    Emitter.on( EXP_FISH_COUNT_SENDED, this.getFishCount );
+    Emitter.on( EXP_TIMER_TIME_SENDED, this.getTimer );
+    Emitter.on( EXP_LUX_VALUE_SENDED, this.getLuxVal );
+
   }
 
   removeEventListeners() {
 
     Emitter.off( EXP_TIMER_ENDED, this.timerEnded );
     Emitter.off( EXP_LUX_END_GAME, this.luxEnded );
+    Emitter.off( EXP_FISH_COUNT_SENDED, this.getFishCount );
+    Emitter.off( EXP_TIMER_TIME_SENDED, this.getTimer );
+    Emitter.off( EXP_LUX_VALUE_SENDED, this.getLuxVal );
+
   }
 
   generateTimelineMax() {
@@ -109,6 +126,10 @@ class LoosePopin extends Component {
   }
 
   showPopin() {
+
+    Emitter.emit( EXP_FISH_GET_COUNT );
+    Emitter.emit( EXP_TIMER_GET_TIME );
+    Emitter.emit( EXP_GET_LUX_VALUE );
     this.refs.popin.classList.add( 'loose-popin--is-visible' );
 
     this.enterTl.play();
@@ -117,6 +138,31 @@ class LoosePopin extends Component {
   showAbout() {
 
     Emitter.emit( ABOUT_OPEN );
+  }
+
+  getFishCount( fishCount ) {
+
+    this.setState({
+      fishCount
+    });
+  }
+
+  getTimer( timerMinutes, timerSeconds ) {
+
+    this.setState({
+      timerMinutes,
+      timerSeconds
+    });
+  }
+
+  getLuxVal( luxVal ) {
+
+    this.refs.luxProgress.style.width = `${luxVal * 100}%`;
+
+    if( luxVal < 0.5 ) {
+
+      this.refs.container.classList.add('lux-bar--is-in-danger');
+    }
   }
 
   render() {
@@ -137,22 +183,35 @@ class LoosePopin extends Component {
             <img className="loose-popin__image" ref="image" src="/images/experience/reward-hide-and-seek.svg" />
 
             <ul className="loose-popin-recap_info-list">
-              <li className="loose-popin-recap_info-el">
-                <h3 className="loose-popin-recap_info-title">Fish catched</h3>
-                <span className="loose-popin-recap_info-description">1</span>
-              </li>
-              <li className="loose-popin-recap_info-el">
-                <h3 className="loose-popin-recap_info-title">Time</h3>
-                <span className="loose-popin-recap_info-description">2:00</span>
-              </li>
-              <li className="loose-popin-recap_info-el">
-                <h3 className="loose-popin-recap_info-title">Lux remainded</h3>
-                <div className="lux-bar">
 
-                  <div className="lux-bar__progress" ref="progress"></div>
+              <li className="loose-popin-recap_info-el">
+
+                <h3 className="loose-popin-recap_info-title">Fish catched</h3>
+
+                <span className="loose-popin-recap_info-description">{this.state.fishCount}</span>
+
+              </li>
+
+              <li className="loose-popin-recap_info-el">
+
+                <h3 className="loose-popin-recap_info-title">Time</h3>
+
+                <span className="loose-popin-recap_info-description">{this.state.timerMinutes}:{this.state.timerSeconds}</span>
+
+              </li>
+
+              <li className="loose-popin-recap_info-el">
+
+                <h3 className="loose-popin-recap_info-title">Lux remainded</h3>
+
+                <div className="lux-bar" ref="luxBar">
+
+                  <div className="lux-bar__progress" ref="luxProgress"></div>
 
                 </div>
+
               </li>
+
             </ul>
 
           </div>
@@ -162,6 +221,7 @@ class LoosePopin extends Component {
           <a className="loose-popin__link loose-popin__link--surface" ref="linkTry" href='/experience'>Try Again</a>
 
         </div>
+
       </div>
 
     );

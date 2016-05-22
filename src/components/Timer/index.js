@@ -9,6 +9,8 @@ import {
   EXP_TIMER_ENDED,
   EXP_TIMER_TOGGLE_PAUSE,
   EXP_TOGGLE_PAUSE_GAME,
+  EXP_TIMER_GET_TIME,
+  EXP_TIMER_TIME_SENDED,
   EXP_FLASH_MSG
 } from 'config/messages';
 
@@ -47,7 +49,7 @@ class Timer extends Component {
 
   bind() {
 
-    [ 'startTimer', 'togglePause' ]
+    [ 'startTimer', 'togglePause', 'getTimer' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
@@ -77,12 +79,14 @@ class Timer extends Component {
 
     Emitter.on( EXP_TIMER_START, this.startTimer );
     Emitter.on( EXP_TIMER_TOGGLE_PAUSE, this.togglePause );
+    Emitter.on( EXP_TIMER_GET_TIME, this.getTimer );
   }
 
   removeEventListeners() {
 
     Emitter.off( EXP_TIMER_START, this.startTimer );
     Emitter.off( EXP_TIMER_TOGGLE_PAUSE, this.togglePause );
+    Emitter.off( EXP_TIMER_GET_TIME, this.getTimer );
   }
 
   startTimer( initialTime = false ) {
@@ -127,6 +131,12 @@ class Timer extends Component {
     Emitter.emit( EXP_FLASH_MSG, 'danger', 'Time is over, you loose. Try again !' );
 
   }
+
+  getTimer() {
+
+    Emitter.emit( EXP_TIMER_TIME_SENDED, this.state.minutes, this.state.seconds );
+  }
+
   updateTimer() {
     let minutes = Math.floor( this.currentTime / 60 );
     let seconds = Math.floor( this.currentTime % 60 );

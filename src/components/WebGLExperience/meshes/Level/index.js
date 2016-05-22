@@ -15,6 +15,7 @@ import {
   EXP_NOT_INTERSECTING_FISH,
   EXP_SHOW_FISH_NAME,
   EXP_FISH_GET_COUNT,
+  EXP_FISH_COUNT_SENDED,
   EXP_LUX_VALUE_UPDATE,
   EXP_GOAL_ACHIEVE,
   EXP_FLASH_MSG,
@@ -91,12 +92,13 @@ class Level extends THREE.Object3D {
 
     Emitter.once( EXP_INTRO_ENDED , this.onIntroEnded );
     Emitter.once( EXP_RAYCAST_TOGGLE , this.toggleRaycast );
+    Emitter.once( EXP_FISH_GET_COUNT , this.getFishCount );
 
   }
 
   bind() {
 
-    [ 'update', 'onIntroEnded', 'handleClickOnFish', 'onMouseMove', 'raycast', 'toggleRaycast' ]
+    [ 'update', 'onIntroEnded', 'handleClickOnFish', 'onMouseMove', 'raycast', 'toggleRaycast', 'getFishCount' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -181,7 +183,7 @@ class Level extends THREE.Object3D {
 
   getFishCount() {
 
-    Emitter.emit( EXP_FISH_GET_COUNT, this.fishCounter );
+    Emitter.emit( EXP_FISH_COUNT_SENDED, this.fishCounter );
   }
 
   raycast() {
