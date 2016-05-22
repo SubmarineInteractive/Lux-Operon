@@ -18,6 +18,10 @@ import {
  */
 class AbstractScene extends THREE.Scene {
 
+  /**
+   * constructor function
+   * @param {Object} Configuration 
+   */
   constructor({ camera, renderer, postProcessing }) {
 
     super();
@@ -28,8 +32,6 @@ class AbstractScene extends THREE.Scene {
     this.camera = new AbstractCamera({ fov, aspect, near, far, position, orbitControls });
 
     const { antialias, alpha, clearColor, clearColorAlpha, pixelRatio } = renderer;
-
-    this.enabled = true;
 
     // Abstract renderer
     this.renderer = new AbstractRenderer({ antialias, alpha, clearColor, clearColorAlpha, pixelRatio });
@@ -56,8 +58,7 @@ class AbstractScene extends THREE.Scene {
   }
 
   /**
-   * Debug function
-   * @todo Create a separate class
+   * debug function
    */
   debug() {
 
@@ -70,14 +71,20 @@ class AbstractScene extends THREE.Scene {
     this.add( gridHelper );
   }
 
+  /**
+   * onWindowFocus function
+   */
   onWindowFocus() {
-    this.enabled = true;
+    this.raf.start();
   }
 
+  /**
+   * onWindowBlur function
+   */
   onWindowBlur() {
-    this.enabled = false;
+    this.raf.stop();
   }
-  
+
   /**
    * preRender function
    */

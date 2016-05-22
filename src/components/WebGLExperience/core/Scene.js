@@ -70,8 +70,6 @@ class Scene extends AbstractScene {
    */
   render() {
 
-    if( !this.enabled ) return;
-
     this.preRender();
 
     this.world.update( this.clock.delta );
