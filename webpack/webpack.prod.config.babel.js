@@ -19,7 +19,8 @@ export default {
   resolve: {
     root: path.resolve( __dirname, '..', 'src' ),
     alias: {
-      common: 'components/WebGLCommon'
+      common: 'components/WebGLCommon',
+      cannon: path.resolve( __dirname, '..', 'node_modules/cannon/src/Cannon.js' )
     },
     extensions: [
       '',
