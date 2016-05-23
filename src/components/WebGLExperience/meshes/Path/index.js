@@ -3,19 +3,21 @@ import createSpline from 'utils/create-spline';
 /**
  * Path class
  */
-class Path extends THREE.Line {
+class Path extends THREE.Object3D {
 
   constructor( points = [] ) {
 
     super();
 
     this.curve = createSpline( points );
-    this.points = this.curve.getSpacedPoints( 100 );
-
-    this.material = new THREE.LineBasicMaterial({ color: false, transparent: true, opacity: 0 });
-
-    this.geometry = new THREE.Geometry();
-    this.geometry.vertices = this.points;
+    // this.points = this.curve.getSpacedPoints( 100 );
+    //
+    // const geometry = new THREE.Geometry();
+    // geometry.vertices = this.points;
+    //
+    // const material = new THREE.LineBasicMaterial({ color : 0xff0000 });
+    // const line = new THREE.Line( geometry, material );
+    // this.add( line );
   }
 }
 
