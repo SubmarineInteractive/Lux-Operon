@@ -110,7 +110,7 @@ class EndPopin extends Component {
       .fromTo( this.refs.title, 1, { opacity: 0, y: 15 }, { opacity: 1, y: 0, ease: Expo.easeOut }, 0 )
       .staggerFromTo( recapEls, 1, { opacity: 0, y: 15, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, ease: Expo.easeOut }, 0.1, 0.2 )
       .fromTo( this.refs.image, 1.5, { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, ease: Expo.easeOut }, 0.3 )
-      .staggerFromTo( links, 1, { opacity: 0,  y: '100%' }, { opacity: 1, y: 0, ease: Expo.easeOut }, 0.1, 0.6 );
+      .staggerFromTo( links, 1, { opacity: 0,  y: '100%' }, { opacity: 1, y: '0%', ease: Expo.easeOut }, 0.1, 0.6 );
 
   }
 
@@ -185,8 +185,10 @@ class EndPopin extends Component {
     }
   }
 
-  replayVideo() {
-    
+  replayVideo(ev) {
+
+    ev.preventDefault();
+
     this.refs.popin.classList.remove( 'end-popin--is-visible' );
     Emitter.emit( 'EXP_SHOW_VIDEO' );
   }
@@ -195,22 +197,23 @@ class EndPopin extends Component {
 
     const title = ( this.state.type === 'win' ) ? 'Congratulations !' : 'Game Over !';
     const badgeSrc = ( this.state.type === 'win' ) ? '/images/experience/reward-badge.svg' : '/images/experience/loose-badge.svg';
-    const videoBtn = ( this.state.type === 'win' ) ? <span className="end-popin__video-btn" onClick={this.replayVideo}>Watch the video again</span>: '';
+
     let linksContent = '';
 
     if( this.state.type === 'win' ) {
 
       linksContent = (
         <div className="end-popin__links">
-          <a className="end-popin__link end-popin__link--surface" href='/'>Back to the surface</a>
-          <a className="end-popin__link end-popin__link--exploration" href='/'>Continue your exploration</a>
+          <a className="end-popin__link" href='/'>Back up to the surface</a>
+          <a className="end-popin__link" href='/'>Continue your exploration</a>
+          <a className="end-popin__link" href="#" onClick={this.replayVideo}>See video again</a>
         </div>
       );
     } else {
 
       linksContent = (
         <div className="reward-popin__links">
-          <a className="end-popin__link" href='/'>Back to the surface</a>
+          <a className="end-popin__link" href='/'>Back up to the surface</a>
           <a className="end-popin__link" href='/experience'>Try Again</a>
         </div>
       );
@@ -268,8 +271,6 @@ class EndPopin extends Component {
           { linksContent }
 
         </div>
-
-        { videoBtn }
 
       </div>
 
