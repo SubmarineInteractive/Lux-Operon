@@ -136,15 +136,16 @@ class About extends Component {
           <section className="about__section about__section--description" ref="descSection">
 
               <h2 className="about__title" ref="descTitle">
-                <span className="about__title-line" ref="descTitleLine"></span>
                 <span className="about__title-text" ref="descTitleText">About</span>
               </h2>
 
               <p className="about__paragraph" ref="descParag">
 
-                Lux Operon is an interactive experience about nature’s deepest secrets. Your mission is to visit the unexplored seas. In this ecosystem where the visible swims alongside the invisible, you will be prompted to meet its mysterious inhabitants and discover the mysteries of the biosphere.
-                This game is the result of many months of work at Gobelins in order to complete our diploma project. It’s also meant to raise awareness and allow access to the parts of the ocean we can’t see. <br/>
-                Hope you’ll enjoy it !
+                Lux Operon is <b>an interactive experience about nature’s deepest secrets.</b> Your mission is to visit the unexplored seas. In this ecosystem where the visible swims alongside <b>the invisible</b>, you will be prompted to meet its mysterious inhabitants and discover the <b>mysteries</b> of the <b>biosphere</b>.
+                <br/><br/>
+                This game is the result of many months of work at <a href="http://gobelins.fr" target="_blank">Gobelins</a> in order to complete our <b>diploma project</b>. It’s also meant to raise awareness and allow access to the parts of the ocean we can’t see.
+                <br/><br/>
+                <b>Hope you’ll enjoy it !</b>
               </p>
 
           </section>
@@ -152,13 +153,12 @@ class About extends Component {
           <section className="about__section about__section--team" ref="teamSection">
 
             <h2 className="about__title" ref="teamTitle">
-              <span className="about__title-line" ref="teamTitleLine"></span>
-              <span className="about__title-text" ref="teamTitleText">Team</span>
+              <span className="about__title-text" ref="teamTitleText">Team «abyss»</span>
             </h2>
 
             <div className="about__team-block">
 
-              <strong className="about_team-name" ref="teamName">Developer</strong>
+              <strong className="about_team-name" ref="teamName">Developers</strong>
 
               <ul className="about__team-list" ref="teamList">
 
@@ -198,6 +198,11 @@ class About extends Component {
 
           </section>
 
+        </div>
+
+        <div className="about__gobelins">
+          <img className="about__gobelins-logo" src="/images/home/gobelins-logo.svg" alt="gobelins logo" />
+          <p className="about__gobelins-paragraph">Interactive Design Bachelor 2016</p>
         </div>
 
       </div>

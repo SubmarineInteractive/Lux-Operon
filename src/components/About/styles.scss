@@ -29,25 +29,57 @@
 }
 
 .about__container {
-  @include center-y;
+  @include center-xy;
+  max-width: 1000px;
   width: 70%;
-  margin-left: 15%;
 }
-.about__section {
-  @include clearfix;
-  margin-top: 15rem;
 
-  &:first-child {
-    margin-top: 0;
+.about__section {
+  float: left;
+
+  &--description {
+    width: calc(500px);
+  }
+
+  &--team {
+    float: right;
+    width: 200px;
   }
 }
 
 .about__title {
-  color: $color-blue;
+  position: relative;
+  color: $color-yellow;
   font-family: $font-tstar;
   font-size: 2.1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 4.5rem;
   text-transform: uppercase;
+
+  &:after {
+    content: '';
+    position: absolute;
+
+    display: inline-block;
+    width: 2rem;
+    height: 0.2rem;
+    background: $color-yellow;
+    top: 5rem;
+    left: 0;
+
+  }
+
+  .about__section--description &:before {
+    position: absolute;
+    content: 'ABYSS';
+    top: -2rem;
+    left: -3.2rem;
+    font-size: 4.8rem;
+    color: rgba($color-white, 0.1);
+  }
+
+  .about__section--team &:after {
+    top: 3rem;
+  }
 }
 
 .about__title-line {
@@ -65,34 +97,55 @@
   line-height: 1.88rem;
 }
 
-.about__team-block {
-  float: left;
-  margin-right: 12rem;
+.about__paragraph b {
+  font-weight: bold;
+}
 
-  &:last-child {
-    margin-right: 0;
+.about__paragraph a {
+  color: $color-white;
+  font-weight: bold;
+  color: $color-white;
+  transition: color .3s ease-out;
+
+  &:hover {
+    color: $color-medium-grey;
   }
+}
+
+.about__team-block {
+  margin-top: 4rem;
 }
 
 .about_team-name {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 1.68rem;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  color: $color-blue;
 }
 
-.about__team-line {
-  display: inline-block;
-  width: 1rem;
-  height: 0.1rem;
-  background: $color-white;
-  margin-right: 1rem;
-  margin-bottom: 0.2rem;
+.about__team-list {
+  padding: 0;
 }
+
 .about__team-list-el {
+  position: relative;
   font-size: 1.4rem;
   margin-top: 1rem;
+  margin-left: 1.3rem;
+
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    left: -12px;
+    top: 4px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: $color-blue;
+  }
 
   a {
     color: $color-white;
@@ -102,4 +155,22 @@
       color: $color-medium-grey;
     }
   }
+}
+
+.about__gobelins {
+  @include center-x;
+  bottom: 4.5rem;
+  text-align: center;
+}
+
+.about__gobelins-logo {
+  display: block;
+  margin: auto;
+  width: 10rem;
+}
+
+.about__gobelins-paragraph {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
 }
