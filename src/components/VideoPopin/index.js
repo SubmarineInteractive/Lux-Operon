@@ -51,7 +51,7 @@ class VideoPopin extends Component {
 
       if( ev.keyCode === 86 ) { // v
 
-        this.showPopin();
+        Emitter.emit( EXP_SHOW_VIDEO );
 
       }
 

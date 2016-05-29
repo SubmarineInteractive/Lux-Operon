@@ -13,6 +13,8 @@ class SoundManager {
 
     this.sounds = [];
 
+    this.blockMute = false;
+
     this.bind();
 
     this.addListeners();
@@ -31,6 +33,7 @@ class SoundManager {
 
     Emitter.on( WINDOW_ON_FOCUS, this.onWindowFocus );
     Emitter.on( WINDOW_ON_BLUR, this.onWindowBlur );
+
   }
 
   get( id ) {
@@ -49,7 +52,8 @@ class SoundManager {
   }
 
   onWindowFocus() {
-    this.unmute();
+    if( this.blockMute ) return;
+    Howler.unmute();
   }
 
   onWindowBlur() {
@@ -58,11 +62,14 @@ class SoundManager {
 
   mute() {
     Howler.mute();
+    this.blockMute = true;
   }
 
   unmute() {
     Howler.unmute();
+    this.blockMute = false;
   }
+
 
   load( url, onLoad, onSucess, onReject, id ) {
 
