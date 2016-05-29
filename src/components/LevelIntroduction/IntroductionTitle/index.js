@@ -61,6 +61,7 @@ class IntroductionTitle extends Component {
       .from( this.refs.titleDive, 1, { y: '200%', ease: Expo.easeOut })
       .from( this.refs.titleSep, 0.6, { scale: 0, ease: Expo.easeOut }, '-=0.3' )
       .staggerFrom( this.titleSplited.chars, 1.8, { opacity: 0, ease: Expo.easeOut }, 0.05, '-=0.6' )
+      .from( this.refs.subtitle, 0.6, { opacity: 0, y: '100%', ease: Expo.easeOut }, '-=1.6' )
       .to( this.refs.container, 1.4, { opacity: 0, y: '-75%', ease: Expo.easeOut }, '-=0.3' );
 
   }
@@ -110,6 +111,11 @@ class IntroductionTitle extends Component {
         <span className="introduction-title__separator" ref="titleSep"></span>
 
         <h1 className="introduction-title__name" ref="titleName">{title}</h1>
+
+
+        <p className="introduction-title__subtitle">
+          <span ref="subtitle">Countershading : The defense against predators</span>
+        </p>
 
       </div>
 
