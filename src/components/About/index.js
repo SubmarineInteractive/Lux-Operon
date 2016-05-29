@@ -73,7 +73,8 @@ class About extends Component {
     this.enterTl
       .fromTo( this.refs.wrapper, 1, { opacity: 0 }, { opacity: 1, ease: Expo.easeOut }, 0 )
       .fromTo( this.refs.descSection, 1, { scale: 1.1, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, ease: Expo.easeOut }, 0 )
-      .fromTo( this.refs.teamSection, 1, { scale: 1.1, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, ease: Expo.easeOut }, 0.2 );
+      .fromTo( this.refs.teamSection, 1, { scale: 1.1, opacity: 0, y: 30 }, { scale: 1, opacity: 1, y: 0, ease: Expo.easeOut }, 0.2 )
+      .fromTo( this.refs.gobelins, 1, { scale: 1.1, opacity: 0, x:'-50%', y: 30}, { scale: 1, opacity: 1, x:'-50%', y: 0, ease: Expo.easeOut }, 0.3 );
 
     this.leaveTl
       .fromTo( this.refs.wrapper, 1, { opacity: 1 }, { opacity: 0, ease: Expo.easeOut }, 0 )
@@ -200,7 +201,7 @@ class About extends Component {
 
         </div>
 
-        <div className="about__gobelins">
+        <div className="about__gobelins" ref="gobelins">
           <img className="about__gobelins-logo" src="/images/home/gobelins-logo.svg" alt="gobelins logo" />
           <p className="about__gobelins-paragraph">Interactive Design Bachelor 2016</p>
         </div>
