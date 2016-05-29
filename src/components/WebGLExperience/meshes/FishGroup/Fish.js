@@ -14,6 +14,8 @@ class Fish extends THREE.Object3D {
     this.modelObject.removeFish = parent.removeFish;
     this.modelObject.parentClass = this;
 
+    this.species = species;
+
     this.randomScale = randomFloat( 0.07, 0.09 );
     model.scale.set( this.randomScale, this.randomScale, this.randomScale );
 
@@ -26,7 +28,7 @@ class Fish extends THREE.Object3D {
 
         child.material.uniforms.fishLength.value = fishLength;
 
-        if( species === 'lanternFish' ) {
+        if( this.species === 'lanternFish' ) {
           child.material.uniforms.useLights.value = true;
         }
       }
@@ -51,7 +53,7 @@ class Fish extends THREE.Object3D {
 
     this.add( model );
 
-    if( species === 'lanternFish' ) {
+    if( this.species === 'lanternFish' ) {
       this.createLight();
     }
   }

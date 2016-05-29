@@ -1,6 +1,8 @@
 uniform float time;
 uniform float random;
 
+uniform int useDisplacement;
+
 uniform float fishLength;
 uniform float fishWaveLength;
 uniform float fishWaveSpeed;
@@ -21,7 +23,12 @@ void main() {
   float s = sin( ( time + random * 10.0 ) * fishWaveSpeed + mult * fishWaveLength );
   float offset = pow( mult, 2.0 ) * s * ( fishBendAmount * random );
 
-  vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 ) + vec4( offset, 0.0, 0.0, 0.0 );
+  vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+  if( useDisplacement == 1 ) {
+    mvPosition += vec4( offset, 0.0, 0.0, 0.0 );
+  }
+
   vViewPosition = - mvPosition.xyz;
 
   vec4 worldPosition = modelMatrix * vec4( position, 1.0 );

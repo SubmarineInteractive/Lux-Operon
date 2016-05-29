@@ -58,6 +58,10 @@ class FresnelMaterial extends THREE.ShaderMaterial {
         type: 'i',
         value: false
       },
+      'useDisplacement': {
+        type: 'i',
+        value: true
+      },
       'fishLength': {
         type: 'f',
         value: 0.0
