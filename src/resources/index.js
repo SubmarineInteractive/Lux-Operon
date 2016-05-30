@@ -67,7 +67,12 @@ export default [
   {
     type: 'audio',
     id: 'click',
-    url: './audios/click.mp3'
+    url: './audios/fish-click.mp3'
+  },
+  {
+    type: 'audio',
+    id: 'dragdown',
+    url: './audios/dragdown.mp3'
   },
   {
     type: 'audio',
