@@ -1,6 +1,7 @@
 import './styles.scss';
 
 import Emitter from 'helpers/Emitter';
+import SoundManager from 'helpers/SoundManager';
 
 import { Component } from 'react';
 
@@ -99,6 +100,8 @@ class About extends Component {
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
     Emitter.emit( EXP_RAYCAST_TOGGLE, false );
 
+    SoundManager.play( 'woosh' );
+
     this.refs.wrapper.classList.add( 'about--is-visible' );
 
     this.leaveTl.stop();
@@ -154,7 +157,7 @@ class About extends Component {
           <section className="about__section about__section--team" ref="teamSection">
 
             <h2 className="about__title" ref="teamTitle">
-              <span className="about__title-text" ref="teamTitleText">Team «abyss»</span>
+              <span className="about__title-text" ref="teamTitleText">Team</span>
             </h2>
 
             <div className="about__team-block">
