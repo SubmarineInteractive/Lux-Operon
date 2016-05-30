@@ -171,15 +171,18 @@ class Level extends THREE.Object3D {
       transparent: true,
       opacity: 0.8
     }, this.resources.fishGradientTexture );
+
+
     material.uniforms.useDisplacement.value = false;
 
     const sphere = new THREE.Mesh( geometry, material );
     model.parent.add( sphere );
 
-    tl.fromTo( sphere.scale, 1, { x: 0.00001, y: 0.00001, z: 0.00001 }, { x: 1, y: 1, z: 1, ease: Expo.easeOut }, 'start' )
-      .to( sphere.scale, 1, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, 'scale' )
-      .to( [ sphere.position, model.position ], 1, { y: 400, ease: Expo.easeOut }, 'scale' )
-      .to( model.scale, 1, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, 'start+=0.2' );
+    tl
+      .fromTo( sphere.scale, 0.5, { x: 0.00001, y: 0.00001, z: 0.00001 }, { x: 1, y: 1, z: 1, ease: Expo.easeOut }, 'start' )
+      .to( model.scale, 0.4, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, "=-0.2" )
+      .to( sphere.scale, 0.5, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, 0.4 )
+      .to( [ sphere.position, model.position ], 0.5, { y: 1000, ease: Expo.easeOut }, "-=0.2" );
 
     tl.play();
   }
