@@ -10,7 +10,7 @@ export default {
   passes: [
     {
       name: 'multiPassBloomPass',
-      active: true,
+      active: false,
       constructor: new MultiPassBloomPass({
         blurAmount: 0.1,
         applyZoomBlur: true,

@@ -4,8 +4,9 @@ import FishGroup from '../FishGroup';
 import Path from '../Path';
 import paths from '../Path/paths';
 import FresnelMaterial from '../../materials/FresnelMaterial';
-import { levels } from 'config/webgl/experience';
+import { levels, anemones } from 'config/webgl/experience';
 import BubbleParticleSystem from '../ParticleSystem/BubbleParticleSystem';
+import AquaticPlantGroup from '../AquaticPlantGroup';
 
 import { loopIndex, degreeToRadian, randomFloat, randomInt } from 'utils';
 
@@ -49,6 +50,7 @@ class Level extends THREE.Object3D {
     this.hoveredFish = null;
     this.fishGroups = [];
     this.fishModels = [];
+    this.anemones = [];
     this.intersects = [];
 
     this.fishGoal = levels.level1Config.goal;
@@ -58,13 +60,15 @@ class Level extends THREE.Object3D {
     this.wasIntersecting = false;
     this.isIntersecting = false;
 
+    this.normalizedTick = 0;
+
     this.intersectingTimeout = null;
     this.intersectingDebounce = false;
 
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
 
-    this.bubbleParticleSystem = new BubbleParticleSystem( Terrain, this.resources );
+    this.bubbleParticleSystem = new BubbleParticleSystem( this.terrain, this.resources );
     this.terrain.add( this.bubbleParticleSystem.group.mesh );
 
     fishGroupConfig.map( config => {
@@ -84,10 +88,19 @@ class Level extends THREE.Object3D {
       path.add( fishGroup );
     });
 
+    for ( let i = 0; i < anemones.positions.length; i++ ) {
+      const anemone = new AquaticPlantGroup({ terrain: this.terrain, model: this.resources.anemone, texture: this.resources.anemoneGradient, preset: anemones });
+      anemone.position.copy( anemones.positions[ i ] );
+      if( anemones.rotations[ i ] ) {
+        anemone.rotation.copy( anemones.rotations[ i ] );
+      }
+
+      this.terrain.add( anemone );
+      this.anemones.push( anemone );
+    }
+
     this.add( this.terrain );
     this.add( this.player );
-
-    this.norm = 0;
 
     this.bind();
 
@@ -171,7 +184,6 @@ class Level extends THREE.Object3D {
       transparent: true,
       opacity: 0.8
     }, this.resources.fishGradientTexture );
-
 
     material.uniforms.useDisplacement.value = false;
 
@@ -271,9 +283,13 @@ class Level extends THREE.Object3D {
 
     this.bubbleParticleSystem.group.tick( delta );
 
+    for( let i = 0; i < this.anemones.length; i++ ) {
+      this.anemones[ i ].update( time );
+    }
+
     this.raycast();
 
-    this.norm = loopIndex( this.norm + 0.001, 1 );
+    this.normalizedTick = loopIndex( this.normalizedTick + 0.001, 1 );
 
     this.fishGroups.map( group => {
       group.update( time );

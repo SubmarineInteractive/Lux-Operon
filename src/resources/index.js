@@ -20,6 +20,11 @@ export default [
     id: 'bubbleTexture',
     url: './textures/bubble.png'
   },
+  {
+    type: 'texture',
+    id: 'anemoneGradient',
+    url: './textures/anemone_gradient.png'
+  },
 
   // Models
   {
@@ -31,6 +36,11 @@ export default [
     type: 'model',
     id: 'lanternFish',
     url: './models/lantern_fish.awd'
+  },
+  {
+    type: 'model',
+    id: 'anemone',
+    url: './models/anemone.awd'
   },
 
   // Sounds
