@@ -20,9 +20,6 @@ class AquaticPlant extends THREE.Object3D {
     this.modelObject.material = new GradientMaterial({ texture: this.texture, preset });
     this.modelObject.material.uniforms.random.value = randomFloat( 0.1, 1 );
 
-    // Center Y
-    // this.position.y = - this.modelObject.geometry.boundingSphere.radius;
-
     this.add( this.model );
   }
 

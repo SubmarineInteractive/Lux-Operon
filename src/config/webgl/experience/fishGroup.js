@@ -1,7 +1,7 @@
 export default [
   {
     count: 10,
-    species: 'lanternFish',
+    species: 'lanternFishModel',
     name: 'Lantern Fish',
     fishLength: 1000,
     pathId: 1,
@@ -9,7 +9,7 @@ export default [
   },
   {
     count: 8,
-    species: 'hachetteFish',
+    species: 'hachetteFishModel',
     name: 'Hachette Fish',
     fishLength: 730,
     pathId: 2,
@@ -17,7 +17,7 @@ export default [
   },
   {
     count: 6,
-    species: 'hachetteFish',
+    species: 'hachetteFishModel',
     name: 'Hachette Fish',
     fishLength: 730,
     pathId: 3,
