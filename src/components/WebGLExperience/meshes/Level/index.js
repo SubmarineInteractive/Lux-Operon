@@ -147,7 +147,7 @@ class Level extends THREE.Object3D {
 
         Emitter.emit( EXP_LUX_VALUE_UPDATE, luxGain );
 
-        Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
+        Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain * 1000} lux` );
 
         this.fishCounter++;
 
