@@ -158,7 +158,7 @@ class IntroductionTooltips extends Component {
               C45.8,56.6,65.9,43.8,92.2-8.7l0.2-0.4L91.2-9.8z"/>
           </svg>
 
-          <span className="tooltips-tutorial__indication">Timer</span>
+          <span className="tooltips-tutorial__indication">Timer / Goal</span>
 
         </div>
 
