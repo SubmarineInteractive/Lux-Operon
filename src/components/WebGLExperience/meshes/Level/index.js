@@ -3,10 +3,11 @@ import SoundManager from 'helpers/SoundManager';
 import FishGroup from '../FishGroup';
 import Path from '../Path';
 import paths from '../Path/paths';
+import FresnelMaterial from '../../materials/FresnelMaterial';
 import { levels } from 'config/webgl/experience';
 import BubbleParticleSystem from '../ParticleSystem/BubbleParticleSystem';
 
-import { loopIndex, degreeToRadian, randomFloat } from 'utils';
+import { loopIndex, degreeToRadian, randomFloat, randomInt } from 'utils';
 
 import {
   EXP_INTRO_ENDED,
@@ -142,13 +143,11 @@ class Level extends THREE.Object3D {
 
     const tl = new TimelineMax({
       paused: true,
-      onComplete: ()=> {
+      onStart: () => {
 
         Emitter.emit( EXP_LUX_VALUE_UPDATE, luxGain );
 
         Emitter.emit( EXP_FLASH_MSG, 'good', `You win + ${luxGain} lux` );
-
-        model.removeFish( fish );
 
         this.fishCounter++;
 
@@ -160,13 +159,32 @@ class Level extends THREE.Object3D {
           Emitter.emit( EXP_GOAL_ACHIEVE );
           Emitter.emit( EXP_TOGGLE_PAUSE_GAME );
         }
+      },
+      onComplete: () => {
+        model.parent.remove( sphere );
+        model.removeFish( fish );
       }
     });
 
-    tl.to( fish.scale, 1, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, 'start' );
+    const geometry = new THREE.SphereGeometry( randomInt( 220, 280 ), 45, 45 );
+    const material = new FresnelMaterial({
+      transparent: true,
+      opacity: 0.8
+    }, this.resources.fishGradientTexture );
+
+
+    material.uniforms.useDisplacement.value = false;
+
+    const sphere = new THREE.Mesh( geometry, material );
+    model.parent.add( sphere );
+
+    tl
+      .fromTo( sphere.scale, 0.5, { x: 0.00001, y: 0.00001, z: 0.00001 }, { x: 1, y: 1, z: 1, ease: Expo.easeOut }, 'start' )
+      .to( model.scale, 0.4, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, "=-0.2" )
+      .to( sphere.scale, 0.5, { x: 0.00001, y: 0.00001, z: 0.00001, ease: Expo.easeOut }, 0.4 )
+      .to( [ sphere.position, model.position ], 0.5, { y: 1000, ease: Expo.easeOut }, "-=0.2" );
 
     tl.play();
-
   }
 
   updateWindowCursorPointer() {
