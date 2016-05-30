@@ -20,17 +20,27 @@ export default [
     id: 'bubbleTexture',
     url: './textures/bubble.png'
   },
+  {
+    type: 'texture',
+    id: 'anemoneGradientTexture',
+    url: './textures/anemone_gradient.png'
+  },
 
   // Models
   {
     type: 'model',
-    id: 'hachetteFish',
+    id: 'hachetteFishModel',
     url: './models/hachette_fish.awd'
   },
   {
     type: 'model',
-    id: 'lanternFish',
+    id: 'lanternFishModel',
     url: './models/lantern_fish.awd'
+  },
+  {
+    type: 'model',
+    id: 'anemoneModel',
+    url: './models/anemone.awd'
   },
 
   // Sounds

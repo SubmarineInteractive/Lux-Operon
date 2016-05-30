@@ -4,8 +4,9 @@ import FishGroup from '../FishGroup';
 import Path from '../Path';
 import paths from '../Path/paths';
 import FresnelMaterial from '../../materials/FresnelMaterial';
-import { levels } from 'config/webgl/experience';
+import { levels, anemones } from 'config/webgl/experience';
 import BubbleParticleSystem from '../ParticleSystem/BubbleParticleSystem';
+import AquaticPlantGroup from '../AquaticPlantGroup';
 
 import { loopIndex, degreeToRadian, randomFloat, randomInt } from 'utils';
 
@@ -47,8 +48,9 @@ class Level extends THREE.Object3D {
     this.player = Player;
     this.resources = resources;
     this.hoveredFish = null;
-    this.fishGroups = [];
+    this.fishes = [];
     this.fishModels = [];
+    this.anemones = [];
     this.intersects = [];
 
     this.fishGoal = levels.level1Config.goal;
@@ -58,13 +60,15 @@ class Level extends THREE.Object3D {
     this.wasIntersecting = false;
     this.isIntersecting = false;
 
+    this.normalizedTick = 0;
+
     this.intersectingTimeout = null;
     this.intersectingDebounce = false;
 
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
 
-    this.bubbleParticleSystem = new BubbleParticleSystem( Terrain, this.resources );
+    this.bubbleParticleSystem = new BubbleParticleSystem( this.terrain, this.resources );
     this.terrain.add( this.bubbleParticleSystem.group.mesh );
 
     fishGroupConfig.map( config => {
@@ -74,7 +78,7 @@ class Level extends THREE.Object3D {
       path.rotation.y = degreeToRadian( 90 );
 
       const fishGroup = new FishGroup( config, this.resources, path.curve );
-      this.fishGroups.push( fishGroup );
+      this.fishes.push( fishGroup );
 
       for ( let i = 0; i < fishGroup.fishes.length; i++ ) {
         this.fishModels.push( fishGroup.fishes[ i ].modelObject );
@@ -84,10 +88,19 @@ class Level extends THREE.Object3D {
       path.add( fishGroup );
     });
 
+    for ( let i = 0; i < anemones.positions.length; i++ ) {
+      const anemone = new AquaticPlantGroup({ terrain: this.terrain, model: this.resources.anemoneModel, texture: this.resources.anemoneGradientTexture, preset: anemones });
+      anemone.position.copy( anemones.positions[ i ] );
+      if( anemones.rotations[ i ] ) {
+        anemone.rotation.copy( anemones.rotations[ i ] );
+      }
+
+      this.terrain.add( anemone );
+      this.anemones.push( anemone );
+    }
+
     this.add( this.terrain );
     this.add( this.player );
-
-    this.norm = 0;
 
     this.bind();
 
@@ -97,24 +110,36 @@ class Level extends THREE.Object3D {
 
   }
 
+  /**
+   * bind function
+   */
   bind() {
 
     [ 'update', 'onIntroEnded', 'handleClickOnFish', 'onMouseMove', 'raycast', 'toggleRaycast', 'getFishCount' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
+  /**
+   * addEventListeners function
+   */
   addEventListeners() {
 
     document.addEventListener( 'click', this.handleClickOnFish, false );
     document.addEventListener( 'mousemove', this.onMouseMove, false );
   }
 
+  /**
+   * removeEventListeners function
+   */
   removeEventListeners() {
 
     document.removeEventListener( 'click', this.handleClickOnFish, false );
     document.removeEventListener( 'mousemove', this.onMouseMove, false );
   }
 
+  /**
+   * onIntroEnded function
+   */
   onIntroEnded() {
 
     this.raycastEnabled = true;
@@ -122,16 +147,27 @@ class Level extends THREE.Object3D {
     this.addEventListeners();
   }
 
+  /**
+   * toggleRaycast function
+   * @param {boolean} toggle Toggle
+   */
   toggleRaycast( toggle ) {
     this.raycastEnabled = toggle;
   }
 
+  /**
+   * onMouseMove function
+   * @param {Object} ev Event
+   */
   onMouseMove( ev ) {
 
     this.mouse.x = ( ev.clientX / window.innerWidth ) * 2 - 1;
     this.mouse.y = - ( ev.clientY / window.innerHeight ) * 2 + 1;
   }
 
+  /**
+   * handleClickOnFish function
+   */
   handleClickOnFish() {
 
     if( this.intersects.length <= 0 ) return;
@@ -172,7 +208,6 @@ class Level extends THREE.Object3D {
       opacity: 0.8
     }, this.resources.fishGradientTexture );
 
-
     material.uniforms.useDisplacement.value = false;
 
     const sphere = new THREE.Mesh( geometry, material );
@@ -187,6 +222,9 @@ class Level extends THREE.Object3D {
     tl.play();
   }
 
+  /**
+   * updateWindowCursorPointer function
+   */
   updateWindowCursorPointer() {
 
     if( this.isIntersecting ) {
@@ -199,11 +237,17 @@ class Level extends THREE.Object3D {
 
   }
 
+  /**
+   * getFishCount function
+   */
   getFishCount() {
 
     Emitter.emit( EXP_FISH_COUNT_SENDED, this.fishCounter );
   }
 
+  /**
+   * raycast function
+   */
   raycast() {
 
     if( this.raycastEnabled ) {
@@ -267,15 +311,24 @@ class Level extends THREE.Object3D {
     }
   }
 
+  /**
+   * update function
+   * @param {number} time  Time
+   * @param {number} delta Delta
+   */
   update( time, delta ) {
+
+    this.normalizedTick = loopIndex( this.normalizedTick + 0.001, 1 );
 
     this.bubbleParticleSystem.group.tick( delta );
 
     this.raycast();
 
-    this.norm = loopIndex( this.norm + 0.001, 1 );
+    this.anemones.map( anemone => {
+      anemone.update( time );
+    });
 
-    this.fishGroups.map( group => {
+    this.fishes.map( group => {
       group.update( time );
     });
   }

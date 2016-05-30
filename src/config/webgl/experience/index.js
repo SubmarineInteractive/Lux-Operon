@@ -8,6 +8,7 @@ export player from './player';
 export terrain from './terrain';
 export levels from './levels';
 export fishGroup from './fishGroup';
+export anemones from './anemones';
 export particleSystemGroup from './particleSystem/group';
 export particleSystemEmitter from './particleSystem/emitter';
 export fishParticleSystemEmitter from './particleSystem/fishEmitter';
