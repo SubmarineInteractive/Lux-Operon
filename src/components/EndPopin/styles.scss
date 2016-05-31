@@ -7,7 +7,7 @@
   display: none;
   overflow: hidden;
   color: $color-white;
-  background: rgba($color-deep-blue, .95);
+  background: rgba($color-deep-blue, .85);
   @include full-absolute;
 
   &--is-visible {
@@ -37,6 +37,7 @@
   strong {
     font-size: 2.3rem;
     display: block;
+    color: $color-yellow;
   }
 
 }
@@ -44,14 +45,12 @@
 .end-popin__link {
   font-size: 1.4rem;
   display: inline-block;
-  padding: 5px 4px;
+  padding: 15px 20px;
   transition: color 0.3s ease-out, background 0.3s ease-out;
   text-transform: uppercase;
   color: $color-white;
   border: 1px solid $color-white;
-  font-size: 2.1rem;
   text-transform: uppercase;
-  padding: 10px 10px 7px;
   margin: 0 2.5rem;
   cursor: pointer;
 
@@ -111,7 +110,7 @@
 }
 
 .end-popin-recap_info-title {
-  font-size: 2.1rem;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
