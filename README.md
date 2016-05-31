@@ -3,7 +3,7 @@
 WORK IN PROGRESS.
 WebGL school project at Gobelins, Paris.
 
-![Preview](https://i.imgsafe.org/3bcc35a.jpg)
+![Preview](http://abyss.hengpatrick.fr/preview.png)
 
 #### TEAM
 | Nom                 |  Role                |
