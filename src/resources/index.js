@@ -39,6 +39,11 @@ export default [
   },
   {
     type: 'model',
+    id: 'slenderFishModel',
+    url: './models/slender_fish.awd'
+  },
+  {
+    type: 'model',
     id: 'anemoneModel',
     url: './models/anemone.awd'
   },

@@ -17,9 +17,9 @@ export default [
   },
   {
     count: 6,
-    species: 'hachetteFishModel',
-    name: 'Hachette Fish',
-    fishLength: 730,
+    species: 'slenderFishModel',
+    name: 'Slender Fish',
+    fishLength: 1700,
     pathId: 3,
     position: new THREE.Vector3( -1500, 1800, 1100 )
   }
