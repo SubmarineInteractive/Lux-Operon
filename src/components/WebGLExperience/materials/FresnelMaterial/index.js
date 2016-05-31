@@ -76,7 +76,7 @@ class FresnelMaterial extends THREE.ShaderMaterial {
       },
       'fishBendAmount': {
         type: 'f',
-        value: 8.0
+        value: 10.0
       },
       'fishOffset': {
         type: 'f',

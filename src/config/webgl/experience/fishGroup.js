@@ -3,7 +3,7 @@ export default [
     count: 10,
     species: 'lanternFishModel',
     name: 'Lantern Fish',
-    fishLength: 1000,
+    fishLength: 1800,
     pathId: 1,
     position: new THREE.Vector3( -1100, 1300, -1350 )
   },
