@@ -51,6 +51,11 @@ export default [
   // Sounds
   {
     type: 'audio',
+    id: 'welcome',
+    url: './audios/welcome.mp3'
+  },
+  {
+    type: 'audio',
     id: 'level-1-intro',
     url: './audios/level-1-intro.mp3'
   },
