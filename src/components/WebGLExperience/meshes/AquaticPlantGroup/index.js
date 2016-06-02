@@ -1,6 +1,5 @@
 import SmallAquaticPlant from './SmallAquaticPlant';
 import BigAquaticPlant from './BigAquaticPlant';
-import randomInt from 'utils/random-int';
 
 /**
  * AquaticPlantGroup class
