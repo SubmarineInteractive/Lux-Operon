@@ -29,6 +29,7 @@
   "globals": {
     "__DEV__": true,
     "__PROD__": true,
+    "__PREZ__": true,
     "THREE": true,
     "React": true,
     "TweenMax": true,

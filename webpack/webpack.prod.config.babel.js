@@ -86,7 +86,8 @@ export default {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify( process.env.NODE_ENV ),
       '__DEV__': JSON.stringify( false ),
-      '__PROD__': JSON.stringify( true )
+      '__PROD__': JSON.stringify( true ),
+      '__PREZ__': JSON.stringify( false )
     }),
     new webpack.ProvidePlugin({
       'THREE': 'three',
