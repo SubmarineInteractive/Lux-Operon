@@ -6,7 +6,7 @@ import NoisePass from '@superguigui/wagner/src/passes/noise/noise';
 import FXAAPass from '@superguigui/wagner/src/passes/fxaa/FXAAPass';
 
 export default {
-  active: false,
+  active: ( __PROD__ ) ? true : false,
   passes: [
     {
       name: 'multiPassBloomPass',
