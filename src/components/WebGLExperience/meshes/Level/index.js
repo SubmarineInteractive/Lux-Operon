@@ -88,7 +88,9 @@ class Level extends THREE.Object3D {
       path.add( fishGroup );
     });
 
-    for ( let i = 0; i < anemones.positions.length; i++ ) {
+    const anemonesNumber = ( __PREZ__ ) ? anemones.positions.length : 4;
+
+    for ( let i = 0; i < anemonesNumber; i++ ) {
       const anemone = new AquaticPlantGroup({ terrain: this.terrain, model: this.resources.anemoneModel, texture: this.resources.anemoneGradientTexture, preset: anemones });
       anemone.position.copy( anemones.positions[ i ] );
       if( anemones.rotations[ i ] ) {
