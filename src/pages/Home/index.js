@@ -83,7 +83,7 @@ class Home extends Component {
 
     this.ambientSound.play();
 
-    this.ambientSound.fadeIn( 1, 1500, function() {
+    this.ambientSound.fadeIn( 0.45, 1500, function() {
       SoundManager.play( 'welcome' );
     });
   }
