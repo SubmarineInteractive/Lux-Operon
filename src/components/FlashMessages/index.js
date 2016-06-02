@@ -96,7 +96,7 @@ class FlashMessages extends Component {
   }
 
   introFlashMessage() {
-
+    SoundManager.play( 'good-message' );
     this.addFlashMessage( 'anecdotic', 'Oh hi there ! You’ve reached the first abyssal area, called mesopelagic zone. Find and click on the fishes to get some light and dive deeper', 5 );
   }
 
