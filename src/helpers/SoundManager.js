@@ -52,7 +52,6 @@ class SoundManager {
   }
 
   onWindowFocus() {
-    if( this.blockMute ) return;
     Howler.unmute();
   }
 
