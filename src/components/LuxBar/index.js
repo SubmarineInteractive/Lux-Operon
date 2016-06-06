@@ -76,10 +76,10 @@ class LuxBar extends Component {
 
     if( toggleVal ) {
 
-      this.refs.container.classList.add('lux-bar--is-in-danger');
+      this.refs.container.classList.add( 'lux-bar--is-in-danger' );
     } else {
 
-      this.refs.container.classList.remove('lux-bar--is-in-danger');
+      this.refs.container.classList.remove( 'lux-bar--is-in-danger' );
     }
 
   }

@@ -143,7 +143,7 @@ class HomeSlider extends Component {
 
         const diveSound = SoundManager.get( 'dive' );
 
-        diveSound.loop(true);
+        diveSound.loop( true );
         diveSound.play();
 
       }

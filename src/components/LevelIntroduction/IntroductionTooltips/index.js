@@ -7,9 +7,6 @@ import SoundManager from 'helpers/SoundManager';
 
 import {
   TOOLTIPS_SHOW,
-  EXP_TOGGLE_CAMERA,
-  EXP_LUX_TOGGLE,
-  EXP_TIMER_TOGGLE_PAUSE,
   EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
