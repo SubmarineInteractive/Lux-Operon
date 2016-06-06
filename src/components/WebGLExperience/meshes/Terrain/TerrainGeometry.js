@@ -19,19 +19,20 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     const halfWidth = configuration.width * 0.5;
     const halfDepth = configuration.height * 0.5;
 
+    // Rotate matrix
     const z90deg = new THREE.Matrix4().makeRotationZ( Math.PI * 0.5 );
     this.applyMatrix( z90deg );
 
-    this.vertices.forEach( ( vertex, i ) => {
+    // Compute vertices
+    for ( let i = 0; i < this.vertices.length; i++ ) {
 
       const row = ( i / sizeX ) | 0;
       const col = i % sizeX;
 
-      vertex.x = halfWidth + vertex.x;
-      vertex.y = halfDepth + vertex.y;
-      vertex.z = this.matrix[ row ][ col ];
-
-    });
+      this.vertices[ i ].x = halfWidth + this.vertices[ i ].x;
+      this.vertices[ i ].y = halfDepth + this.vertices[ i ].y;
+      this.vertices[ i ].z = this.matrix[ row ][ col ];
+    }
 
     this.computeFaceNormals();
     this.computeVertexNormals();
@@ -71,6 +72,15 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     return data;
   }
 
+  /**
+   * getMatrix function
+   * @param  {HTMLElement} image Image
+   * @param  {number} width      Width
+   * @param  {number} depth      Depth
+   * @param  {number} minHeight  Minimum height
+   * @param  {number} maxHeight  Maximum height
+   * @return {array}             Matrix
+   */
   getMatrix( image, width = 0, depth = 0, minHeight, maxHeight ) {
 
     const matrix = [];
@@ -88,11 +98,11 @@ class TerrainGeometry extends THREE.PlaneGeometry {
     ctx.drawImage( image, 0, 0, width, depth );
     imgData = ctx.getImageData( 0, 0, width, depth ).data;
 
-    for ( let i = 0; i < depth; i++ ) { //row
+    for ( let i = 0; i < depth; i++ ) { // Row
 
       matrix.push( [] );
 
-      for ( let j = 0; j < width; j++ ) { //col
+      for ( let j = 0; j < width; j++ ) { // Column
 
         pixel = i * depth + j;
         heightData = imgData[ pixel * channels ] / 255 * heightRange + minHeight;
