@@ -47,12 +47,6 @@ class Experience extends Component {
       Emitter.emit( EXP_INTRO_START );
       this.refs.levelIntro.beginTitle();
 
-      const diveSound = SoundManager.get( 'dive' );
-
-      diveSound.fadeOut( 0, 1000, () => {
-        diveSound.stop();
-      });
-
     }, delay );
   }
 
