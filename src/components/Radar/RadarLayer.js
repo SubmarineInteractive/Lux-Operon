@@ -7,12 +7,7 @@ class RadarLayer extends Component {
 
   componentDidMount() {
 
-    this.cursorTexture = new Image();
-    this.cursorTexture.src = '/images/experience/radar-cursor.png';
-
-    this.cursorTexture.onload = () => {
-      this.initCanvas();
-    };
+    this.initCanvas();
 
     this.cursorConfig = {
       width: 14,
