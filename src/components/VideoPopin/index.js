@@ -141,7 +141,11 @@ class VideoPopin extends Component {
 
         <button className="video-popin__skip" ref="skip" onClick={this.closePopin}>Skip video</button>
 
-        <video className="video-popin__video-el" src="/videos/sample.mp4" ref="video"></video>
+        <video className="video-popin__video-el" ref="video">
+          <source type="video/mp4" src="/videos/countershading.mp4" />
+          <source type="video/webm" src="/videos/countershading.webm" />
+          <source type="video/ogg" src="/videos/countershading.ogv" />
+        </video>
 
       </div>
 
