@@ -1,23 +1,15 @@
 import './styles.scss';
 
 import Emitter from 'helpers/Emitter';
-
 import Loader from 'helpers/Loader';
-
 import SoundManager from 'helpers/SoundManager';
-
 import { Component } from 'react';
-
 import { findDOMNode } from 'react-dom';
-
 import { connect } from 'react-redux';
-
+import DocumentTitle from 'react-document-title';
 import WebGlHomeBackground  from 'components/WebGlHomeBackground';
-
 import HomeSlider from 'components/HomeSlider';
-
 import HomeTransitionCanvas from 'components/HomeTransitionCanvas';
-
 import SplitText from 'vendors/splitText.js';
 
 import { ABOUT_OPEN } from 'config/messages';
@@ -25,7 +17,6 @@ import { ABOUT_OPEN } from 'config/messages';
 /*
  * Home class
  */
-
 @connect( state => ({ loading: state.resources.loading }) )
 class Home extends Component {
 
@@ -140,29 +131,39 @@ class Home extends Component {
   render() {
 
     return (
-      <div className="page home" ref="home">
+      <DocumentTitle title="Luxoperon | Home - Discover deep seas through a WebGL experience">
 
-        <div className="home__wrapper" ref="wrapper">
+        <div className="page home" ref="home">
 
-          <button className="home__about" onClick={this.showAbout} ref="aboutBtn">about</button>
+          <div className="home__wrapper" ref="wrapper">
 
-          <WebGlHomeBackground progress={this.state.progress} ref="backgroundScene" />
+            <button className="home__about" onClick={this.showAbout} ref="aboutBtn">about</button>
 
-          <div className="home__intro-text">
+            <WebGlHomeBackground progress={this.state.progress} ref="backgroundScene" />
 
-            <h1 className="home__title" ref="title">luxoperon</h1>
+            <div className="home__intro-text">
 
-            <p className="home__catchphrase" ref="catchphrase">Your mission is to go into deep seas and discover the biosphere mysteries.</p>
+              <h1 className="home__title" ref="title">luxoperon</h1>
+
+              <p className="home__catchphrase" ref="catchphrase">
+                Your mission is to go into deep seas and discover the biosphere mysteries.
+              </p>
+
+            </div>
+
+            <HomeSlider
+              onProgress={this.onProgress}
+              onDragComplete={this.onDragComplete}
+              title={this.refs.title}
+            />
+
+            <HomeTransitionCanvas ref="transitionCanvas" />
 
           </div>
 
-          <HomeSlider onProgress={this.onProgress} onDragComplete={this.onDragComplete} title={this.refs.title}/>
-
-          <HomeTransitionCanvas ref="transitionCanvas" />
-
         </div>
-
-      </div>
+        
+      </DocumentTitle>
     );
   }
 }

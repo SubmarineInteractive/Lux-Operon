@@ -5,9 +5,9 @@ import Emitter from 'helpers/Emitter';
 import Loader from 'helpers/Loader';
 import { resize } from 'providers/ViewportProvider';
 import ReactTransitionGroup from 'react-addons-transition-group';
-import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
-
+import DocumentTitle from 'react-document-title';
 import About from 'components/About';
+import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
 
 import {
   WINDOW_ON_FOCUS,
@@ -34,17 +34,12 @@ class App extends Component {
 
     this.loader = Loader;
 
-
     this.loader
      .load()
      .then( resources => {
        let tmpResources = {};
 
-       resources.forEach( ({ id, resource }) => {
-
-         tmpResources[ id ] = resource;
-
-       });
+       resources.forEach( ({ id, resource }) => tmpResources[ id ] = resource );
        this.props.loadResources( tmpResources );
      });
   }
@@ -104,16 +99,17 @@ class App extends Component {
       child => React.cloneElement( child, { key: pathname }) );
 
     return (
+      <DocumentTitle title="Luxoperon - Discover deep seas through a WebGL experience">
+        <ReactTransitionGroup
+          component="div"
+          className="route-transition"
+        >
+          <About />
 
-      <ReactTransitionGroup
-        component="div"
-        className="route-transition"
-      >
-        <About />
+          {childrenWithProps}
 
-        {childrenWithProps}
-
-      </ReactTransitionGroup>
+        </ReactTransitionGroup>
+      </DocumentTitle>
     );
   }
 }

@@ -6,7 +6,9 @@ import {
   WINDOW_ON_BLUR
 } from 'config/messages';
 
-
+/**
+ * SoundManager class
+ */
 class SoundManager {
 
   constructor() {
@@ -18,8 +20,6 @@ class SoundManager {
     this.bind();
 
     this.addListeners();
-
-    this.begin();
   }
 
   bind() {
@@ -70,7 +70,6 @@ class SoundManager {
     this.blockMute = false;
   }
 
-
   load( url, onLoad, onSucess, onReject, id ) {
 
     const audio = new Howl({
@@ -82,13 +81,7 @@ class SoundManager {
 
         onLoad();
       }
-    })
-
-
-  }
-
-  begin() {
-
+    });
   }
 
 }

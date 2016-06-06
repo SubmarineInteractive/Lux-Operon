@@ -12,7 +12,7 @@ class Loader {
 
   /**
    * constructor function
-   * @param {array} files Files to load
+   * @param {array} files               Files to load
    * @param {function} onResourceLoaded Called everytime a resource is loaded
    */
   constructor() {
@@ -33,8 +33,6 @@ class Loader {
 
       const { type, id, url } = file;
 
-
-
       const promise = new Promise( ( resolve, reject ) => {
 
         getLoader( type ).load(
@@ -42,7 +40,6 @@ class Loader {
           resource => {
             resolve({ id, resource });
             this.currentProgress++;
-            // onResourceLoaded( this.currentProgress / this.totalProgress * 100 );
           },
           () => null,
           () => reject,
@@ -68,4 +65,4 @@ class Loader {
 
 }
 
-export default new Loader;
+export default new Loader();
