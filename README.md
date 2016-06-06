@@ -24,6 +24,9 @@ WebGL school project at Gobelins, Paris.
 * ESDoc
 * SASS
 
+#### GUIDELINES
+
+See futher informations on [our wiki page](https://github.com/SubmarineInteractive/Lux-Operon/wiki/Guidelines).
 ##### Install dependancies :
 ```shell
   npm i
@@ -34,7 +37,7 @@ WebGL school project at Gobelins, Paris.
   npm start
 ```
 
-The project will be launched at http://localhost:3000/
+The project will be launched at [http://localhost:3000/](http://localhost:3000/)
 
 #### Build for production :
 ```shell
