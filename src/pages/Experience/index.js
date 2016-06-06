@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import DocumentTitle from 'react-document-title';
 import connect from 'decorators/connect';
 import Emitter from 'helpers/Emitter';
 import SoundManager from 'helpers/SoundManager';
@@ -30,7 +31,6 @@ class Experience extends Component {
 
     this.startIntroduction( 5000 );
     TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 3, onComplete: () => callback() });
-
   }
 
   componentWillReceiveProps( nextProps ) {
@@ -43,13 +43,13 @@ class Experience extends Component {
 
   startIntroduction( delay ) {
 
-    setTimeout( ()=> {
+    setTimeout( () => {
       Emitter.emit( EXP_INTRO_START );
       this.refs.levelIntro.beginTitle();
 
       const diveSound = SoundManager.get( 'dive' );
 
-      diveSound.fadeOut( 0, 1000, ()=> {
+      diveSound.fadeOut( 0, 1000, () => {
         diveSound.stop();
       });
 
@@ -63,25 +63,47 @@ class Experience extends Component {
     const content = (
       <div className="page__container">
         <ExperienceOverlay />
-        <LevelIntroduction config={mezaleConfig} ref="levelIntro"/>
+
+        <LevelIntroduction
+          config={mezaleConfig}
+          ref="levelIntro"
+        />
+
         <EndPopin />
+
         <VideoPopin />
+
         <Radar />
+
         <LevelInfos config={mezaleConfig} />
+
         <FishCounter />
+
         <Timer />
+
         <LuxBar />
+
         <DepthBar config={mezaleConfig} />
+
         <FlashMessages />
+
         <FishName />
+
         <WebGLExperience resources={resources} />
       </div>
     );
 
     return (
-      <div className="page page--experience" ref="experience">
-        {! loading && content}
-      </div>
+      <DocumentTitle title="Luxoperon | Experience - Discover deep seas through a WebGL experience">
+
+        <div
+          className="page page--experience"
+          ref="experience"
+        >
+          {! loading && content}
+        </div>
+
+      </DocumentTitle>
     );
   }
 }
