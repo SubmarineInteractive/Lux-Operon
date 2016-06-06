@@ -3,6 +3,8 @@
 WORK IN PROGRESS.
 WebGL school project at Gobelins, Paris.
 
+Demo : [http://luxoperon.io/](http://luxoperon.io/)
+
 ![Preview](http://abyss.hengpatrick.fr/preview.png)
 
 #### TEAM
