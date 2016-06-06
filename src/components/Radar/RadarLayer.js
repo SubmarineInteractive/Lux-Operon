@@ -48,7 +48,6 @@ class RadarLayer extends Component {
 
     const camX = this.width * camPosition.x;
     const camY = this.height * camPosition.y;
-    const offsetAngle = Math.PI / 2;
 
     const directionVector = {
       x: camPosition.x - previousCamPosition.x,
@@ -72,11 +71,8 @@ class RadarLayer extends Component {
     this.setMask( this.halfWidth - 5 );
 
     this.ctx.translate( camX, camY );
-    // this.ctx.rotate( - angle + offsetAngle );
 
     this.ctx.globalAlpha = this.indicatorsAlpha;
-
-    // this.ctx.drawImage( this.cursorTexture, -this.cursorConfig.width / 2, -this.cursorConfig.width / 2, this.cursorConfig.width, this.cursorConfig.height );
 
     this.ctx.beginPath();
     this.ctx.arc( -this.cursorConfig.width / 2, -this.cursorConfig.width / 2, 5, 0, 2 * Math.PI, false );

@@ -185,7 +185,7 @@ class EndPopin extends Component {
     }
   }
 
-  replayVideo(ev) {
+  replayVideo( ev ) {
 
     ev.preventDefault();
 

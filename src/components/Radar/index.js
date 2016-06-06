@@ -121,7 +121,7 @@ class Radar extends Component {
 
       const pos = {
         x: normalize( 0, terrain.geometry.width, positions[ i ].x ) + 0.5,
-        y: normalize( 0, terrain.geometry.height, positions[ i ].z ) * -1 + 0.5,
+        y: normalize( 0, terrain.geometry.height, positions[ i ].z ) * -1 + 0.5
       };
 
       this.fishesPosition.push( pos );
