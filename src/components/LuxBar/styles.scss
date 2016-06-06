@@ -3,42 +3,42 @@
 
 .lux-bar {
   @include no-select;
-  width: 140px;
-  height: 15px;
   position: absolute;
   bottom: 2.5rem;
   left: 2.5rem;
+  width: 140px;
+  height: 15px;
   border: 1px solid $color-white;
   border-right: none;
 
   &:after {
-    content: 'LUX';
     font-size: 1.5rem;
     position: absolute;
-    color: $color-white;
     right: -50px;
+    content: 'LUX';
+    color: $color-white;
   }
 }
 
 .lux-bar__progress {
+  position: absolute;
   width: 90%;
   height: 100%;
-  position: absolute;
-  background-color: rgba(white, 0.25);
-  transition: background-color .1s ease-out;
+  transition: background-color 0.1s ease-out;
+  background-color: rgba(white, .25);
 
   &:after {
-    content: '';
-    height: 20px;
-    background-color: $color-white;
-    width: 1px;
     position: absolute;
     right: 0;
     bottom: -1px;
+    width: 1px;
+    height: 20px;
+    content: '';
+    background-color: $color-white;
   }
-
+  
   .lux-bar--is-in-danger & {
-    transition: background-color .4s ease-out;
+    transition: background-color 0.4s ease-out;
     background-color: $color-pink;
   }
 }

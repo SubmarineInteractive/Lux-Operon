@@ -3,14 +3,14 @@
 
 .introduction-title {
   @include center-xy;
-  text-transform: uppercase;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .introduction-title__dive {
-  display: inline-block;
   font-family: $font-akkurat;
   font-size: 1.8rem;
+  display: inline-block;
   overflow: hidden;
   color: $color-yellow;
 
@@ -28,17 +28,17 @@
   display: block;
   width: 5rem;
   height: 0.1rem;
-  background-color: $color-white;
   margin: 2.5rem auto;
+  background-color: $color-white;
 }
 
 .introduction-title__subtitle {
   font-size: 1.4rem;
+  overflow: hidden;
+  margin-top: 2rem;
   text-transform: uppercase;
   color: $color-white;
-  margin-top: 2rem;
-  overflow: hidden;
-
+  
   span {
     display: inline-block;
     white-space: nowrap;

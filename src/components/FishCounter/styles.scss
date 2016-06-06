@@ -2,7 +2,6 @@
 @import '~stylesheets/common/mixins';
 
 .fish-counter {
-
   @include no-select;
   font-size: 1.4rem;
   position: absolute;
@@ -12,16 +11,13 @@
 }
 
 .fish-counter__text {
-
   display: inline-block;
 }
 
 .fish-counter__current {
-
   color: $color-blue;
 
   &:after {
-
     content: ' / ';
     color: $color-blue;
   }
@@ -29,9 +25,9 @@
 
 .fish-counter__icon {
   display: inline-block;
+  overflow: visible;
   width: 2.6rem;
   margin-left: 1rem;
-  overflow: visible;
 }
 
 .fish-counter__icon-path {

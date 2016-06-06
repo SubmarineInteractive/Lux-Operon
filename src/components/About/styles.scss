@@ -2,12 +2,12 @@
 @import '~stylesheets/common/mixins';
 
 .about {
-  display: none;
   @include full-absolute;
-  background: rgba($color-deep-blue, 0.9);
-  color: $color-white;
   z-index: 100001;
+  display: none;
   overflow: hidden;
+  color: $color-white;
+  background: rgba($color-deep-blue, .9);
 
   &--is-visible {
     display: block;
@@ -19,9 +19,9 @@
   top: 5rem;
   width: 2rem;
   height: 2rem;
-  fill: $color-white;
   cursor: pointer;
-  transition: fill .2s ease-out;
+  transition: fill 0.2s ease-out;
+  fill: $color-white;
 
   &:hover {
     fill: $color-medium-grey;
@@ -30,8 +30,8 @@
 
 .about__container {
   @include center-xy;
-  max-width: 1000px;
   width: 70%;
+  max-width: 1000px;
 }
 
 .about__section {
@@ -48,34 +48,23 @@
 }
 
 .about__title {
-  position: relative;
-  color: $color-yellow;
   font-family: $font-tstar;
   font-size: 2.1rem;
+  position: relative;
   margin-bottom: 4.5rem;
   text-transform: uppercase;
+  color: $color-yellow;
 
   &:after {
-    content: '';
     position: absolute;
-
+    top: 5rem;
+    left: 0;
     display: inline-block;
     width: 2rem;
     height: 0.2rem;
+    content: '';
     background: $color-yellow;
-    top: 5rem;
-    left: 0;
-
   }
-
-  // .about__section--description &:before {
-  //   position: absolute;
-  //   content: 'ABYSS';
-  //   top: -2rem;
-  //   left: -3.2rem;
-  //   font-size: 4.8rem;
-  //   color: rgba($color-white, 0.1);
-  // }
 
   .about__section--team &:after {
     top: 3rem;
@@ -86,15 +75,15 @@
   display: inline-block;
   width: 2rem;
   height: 0.1rem;
-  background: $color-blue;
   margin-right: 1rem;
   margin-bottom: 0.2rem;
+  background: $color-blue;
 }
 
 .about__paragraph {
-  max-width: 550px;
   font-size: 1.4rem;
   line-height: 1.88rem;
+  max-width: 550px;
 }
 
 .about__paragraph b {
@@ -102,10 +91,9 @@
 }
 
 .about__paragraph a {
-  color: $color-white;
   font-weight: bold;
+  transition: color 0.3s ease-out;
   color: $color-white;
-  transition: color .3s ease-out;
 
   &:hover {
     color: $color-medium-grey;
@@ -117,11 +105,11 @@
 }
 
 .about_team-name {
-  display: inline-block;
   font-size: 1.6rem;
   line-height: 1.68rem;
-  text-transform: uppercase;
+  display: inline-block;
   margin-bottom: 1rem;
+  text-transform: uppercase;
   color: $color-blue;
 }
 
@@ -130,31 +118,31 @@
 }
 
 .about__team-list-el {
-  position: relative;
   font-size: 1.4rem;
+  position: relative;
   margin-top: 1rem;
   margin-left: 1.3rem;
 
   &:before {
-    content: '';
     position: absolute;
-    display: block;
-    left: -12px;
     top: 4px;
+    left: -12px;
+    display: block;
     width: 5px;
     height: 5px;
+    content: '';
     border-radius: 50%;
     background: $color-blue;
   }
 
   a {
+    transition: color 0.3s ease-out;
     color: $color-white;
-    transition: color .3s ease-out;
-
     &:hover {
       color: $color-medium-grey;
     }
   }
+
 }
 
 .about__gobelins {
@@ -165,12 +153,12 @@
 
 .about__gobelins-logo {
   display: block;
-  margin: auto;
   width: 10rem;
+  margin: auto;
 }
 
 .about__gobelins-paragraph {
+  font-size: 1.2rem;
   display: inline-block;
   margin-top: 1.5rem;
-  font-size: 1.2rem;
 }

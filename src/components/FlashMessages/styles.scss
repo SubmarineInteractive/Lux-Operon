@@ -4,26 +4,26 @@
 .flash-messages {
   @include no-select;
   position: absolute;
-  width: 300px;
-  bottom: 8rem;
-  right: 6rem;
   z-index: 2;
-  color: white;
+  right: 6rem;
+  bottom: 8rem;
+  width: 300px;
+  color: $color-white;
 }
 
 .flash-messages__el {
   @include no-select;
-  display: block;
   font-size: 1.2rem;
   line-height: 1.5rem;
-  color: $color-white;
+  display: block;
   margin-top: 0.5rem;
+  color: $color-white;
 
   span {
     display: block;
     width: 100%;
     padding: 0.8rem 1.2rem;
-    background: rgba(black, 0.2);
+    background: rgba($color-black, .2);
   }
 
   &--anecdotic {
@@ -33,12 +33,14 @@
   &--good {
     color: $color-green;
   }
+
   &--danger {
     color: $color-red;
   }
+
   &--win {
-    color: $color-yellow;
     font-size: 1.6rem;
     line-height: 1.92rem;
+    color: $color-yellow;
   }
 }

@@ -1,23 +1,22 @@
 @import '~stylesheets/common/variables';
 @import '~stylesheets/common/mixins';
 @import '~stylesheets/common/keyframes';
-
 $radar-size: 15.0rem;
 $side-margin: 2.5rem;
 
 .radar {
   @include no-select;
   position: absolute;
+  z-index: 0;
+  top: $side-margin;
+  left: $side-margin;
   overflow: hidden;
   width: $radar-size;
   height: $radar-size;
-  top: $side-margin;
-  left: $side-margin;
   pointer-events: none;
-  z-index: 0;
 
-  &:before,
-  &:after  {
+  &:after,
+  &:before {
     position: absolute;
     z-index: 3;
     top: 0;
@@ -34,17 +33,16 @@ $side-margin: 2.5rem;
   }
 
   &:after {
+    overflow: hidden;
+    border-radius: 50%;
     background: url('/images/experience/height-map-radar-1-alpha.png') center center no-repeat;
     background-size: contain;
-    border-radius: 50%;
-    overflow: hidden;
   }
 
   &--is-on-top {
-    width: 100%;
     z-index: 2;
+    width: 100%;
   }
-
 }
 
 .radar__canvas,
@@ -52,9 +50,9 @@ $side-margin: 2.5rem;
   position: absolute;
   top: 0;
   left: 0;
+  overflow: hidden;
   width: $radar-size;
   height: $radar-size;
-  overflow: hidden;
 }
 
 .radar__scanner {
@@ -64,19 +62,19 @@ $side-margin: 2.5rem;
   overflow: hidden;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   opacity: 0.8;
+  border-radius: 50%;
 }
 
 .radar__scanner-bar {
   position: absolute;
   top: 0;
-  left: -2px;
   bottom: 0;
+  left: -2px;
   display: block;
   width: 2px;
   height: 100%;
   content: '';
-  background: $color-white;
   opacity: 0.3;
+  background: $color-white;
 }

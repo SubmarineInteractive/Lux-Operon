@@ -2,13 +2,12 @@
 @import '~stylesheets/common/mixins';
 
 .end-popin {
-
+  @include full-absolute;
   z-index: 98;
   display: none;
   overflow: hidden;
   color: $color-white;
   background: rgba($color-deep-blue, .85);
-  @include full-absolute;
 
   &--is-visible {
     display: block;
@@ -39,20 +38,19 @@
     display: block;
     color: $color-yellow;
   }
-
 }
 
 .end-popin__link {
   font-size: 1.4rem;
   display: inline-block;
+  margin: 0 2.5rem;
   padding: 15px 20px;
+  cursor: pointer;
   transition: color 0.3s ease-out, background 0.3s ease-out;
+  text-transform: uppercase;
   text-transform: uppercase;
   color: $color-white;
   border: 1px solid $color-white;
-  text-transform: uppercase;
-  margin: 0 2.5rem;
-  cursor: pointer;
 
   &:hover {
     color: $color_medium_grey;
@@ -62,10 +60,9 @@
 }
 
 .end-popin__container {
+  @include center-xy;
   width: 100%;
   text-align: center;
-  // text-shadow: 0 0 4px rgba(255, 255, 255, .7);
-  @include center-xy;
 }
 
 .end-popin__image {
@@ -102,11 +99,11 @@
   }
 
   &:last-child {
-
     &:after {
       display: none;
     }
   }
+
 }
 
 .end-popin-recap_info-title {
@@ -132,18 +129,19 @@
 }
 
 .end-popin__video-btn {
-  position: fixed;
-  font-size: 1.4rem;
-  left: 2.5rem;
-  bottom: 2.5rem;
-  color: $color-white;
-  text-transform: uppercase;
-  transition: color 0.3s ease-out;
   font-family: $font-tstar;
-  cursor: pointer;
+  font-size: 1.4rem;
+  position: fixed;
   z-index: 10;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease-out;
+  text-transform: uppercase;
+  color: $color-white;
 
   &:hover {
     color: $color-medium-grey;
   }
+  
 }

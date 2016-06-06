@@ -2,48 +2,36 @@
 @import '~stylesheets/common/mixins';
 
 $indicator-right-pos: 2rem;
-$indicator-bottom-pos: -0.7rem;
+$indicator-bottom-pos: -.7rem;
 
 .depth-bar {
   @include center-y;
   @include no-select;
-
-  width: 6px;
-  height: 40%;
   position: absolute;
   right: 2.5rem;
-  border: 1px solid rgba($color-yellow, 0.3);
+  width: 6px;
+  height: 40%;
+  border: 1px solid rgba($color-yellow, .3);
   border-bottom: none;
 }
 
 .depth-bar__progress {
+  position: absolute;
   width: 100%;
   height: 20%;
-  position: absolute;
   background-color: $color-yellow;
 }
 
 .depth-bar__progress-indicator {
+  font-family: $font-tstar;
+  font-size: 1.2rem;
+  font-weight: 200;
   position: absolute;
   right: $indicator-right-pos;
   bottom: $indicator-bottom-pos;
-  font-size: 1.2rem;
-  font-weight: 200;
-  font-family: $font-tstar;
-  color: $color-yellow;
   text-align: right;
-
+  color: $color-yellow;
   span:last-child {
     margin-left: 0.5rem;
   }
-  //
-  // &:after {
-  //   content: '';
-  //   position: absolute;
-  //   right: -$indicator-right-pos;
-  //   bottom: -$indicator-bottom-pos;
-  //   width: 2rem;
-  //   height: 0.1rem;
-  //   background-color: $color-yellow;
-  // }
 }

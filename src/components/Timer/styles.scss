@@ -3,14 +3,14 @@
 
 .timer {
   @include no-select;
-  position: absolute;
-  left: 2.5rem;
-  bottom: 5.5rem;
-  color: $color-blue-2;
-  font-size: 1.8rem;
   font-family: $font-tstar;
-  transition: color .3s ease-out;
-
+  font-size: 1.8rem;
+  position: absolute;
+  bottom: 5.5rem;
+  left: 2.5rem;
+  transition: color 0.3s ease-out;
+  color: $color-blue-2;
+  
   &--is-in-danger {
     color: $color-red;
   }

@@ -6,8 +6,8 @@
   position: absolute;
   top: 2.5rem;
   right: 2.5rem;
-  color : $color-white;
   text-align: right;
+  color: $color-white;
 
   p {
     font-size: 1.4rem;
@@ -17,28 +17,29 @@
 
 .level-infos__title {
   font-size: 1.8rem;
-  text-transform: uppercase;
   margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 .level-infos__depth {
   color: $color-yellow;
 }
 
-.level-infos__temp,
-.level-infos__pressure {
+.level-infos__pressure,
+.level-infos__temp {
   color: $color-blue-2;
 }
+
 .level-infos__helper-button {
   font-size: 2rem;
   padding: 1rem;
-  color: $color-white;
-  transform: translateX(1rem);
   cursor: pointer;
   transition: transform 0.2s ease-out, color 0.2s ease-out;
+  transform: translateX(1rem);
+  color: $color-white;
 
   &:hover {
-    color: $color-medium-grey;
     transform: translateX(1rem);
+    color: $color-medium-grey;
   }
 }

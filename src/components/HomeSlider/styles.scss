@@ -4,21 +4,21 @@
 
 .home-slider {
   position: fixed;
+  z-index: 100000;
+  top: 100vh;
   left: 50%;
   transform: translate3d(-50%, -140%, 0);
-  top: 100vh;
+  text-align: center;
   -webkit-perspective: 1000;
   perspective: 1000;
   backface-visibility: hidden;
-  text-align: center;
-  z-index: 100000;
 }
 
 .home-slider__svg {
   display: block;
-  width: 4rem;
-  margin: 0 auto 2.5rem auto;
   overflow: visible;
+  width: 4rem;
+  margin: 0 auto 2.5rem;
   fill: transparent;
   stroke: $color-white;
   stroke-miterlimit: 10;
@@ -28,36 +28,35 @@
 
 // SVG STYLES
 .home-slider__svg-line {
+  animation: draw-dash 100s infinite;
   opacity: 0.75;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-miterlimit: 10;
   stroke-dasharray: 1, 4;
-
-  animation: draw-dash 100s infinite;
 }
 
 .home-slider__svg-big-circle {
-  stroke-dasharray: 1.0025, 4.0098;
   transform-origin: 50% 50%;
+  stroke-dasharray: 1.0025, 4.0098;
 }
 
 .home-slider__svg-inner-grabber {
-  opacity: 0.75;
   transform-origin: 17.2% 37%;
+  opacity: 0.75;
 }
 
 .home-slider__svg-outer-grabber {
-  opacity: 0.35;
   transition: transform 0.3s ease-out;
   transform-origin: center center;
+  opacity: 0.35;
 }
 
 // ::: Grabber
 .home-slider__grabber {
   position: relative;
-  display: block;
   z-index: 10;
+  display: block;
   cursor: pointer;
   transition: stroke 0.3s ease-out;
 }
@@ -66,11 +65,11 @@
 .home-slider__instructions,
 .home-slider__loading-message {
   @include no-select;
-  color: $color-white;
   font-size: 1.4rem;
-  text-transform: uppercase;
-  font-variant: small-caps;
   font-weight: 200;
+  font-variant: small-caps;
+  text-transform: uppercase;
+  color: $color-white;
 }
 
 .home-slider__loading-message {

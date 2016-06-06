@@ -53,12 +53,15 @@
   .tooltips-tutorial__el--location & {
     width: 9rem;
   }
+
   .tooltips-tutorial__el--timer & {
     width: 8rem;
   }
+
   .tooltips-tutorial__el--luxbar & {
     width: 17.5rem;
   }
+
   .tooltips-tutorial__el--depth & {
     width: 9.7rem;
   }
@@ -70,7 +73,7 @@
   white-space: nowrap;
   line-height: 16.8rem;
   text-transform: uppercase;
-  text-shadow: 0px 0px 4px rgba(255, 255, 255, 1);
+  text-shadow: 0 0 4px rgba(255, 255, 255, 1);
 
   .tooltips-tutorial__el--location & {
     top: -1rem;
@@ -91,5 +94,4 @@
     top: 0.4rem;
     left: -4.2rem;
   }
-
 }

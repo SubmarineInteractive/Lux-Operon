@@ -3,8 +3,8 @@
 
 .introduction-tutorial {
   display: none;
-  text-transform: uppercase;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .introduction-tutorial__container {
@@ -13,9 +13,9 @@
 
 .introduction-tutorial__icon {
   display: block;
+  overflow: visible;
   width: 100px;
   margin: auto;
-  overflow: visible;
 }
 
 .introduction-tutorial__step {
@@ -26,17 +26,17 @@
 }
 
 .introduction-tutorial__skip {
-  display: block;
-  position: fixed;
-  text-align: right;
+  font-family: $font-tstar;
   font-size: 1.4rem;
+  position: fixed;
   right: 2.5rem;
   bottom: 2.5rem;
-  color: $color-white;
-  text-transform: uppercase;
-  transition: color 0.3s ease-out;
-  font-family: $font-tstar;
+  display: block;
   cursor: pointer;
+  transition: color 0.3s ease-out;
+  text-align: right;
+  text-transform: uppercase;
+  color: $color-white;
 
   &:hover {
     color: $color-medium-grey;
@@ -44,26 +44,60 @@
 }
 
 .introduction-tutorial__instruction {
-  text-transform: uppercase;
   font-size: 1.4rem;
   line-height: 2rem;
-  text-align: center;
-  margin-top: 2rem;
   overflow: hidden;
+  margin-top: 2rem;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .introduction-tutorial__icon--hold-to-move {
   transform: translateX(-7px);
-  .st0{opacity:0.75;fill:none;stroke:#F2F2F2;stroke-miterlimit:10;}
-  .st1{opacity:0.75;}
-  .st2{fill:#F2F2F2;}
-  .st3{fill:#161A28;stroke:#FFFFFF;stroke-miterlimit:10;}
+
+  .st0 {
+    opacity: 0.75;
+    fill: none;
+    stroke: #f2f2f2;
+    stroke-miterlimit: 10;
+  }
+
+  .st1 {
+    opacity: 0.75;
+  }
+
+  .st2 {
+    fill: #f2f2f2;
+  }
+
+  .st3 {
+    fill: #161a28;
+    stroke: $color-white;
+    stroke-miterlimit: 10;
+  }
 }
 
 .introduction-tutorial__icon--reveal {
   transform: translateX(-5px);
-  .st0{opacity:0.25;}
-	.st1{opacity:0.95;}
-	.st2{opacity:0.99;fill:#161A28;stroke:#FFFFFF;stroke-miterlimit:10;}
-	.st3{fill:#161A28;stroke:#FFFFFF;stroke-miterlimit:10;}
+
+  .st0 {
+    opacity: 0.25;
+  }
+
+  .st1 {
+    opacity: 0.95;
+  }
+
+  .st2 {
+    opacity: 0.99;
+    fill: #161a28;
+    stroke: $color-white;
+    stroke-miterlimit: 10;
+  }
+
+  .st3 {
+    fill: #161a28;
+    stroke: $color-white;
+    stroke-miterlimit: 10;
+  }
 }

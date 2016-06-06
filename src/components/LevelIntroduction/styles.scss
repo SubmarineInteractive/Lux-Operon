@@ -3,10 +3,10 @@
 
 .level-introduction {
   @include full-absolute;
-  background: rgba(black, 0.5);
-  color: $color-white;
   z-index: 100;
-
+  color: $color-white;
+  background: rgba($color-black, .5);
+  
   &--is-ended {
     display: none;
   }
