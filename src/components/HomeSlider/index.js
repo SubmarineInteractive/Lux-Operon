@@ -140,6 +140,11 @@ class HomeSlider extends Component {
 
           this.loadingAnimTl.play();
         } });
+
+        const diveSound = SoundManager.get( 'dive' );
+        diveSound.loop( true );
+        diveSound.play();
+        
       }
     });
 

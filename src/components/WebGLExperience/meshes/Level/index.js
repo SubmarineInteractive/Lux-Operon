@@ -106,6 +106,8 @@ class Level extends THREE.Object3D {
 
     this.bind();
 
+    this.debug();
+
     Emitter.once( EXP_INTRO_ENDED , this.onIntroEnded );
     Emitter.once( EXP_RAYCAST_TOGGLE , this.toggleRaycast );
     Emitter.once( EXP_FISH_GET_COUNT , this.getFishCount );
@@ -119,6 +121,22 @@ class Level extends THREE.Object3D {
 
     [ 'update', 'onIntroEnded', 'handleClickOnFish', 'onMouseMove', 'raycast', 'toggleRaycast', 'getFishCount' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+  }
+
+  debug() {
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 50 ) { // 2
+
+        this.fishCounter++;
+
+        Emitter.emit( EXP_FISH_COUNT_UPDATE, this.fishCounter );
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
   }
 
   /**

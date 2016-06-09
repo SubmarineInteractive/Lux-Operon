@@ -254,7 +254,7 @@ class EndPopin extends Component {
 
               <li className="end-popin-recap_info-el">
 
-                <h3 className="end-popin-recap_info-title">Lux remainded</h3>
+                <h3 className="end-popin-recap_info-title">Lux remaining</h3>
 
                 <div className="lux-bar" ref="luxBar">
 

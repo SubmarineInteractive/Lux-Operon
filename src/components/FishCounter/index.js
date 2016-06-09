@@ -28,6 +28,7 @@ class FishCounter extends Component {
   componentDidMount() {
 
     this.addEventListeners();
+
   }
 
   componentWillUnmount() {
