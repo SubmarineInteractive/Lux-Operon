@@ -71,7 +71,7 @@ class HomeSlider extends Component {
         this.svg.offsetTop = this.refs.svg.getBoundingClientRect().top + 10;
         this.addListeners();
 
-        if(detectBrowser.name !== "firefox") {
+        if( detectBrowser.name !== 'firefox' ) {
           this.innerCircleLoopTl.play();
           this.bigCircleLoopTl.play();
         }
@@ -124,7 +124,7 @@ class HomeSlider extends Component {
     this.grabberPressTl = new TimelineMax({
       paused: true,
       onReverseComplete: ()=> {
-        if(detectBrowser.name !== "firefox") {
+        if( detectBrowser.name !== 'firefox' ) {
           this.innerCircleLoopTl.play( 0 );
         }
       }
@@ -158,18 +158,18 @@ class HomeSlider extends Component {
         const diveSound = SoundManager.get( 'dive' );
         diveSound.loop( true );
         diveSound.play();
-        diveSound.fade(0, 1, 500);
+        diveSound.fade( 0, 1, 500 );
       }
     });
 
-    if(detectBrowser.name === "firefox") {
+    if( detectBrowser.name === 'firefox' ) {
       this.grabberPressTl
         .to( this.refs.innerGrabberCircle, 0.2, { stroke: '#6892e3', ease: Back.easeOut })
         .to( this.refs.bigCircle, 0.2, { stroke: '#6892e3', ease: Expo.easeOut }, 0 );
 
-        this.grabberDragTl
-          .to( this.refs.grabber, 1, { y: '312%' }, 0 )
-          .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0 );
+      this.grabberDragTl
+        .to( this.refs.grabber, 1, { y: '312%' }, 0 )
+        .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: 'bottom' }, { scaleY: 0 }, 0 );
 
     } else {
       this.grabberPressTl
