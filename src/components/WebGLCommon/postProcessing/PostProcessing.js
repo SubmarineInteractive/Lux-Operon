@@ -22,7 +22,7 @@ class PostProcessing {
     this.passes = this.configuration.passes.filter( pass => pass.active );
     this.usePostProcessing = this.configuration.active;
 
-    this.debug();
+    //this.debug();
   }
 
   debug() {

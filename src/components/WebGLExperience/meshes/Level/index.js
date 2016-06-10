@@ -106,7 +106,7 @@ class Level extends THREE.Object3D {
 
     this.bind();
 
-    this.debug();
+    //this.debug();
 
     Emitter.once( EXP_INTRO_ENDED , this.onIntroEnded );
     Emitter.once( EXP_RAYCAST_TOGGLE , this.toggleRaycast );

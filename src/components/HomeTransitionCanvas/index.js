@@ -2,7 +2,7 @@ import './styles.scss';
 
 import { Component } from 'react';
 import { history } from 'store';
-import raf from 'raf';
+import raf from 'raf-loop';
 
 /**
 * HomeTransitionCanvas class
@@ -119,9 +119,9 @@ class HomeTransitionCanvas extends Component {
 
     if( this.updateActive ) {
       this.render();
-      this.raf = raf( this.update );
+      this.raf = raf( this.update ).start();
     } else {
-      raf.cancel( this.raf );
+      this.raf.stop();
     }
   }
 

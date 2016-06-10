@@ -30,7 +30,7 @@ class FlashMessages extends Component {
 
     this.addListeners();
 
-    this.debug();
+    //this.debug();
   }
 
   componentWillUnmount() {

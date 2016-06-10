@@ -43,7 +43,7 @@ class EndPopin extends Component {
 
     this.generateTimelineMax();
 
-    this.debug();
+    //this.debug();
   }
 
   componentWillUnmount() {
@@ -205,7 +205,6 @@ class EndPopin extends Component {
       linksContent = (
         <div className="end-popin__links">
           <a className="end-popin__link" href='/'>Back up to the surface</a>
-          <a className="end-popin__link" href='/'>Continue your exploration</a>
           <a className="end-popin__link" href="#" onClick={this.replayVideo}>See video again</a>
         </div>
       );

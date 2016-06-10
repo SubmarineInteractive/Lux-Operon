@@ -30,7 +30,7 @@ class FishName extends Component {
     this.generateTimelineMax();
     this.addEventListeners();
 
-    this.debug();
+    //this.debug();
   }
 
   componentWillUnmount() {

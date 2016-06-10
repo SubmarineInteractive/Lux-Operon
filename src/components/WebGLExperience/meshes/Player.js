@@ -55,7 +55,7 @@ class Player extends THREE.Object3D {
 
     this.addListeners();
 
-    this.debug();
+    //this.debug();
   }
 
   bind() {

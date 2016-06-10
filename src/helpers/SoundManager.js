@@ -52,11 +52,11 @@ class SoundManager {
   }
 
   onWindowFocus() {
-    // Howler.unmute();
+    Howler.unmute();
   }
 
   onWindowBlur() {
-    // this.mute();
+    this.mute();
   }
 
   mute() {

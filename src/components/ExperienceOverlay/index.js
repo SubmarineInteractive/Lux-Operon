@@ -29,7 +29,7 @@ class ExperienceOverlay extends Component {
 
     this.addEventListeners();
     this.begin();
-    this.debug();
+    //this.debug();
   }
 
   componentWillUnmount() {
