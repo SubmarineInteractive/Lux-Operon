@@ -17,6 +17,7 @@ import VideoPopin from 'components/VideoPopin';
 import FishName from 'components/FishName';
 import FlashMessages from 'components/FlashMessages';
 import WebGLExperience from 'components/WebGLExperience';
+import ToolBar from 'components/ToolBar';
 import { mezaleConfig } from 'config/levels';
 
 import { EXP_INTRO_START } from 'config/messages';
@@ -90,6 +91,8 @@ class Experience extends Component {
         <DepthBar config={mezaleConfig} />
 
         <FlashMessages />
+
+        <ToolBar />
 
         <FishName />
 

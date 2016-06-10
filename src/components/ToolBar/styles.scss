@@ -1,0 +1,41 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.toolbar {
+  position: absolute;
+  bottom: 2.5rem;
+  z-index: 100;
+  right: 2.5rem;
+
+  .toolbar__pause,
+  .toolbar__sound,
+  .toolbar__fullscreen {
+    cursor: pointer;
+    width: 20px;
+    height: 100%;
+    stroke: $color-white;
+  }
+
+  .toolbar__pause {
+    margin-right: 1.5rem;
+    stroke-width: 3px;
+  }
+
+  .toolbar__sound {
+    margin-right: 1.8rem;
+
+  }
+
+  .toolbar__fullscreen {
+    path {
+      transition: transform 0.1s ease-out;
+      transform-origin: center center;
+    }
+
+    &:hover {
+      path {
+        transform: scale(-1);
+      }
+    }
+  }
+}
