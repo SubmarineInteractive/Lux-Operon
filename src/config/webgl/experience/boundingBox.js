@@ -7,7 +7,7 @@ export default {
     }
   },
   material: {
-    wireframe: false,
-    fog: true
+    wireframe: true,
+    fog: false
   }
 };

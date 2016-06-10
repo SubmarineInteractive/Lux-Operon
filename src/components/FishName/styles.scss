@@ -5,9 +5,10 @@
   @include no-select;
   font-size: 1.8rem;
   position: absolute;
-  right: 2.5rem;
+  left: 50%;
   bottom: 2.5rem;
   text-align: right;
+  transform: translate3d(-50%, 0, 0);
   text-transform: uppercase;
   pointer-events: none;
   opacity: 0;

@@ -7,7 +7,7 @@ import FresnelMaterial from '../../materials/FresnelMaterial';
 import { levels, anemones } from 'config/webgl/experience';
 import BubbleParticleSystem from '../ParticleSystem/BubbleParticleSystem';
 import AquaticPlantGroup from '../AquaticPlantGroup';
-
+import BoundingBox from './BoundingBox';
 import { loopIndex, degreeToRadian, randomFloat, randomInt } from 'utils';
 
 import {
@@ -101,6 +101,9 @@ class Level extends THREE.Object3D {
       this.anemones.push( anemone );
     }
 
+    this.boundingBox = new BoundingBox( boundingBoxConfig, this.terrain );
+
+    this.add( this.boundingBox );
     this.add( this.terrain );
     this.add( this.player );
 

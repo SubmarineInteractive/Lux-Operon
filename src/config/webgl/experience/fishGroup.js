@@ -1,6 +1,6 @@
 export default [
   {
-    count: 10,
+    count: 5,
     species: 'lanternFishModel',
     name: 'Lantern Fish',
     fishLength: 1800,
@@ -8,7 +8,7 @@ export default [
     position: new THREE.Vector3( -1100, 1300, -1350 )
   },
   {
-    count: 8,
+    count: 5,
     species: 'hachetteFishModel',
     name: 'Hachette Fish',
     fishLength: 730,
@@ -16,7 +16,7 @@ export default [
     position: new THREE.Vector3( 250, 1320, 50 )
   },
   {
-    count: 6,
+    count: 7,
     species: 'slenderFishModel',
     name: 'Slender Fish',
     fishLength: 1700,

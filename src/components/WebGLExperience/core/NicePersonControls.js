@@ -53,7 +53,7 @@ class NicePersonControls {
     this.bind();
     this.addListeners();
 
-    //this.debug();
+    this.debug();
 
   }
 
