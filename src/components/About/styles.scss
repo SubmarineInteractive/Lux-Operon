@@ -38,12 +38,14 @@
   float: left;
 
   &--description {
-    width: calc(500px);
+    width: 50%;
+    max-width: 500px;
   }
 
   &--team {
     float: right;
-    width: 200px;
+    width: 40%;
+    max-width: 240px;
   }
 }
 

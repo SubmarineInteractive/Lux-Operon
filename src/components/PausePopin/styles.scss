@@ -6,7 +6,7 @@
   display: none;
   transition: opacity 1s ease-out;
   background-color: rgba($color-black, 0.5);
-  z-index: 10000;
+  z-index: 1;
 
   &--is-displayed {
     display: block;

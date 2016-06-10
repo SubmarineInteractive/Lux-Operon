@@ -8,8 +8,8 @@ import SoundManager from 'helpers/SoundManager';
 
 import {
   EXP_PLAYER_TOGGLE_IS_IN_DANGER,
-  EXP_TOGGLE_PAUSE_GAME,
   EXP_PAUSE_POPIN_TOGGLE,
+  EXP_TOGGLE_PAUSE_GAME,
   EXP_TOGGLE_CAMERA,
   EXP_RADAR_PAUSED_TOGGLE,
   EXP_LUX_TOGGLE,
@@ -137,7 +137,6 @@ class WebGLExperience extends Component {
       Emitter.emit( EXP_LUX_TOGGLE, false );
       Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
       Emitter.emit( EXP_RADAR_PAUSED_TOGGLE, true );
-      Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, true );
 
       this.isPaused = true;
     } else {
@@ -146,9 +145,6 @@ class WebGLExperience extends Component {
       Emitter.emit( EXP_LUX_TOGGLE, true );
       Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
       Emitter.emit( EXP_RADAR_PAUSED_TOGGLE, false );
-      Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, false );
-
-
 
       this.isPaused = false;
     }
@@ -162,6 +158,8 @@ class WebGLExperience extends Component {
       this.onPauseToggle( true );
     }
 
+    Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, true );
+
   }
 
   onWindowFocus() {
@@ -171,6 +169,7 @@ class WebGLExperience extends Component {
       this.onPauseToggle( false );
     }
 
+    Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, false );
   }
 
   render() {

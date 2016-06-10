@@ -53,7 +53,7 @@ class PausePopin extends Component {
 
     } else {
 
-      TweenMax.to( this.refs.container, 1, { autoAlpha: 0, ease: Expo.easeOut, onComplete: ()=> {
+      TweenMax.to( this.refs.container, 0.3, { autoAlpha: 0, ease: Expo.easeOut, onComplete: ()=> {
         this.refs.container.classList.remove( 'pause-popin--is-displayed' );
       } });
 
