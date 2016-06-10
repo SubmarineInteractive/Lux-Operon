@@ -103,9 +103,9 @@ class Level extends THREE.Object3D {
       this.anemones.push( anemone );
     }
 
-    // this.boundingBox = new BoundingBox( boundingBoxConfig, this.world, this.terrain );
-    //
-    // this.add( this.boundingBox );
+    this.boundingBox = new BoundingBox( boundingBoxConfig, this.world, this.terrain );
+
+    this.add( this.boundingBox );
     this.add( this.terrain );
     this.add( this.player );
 
