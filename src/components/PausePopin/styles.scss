@@ -1,0 +1,21 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.pause-popin {
+  @include full-fixed;
+  display: none;
+  transition: opacity 1s ease-out;
+  background-color: rgba($color-black, 0.5);
+  z-index: 10000;
+
+  &--is-displayed {
+    display: block;
+  }
+}
+
+.pause-popin__text {
+  @include center-xy;
+  text-transform: uppercase;
+  color: $color-white;
+  font-size: 1.8rem;
+}

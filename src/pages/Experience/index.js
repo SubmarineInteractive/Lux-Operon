@@ -11,6 +11,7 @@ import Timer from 'components/Timer';
 import FishCounter from 'components/FishCounter';
 import ExperienceOverlay from 'components/ExperienceOverlay';
 import LevelIntroduction from 'components/LevelIntroduction';
+import PausePopin from 'components/PausePopin';
 import EndPopin from 'components/EndPopin';
 import VideoPopin from 'components/VideoPopin';
 import FishName from 'components/FishName';
@@ -69,8 +70,11 @@ class Experience extends Component {
           ref="levelIntro"
         />
 
+        <PausePopin />
+
         <EndPopin />
 
+        <VideoPopin />
         <VideoPopin />
 
         <Radar />

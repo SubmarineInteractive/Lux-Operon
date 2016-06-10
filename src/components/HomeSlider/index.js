@@ -87,7 +87,7 @@ class HomeSlider extends Component {
     const scale = ( detectBrowser.name === "firefox" ) ? 1 : 0.8;
 
     this.enterTl
-      .from( this.refs.bigCircle, 1.5, { opacity: 0, y: '100%', scale: scale, ease: Expo.easeOut }, 1 )
+      .from( this.refs.bigCircle, 1.5, { opacity: 0, y: '100%', transformOrigin: "50% 50%", scale: scale, ease: Expo.easeOut }, 1 )
       .from( this.refs.innerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.4" )
       .from( this.refs.outerGrabberCircle, 0.5, { opacity: 0, ease: Expo.easeOut }, "-=0.3" )
       .fromTo( enterTlConfig, 1, { progress: 1 }, { progress: 0, ease: Expo.easeOut, onUpdate: () => {
@@ -102,8 +102,8 @@ class HomeSlider extends Component {
     this.innerCircleLoopTl = new TimelineMax({ paused: true, repeat: -1, yoyo: true });
     this.bigCircleLoopTl = new TimelineMax({ paused: true, repeat: -1 });
 
-    this.innerCircleLoopTl.fromTo( this.refs.innerGrabberCircle, 0.8, { transformOrigin: "center center", scale: 1 }, { scale: 0.95, ease: Expo.easeOut });
-    this.bigCircleLoopTl.fromTo( this.refs.bigCircle, 15, { transformOrigin: "center center", rotation: 0 }, { rotation: 360 });
+    this.innerCircleLoopTl.fromTo( this.refs.innerGrabberCircle, 0.8, { transformOrigin: "50% 50%", scale: 1 }, { scale: 0.95, ease: Expo.easeOut });
+    this.bigCircleLoopTl.fromTo( this.refs.bigCircle, 15, { transformOrigin: "50% 50%", rotation: 0 }, { rotation: 360 });
 
   }
 
@@ -143,6 +143,8 @@ class HomeSlider extends Component {
         this.grabberDragTl.progress( 1 );
         this.props.onDragComplete();
 
+        this.loadingAnimTl.play();
+
         TweenMax.to( this.refs.slider, 4, { top: '165vh', ease: Expo.easeOut, onComplete: () => {
 
           this.grabberDragTl.progress( 1 );
@@ -151,16 +153,12 @@ class HomeSlider extends Component {
           this.refs.slider.style.top = '65vh';
           this.refs.instructions.style.display = 'none';
           this.refs.loadingMsg.style.display= 'block';
-
-          this.loadingAnimTl.play();
         } });
 
         const diveSound = SoundManager.get( 'dive' );
         diveSound.loop( true );
         diveSound.play();
-
         diveSound.fade(0, 1, 500);
-
       }
     });
 
@@ -168,16 +166,21 @@ class HomeSlider extends Component {
       this.grabberPressTl
         .to( this.refs.innerGrabberCircle, 0.2, { stroke: '#6892e3', ease: Back.easeOut })
         .to( this.refs.bigCircle, 0.2, { stroke: '#6892e3', ease: Expo.easeOut }, 0 );
+
+        this.grabberDragTl
+          .to( this.refs.grabber, 1, { y: '312%' }, 0 )
+          .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0 );
+
     } else {
       this.grabberPressTl
         .fromTo( this.refs.innerGrabberCircle, 0.2, { scale: 1, transformOrigin: "50% 50%" }, { scale: 0.8, stroke: '#6892e3', ease: Back.easeOut })
         .to( this.refs.bigCircle, 0.2, { stroke: '#6892e3', ease: Expo.easeOut }, 0 );
-    }
 
-    this.grabberDragTl
-      .to( this.refs.grabber, 1, { y: '312%' }, 0 )
-      .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0 )
-      .fromTo( this.refs.bigCircle, 0.4, { transformOrigin: "50% 50%" }, { scale: 1.15, ease: Expo.easeOut }, 0.5 );
+      this.grabberDragTl
+        .to( this.refs.grabber, 1, { y: '312%' }, 0 )
+        .fromTo( this.refs.line, 0.6, { scaleY: 1, transformOrigin: "bottom" }, { scaleY: 0 }, 0 )
+        .fromTo( this.refs.bigCircle, 0.4, { transformOrigin: "50% 50%" }, { scale: 1.15, ease: Expo.easeOut }, 0.5 );
+    }
 
     this.exitDragAnimationTl
       .staggerTo( this.instructionsSplited.reverseChars, 1, { opacity: 0, scale: 0.6, y: '-60%', ease: Back.easeOut.config( 3 ) }, 0.1 );

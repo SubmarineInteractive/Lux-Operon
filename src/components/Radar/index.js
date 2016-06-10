@@ -12,6 +12,7 @@ import { terrain } from 'config/webgl/experience';
 
 import {
   EXP_GET_CAMERA_POSITION,
+  EXP_RADAR_PAUSED_TOGGLE,
   EXP_CAMERA_POSITION_SENDED,
   EXP_FISH_GET_POSITION,
   EXP_FISH_GROUP_POSITION_SENDED
@@ -65,19 +66,21 @@ class Radar extends Component {
 
   bind() {
 
-    this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
-    this.onFishesPositionSended = this.onFishesPositionSended.bind( this );
+    [ 'onCameraPositionSended', 'onFishesPositionSended', 'onRadarPausedToggle' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addListeners() {
     Emitter.on( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
     Emitter.on( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
+    Emitter.on( EXP_RADAR_PAUSED_TOGGLE, this.onRadarPausedToggle );
   }
 
   removeListeners() {
 
     Emitter.off( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
-    Emitter.off( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
+    Emitter.off( EXP_RADAR_PAUSED_TOGGLE, this.onRadarPausedToggle );
+
   }
 
   generateTimelineMax() {
@@ -88,6 +91,8 @@ class Radar extends Component {
   startInterval() {
 
     this.interval = setInterval( ()=>{
+
+      if( this.isPaused ) return;
 
       const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
 
@@ -166,6 +171,10 @@ class Radar extends Component {
       ease: Power2.easeOut
     });
 
+  }
+
+  onRadarPausedToggle( toggle ) {
+    this.isPaused = toggle;
   }
 
   render() {
