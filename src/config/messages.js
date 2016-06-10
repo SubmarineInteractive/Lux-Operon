@@ -50,7 +50,7 @@ const messages = {
   EXP_FISH_GROUP_POSITION_SENDED: 'EXP_FISH_GROUP_POSITION_SENDED',
 
   // ==== Radar ====
-  p: 'EXP_RADAR_PAUSED_TOGGLE',
+  EXP_RADAR_PAUSED_TOGGLE: 'EXP_RADAR_PAUSED_TOGGLE',
 
   // ==== Level Introduction ====
   EXP_INTRO_START: 'EXP_INTRO_START',
