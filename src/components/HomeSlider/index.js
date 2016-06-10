@@ -129,6 +129,8 @@ class HomeSlider extends Component {
         this.grabberDragTl.progress( 1 );
         this.props.onDragComplete();
 
+        this.loadingAnimTl.play();
+
         TweenMax.to( this.refs.slider, 4, { top: '165vh', ease: Expo.easeOut, onComplete: () => {
 
           this.grabberDragTl.progress( 1 );
@@ -137,14 +139,12 @@ class HomeSlider extends Component {
           this.refs.slider.style.top = '65vh';
           this.refs.instructions.style.display = 'none';
           this.refs.loadingMsg.style.display= 'block';
-
-          this.loadingAnimTl.play();
         } });
 
         const diveSound = SoundManager.get( 'dive' );
         diveSound.loop( true );
         diveSound.play();
-        
+
       }
     });
 
