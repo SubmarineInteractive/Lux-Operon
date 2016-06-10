@@ -32,6 +32,7 @@ class Level extends THREE.Object3D {
 
   /**
    * Constructor function
+   * @param {World}   World             World instance
    * @param {Terrain} Terrain           Terrain instance
    * @param {Camera}  Camera            Camera instance
    * @param {Player}  Player            Player instance
@@ -39,10 +40,11 @@ class Level extends THREE.Object3D {
    * @param {Object}  fishGroupConfig   Fish group configuration
    * @param {Object}  resources         Resources
    */
-  constructor( Terrain, Camera, Player, boundingBoxConfig, fishGroupConfig, resources ) {
+  constructor( World, Terrain, Camera, Player, boundingBoxConfig, fishGroupConfig, resources ) {
 
     super();
 
+    this.world = World;
     this.terrain = Terrain;
     this.camera = Camera;
     this.player = Player;
@@ -101,7 +103,7 @@ class Level extends THREE.Object3D {
       this.anemones.push( anemone );
     }
 
-    this.boundingBox = new BoundingBox( boundingBoxConfig, this.terrain );
+    this.boundingBox = new BoundingBox( boundingBoxConfig, this.world, this.terrain );
 
     this.add( this.boundingBox );
     this.add( this.terrain );

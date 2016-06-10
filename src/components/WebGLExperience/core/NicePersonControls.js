@@ -162,7 +162,7 @@ class NicePersonControls {
       this.enabled = true;
       this.enableDamping = false;
 
-      document.body.classList.add('is-moving');
+      document.body.classList.add( 'is-moving' );
 
     }, 200 );
 
