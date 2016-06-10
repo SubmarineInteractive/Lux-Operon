@@ -101,7 +101,7 @@ class HomeTransitionCanvas extends Component {
         this.imageConfig.offsetY = 0;
         this.loopTl.play( 0 );
 
-        setTimeout( () => history.push( '/experience' ), 1000 );
+        setTimeout( () => history.push( '/experience' ), 2000 );
       },
 
       ease: Power0.easeNone,
