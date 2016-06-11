@@ -92,8 +92,6 @@ class Radar extends Component {
 
     this.interval = setInterval( ()=>{
 
-      if( this.isPaused ) return;
-
       const index = ( this.state.canvasOnTopIndex ) ? 0 : 1;
 
       this.fishesPosition = [];

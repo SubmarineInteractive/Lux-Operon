@@ -10,10 +10,12 @@ import IntroductionTooltips from './IntroductionTooltips';
 
 import {
   EXP_LUX_TOGGLE,
+  TOOLBAR_TOGGLE,
   EXP_TOGGLE_CAMERA,
   EXP_TIMER_START,
   EXP_INTRO_FLASH_MSG,
-  EXP_INTRO_ENDED
+  EXP_INTRO_ENDED,
+  EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
 /**
@@ -84,6 +86,10 @@ class LevelIntroduction extends Component {
   }
 
   endIntroduction() {
+
+    Emitter.emit( EXP_TOGGLE_PAUSE_GAME, false );
+
+    Emitter.emit( TOOLBAR_TOGGLE, true );
 
     TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
 

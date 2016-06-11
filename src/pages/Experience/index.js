@@ -17,10 +17,9 @@ import VideoPopin from 'components/VideoPopin';
 import FishName from 'components/FishName';
 import FlashMessages from 'components/FlashMessages';
 import WebGLExperience from 'components/WebGLExperience';
-import ToolBar from 'components/ToolBar';
 import { mezaleConfig } from 'config/levels';
 
-import { EXP_INTRO_START } from 'config/messages';
+import { EXP_INTRO_START, TOOLBAR_TOGGLE } from 'config/messages';
 
 /**
  * Experience class
@@ -47,6 +46,7 @@ class Experience extends Component {
 
     setTimeout( () => {
       Emitter.emit( EXP_INTRO_START );
+      Emitter.emit( TOOLBAR_TOGGLE, false );
       this.refs.levelIntro.beginTitle();
 
       const diveSound = SoundManager.get( 'dive' );
@@ -91,8 +91,6 @@ class Experience extends Component {
         <DepthBar config={mezaleConfig} />
 
         <FlashMessages />
-
-        <ToolBar />
 
         <FishName />
 

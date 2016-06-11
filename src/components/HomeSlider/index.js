@@ -158,7 +158,7 @@ class HomeSlider extends Component {
         const diveSound = SoundManager.get( 'dive' );
         diveSound.loop( true );
         diveSound.play();
-        diveSound.fade( 0, 1, 500 );
+        diveSound.fade( 0, 1, 1000 );
       }
     });
 

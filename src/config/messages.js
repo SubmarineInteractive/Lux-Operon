@@ -10,6 +10,10 @@ const messages = {
   WINDOW_ON_BLUR: 'WINDOW_ON_BLUR',
   RESOURCES_READY: 'RESOURCES_READY',
 
+  // ==== Toolbar ====
+  TOOLBAR_TOGGLE: 'TOOLBAR_TOGGLE',
+  TOOLBAR_HIDE_PLAY: 'TOOLBAR_HIDE_PLAY',
+
   /*
    * EXPERIENCE
    */

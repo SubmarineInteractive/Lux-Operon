@@ -8,6 +8,7 @@ import { Component } from 'react';
 import {
   ABOUT_OPEN,
   ABOUT_CLOSE,
+  TOOLBAR_TOGGLE,
   EXP_TOGGLE_CAMERA,
   EXP_RAYCAST_TOGGLE,
   EXP_TIMER_TOGGLE_PAUSE
@@ -95,7 +96,7 @@ class About extends Component {
   }
 
   openAboutPopin() {
-
+    Emitter.emit( TOOLBAR_TOGGLE, false );
     Emitter.emit( EXP_TOGGLE_CAMERA, false );
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
     Emitter.emit( EXP_RAYCAST_TOGGLE, false );
@@ -109,7 +110,7 @@ class About extends Component {
   }
 
   closeAboutPopin() {
-
+    Emitter.emit( TOOLBAR_TOGGLE, true );
     Emitter.emit( EXP_TOGGLE_CAMERA, true );
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
     Emitter.emit( EXP_RAYCAST_TOGGLE, true );

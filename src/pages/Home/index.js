@@ -12,7 +12,7 @@ import HomeSlider from 'components/HomeSlider';
 import HomeTransitionCanvas from 'components/HomeTransitionCanvas';
 import SplitText from 'vendors/splitText.js';
 
-import { ABOUT_OPEN } from 'config/messages';
+import { ABOUT_OPEN, TOOLBAR_TOGGLE } from 'config/messages';
 
 /*
  * Home class
@@ -94,6 +94,8 @@ class Home extends Component {
     this.enterTitleTl
       .staggerFrom( this.titleSplited.chars, 1.5, { opacity: 0, scale: 0.8, y: '70%', ease: Back.easeOut.config( 3 ), delay: 0.5 }, 0.1 )
       .staggerFrom( this.catchphraseSplited.words, 1.5, { opacity: 0, ease: Expo.easeOut }, 0.1, "-=1" );
+
+    Emitter.emit( TOOLBAR_TOGGLE, true );
   }
 
   generateTimelineMax() {
@@ -162,7 +164,7 @@ class Home extends Component {
           </div>
 
         </div>
-        
+
       </DocumentTitle>
     );
   }

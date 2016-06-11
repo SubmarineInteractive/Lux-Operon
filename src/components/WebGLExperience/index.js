@@ -155,7 +155,7 @@ class WebGLExperience extends Component {
 
     if( !this.isPaused && !this.isPausedLocked ) {
 
-      this.onPauseToggle( true );
+      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
     }
 
     Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, true );
@@ -166,7 +166,8 @@ class WebGLExperience extends Component {
 
     if( this.isPaused && !this.isPausedLocked ) {
 
-      this.onPauseToggle( false );
+      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, false );
+
     }
 
     Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, false );
