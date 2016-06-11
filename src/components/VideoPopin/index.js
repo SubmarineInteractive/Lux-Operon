@@ -31,7 +31,7 @@ class VideoPopin extends Component {
 
     this.generateTimelineMax();
 
-    this.debug();
+    // this.debug();
 
     this.refs.video.pause();
 

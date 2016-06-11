@@ -41,6 +41,13 @@ class Experience extends Component {
     }
   }
 
+
+  componentWillLeave( callback ) {
+    window.location.href = "";
+
+    callback();
+  }
+
   startIntroduction( delay ) {
 
     setTimeout( () => {
