@@ -42,7 +42,7 @@ class ToolBar extends Component {
   }
 
   bind() {
-    [ 'handleClickOnPause', 'handleClickOnSound', 'handleClickOnFullscreen', 'onToolbarToggle', 'onToolbarHidePlay', 'onTogglePauseGame' ]
+    [ 'handleClickOnPause', 'handleClickOnSound', 'handleClickOnFullscreen', 'onToolbarToggle', 'onToolbarHidePlay', 'onTogglePauseGame', 'onFullscreenChange' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
@@ -51,6 +51,8 @@ class ToolBar extends Component {
     Emitter.on( EXP_TOGGLE_PAUSE_GAME, this.onTogglePauseGame );
     Emitter.on( TOOLBAR_TOGGLE, this.onToolbarToggle );
     Emitter.on( TOOLBAR_HIDE_PLAY, this.onToolbarHidePlay );
+
+    document.addEventListener(screenfull.raw.fullscreenchange, this.onFullscreenChange);
   }
 
   removeEventListeners() {
@@ -58,6 +60,7 @@ class ToolBar extends Component {
     Emitter.off( EXP_TOGGLE_PAUSE_GAME, this.onTogglePauseGame );
     Emitter.off( TOOLBAR_TOGGLE, this.onToolbarToggle );
     Emitter.off( TOOLBAR_HIDE_PLAY, this.onToolbarHidePlay );
+    document.removeEventListener(screenfull.raw.fullscreenchange, this.onFullscreenChange);
   }
 
   generateTimelineMax() {
@@ -73,6 +76,13 @@ class ToolBar extends Component {
       this.soundTls.push( tl );
     }
 
+  }
+
+  onFullscreenChange() {
+    
+    this.setState({
+      isFullscreen: screenfull.isFullscreen
+    });
   }
 
   onToolbarToggle( toggle ) {
@@ -138,10 +148,6 @@ class ToolBar extends Component {
       }
 
     }
-
-    this.setState({
-      isFullscreen: !this.state.isFullscreen
-    });
   }
 
   render() {
