@@ -47,7 +47,7 @@ class FishCounter extends Component {
   }
 
   removeEventListeners() {
-    Emitter.on( EXP_FISH_COUNT_UPDATE, this.incrementCounter );
+    Emitter.off( EXP_FISH_COUNT_UPDATE, this.incrementCounter );
   }
 
   incrementCounter( counter ) {
