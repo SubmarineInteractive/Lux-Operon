@@ -13,9 +13,6 @@ import {
  */
 class PausePopin extends Component {
 
-  state = {
-  }
-
   componentWillMount() {
 
     this.bind();
@@ -42,6 +39,7 @@ class PausePopin extends Component {
   }
 
   removeEventListeners() {
+    Emitter.off( EXP_PAUSE_POPIN_TOGGLE, this.onPopinToggle );
   }
 
   onPopinToggle( toggle ) {
