@@ -5,7 +5,7 @@ import { map } from 'utils';
 /**
  * Scene class
  */
-class BackgroundScene extends AbstractScene {
+class Scene extends AbstractScene {
 
   /**
    * constructor function
@@ -44,4 +44,4 @@ class BackgroundScene extends AbstractScene {
   }
 }
 
-export default BackgroundScene;
+export default Scene;
