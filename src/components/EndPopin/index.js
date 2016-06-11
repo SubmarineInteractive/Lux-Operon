@@ -177,11 +177,14 @@ class EndPopin extends Component {
 
   getLuxVal( luxVal ) {
 
-    this.refs.luxProgress.style.width = `${luxVal * 100}%`;
+    if( this.refs.luxProgress ) {
+      
+      this.refs.luxProgress.style.width = `${luxVal * 100}%`;
 
-    if( luxVal < 0.5 ) {
+      if( luxVal < 0.5 ) {
 
-      this.refs.container.classList.add( 'lux-bar--is-in-danger' );
+        this.refs.container.classList.add( 'lux-bar--is-in-danger' );
+      }
     }
   }
 
