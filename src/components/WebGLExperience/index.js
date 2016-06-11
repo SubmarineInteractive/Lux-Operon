@@ -65,6 +65,9 @@ class WebGLExperience extends Component {
   }
 
   componentWillUnmount() {
+
+    this.scene.raf.stop();
+    this.scene.remove();
   }
 
   bind() {
@@ -73,6 +76,7 @@ class WebGLExperience extends Component {
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
+
   prepareambientSound() {
 
     this.goodambientSound = SoundManager.get( 'level-1-ambient' );

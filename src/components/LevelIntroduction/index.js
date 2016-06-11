@@ -23,44 +23,24 @@ import {
  */
 class LevelIntroduction extends Component {
 
-  state = {
-  }
-
   componentWillMount() {
 
     this.firstTime = true;
+    this.endTween = null;
 
     this.bind();
   }
 
-  componentDidMount() {
-
-    this.addEventListeners();
-
-    this.generateTimelineMax();
-  }
-
   componentWillUnmount() {
 
-    this.removeEventListeners();
+    this.firstTime = false;
+    this.endTween.kill();
   }
 
   bind() {
 
     [ 'beginTutorial', 'beginTooltips', 'endIntroduction', 'showIntroduction' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
-  }
-
-  addEventListeners() {
-
-  }
-
-  removeEventListeners() {
-
-  }
-
-  generateTimelineMax() {
-
   }
 
   beginTitle() {
@@ -91,7 +71,7 @@ class LevelIntroduction extends Component {
 
     Emitter.emit( TOOLBAR_TOGGLE, true );
 
-    TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
+    this.endTween = TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
 
       if( this.firstTime ) {
 

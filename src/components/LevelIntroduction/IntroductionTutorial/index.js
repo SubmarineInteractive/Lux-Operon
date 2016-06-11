@@ -23,6 +23,7 @@ class TutorialIntroduction extends Component {
 
   componentWillUnmount() {
 
+    this.holdTl.clear();
     this.removeEventListeners();
   }
 

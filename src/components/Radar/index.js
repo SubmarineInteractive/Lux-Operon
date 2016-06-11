@@ -54,13 +54,12 @@ class Radar extends Component {
 
     this.radarEls = this.refs.container.querySelectorAll( '.radar__canvas' );
 
-    this.generateTimelineMax();
-
     this.startInterval();
   }
 
   componentWillUnmount() {
 
+    clearInterval( this.interval );
     this.removeListeners();
   }
 
@@ -81,11 +80,6 @@ class Radar extends Component {
     Emitter.off( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
     Emitter.off( EXP_RADAR_PAUSED_TOGGLE, this.onRadarPausedToggle );
 
-  }
-
-  generateTimelineMax() {
-
-    this.radarTl = new TimelineMax({ repeat: -1 });
   }
 
   startInterval() {
@@ -181,15 +175,15 @@ class Radar extends Component {
 
       <div className="radar" ref="container">
 
-      <div className="radar__scanner" ref="scanner">
+        <div className="radar__scanner" ref="scanner">
 
-      <span className="radar__scanner-bar" ref="scannerBar"></span>
+          <span className="radar__scanner-bar" ref="scannerBar"></span>
 
-      </div>
+        </div>
 
-      <RadarLayer className="radar__canvas radar--is-on-top" size={this.config.radarSize} ref="canvas0" />
+        <RadarLayer className="radar__canvas radar--is-on-top" size={this.config.radarSize} ref="canvas0" />
 
-      <RadarLayer className="radar__canvas" size={this.config.radarSize} ref="canvas1" />
+        <RadarLayer className="radar__canvas" size={this.config.radarSize} ref="canvas1" />
 
       </div>
 
