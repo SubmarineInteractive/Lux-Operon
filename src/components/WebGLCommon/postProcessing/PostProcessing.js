@@ -14,13 +14,17 @@ class PostProcessing {
    */
   constructor( EffectComposer, Scene, Camera, Renderer, Configuration ) {
 
-    this.composer = EffectComposer;
-    this.scene = Scene;
-    this.camera = Camera;
-    this.renderer = Renderer;
-    this.configuration = Configuration;
-    this.passes = this.configuration.passes.filter( pass => pass.active );
+    this.composer          = EffectComposer;
+    this.scene             = Scene;
+    this.camera            = Camera;
+    this.renderer          = Renderer;
+    this.configuration     = Configuration;
     this.usePostProcessing = this.configuration.active;
+
+    if( this.usePostProcessing ) {
+      this.passes       = this.configuration.passes.filter( pass => pass.active );
+      this.constructors = this.passes.map( pass => pass.constructor() );
+    }
 
     //this.debug();
   }
@@ -48,8 +52,8 @@ class PostProcessing {
       this.composer.reset();
       this.composer.render( this.scene, this.camera );
 
-      for ( let i = 0; i < this.passes.length; i++ ) {
-        this.composer.pass( this.passes[ i ].constructor );
+      for ( let i = 0; i < this.constructors.length; i++ ) {
+        this.composer.pass( this.constructors[ i ] );
       }
 
       this.composer.toScreen();
