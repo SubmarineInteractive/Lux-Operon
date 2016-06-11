@@ -24,6 +24,11 @@
   .toolbar__sound {
     margin-right: 1.8rem;
 
+    &--is-muted {
+      line {
+        transform: scale(0.3) !important;
+      }
+    }
   }
 
   .toolbar__fullscreen {
@@ -32,7 +37,8 @@
       transform-origin: center center;
     }
 
-    &:hover {
+    &:hover,
+    &--is-fullscreen {
       path {
         transform: scale(-1);
       }
