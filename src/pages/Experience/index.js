@@ -25,13 +25,12 @@ import { EXP_INTRO_START, TOOLBAR_TOGGLE } from 'config/messages';
  * Experience class
  */
 @connect( state => ({ loading: state.resources.loading, resources: state.resources.resources }) )
-
 class Experience extends Component {
 
   componentWillEnter( callback ) {
 
-    this.startIntroduction( 5000 );
-    TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 3, onComplete: () => callback() });
+    this.startIntroduction( 3000 );
+    TweenMax.from( this.refs.experience, 3, { opacity: 0, ease: Expo.easeIn, delay: 1, onComplete: () => callback() });
   }
 
   componentWillReceiveProps( nextProps ) {
