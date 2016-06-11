@@ -92,8 +92,6 @@ class Experience extends Component {
 
         <FlashMessages />
 
-        <ToolBar />
-
         <FishName />
 
         <WebGLExperience resources={resources} />
