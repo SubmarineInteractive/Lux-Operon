@@ -76,7 +76,6 @@ class Experience extends Component {
         <EndPopin />
 
         <VideoPopin />
-        <VideoPopin />
 
         <Radar />
 
