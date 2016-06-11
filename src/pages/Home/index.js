@@ -110,8 +110,6 @@ class Home extends Component {
 
   onDragComplete() {
     const tl = new TimelineMax({ onComplete: () => {
-      this.refs.backgroundScene.scene.raf.stop();
-
       findDOMNode( this.refs.backgroundScene ).style.display = 'none';
       this.refs.home.classList.add( 'home--drag-complete' );
     } });
