@@ -43,7 +43,7 @@ class EndPopin extends Component {
 
     this.generateTimelineMax();
 
-    this.debug();
+    //this.debug();
   }
 
   componentWillUnmount() {
@@ -177,11 +177,14 @@ class EndPopin extends Component {
 
   getLuxVal( luxVal ) {
 
-    this.refs.luxProgress.style.width = `${luxVal * 100}%`;
+    if( this.refs.luxProgress ) {
+      
+      this.refs.luxProgress.style.width = `${luxVal * 100}%`;
 
-    if( luxVal < 0.5 ) {
+      if( luxVal < 0.5 ) {
 
-      this.refs.container.classList.add( 'lux-bar--is-in-danger' );
+        this.refs.container.classList.add( 'lux-bar--is-in-danger' );
+      }
     }
   }
 
@@ -205,7 +208,6 @@ class EndPopin extends Component {
       linksContent = (
         <div className="end-popin__links">
           <a className="end-popin__link" href='/'>Back up to the surface</a>
-          <a className="end-popin__link" href='/'>Continue your exploration</a>
           <a className="end-popin__link" href="#" onClick={this.replayVideo}>See video again</a>
         </div>
       );
@@ -254,7 +256,7 @@ class EndPopin extends Component {
 
               <li className="end-popin-recap_info-el">
 
-                <h3 className="end-popin-recap_info-title">Lux remainded</h3>
+                <h3 className="end-popin-recap_info-title">Lux remaining</h3>
 
                 <div className="lux-bar" ref="luxBar">
 

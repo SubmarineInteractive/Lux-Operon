@@ -7,6 +7,7 @@ import SoundManager from 'helpers/SoundManager';
 
 import {
   TOOLTIPS_SHOW,
+  TOOLBAR_TOGGLE,
   EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
@@ -77,6 +78,7 @@ class IntroductionTooltips extends Component {
   showTooltips() {
 
     Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
+    Emitter.emit( TOOLBAR_TOGGLE, false );
 
     this.begin( true );
   }

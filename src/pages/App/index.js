@@ -7,6 +7,7 @@ import { resize } from 'providers/ViewportProvider';
 import ReactTransitionGroup from 'react-addons-transition-group';
 import DocumentTitle from 'react-document-title';
 import About from 'components/About';
+import ToolBar from 'components/ToolBar';
 import { loadResources, updateLoadingProgress } from 'providers/ResourcesProvider';
 
 import {
@@ -104,6 +105,9 @@ class App extends Component {
           component="div"
           className="route-transition"
         >
+
+          <ToolBar />
+
           <About />
 
           {childrenWithProps}

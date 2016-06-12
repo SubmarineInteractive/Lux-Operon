@@ -2,9 +2,7 @@
 @import '~stylesheets/common/mixins';
 
 .home {
-  background-color: $color-sea-blue;
-  width: 100%;
-  height: 100%;
+  background-color: $color-almost-black;
   z-index: 15;
 
   &--drag-complete {
@@ -14,11 +12,11 @@
 }
 
 .home__wrapper {
+  background-color: $color-almost-black;
   width: 100%;
-  background-color: $color-sea-blue;
 
   .home--drag-complete & {
-    transform: none!important;
+    transform: none !important;
   }
 }
 

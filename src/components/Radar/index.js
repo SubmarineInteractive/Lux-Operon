@@ -12,6 +12,7 @@ import { terrain } from 'config/webgl/experience';
 
 import {
   EXP_GET_CAMERA_POSITION,
+  EXP_RADAR_PAUSED_TOGGLE,
   EXP_CAMERA_POSITION_SENDED,
   EXP_FISH_GET_POSITION,
   EXP_FISH_GROUP_POSITION_SENDED
@@ -53,36 +54,32 @@ class Radar extends Component {
 
     this.radarEls = this.refs.container.querySelectorAll( '.radar__canvas' );
 
-    this.generateTimelineMax();
-
     this.startInterval();
   }
 
   componentWillUnmount() {
 
+    clearInterval( this.interval );
     this.removeListeners();
   }
 
   bind() {
 
-    this.onCameraPositionSended = this.onCameraPositionSended.bind( this );
-    this.onFishesPositionSended = this.onFishesPositionSended.bind( this );
+    [ 'onCameraPositionSended', 'onFishesPositionSended', 'onRadarPausedToggle' ]
+        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
   }
 
   addListeners() {
     Emitter.on( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
     Emitter.on( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
+    Emitter.on( EXP_RADAR_PAUSED_TOGGLE, this.onRadarPausedToggle );
   }
 
   removeListeners() {
 
     Emitter.off( EXP_CAMERA_POSITION_SENDED, this.onCameraPositionSended );
-    Emitter.off( EXP_FISH_GROUP_POSITION_SENDED, this.onFishesPositionSended );
-  }
+    Emitter.off( EXP_RADAR_PAUSED_TOGGLE, this.onRadarPausedToggle );
 
-  generateTimelineMax() {
-
-    this.radarTl = new TimelineMax({ repeat: -1 });
   }
 
   startInterval() {
@@ -168,21 +165,25 @@ class Radar extends Component {
 
   }
 
+  onRadarPausedToggle( toggle ) {
+    this.isPaused = toggle;
+  }
+
   render() {
 
     return (
 
       <div className="radar" ref="container">
 
-      <div className="radar__scanner" ref="scanner">
+        <div className="radar__scanner" ref="scanner">
 
-      <span className="radar__scanner-bar" ref="scannerBar"></span>
+          <span className="radar__scanner-bar" ref="scannerBar"></span>
 
-      </div>
+        </div>
 
-      <RadarLayer className="radar__canvas radar--is-on-top" size={this.config.radarSize} ref="canvas0" />
+        <RadarLayer className="radar__canvas radar--is-on-top" size={this.config.radarSize} ref="canvas0" />
 
-      <RadarLayer className="radar__canvas" size={this.config.radarSize} ref="canvas1" />
+        <RadarLayer className="radar__canvas" size={this.config.radarSize} ref="canvas1" />
 
       </div>
 

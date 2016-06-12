@@ -8,6 +8,7 @@ import { Component } from 'react';
 import {
   ABOUT_OPEN,
   ABOUT_CLOSE,
+  TOOLBAR_TOGGLE,
   EXP_TOGGLE_CAMERA,
   EXP_RAYCAST_TOGGLE,
   EXP_TIMER_TOGGLE_PAUSE
@@ -95,7 +96,7 @@ class About extends Component {
   }
 
   openAboutPopin() {
-
+    Emitter.emit( TOOLBAR_TOGGLE, false );
     Emitter.emit( EXP_TOGGLE_CAMERA, false );
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
     Emitter.emit( EXP_RAYCAST_TOGGLE, false );
@@ -109,7 +110,7 @@ class About extends Component {
   }
 
   closeAboutPopin() {
-
+    Emitter.emit( TOOLBAR_TOGGLE, true );
     Emitter.emit( EXP_TOGGLE_CAMERA, true );
     Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
     Emitter.emit( EXP_RAYCAST_TOGGLE, true );
@@ -162,9 +163,9 @@ class About extends Component {
 
             <div className="about__team-block">
 
-              <strong className="about_team-name" ref="teamName">Developers</strong>
+              <strong className="about_team-name">Developers</strong>
 
-              <ul className="about__team-list" ref="teamList">
+              <ul className="about__team-list">
 
                   <li className="about__team-list-el">
                     <span className="about__team-line"></span>
@@ -182,9 +183,9 @@ class About extends Component {
 
             <div className="about__team-block">
 
-              <strong className="about_team-name" ref="teamName">Designers</strong>
+              <strong className="about_team-name">Designers</strong>
 
-              <ul className="about__team-list" ref="teamList">
+              <ul className="about__team-list">
 
                   <li className="about__team-list-el">
                     <span className="about__team-line"></span>
@@ -194,6 +195,26 @@ class About extends Component {
                   <li className="about__team-list-el">
                     <span className="about__team-line"></span>
                     <a href="http://alexandredelalleau.fr/" target="_blank">Alexandre Delalleau</a>
+                  </li>
+
+              </ul>
+
+            </div>
+
+            <div className="about__team-block">
+
+              <strong className="about_team-name">Special thanks</strong>
+
+              <ul className="about__team-list">
+
+                  <li className="about__team-list-el">
+                    <span className="about__team-line"></span>
+                    <a href="http://www.phillipschurer.com/accueil.cfm/359743_phillip_schurer.html" target="_blank">Voice: Phillip Schurer</a>
+                  </li>
+
+                  <li className="about__team-list-el">
+                    <span className="about__team-line"></span>
+                    Translator: Mélanie Pereira
                   </li>
 
               </ul>

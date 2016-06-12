@@ -8,6 +8,8 @@ import { Component } from 'react';
 import {
   EXP_SHOW_VIDEO,
   EXP_SHOW_REWARD,
+  TOOLBAR_TOGGLE,
+  TOOLBAR_HIDE_PLAY,
   EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
@@ -29,7 +31,7 @@ class VideoPopin extends Component {
 
     this.generateTimelineMax();
 
-    this.debug();
+    // this.debug();
 
     this.refs.video.pause();
 
@@ -92,6 +94,7 @@ class VideoPopin extends Component {
       this.refs.video.pause();
       this.refs.popin.classList.remove( 'video-popin--is-visible' );
       Emitter.emit( EXP_SHOW_REWARD );
+      Emitter.emit( TOOLBAR_TOGGLE, true );
     } });
 
     this.enterTl
@@ -104,7 +107,7 @@ class VideoPopin extends Component {
 
   showPopin() {
 
-    SoundManager.mute();
+    SoundManager.lockMute();
 
     this.isOpen = true;
     this.refs.popin.classList.add( 'video-popin--is-visible' );
@@ -113,12 +116,14 @@ class VideoPopin extends Component {
     this.refs.video.play( 0 );
 
     Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
+    Emitter.emit( TOOLBAR_TOGGLE, false );
+    Emitter.emit( TOOLBAR_HIDE_PLAY );
   }
 
   closePopin() {
 
     if( this.isOpen ) {
-      SoundManager.unmute();
+      // SoundManager.unmute();
       this.refs.video.pause();
       this.enterTl.stop();
       this.leaveTl.play( 0 );

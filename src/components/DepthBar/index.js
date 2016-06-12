@@ -29,6 +29,8 @@ class DepthBar extends Component {
     this.levelDepthOffset = this.props.config.levelDepthOffset;
     this.innerBarCoef = this.props.config.depthBar.innerBarCoef;
     this.tweenDepthIndicator = 700;
+    this.textTween = null;
+    this.styleTween = null;
   }
 
   componentDidMount() {
@@ -41,8 +43,10 @@ class DepthBar extends Component {
   componentWillUnmount() {
 
     clearInterval( this.interval );
-
     this.removeEventListeners();
+
+    this.textTween.kill();
+    this.styleTween.kill();
   }
 
   bind() {
@@ -82,7 +86,7 @@ class DepthBar extends Component {
     const progressHeight = `${ ( this.levelDepthOffset - value ) / this.innerBarCoef }%`;
 
     // Update text indicator
-    TweenMax.to( this, this.refreshTime / 1000 , { tweenDepthIndicator: newDepth, onUpdate: ()=> {
+    this.textTween = TweenMax.to( this, this.refreshTime / 1000 , { tweenDepthIndicator: newDepth, onUpdate: ()=> {
 
       this.setState({
         depthIndicator: parseInt( this.tweenDepthIndicator )
@@ -91,7 +95,7 @@ class DepthBar extends Component {
     } });
 
     // Update bar style
-    TweenMax.to( this.refs.progress, this.refreshTime / 1000, { height: progressHeight });
+    this.styleTween = TweenMax.to( this.refs.progress, this.refreshTime / 1000, { height: progressHeight });
 
   }
 

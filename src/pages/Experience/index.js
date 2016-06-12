@@ -11,6 +11,7 @@ import Timer from 'components/Timer';
 import FishCounter from 'components/FishCounter';
 import ExperienceOverlay from 'components/ExperienceOverlay';
 import LevelIntroduction from 'components/LevelIntroduction';
+import PausePopin from 'components/PausePopin';
 import EndPopin from 'components/EndPopin';
 import VideoPopin from 'components/VideoPopin';
 import FishName from 'components/FishName';
@@ -18,19 +19,18 @@ import FlashMessages from 'components/FlashMessages';
 import WebGLExperience from 'components/WebGLExperience';
 import { mezaleConfig } from 'config/levels';
 
-import { EXP_INTRO_START } from 'config/messages';
+import { EXP_INTRO_START, TOOLBAR_TOGGLE } from 'config/messages';
 
 /**
  * Experience class
  */
 @connect( state => ({ loading: state.resources.loading, resources: state.resources.resources }) )
-
 class Experience extends Component {
 
   componentWillEnter( callback ) {
 
-    this.startIntroduction( 5000 );
-    TweenMax.from( this.refs.experience, 2, { opacity: 0, ease: Expo.easeIn, delay: 3, onComplete: () => callback() });
+    this.startIntroduction( 3000 );
+    TweenMax.from( this.refs.experience, 3, { opacity: 0, ease: Expo.easeIn, delay: 1, onComplete: () => callback() });
   }
 
   componentWillReceiveProps( nextProps ) {
@@ -41,11 +41,25 @@ class Experience extends Component {
     }
   }
 
+
+  componentWillLeave( callback ) {
+    window.location.href = "";
+
+    callback();
+  }
+
   startIntroduction( delay ) {
 
     setTimeout( () => {
       Emitter.emit( EXP_INTRO_START );
+      Emitter.emit( TOOLBAR_TOGGLE, false );
       this.refs.levelIntro.beginTitle();
+
+      const diveSound = SoundManager.get( 'dive' );
+
+      diveSound.fadeOut( 0, 1000, () => {
+        diveSound.stop();
+      });
 
     }, delay );
   }
@@ -62,6 +76,8 @@ class Experience extends Component {
           config={mezaleConfig}
           ref="levelIntro"
         />
+
+        <PausePopin />
 
         <EndPopin />
 

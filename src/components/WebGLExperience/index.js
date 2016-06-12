@@ -8,8 +8,10 @@ import SoundManager from 'helpers/SoundManager';
 
 import {
   EXP_PLAYER_TOGGLE_IS_IN_DANGER,
+  EXP_PAUSE_POPIN_TOGGLE,
   EXP_TOGGLE_PAUSE_GAME,
   EXP_TOGGLE_CAMERA,
+  EXP_RADAR_PAUSED_TOGGLE,
   EXP_LUX_TOGGLE,
   EXP_TIMER_TOGGLE_PAUSE,
   WINDOW_ON_FOCUS,
@@ -63,6 +65,9 @@ class WebGLExperience extends Component {
   }
 
   componentWillUnmount() {
+
+    this.scene.raf.stop();
+    this.scene.remove();
   }
 
   bind() {
@@ -71,6 +76,7 @@ class WebGLExperience extends Component {
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
 
   }
+
   prepareambientSound() {
 
     this.goodambientSound = SoundManager.get( 'level-1-ambient' );
@@ -134,14 +140,15 @@ class WebGLExperience extends Component {
       Emitter.emit( EXP_TOGGLE_CAMERA, false );
       Emitter.emit( EXP_LUX_TOGGLE, false );
       Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, true );
+      Emitter.emit( EXP_RADAR_PAUSED_TOGGLE, true );
 
       this.isPaused = true;
-
     } else {
 
       Emitter.emit( EXP_TOGGLE_CAMERA, true );
       Emitter.emit( EXP_LUX_TOGGLE, true );
       Emitter.emit( EXP_TIMER_TOGGLE_PAUSE, false );
+      Emitter.emit( EXP_RADAR_PAUSED_TOGGLE, false );
 
       this.isPaused = false;
     }
@@ -152,8 +159,10 @@ class WebGLExperience extends Component {
 
     if( !this.isPaused && !this.isPausedLocked ) {
 
-      this.onPauseToggle( true );
+      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, true );
     }
+
+    Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, true );
 
   }
 
@@ -161,9 +170,11 @@ class WebGLExperience extends Component {
 
     if( this.isPaused && !this.isPausedLocked ) {
 
-      this.onPauseToggle( false );
+      Emitter.emit( EXP_TOGGLE_PAUSE_GAME, false );
+
     }
 
+    Emitter.emit( EXP_PAUSE_POPIN_TOGGLE, false );
   }
 
   render() {

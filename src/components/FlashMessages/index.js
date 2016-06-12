@@ -30,7 +30,7 @@ class FlashMessages extends Component {
 
     this.addListeners();
 
-    this.debug();
+    //this.debug();
   }
 
   componentWillUnmount() {
@@ -139,8 +139,10 @@ class FlashMessages extends Component {
 
     const tl = new TimelineMax({ onComplete: ()=> {
       setTimeout( ()=>{
-        const msgEls = this.refs.container.querySelectorAll( '.flash-messages__el' );
-        this.refs.container.removeChild( msgEls[ 0 ] );
+        if( this.refs.container ) {
+          const msgEls = this.refs.container.querySelectorAll( '.flash-messages__el' );
+          this.refs.container.removeChild( msgEls[ 0 ] );
+        }
       }, 300 );
     } });
 

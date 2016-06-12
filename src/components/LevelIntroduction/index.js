@@ -10,10 +10,12 @@ import IntroductionTooltips from './IntroductionTooltips';
 
 import {
   EXP_LUX_TOGGLE,
+  TOOLBAR_TOGGLE,
   EXP_TOGGLE_CAMERA,
   EXP_TIMER_START,
   EXP_INTRO_FLASH_MSG,
-  EXP_INTRO_ENDED
+  EXP_INTRO_ENDED,
+  EXP_TOGGLE_PAUSE_GAME
 } from 'config/messages';
 
 /**
@@ -21,44 +23,24 @@ import {
  */
 class LevelIntroduction extends Component {
 
-  state = {
-  }
-
   componentWillMount() {
 
     this.firstTime = true;
+    this.endTween = null;
 
     this.bind();
   }
 
-  componentDidMount() {
-
-    this.addEventListeners();
-
-    this.generateTimelineMax();
-  }
-
   componentWillUnmount() {
 
-    this.removeEventListeners();
+    this.firstTime = false;
+    this.endTween.kill();
   }
 
   bind() {
 
     [ 'beginTutorial', 'beginTooltips', 'endIntroduction', 'showIntroduction' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
-  }
-
-  addEventListeners() {
-
-  }
-
-  removeEventListeners() {
-
-  }
-
-  generateTimelineMax() {
-
   }
 
   beginTitle() {
@@ -85,7 +67,11 @@ class LevelIntroduction extends Component {
 
   endIntroduction() {
 
-    TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
+    Emitter.emit( EXP_TOGGLE_PAUSE_GAME, false );
+
+    Emitter.emit( TOOLBAR_TOGGLE, true );
+
+    this.endTween = TweenMax.to( this.refs.container, 1, { opacity: 0, ease: Expo.easeOut, onComplete: ()=> {
 
       if( this.firstTime ) {
 

@@ -14,7 +14,7 @@ export default {
     {
       name: 'multiPassBloomPass',
       active: true,
-      constructor: new MultiPassBloomPass({
+      constructor: () => new MultiPassBloomPass({
         blurAmount: 0.5,
         applyZoomBlur: true,
         zoomBlurStrength: 1.5,
@@ -24,7 +24,7 @@ export default {
     {
       name: 'tiltShiftPass',
       active: true,
-      constructor: new TiltShiftPass({
+      constructor: () => new TiltShiftPass({
         bluramount: 1,
         center: 1,
         stepSize: 0.05
@@ -33,7 +33,7 @@ export default {
     {
       name: 'noisePass',
       active: true,
-      constructor: new NoisePass({
+      constructor: () => new NoisePass({
         amount: 0.02,
         speed: 0.1
       })
@@ -41,7 +41,7 @@ export default {
     {
       name: 'vignettePass',
       active: true,
-      constructor: new VignettePass({
+      constructor: () => new VignettePass({
         boost: 1,
         reduction: 0.3
       })
@@ -49,7 +49,7 @@ export default {
     {
       name: 'fxaaPass',
       active: true,
-      constructor: new FXAAPass()
+      constructor: () => new FXAAPass()
     }
   ]
 };

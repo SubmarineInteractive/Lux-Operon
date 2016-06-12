@@ -2,45 +2,21 @@ import './styles.scss';
 
 import { Component } from 'react';
 import { history } from 'store';
-import raf from 'raf';
 
 /**
 * HomeTransitionCanvas class
 */
 class HomeTransitionCanvas extends Component {
 
-  componentWillMount() {
-
-    this.bind();
-
-    this.addListeners();
-
-    this.updateActive = false;
-  }
-
   componentDidMount() {
+
     this.canvas = this.refs.canvas;
     this.ctx = this.canvas.getContext( '2d' );
 
-    this.onWindowResize();
+    this.width = this.canvas.width = window.innerWidth;
+    this.height = this.canvas.height = window.innerHeight;
+
     this.prepareDrawing();
-  }
-
-  componentWillUnmount() {
-    this.removeListeners();
-  }
-
-  bind() {
-
-    [ 'update', 'onWindowResize' ]
-        .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
-  }
-
-  addListeners() {
-    window.addEventListener( 'onWindowResize', this.onWindowResize, false );
-  }
-
-  removeListeners() {
   }
 
   prepareDrawing() {
@@ -63,7 +39,7 @@ class HomeTransitionCanvas extends Component {
       scrollSpeed: 1
     };
 
-    this.imageConfig.translateY =  - this.imageConfig.height;
+    this.imageConfig.translateY = - this.imageConfig.height;
 
     this.imageTransitionStart.onload = () => {
       this.ctx.drawImage( this.imageTransitionStart, 0, 0, this.imageConfig.width, this.imageConfig.height );
@@ -101,28 +77,13 @@ class HomeTransitionCanvas extends Component {
         this.imageConfig.offsetY = 0;
         this.loopTl.play( 0 );
 
-        setTimeout( () => history.push( '/experience' ), 1000 );
+        setTimeout( () => history.push( '/experience' ), 2000 );
       },
 
       ease: Power0.easeNone,
 
       delay: 2
     });
-  }
-
-  onWindowResize() {
-    this.width = this.canvas.width = window.innerWidth;
-    this.height = this.canvas.height = window.innerHeight;
-  }
-
-  update() {
-
-    if( this.updateActive ) {
-      this.render();
-      this.raf = raf( this.update );
-    } else {
-      raf.cancel( this.raf );
-    }
   }
 
   render() {

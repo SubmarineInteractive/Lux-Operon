@@ -1,0 +1,63 @@
+@import '~stylesheets/common/variables';
+@import '~stylesheets/common/mixins';
+
+.toolbar {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 1;
+  opacity: 0;
+  transform: translate3d(10px, 0, 0);
+  transition: opacity 0.3s ease-out, transform 0.5s ease-out;
+
+  &--is-displayed {
+    opacity: 1;
+    transform: none;
+    z-index: 100;
+  }
+
+  .toolbar__pause,
+  .toolbar__sound,
+  .toolbar__fullscreen {
+    cursor: pointer;
+    width: 20px;
+    height: 100%;
+    stroke: $color-white;
+  }
+
+  .toolbar__play {
+    fill: $color-white;
+    margin-right: 1.1rem;
+    transform: translateY(0.4rem);
+    width: 3rem;
+  }
+
+  .toolbar__pause {
+    margin-right: 1.5rem;
+    stroke-width: 3px;
+  }
+
+  .toolbar__sound {
+    margin-right: 1.8rem;
+
+    &--is-muted {
+      line {
+        transform: scale(0.3) !important;
+      }
+    }
+  }
+
+  .toolbar__fullscreen {
+    path {
+      transition: transform 0.1s ease-out;
+      transform-origin: center center;
+    }
+
+    &:hover,
+    &--is-fullscreen {
+      path {
+        transform: scale(-1);
+      }
+    }
+  }
+}

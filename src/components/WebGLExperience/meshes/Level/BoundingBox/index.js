@@ -1,23 +1,101 @@
-import BoundingBoxGeometry from './BoundingBoxGeometry';
-import BoundingBoxMaterial from './BoundingBoxMaterial';
+import Cannon from 'cannon';
 
 /**
  * Class BoundingBox
  */
-class BoundingBox extends THREE.Mesh {
+class BoundingBox extends THREE.Object3D {
 
   /**
    * Constructor function
-   * @param {BoundingBoxGeometry} BoundingBoxGeometry instance
-   * @param {BoundingBoxMaterial} BoundingBoxMaterial instance
-   * @param {Terrain}             Terrain instance
+   * @param {Object}  Configuration
+   * @param {World}   World instance
+   * @param {Terrain} Terrain instance
    */
-  constructor({ geometry, material }, Terrain ) {
+  constructor( configuration, World, Terrain ) {
 
-    super( new BoundingBoxGeometry( geometry, Terrain ), new BoundingBoxMaterial( material ) );
+    super();
+
+    this.configuration = configuration;
+    this.world = World;
+    this.terrain = Terrain;
+
+    const { width: widthOffset, height: heightOffset, depth: depthOffset } = this.configuration.offset;
 
     // Position
-    this.position.y = ( Terrain.geometry.boundingBox.max.z - Terrain.geometry.boundingBox.min.z ) / 2 + geometry.offset.height;
+    this.position.y = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z ) / 2 + heightOffset;
+
+    // Planes
+    this.planes = {
+      front: {
+        position: new THREE.Vector3( 0, 0, - this.terrain.geometry.parameters.height / 2 - depthOffset / 2 ),
+        axis: null,
+        angle: null
+      },
+      back: {
+        position: new THREE.Vector3( 0, 0, this.terrain.geometry.parameters.height / 2 + depthOffset / 2 ),
+        axis: new THREE.Vector3( 0, 1, 0 ),
+        angle: Math.PI
+      },
+      left: {
+        position: new THREE.Vector3( - this.terrain.geometry.parameters.width / 2 - widthOffset / 2, 0, 0 ),
+        axis: new THREE.Vector3( 0, 1, 0 ),
+        angle: Math.PI / 2
+      },
+      right: {
+        position: new THREE.Vector3( this.terrain.geometry.parameters.width / 2 + widthOffset / 2, 0, 0 ),
+        axis: new THREE.Vector3( 0, 1, 0 ),
+        angle: - Math.PI / 2
+      }
+    };
+
+    this.createPlanes();
+
+    if( this.configuration.debug ) {
+      this.debugCollisions();
+    }
+  }
+
+  /**
+   * createPlanes function
+   */
+  createPlanes() {
+
+    // Physics
+    for ( let p in this.planes ) {
+      const plane = new Cannon.Plane();
+
+      const body = new Cannon.Body({ mass: 0 });
+      body.position.copy( this.planes[ p ].position );
+
+      if( this.planes[ p ].axis && this.planes[ p ].angle ) {
+        body.quaternion.setFromAxisAngle( this.planes[ p ].axis, this.planes[ p ].angle );
+      }
+
+      body.addShape( plane );
+
+      this.world.addBody( body );
+    }
+  }
+
+  /**
+   * debugCollisions function
+   */
+  debugCollisions() {
+
+    for ( let p in this.planes ) {
+
+      const width = ( this.terrain.geometry.boundingBox.max.x - this.terrain.geometry.boundingBox.min.x ) + this.configuration.offset.width;
+      const height = ( this.terrain.geometry.boundingBox.max.z - this.terrain.geometry.boundingBox.min.z ) + this.configuration.offset.height;
+
+      const plane = new THREE.Mesh( new THREE.PlaneBufferGeometry( width, height ), new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, wireframe: true, fog: false }) );
+      plane.position.copy( this.planes[ p ].position );
+
+      if( this.planes[ p ].axis && this.planes[ p ].angle ) {
+        plane.quaternion.setFromAxisAngle( this.planes[ p ].axis, this.planes[ p ].angle );
+      }
+
+      this.add( plane );
+    }
   }
 }
 

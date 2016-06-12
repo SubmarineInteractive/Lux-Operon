@@ -61,7 +61,7 @@ class Scene extends AbstractScene {
     this.add( this.directionalLight );
 
     // Level
-    this.level = new Level( this.terrain, this.camera, this.player, this.boundingBoxConfig, this.fishGroupConfig, this.resources );
+    this.level = new Level( this.world, this.terrain, this.camera, this.player, this.boundingBoxConfig, this.fishGroupConfig, this.resources );
     this.add( this.level );
   }
 

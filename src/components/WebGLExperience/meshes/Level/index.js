@@ -7,7 +7,7 @@ import FresnelMaterial from '../../materials/FresnelMaterial';
 import { levels, anemones } from 'config/webgl/experience';
 import BubbleParticleSystem from '../ParticleSystem/BubbleParticleSystem';
 import AquaticPlantGroup from '../AquaticPlantGroup';
-
+import BoundingBox from './BoundingBox';
 import { loopIndex, degreeToRadian, randomFloat, randomInt } from 'utils';
 
 import {
@@ -32,6 +32,7 @@ class Level extends THREE.Object3D {
 
   /**
    * Constructor function
+   * @param {World}   World             World instance
    * @param {Terrain} Terrain           Terrain instance
    * @param {Camera}  Camera            Camera instance
    * @param {Player}  Player            Player instance
@@ -39,10 +40,11 @@ class Level extends THREE.Object3D {
    * @param {Object}  fishGroupConfig   Fish group configuration
    * @param {Object}  resources         Resources
    */
-  constructor( Terrain, Camera, Player, boundingBoxConfig, fishGroupConfig, resources ) {
+  constructor( World, Terrain, Camera, Player, boundingBoxConfig, fishGroupConfig, resources ) {
 
     super();
 
+    this.world = World;
     this.terrain = Terrain;
     this.camera = Camera;
     this.player = Player;
@@ -101,10 +103,15 @@ class Level extends THREE.Object3D {
       this.anemones.push( anemone );
     }
 
+    this.boundingBox = new BoundingBox( boundingBoxConfig, this.world, this.terrain );
+
+    this.add( this.boundingBox );
     this.add( this.terrain );
     this.add( this.player );
 
     this.bind();
+
+    //this.debug();
 
     Emitter.once( EXP_INTRO_ENDED , this.onIntroEnded );
     Emitter.once( EXP_RAYCAST_TOGGLE , this.toggleRaycast );
@@ -119,6 +126,22 @@ class Level extends THREE.Object3D {
 
     [ 'update', 'onIntroEnded', 'handleClickOnFish', 'onMouseMove', 'raycast', 'toggleRaycast', 'getFishCount' ]
         .forEach( ( fn ) => this[ fn ] = this[ fn ].bind( this ) );
+  }
+
+  debug() {
+
+    const onKeyUp = ( ev )=> {
+
+      if( ev.keyCode === 50 ) { // 2
+
+        this.fishCounter++;
+
+        Emitter.emit( EXP_FISH_COUNT_UPDATE, this.fishCounter );
+      }
+
+    };
+
+    document.addEventListener( 'keyup', onKeyUp, false );
   }
 
   /**

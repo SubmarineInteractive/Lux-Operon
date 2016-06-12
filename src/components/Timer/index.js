@@ -39,11 +39,12 @@ class Timer extends Component {
 
     this.addEventListeners();
 
-    this.debug();
+    //this.debug();
   }
 
   componentWillUnmount() {
 
+    clearInterval( this.interval );
     this.removeEventListeners();
   }
 

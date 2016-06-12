@@ -46,7 +46,7 @@ class AbstractScene extends THREE.Scene {
 
     // Debug helpers
     if( __DEV__ ) {
-      // this.debug();
+      // //this.debug();
     }
 
     // Events
